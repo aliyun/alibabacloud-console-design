@@ -1,0 +1,24 @@
+# common
+
+.*
+!.*ignore
+!.*rc
+!.*rc.js
+
+# dev
+
+node_modules/
+packages/*/node_modules/
+packages/*/lib/
+
+# generated
+*.tgz*
+*.log*
+build/
+dist/
+coverage/
+
+# misc
+
+*.cache
+/.eslintcache

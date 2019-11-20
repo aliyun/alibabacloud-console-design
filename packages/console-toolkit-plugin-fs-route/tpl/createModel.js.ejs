@@ -1,0 +1,10 @@
+
+<% models.forEach(function(model){ %>
+import <%= model.componentName %> from '<%= model.importPath %>'
+<% }); %>
+
+export default (app) => (
+  <% models.forEach(function(model){ %>
+  app.use(model)
+  <% }); %>  
+)
