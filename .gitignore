@@ -22,3 +22,6 @@ coverage/
 
 *.cache
 /.eslintcache
+
+site/public
+site/node_modules

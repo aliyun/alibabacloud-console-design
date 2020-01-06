@@ -1,0 +1,52 @@
+{
+  "name": "console-design-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "author": "",
+  "dependencies": {
+    "@alicloud/gatsby-theme-console-doc": "^1.0.16",
+    "gatsby": "^2.17.2",
+    "glob": "^7.1.6",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-syntax-highlighter": "^11.0.2",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/urllib": "^2.33.0",
+    "eslint-config-react-app": "^5.0.2",
+    "eslint-plugin-flowtype": "^3.0.0",
+    "gh-pages": "^2.1.1",
+    "mdast": "^3.0.0",
+    "mdast-util-assert": "^2.0.1",
+    "remark-frontmatter": "^1.3.2",
+    "remark-parse": "^7.0.2",
+    "remark-stringify": "^7.0.4",
+    "typescript": "^3.7.3",
+    "unified": "^8.4.2",
+    "unist-util-remove-position": "^2.0.0",
+    "urllib": "^2.34.1"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "clean": "gatsby clean",
+    "develop": "npm run clean && gatsby develop",
+    "start": "npm run develop",
+    "debug": "npm run clean && npx --node-arg=--inspect-brk gatsby develop",
+    "build": "npm run clean && gatsby build --prefix-paths",
+    "push-build": "npm run build && gh-pages -d public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  }
+}
