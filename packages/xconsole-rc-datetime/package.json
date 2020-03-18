@@ -1,0 +1,56 @@
+{
+  "name": "@alicloud/xconsole-rc-datetime",
+  "version": "1.0.0-beta.1",
+  "description": "",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/aliyun/alibabacloud-console-design",
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
+  },
+  "author": {
+    "name": "",
+    "email": "",
+    "url": ""
+  },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "prepublish": "npm run clean && npm run build && npm run babel && npm run babel:esm",
+    "babel": "breezr build --engine babel",
+    "babel:esm": "breezr build --engine babel --es-module",
+    "build": "breezr build --engine webpack",
+    "storybook": "breezr start-storybook",
+    "clean": "rm -rf es build lib yarn.lock"
+  },
+  "peerDependencies": {
+    "@alicloud/console-components-intl": "^1.0.9",
+    "moment": "^2.x",
+    "prop-types": "^15.x",
+    "react": "^16.x",
+    "react-dom": "^16.x"
+  },
+  "devDependencies": {
+    "@alicloud/console-components-intl": "^1.0.9",
+    "@alicloud/console-toolkit-cli": "^1.0.0",
+    "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-ali": "^3.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "moment": "^2.22.1",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
+  }
+}

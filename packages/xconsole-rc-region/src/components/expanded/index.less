@@ -1,0 +1,40 @@
+:global {
+  .wind-rc-region {
+    &.expanded {
+      display: block;
+
+      .wind-rc-region-item {
+        cursor: pointer;
+        display: inline-block;
+        border-radius: 15px;
+        font-size: 12px;
+        height: 28px;
+        line-height: 28px;
+        margin: 6px 2px;
+        padding: 0 12px;
+
+        &.active,
+        &.active:hover {
+          color: #fff;
+          cursor: default;
+          background: #657C99;
+        }
+
+        &:hover {
+          background: #edf1f6;
+        }
+
+        a {
+          &:link,
+          &:visited,
+          &:hover,
+          &:active {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
