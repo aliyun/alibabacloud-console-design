@@ -1,0 +1,110 @@
+{
+  "name": "@alicloud/xconsole",
+  "version": "1.0.0-beta.1",
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+  },
+  "scripts": {
+    "ci": "tnpm run lint && tnpm run compile && tnpm run cov",
+    "lint": "tslint --project .",
+    "prepublish": "rm -rf ./lib && tsc -d true -p ./",
+    "compile": "rm -rf ./lib && tsc -d true -p ./",
+    "watch": "tsc -watch -d true -p ./",
+    "test": "jest",
+    "cov": "jest  --coverage",
+    "prepare": "npm run compile"
+  },
+  "bin": {
+    "xconsole": "./bin/xconsole.js"
+  },
+  "main": "index.js",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/jest": "^23.3.13",
+    "@types/node": "^8.10.25",
+    "jest": "^24.2.0-alpha.0",
+    "lerna": "^3.6.0",
+    "nyc": "^13.1.0",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.8.0",
+    "typescript": "^3.0.3"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "@alicloud/console-toolkit-cli": "^1.0.0",
+    "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
+    "@ali/breezr-plugin-xconsole": "^1.0.0-beta.1",
+    "@ali/breezr-preset-xconsole": "^1.0.0-beta.1",
+
+    "@alicloud/console-toolkit-core": "^1.0.1",
+    "@alicloud/console-toolkit-plugin-os": "^0.1.8",
+    "@alicloud/console-toolkit-shared-utils": "^1.0.1",
+    "@alicloud/console-components": "^1.0.20",
+    "@alicloud/console-components-intl": "^1.0.8",
+    "@alicloud/console-components-announcement": "^1.0.1",
+    "@alicloud/console-components-table": "^1.0.1",
+    "@alicloud/console-components-slide-panel": "^2.0.0",
+    "@alicloud/console-components-truncate": "^1.0.1",
+    "@alicloud/console-components-status-indicator": "^1.0.4",
+    "@alicloud/console-components-data-fields": "^1.0.4",
+    "@alicloud/console-components-actions": "^1.0.5",
+
+    "@ali/console-ui": "^0.11.0-alpha.19",
+
+    "@ali/error-prompt": "^0.1.10",
+    "@ali/nb-rc-dialog": "^0.1.7",
+
+    "@alicloud/console-os-react-portal": "^0.2.15",
+
+    "@alicloud/xconsole-context": "^1.0.0-beta.1",
+    "@alicloud/xconsole-model": "^1.0.0-beta.1",
+    "@alicloud/xconsole-provider": "^1.0.0-beta.1",
+    "@alicloud/xconsole-console-base": "^1.0.0-beta.1",
+    "@alicloud/xconsole-error-center": "^1.0.0-beta.1",
+    "@alicloud/xconsole-logger": "^1.0.0-beta.1",
+    "@alicloud/xconsole-mutation": "^1.0.0-beta.1",
+    "@alicloud/xconsole-query": "^1.0.0-beta.1",
+    "@alicloud/xconsole-service": "^1.0.0-beta.1",
+
+    "@alicloud/xconsole-rc-datetime": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-step": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-app-layout": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-description": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-feature": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-form": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-gray": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-link": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-page-header": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-result": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-widget": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-region": "^1.0.0-beta.1",
+
+
+
+    "@alife/dpl-console-design-2019": "^1.1.1",
+    "@types/react": "^16.8.24",
+    "@types/webpack-env": "^1.14.0",
+    "commander": "^2.20.0",
+    "dva": "^2.4.1",
+    "dva-loading": "^3.0.12",
+    "execa": "^1.0.0",
+    "figlet": "^1.2.1",
+    "inquirer": "^6.3.1",
+    "lodash.get": "^4.4.2",
+    "minimist": "^1.2.0",
+    "package-json": "^6.3.0",
+    "prop-types": "^15.6.1",
+
+    "reselect": "^4.0.0",
+    "rimraf": "^2.6.3",
+    "semver": "^6.0.0",
+    "styled-components": "^4.3.1",
+    "tslib": "^1.10.0"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "gitHead": "555e8f459f0201bb1529801d95942f924649a83a"
+}

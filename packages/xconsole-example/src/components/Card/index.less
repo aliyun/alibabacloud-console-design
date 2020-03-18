@@ -1,0 +1,41 @@
+.rc-card {
+  box-sizing: content-box;
+  padding:16px;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
+
+  &:hover {
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.21);
+  }
+
+
+  .rc-card-header {
+    position: relative;
+    height: 22px;
+    line-height: 22px;
+    color: #333333;
+    margin-bottom: 16px;
+    font-size:14px;
+    font-weight: 500;
+
+    .rc-card-header-expander {
+      position: absolute;
+      right:0;
+      top:0;
+      line-height:22px;
+      color:#888888;
+
+      &:hover {
+        color:#333333;
+      }
+    }
+
+  }
+
+  .rc-card-footer {
+    height: 20px;
+    line-height: 20px;
+    color: #333333;
+    margin-bottom: 16px;
+  }
+}

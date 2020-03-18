@@ -1,0 +1,29 @@
+{
+  "extends": "eslint-config-ali/react",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "experimentalDecorators": true,
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react-hooks"
+  ],
+  "rules": {
+    "max-len": [
+      "warn", {
+        "code": 80,
+        "tabWidth": 2,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "semi": 0
+  }
+}

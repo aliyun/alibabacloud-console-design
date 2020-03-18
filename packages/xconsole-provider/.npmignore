@@ -1,0 +1,1 @@
+.*\n!.*ignore\nnode_modules/\nsrc/\ntest/\nbabel.config.js\n*lock.json

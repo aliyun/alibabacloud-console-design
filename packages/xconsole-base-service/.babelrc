@@ -1,0 +1,42 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": [">1%", "ie 10"]
+      },
+      "modules": false,
+      "useBuiltIns": false
+    }],
+    ["stage-0"]
+  ],
+  "plugins": [
+    "transform-runtime",
+    ["transform-builtin-extend", {
+      "globals": ["Error"]
+    }],
+    "syntax-object-rest-spread",
+    "external-helpers"
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "browsers": [">1%", "ie 10"]
+          },
+          "modules": "commonjs",
+          "useBuiltIns": false
+        }],
+        ["stage-0"]
+      ],
+      "plugins": [
+        "transform-runtime",
+        ["transform-builtin-extend", {
+          "globals": ["Error"]
+        }],
+        "syntax-object-rest-spread",
+        "external-helpers"
+      ]
+    }
+  }
+}

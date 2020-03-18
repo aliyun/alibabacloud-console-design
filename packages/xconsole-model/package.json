@@ -1,0 +1,58 @@
+{
+  "name": "@alicloud/xconsole-model",
+  "version": "1.0.0-beta.1",
+  "description": "",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/aliyun/alibabacloud-console-design",
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
+  },
+  "author": {
+    "name" : "",
+    "email" : "",
+    "url" : ""
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "prepublish": "npm run clean && npm run babel && npm run babel:esm",
+    "babel": "breezr build --engine babel",
+    "babel:esm": "breezr build --engine babel --es-module",
+    "build": "breezr build --engine webpack",
+    "storybook": "breezr start-storybook",
+    "clean": "rm -rf es build lib yarn.lock"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@alicloud/console-toolkit-cli": "^1.0.0",
+    "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.2"
+  },
+  "dependencies": {
+    "@alicloud/xconsole-action-creator": "^1.0.0-beta.1",
+    "@alicloud/xconsole-effect-creator": "^1.0.0-beta.1",
+    "@babel/runtime": "^7.3.4",
+    "lodash": "^4.17.15",
+    "lodash.delay": "^4.1.1",
+    "reselect": "^3.0.0",
+    "uuid": "^3.3.2"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  }
+}

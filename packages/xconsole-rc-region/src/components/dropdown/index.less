@@ -1,0 +1,66 @@
+@height: 50px;
+@white: #fff;
+@black-light: #333;
+@blue: #00c1de;
+@grey: #c2c2c2;
+@base-indent: 8px;
+@base-indent-2x: @base-indent * 2;
+@base-indent-3x: @base-indent * 3;
+
+:global {
+  .wind-rc-region {
+    &.dropdown {
+      box-sizing: border-box;
+      display: inline-block;
+      font-size: 14px;
+
+      &-trigger {
+        display: inline-block;
+        height: @height;
+        line-height: @height;
+        padding: 0 @base-indent-2x;
+        color: @black-light;
+
+        &.active {
+          background: @white;
+        }
+      }
+    }
+
+    &-dropdown-content {
+      background: @white;
+
+      .wind-rc-region-item {
+        cursor: pointer;
+
+        &.active {
+          color: @blue;
+        }
+
+        &:hover {
+          color: @blue;
+        }
+
+        &.disabled {
+          cursor: default;
+          color: @grey;
+
+          &:hover {
+            color: @grey;
+          }
+        }
+
+        a {
+          &:link,
+          &:visited,
+          &:hover,
+          &:active {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

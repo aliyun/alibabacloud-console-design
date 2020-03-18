@@ -1,0 +1,63 @@
+import React from 'react'
+import { hot } from 'react-hot-loader'
+import dva from 'dva'
+import { Router } from 'dva/router'
+import createLoading from 'dva-loading'
+import { createBrowserHistory, createHashHistory } from 'history'
+
+import { withProvider, RcRegion, ErrorCenter, WindProProvider } from '@alicloud/xconsole'
+import "@alicloud/xconsole/ui/xconsole.less";
+
+import Routes from './routes'
+import '../styles/index.less'
+
+const { register } = RcRegion
+
+console.log(WindProProvider)
+
+<% if(global.hasEntryCode){ %>
+import entry from '~/app';
+<% } %>
+
+<% if(global.hasAppConfig){ %>
+  import appConfig from '~/appConfig';
+<% } else { %>
+  const appConfig = {}
+<% } %>
+
+<% if(global.mode === 'hash'){ %>
+  const app = dva({ history: createHashHistory() })
+<% } else { %>
+  const app = dva({ history: createBrowserHistory() })
+<% } %>
+
+
+
+app.use(register(app))
+app.use(createLoading())
+
+if (appConfig.errorCenter && appConfig.errorCenter.enable) {
+  app.use(ErrorCenter(appConfig))
+}
+
+app.router(({ history }) => (
+  <WindProProvider
+    app={app}
+    history={history}
+  >
+    <Router history={history}>
+      <Routes />
+    </Router>
+  </WindProProvider>
+))
+
+const OriginApp = withProvider()(app.start())
+const App = process.env.NODE_ENV === 'development' ?
+  hot(module)(OriginApp) :
+  OriginApp
+
+<% if (global.hasEntryCode){ %>
+export default entry(app, App)
+<% } else { %>
+export default props => <App {...props} />
+<% } %>
