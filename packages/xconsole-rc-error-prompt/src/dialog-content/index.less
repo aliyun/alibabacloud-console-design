@@ -1,0 +1,53 @@
+@import '~@alicloud/xconsole-less/index';
+
+.nb-error-prompt-dialog-content {
+  .error-message-holder {
+    font-size: 14px;
+
+    em {
+      font-style: normal;
+      color: @G_color_text_emphasis;
+    }
+    code {
+      padding: 0 4px;
+      color: #f25c7f;
+      background-color: fadeOut(#ccc, 75);
+      border-radius: 2px;
+    }
+  }
+  .next-btn.next-btn-normal.error-detail-toggle {
+    margin-top: 40px;
+    color: fadeOut(#333, 50);
+    font-size: 12px;
+    text-align: left; // 防止过长后折行部分变成居中
+    height: auto; // 覆盖 sb 的 text button 上的 height: 20px 设定
+    #typo.line-wrap();
+
+    i {
+      margin-left: 0.5em;
+    }
+
+    &:hover,
+    &:focus {
+      color: fadeOut(#333, 40);
+    }
+  }
+  .error-detail {
+    margin: 1em 0 0 1em;
+    font-size: 10px;
+  }
+  .error-pagination {
+    margin-top: 20px;
+  }
+
+  &.with-details {
+    .error-detail-toggle {
+      i:before {
+        transform: rotate(180deg);
+      }
+    }
+    .error-pagination {
+      margin-top: 8px;
+    }
+  }
+}

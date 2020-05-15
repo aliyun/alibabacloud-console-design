@@ -1,0 +1,49 @@
+@import '../var/color.less';
+
+// 文字和排版
+#typo {
+  // 链接
+  .link(@level: 0) {
+    & when (@level = 0) { // 一般的链接
+      color: @G_color_link;
+      
+      :hover {
+        text-decoration: underline;
+      }
+    }
+    & when (@level = 1) { // 最高级别，最重要的链接
+      color: @G_color_text_emphasis;
+      
+      :hover {
+        text-decoration: underline;
+      }
+    }
+    & when (@level = -1) { // 次要链接、列表型链接，如公告
+      color: @G_color_text_body;
+      
+      :hover {
+        color: @G_color_link;
+        text-decoration: none;
+      }
+    }
+  }
+  .ellipsis() {
+    // 你可能需要设定一个宽度
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ellipsis-lines(@lines; @lh: 1.4) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: @lines;
+    -webkit-box-orient: vertical;
+    line-height: @lh;
+    min-height: @lh * @lines;
+  }
+  .line-wrap() {
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+}

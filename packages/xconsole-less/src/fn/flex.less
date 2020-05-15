@@ -1,0 +1,27 @@
+#flex() {
+  .container(
+    @direction: row,
+    @wrap: nowrap,
+    @justifyContent: flex-start,
+    @alignItems: flex-start,
+    @alignContent: flex-start
+  ) {
+    display: flex;
+    flex-flow: @direction @wrap;
+    justify-content: @justifyContent;
+    align-items: @alignItems;
+    align-content: @alignContent;
+  }
+
+  .item(
+    @order: 0,
+    @grow: 0,
+    @shrink: 1,
+    @basis: auto,
+    @alignSelf: auto
+  ) {
+    order: @order;
+    flex: @grow @shrink @basis;
+    align-self: @alignSelf;
+  }
+}

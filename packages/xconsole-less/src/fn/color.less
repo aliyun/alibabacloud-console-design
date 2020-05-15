@@ -1,0 +1,82 @@
+@import '../var/color.less';
+
+#color {
+  // 前景色（文本色）
+  ._fgc(@c; @hoveActive) {
+    color: @c;
+    
+    & when (@hoveActive = true) {
+      &:hover {
+        color: tint(@c, 20%);
+      }
+      &:active {
+        color: tint(@c, -5%);
+      }
+    }
+  }
+  // 背景色
+  ._bgc(@c; @hoveActive) {
+    background-color: @c;
+    
+    & when (@hoveActive = true) {
+      &:hover {
+        background-color: tint(@c, 20%);
+      }
+      &:active {
+        background-color: tint(@c, -5%);
+      }
+    }
+  }
+  
+  // ---- 彩色功能色 ---- //
+  // 1. `.xx(@hoveActive)` 表示某功能的文字色，可设定 `:hover` 和 `:active`
+  // 2. `.xxBG(@hoveActive)` 表示某功能的深色背景色（文本色为白色），可设定 `:hover` 和 `:active`
+  // 3. `.xxOnLightBG()` 表示某功能色在其对应的浅色背景上，文本为对应正常功能色的基础上做 tint -5%，一般用于突出说明性区块，没有 `:hover` 和 `:active`
+  .error(@hoveActive: false) {
+    ._fgc(@G_color_text_error; @hoveActive);
+  }
+  .error-bg(@hoveActive: false) {
+    color: #fff;
+    ._bgc(@G_color_text_error; @hoveActive);
+  }
+  .error-bg-light() {
+    color: tint(@G_color_text_error, -5%);
+    background-color: @G_color_bg_error;
+  }
+  
+  .warn(@hoveActive: false) {
+    ._fgc(@G_color_text_warn; @hoveActive);
+  }
+  .warn-bg(@hoveActive: false) {
+    color: #fff;
+    ._bgc(@G_color_text_warn; @hoveActive);
+  }
+  .warn-bg-light() {
+    color: tint(@G_color_text_warn, -5%);
+    background-color: @G_color_bg_warn;
+  }
+  
+  .info(@hoveActive: false) {
+    ._fgc(@G_color_text_info; @hoveActive);
+  }
+  .info-bg(@hoveActive: false) {
+    color: #fff;
+    ._bgc(@G_color_text_info; @hoveActive);
+  }
+  .info-bg-light() {
+    color: tint(@G_color_text_info, -5%);
+    background-color: @G_color_bg_info;
+  }
+  
+  .success(@hoveActive: false) {
+    ._fgc(@G_color_text_positive; @hoveActive);
+  }
+  .success-bg(@hoveActive: false) {
+    color: #fff;
+    ._bgc(@G_color_text_positive; @hoveActive);
+  }
+  .success-bg-light() {
+    color: tint(@G_color_text_positive, -5%);
+    background-color: @G_color_bg_positive;
+  }
+}
