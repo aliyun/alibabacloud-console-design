@@ -1,0 +1,61 @@
+.portal {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  > .header {
+    display: flex;
+    height: 250px;
+    padding: 56px 0 56px 0;
+    width: 1024px;
+    > .product-icon {
+      width: 108px;
+      height: 108px;
+      margin-right: 40px;
+      vertical-align: top;
+      word-break: break-all;
+    }
+    > .product-explain {
+      vertical-align: top;
+      .title {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+      .description {
+        font-size: 12px;
+        margin-bottom: 16px;
+        max-width: 520px;
+      }
+      .extra {
+        margin-bottom: 16px;
+      }
+      .actions {
+        button:not(:last-child) {
+          margin-right: 8px;
+        }
+      }
+
+    }
+  }
+  > .content-container {
+    background-color: #FAFAFA;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    > .content {
+      padding: 56px 0 32px 0;
+      display: flex;
+      justify-content: flex-start;
+      width: 1024px;
+    }
+    > .footer {
+      padding: 32px 0 0 0;
+      display: flex;
+      justify-content: flex-start;
+      width: 1024px;
+    }
+  }
+}

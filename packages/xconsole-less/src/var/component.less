@@ -1,0 +1,33 @@
+// 组件相关属性（可能被全局复用），包括
+// 命名规则为 `G_{组件或组件的某部分}_{属性}_{大小等修饰词}`
+
+// topbar
+@G_topbar_height: 50px; // 控制台通用顶栏高度（如果有顶栏的话，body 上会有个 `hasTopbar` 的 class，可以用它来判断有没有顶栏）
+
+// app menu
+@G_app_menu_width: 208px; // 应用侧栏菜单的宽度
+@G_app_menu_title_height: 48px; // 应用侧栏菜单的标题高度
+@G_app_menu_item_height: 40px; // 应用侧栏菜单项的一般高度
+@G_app_menu_item_height_s: 32px; // 应用侧栏菜单项的稍小高度（用于实例列表）
+
+// 表单控件（单行）的高度：button、input、select 等
+@G_form_control_height: 32px;
+@G_form_control_height_s: 24px;
+@G_form_control_height_l: 36px;
+
+// dialog - slide 的 header 有些微差别
+@G_dialog_width_xs: 360px;
+@G_dialog_width_s: 480px;
+@G_dialog_width: 640px;
+@G_dialog_width_l: 800px;
+@G_dialog_width_xl: 960px;
+@G_dialog_min_height: 200px; // 建议 dialog 最小高度
+@G_dialog_header_font_size: 16px;
+@G_dialog_header_line_height: 24px;
+@G_dialog_header_height: 56px; // header line-height 24 + padding 16 * 2 = 56
+@G_dialog_slide_header_font_size: 18px;
+@G_dialog_slide_header_line_height: 28px;
+@G_dialog_slide_header_height: 60px; // header line-height 28 + padding 16 * 2 = 60
+@G_dialog_footer_height: 64px; // button 高度 32 + padding 16 * 2 = 64
+@G_dialog_padding_x: 24px; // 左右 padding
+@G_dialog_overlay_bg: fadeout(#000, 55);

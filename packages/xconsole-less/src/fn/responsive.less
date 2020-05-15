@@ -1,0 +1,27 @@
+// 响应式方法
+#responsive {
+  // 视网膜屏
+  .retina(@rules) {
+    @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+      @rules();
+    }
+  }
+  // 在某宽度以上
+  .above(@min; @rules) {
+    @media screen and (min-width: @min) {
+      @rules();
+    }
+  }
+  // 在某宽度以下
+  .below(@max; @rules) {
+    @media screen and (max-width: @max) {
+      @rules();
+    }
+  }
+  // 在某宽度之间
+  .between(@min; @max; @rules) {
+    @media screen and (min-width: @min) and (max-width: @max) {
+      @rules();
+    }
+  }
+}
