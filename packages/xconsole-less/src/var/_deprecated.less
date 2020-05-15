@@ -1,0 +1,35 @@
+@import './color';
+
+@_color_gray: #333;
+// --------------------------------------------------------------- //
+// 即将废除的变量
+// --------------------------------------------------------------- //
+// 这以下的变量是为了兼容，TODO 将在 3.0 版本删除
+@G_color_text_heading: @G_color_text_title; // 标题别名
+@G_color_text_body: @G_color_text_primary; // 主要文字别名
+@G_color_text_help: @G_color_text_caption; // 说明文字别名
+@G_color_text_hint: @G_color_text_disabled; // Disabled 状态文字别名
+@G_color_bg_error: tint(@G_color_text_error, 90%); // #feeeeb 最高级别：错误提示的底色
+@G_color_bg_warn: tint(@G_color_text_warn, 90%); // #feeeeb 最高级别：警告提示的底色
+@G_color_bg_emphasis: tint(@G_color_brand_aliyun, 90%); // #fff3e6 第二级别：突出说明的底色
+@G_color_bg_info: tint(@G_color_text_info, 90%); // #e6f9fc 第二级别：重要说明的底色
+@G_color_bg_positive: tint(@G_color_success, 90%); // #ebf7ed 第三级别：积极和正面引导的文本，如「验证通过」、「已支付」等
+@G_color_bg_dark: tint(@_color_gray, 80%); // #d7d8d9 强调需要严格强调模块之间差异的场景
+@G_color_bg_heading: tint(@_color_gray, 90%); // #ebecec 不可点按钮的底色，模块间的区分或模块中信息的层次区分，如「表头」、「卡片标题区」等
+@G_color_bg_light: tint(@_color_gray, 95%); // #f5f5f6 不可点输入框的底色，页面中用于区分不同区块时的背景底色，以及斑马条表单的底色
+@G_color_line_error: @G_color_error; // 最高级别：报错
+@G_color_line_warn: @G_color_error; // 最高级别：警告
+@G_color_line_emphasis: @G_color_brand_aliyun; // 第二级别：突出说明，如「金额」、「最重要链接」等
+@G_color_line_info: @G_color_info; // 第二级别：重要提示、重要连接
+@G_color_line_positive: @G_color_success; // 第三级别：积极和正面引导的文本，如「验证通过」、「已支付」等
+@G_color_line_dark: @_color_gray; // 重线，强展示，突出可操作的组件的线 / 边框，如按钮
+@G_color_line_heading: tint(@_color_gray, 70%); // #c3c5c6 深线，次强展示，可操作的组件的线 / 边框，如「输入框」
+@G_color_line_regular: tint(@_color_gray, 80%); // #d7d8d9 常规线，常规展示的组件的线 / 边框，如「卡片」
+@G_color_line_light: tint(@_color_gray, 90%); // #ebecec 浅线，弱展示，区分段落或不可操作内容的线 / 边框
+
+@G_width_app_menu: 208px; // 应用侧栏菜单的宽度
+@G_height_top_bar: 50px; // 控制台通用顶栏高度（如果有顶栏的话，body 上会有个 `hasTopbar` 的 class，可以用它来判断有没有顶栏）
+@G_height_app_menu_title: 48px; // 应用侧栏菜单的标题高度
+@G_height_app_menu_item: 40px; // 应用侧栏菜单项的一般高度
+@G_height_app_menu_item_s: 32px; // 应用侧栏菜单项的稍小高度（用于实例列表）
+@G_padding_app_menu: 20px; // 应用侧栏菜单的左右边距

@@ -1,0 +1,57 @@
+// usage:
+// #triangle.base();
+// #triangle.up(@b; @h; @c);
+#triangle {
+  ._horizontal(@sizeT, @sizeB) {
+    border-top: @sizeT solid transparent;
+    border-bottom: @sizeB solid transparent;
+  }
+  ._vertical(@sizeL, @sizeR) {
+    border-left: @sizeL solid transparent;
+    border-right: @sizeR solid transparent;
+  }
+  .base() { // so that you can do it for a grouped selector
+    display: inline-block;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+  }
+  // defined as direction: up ▲ down ︎▼ left ︎◀ right ▶
+  .up(@b; @h; @c) {
+    border-bottom: @h solid @c;
+    ._vertical(@b * 0.5, @b * 0.5);
+  }
+  .down(@b; @h; @c) {
+    border-top: @h solid @c;
+    ._vertical(@b * 0.5, @b * 0.5);
+  }
+  .right(@b; @h; @c) {
+    border-left: @h solid @c;
+    ._horizontal(@b * 0.5, @b * 0.5);
+  }
+  .left(@b; @h; @c) {
+    border-right: @h solid @c;
+    ._horizontal(@b * 0.5, @b * 0.5);
+  }
+  // defined as position at the corner of a rectangle
+  // ◤ tl - tr ◥
+  // |          |
+  // ◣ bl - br ◢
+  .tl(@b; @h; @c) {
+    border-top: @h solid @c;
+    ._vertical(0, @b);
+  }
+  .tr(@b; @h; @c) {
+    border-top: @h solid @c;
+    ._vertical(@b, 0);
+  }
+  .bl(@b; @h; @c) {
+    border-bottom: @h solid @c;
+    ._vertical(0, @b);
+  }
+  .br(@b; @h; @c) {
+    border-bottom: @h solid @c;
+    ._vertical(@b, 0);
+  }
+}

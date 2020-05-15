@@ -1,0 +1,40 @@
+{
+  "name": "@alicloud/xconsole-less",
+  "version": "1.0.0-beta.1",
+  "description": "阿里云控制台通用 LESS 常量及方法",
+  "main": "index.less",
+  "license": "MIT",
+  "homepage": "https://github.com/aliyun/alibabacloud-console-design",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
+  },
+  "author": {
+    "name" : "",
+    "email" : "",
+    "url" : ""
+  },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "peerDependencies": {
+    "less": "^3.x",
+    "prop-types": "^15.x",
+    "react": "^16.x",
+    "react-dom": "^16.x"
+  },
+  "devDependencies": {
+    "@ali/builder-abc": "^0.1.14",
+    "classnames": "^2.2.6",
+    "less": "^3.9.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "scripts": {
+    "start": "abc dev"
+  }
+}

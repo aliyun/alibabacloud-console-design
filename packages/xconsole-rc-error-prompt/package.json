@@ -1,0 +1,57 @@
+{
+  "name": "@alicloud/xconsole-rc-error-prompt",
+  "version": "1.0.0-beta.1",
+  "description": "elegant error prompt",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/aliyun/alibabacloud-console-design",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
+  },
+  "author": {
+    "name" : "",
+    "email" : "",
+    "url" : ""
+  },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "start": "abc dev",
+    "build": "abc build",
+    "babel": "abc babel",
+    "prepublish": "abc babel && abc build",
+    "pub": "abc publish",
+    "lint": "eslint src/"
+  },
+  "peerDependencies": {
+    "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1",
+    "@alicloud/console-components": "^1.0.20",
+    "prop-types": "^15.x",
+    "react": "^16.x",
+    "react-dom": "^16.x"
+  },
+  "dependencies": {
+    "@alicloud/xconsole-less": "^1.0.0-beta.1",
+    "babel-runtime": "^6.26.0",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.15",
+    "qs": "^6.9.0"
+  },
+  "devDependencies": {
+    "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1",
+    "@alicloud/console-components": "^1.0.20",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5"
+  },
+  "gitHead": "17abf3776124e3003b8dfa76096d2fd5187e2ba5"
+}
