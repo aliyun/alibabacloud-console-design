@@ -11,54 +11,48 @@ import { wrapDisplayName } from 'recompose';
 import { matchPath, withRouter } from 'dva/router';
 import AppLayout from '@alicloud/console-components-app-layout';
 import each from 'lodash.foreach';
+import isArray from 'lodash/isArray';
 import Nav from './Nav';
 import Context from './Context';
+import Aside from './Aside';
+var noticeFlag = false;
 
 var XConsoleAppLayout = function XConsoleAppLayout(_ref) {
   var _ref$sidebar = _ref.sidebar,
       sidebar = _ref$sidebar === void 0 ? {} : _ref$sidebar,
+      _ref$appConfig = _ref.appConfig,
+      appConfig = _ref$appConfig === void 0 ? {} : _ref$appConfig,
       pathname = _ref.location.pathname,
       children = _ref.children;
 
-  var _useState = useState(false),
+  var _useState = useState(sidebar.title || 'XConsole'),
       _useState2 = _slicedToArray(_useState, 2),
-      collapsed = _useState2[0],
-      setCollapsed = _useState2[1]; // save prev collapsed
+      title = _useState2[0],
+      setTitle = _useState2[1];
 
+  var _useState3 = useState(sidebar.navs || []),
+      _useState4 = _slicedToArray(_useState3, 2),
+      navs = _useState4[0],
+      setNavs = _useState4[1];
 
-  var prevState = useRef();
-  useEffect(function () {
-    prevState.current = collapsed;
-  });
-  useEffect(function () {
-    var collapse = false;
-    each(sidebar.collapsedKeys, function (key) {
-      if (matchPath(pathname, {
-        path: key,
-        exact: true,
-        strict: true
-      })) {
-        collapse = true;
-        return true;
-      }
-    });
-    setCollapsed(collapse);
-  }, [pathname]);
+  if (noticeFlag === false && (typeof sidebar.defaultOpenKeys !== 'undefined' || typeof sidebar.collapsedKeys !== 'undefined' || typeof sidebar.invisiblePaths !== 'undefined')) {
+    noticeFlag = true;
+    console.warn('[xconsole rc-app-layout] sidebar.js 中关于 defaultOpenKeys collapsedKeys invisiblePaths 的配置不再推荐使用，请在 appConfig.js 中配置 consoleMenu， 具体配置信息及字段说明请前往官网查看 【开发指南】 文档。');
+  }
 
-  var toggleNavCollapsed = function toggleNavCollapsed(prevCollapsed) {
-    setCollapsed(typeof prevCollapsed === 'boolean' ? !prevCollapsed : !prevState.current);
-  };
-
-  var providerValue = {
-    navCollapsed: collapsed
-  };
-  return React.createElement(AppLayout, {
-    adjustHeight: 50,
-    nav: React.createElement(Nav, sidebar),
-    navCollapsed: collapsed,
-    onNavCollapseTriggerClick: toggleNavCollapsed
-  }, React.createElement(Context.Provider, {
-    value: providerValue
+  return React.createElement(Context.Provider, {
+    value: {
+      sidebar: {
+        title: title,
+        navs: navs,
+        collapsedKeys: []
+      },
+      setTitle: setTitle,
+      setNavs: setNavs
+    }
+  }, React.createElement(Aside, {
+    appConfig: appConfig,
+    location: location
   }, children));
 };
 

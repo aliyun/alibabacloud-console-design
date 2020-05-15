@@ -3,7 +3,7 @@
   "version": "1.0.0-beta.1",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
   "description": "breezr preset for wind pro",
   "author": "流司 <liusi.xbw@alibaba-inc.com>",
@@ -16,7 +16,8 @@
     "watch": "tsc -watch -d true -p ./",
     "test": "jest",
     "cov": "jest  --coverage",
-    "prepare": "npm run compile"
+    "prepare": "npm run compile",
+    "prepublish": "npm run compile"
   },
   "devDependencies": {
     "@alicloud/console-toolkit-shared-utils": "^1.0.1",
@@ -37,7 +38,7 @@
     "@alicloud/console-toolkit-plugin-block": "^1.0.0-rc.7",
     "@alicloud/console-toolkit-plugin-os": "^0.2.10",
     "@alicloud/console-toolkit-plugin-xconsole-fs-route": "^1.0.0-beta.1",
-    "@alicloud/console-toolkit-preset-wind": "^1.0.3",
+    "@alicloud/console-toolkit-preset-official": "^1.0.0",
     "rimraf": "^3.0.0"
   },
   "publishConfig": {

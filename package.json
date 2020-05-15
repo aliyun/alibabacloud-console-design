@@ -1,7 +1,20 @@
 {
   "name": "root",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "cd packages/xconsole-example && tnpm i && tnpm start",
+    "create-cloud-console": "cd packages/xconsole && node bin/xconsole.js",
+    "bootstrap": "lerna bootstrap --registry http://registry.npm.alibaba-inc.com",
+    "pub:canary": "lerna publish --npm-tag=canary",
+    "pub:alpha": "lerna publish --npm-tag=alpha",
+    "pub:rc": "lerna publish --npm-tag=rc",
+    "pub": "lerna publish"
+  },
   "devDependencies": {
-    "lerna": "^3.18.3"
+    "@ali/lerna": "^1.0.1",
+    "lerna": "^2.11.0"
   }
 }

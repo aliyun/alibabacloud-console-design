@@ -6,20 +6,19 @@
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
   "bugs": {
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
   },
   "author": {
-    "name" : "",
-    "email" : "",
-    "url" : ""
+    "name": "",
+    "email": "",
+    "url": ""
   },
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
-    "@ali/widget-loader": "^2.0.0-rc.1",
     "@alicloud/console-components": "^1.0.20",
     "@alife/dpl-console-design-2019": "^1.1.1",
     "@alife/next": "^1.13.10",
@@ -51,12 +50,13 @@
     "registry": "http://registry.npm.alibaba-inc.com"
   },
   "dependencies": {
-    "@alicloud/xconsole-region-context": "^1.0.0-beta.1",
     "@alicloud/console-components-app-layout": "^1.0.4",
     "@alicloud/console-components-console-menu": "^1.0.4",
+    "@alicloud/xconsole-region-context": "^1.0.0-beta.1",
     "lodash.foreach": "^4.5.0",
     "lodash.isundefined": "^3.0.1",
     "lodash.map": "^4.6.0",
+    "moment": "^2.24.0",
     "styled-components": "^4.2.1"
   }
 }

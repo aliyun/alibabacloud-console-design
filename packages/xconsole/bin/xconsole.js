@@ -5,6 +5,7 @@ const minimist = require('minimist');
 const figlet = require('figlet');
 const { Service } = require('@alicloud/console-toolkit-core');
 const updatePackage = require('./checkupdate');
+const checkPackageDependency = require('./checkPackageDependency');
 
 /**
  * Call command in service
@@ -13,6 +14,7 @@ const updatePackage = require('./checkupdate');
  */
 
 async function invokeService(cmd, args) {
+  await checkPackageDependency();
   await updatePackage();
 
   const cwd = process.cwd();
@@ -23,12 +25,12 @@ async function invokeService(cmd, args) {
 
   const config = {
     presets: [
-      [ require.resolve('@ali/breezr-preset-xconsole'), windProConfig ]
+      [ require.resolve('@alicloud/console-toolkit-preset-xconsole'), windProConfig ]
     ],
     plugins:[
-      require.resolve('@ali/breezr-plugin-generator'),
+      require.resolve('@alicloud/console-toolkit-plugin-generator'),
       ...(windProConfig.plugins || []),
-      require.resolve('@ali/breezr-plugin-xconsole')
+      require.resolve('@alicloud/console-toolkit-plugin-xconsole')
     ]
   };
 
@@ -54,6 +56,9 @@ program
   .option('--publishType [publishType]', 'Build engine type')
   .description('build for wind')
   .action(cmd => {
+    if (!process.env.NODE_ENV) {
+      process.env.NODE_ENV = 'production'
+    }
     invokeService('build', cleanArgs(cmd));
   });
 

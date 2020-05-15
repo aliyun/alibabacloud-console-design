@@ -1,4 +1,4 @@
-import URLSearchParams from 'url-search-params';
+import URLSearchParams from '@ungap/url-search-params';
 import forIn from 'lodash.forin';
 
 export {

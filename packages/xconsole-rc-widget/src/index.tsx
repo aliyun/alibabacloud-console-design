@@ -2,11 +2,14 @@ import React, {
   ReactNode,
   ReactElement,
   useState,
-} from 'react';
-import createLoader, { ILoadOptions} from '@ali/widget-loader';
+  useContext
+} from '@alicloud/xconsole/react';
+import { WidgetLoadManagementContext } from '@alicloud/xconsole-widget-load-management'
 
-const loadWidget = createLoader();
 
+interface ILoadOptions {
+
+}
 export interface IProps {
   id: string;
   version: string;
@@ -23,10 +26,17 @@ const XconsoleRcWidget = ({
   props,
 }: IProps): ReactElement => {
 
+  const { loadWidget, setWidgetLoader } = useContext(WidgetLoadManagementContext);
+
+
+
   const [Widget] = useState(() => (loadWidget({
     id,
     version,
-  }, loadOptions)));
+    loadOptions,
+  })));
+
+  console.log("Widget", Widget);
 
   return <Widget {...props} />;
 }

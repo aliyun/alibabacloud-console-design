@@ -44,16 +44,18 @@ async function checkUpdate(cwd) {
 
 const shouldUpdate = (currentVersion) => {
   return new Promise((resolve) => {
+    info("检查是否需要升级 XConsole...")
     const version = require('../package.json').version;
     packageJson(PKG_NAME, {
       registryUrl: 'http://registry.npm.alibaba-inc.com',
       version: currentVersion
     }).then((json) => {
-      info("获取到 npm 最新 XConsole 版本:")
-      info(json.version)
-      info("项目中 XConsole 指定版本:")
-      info(version)
+      info(`NPM 最新 XConsole 版本: ${json.version}`)
+      info(`项目中 XConsole 指定的版本: ${version}`)
       resolve(json.version !== require('../package.json').version);
+    }).catch(() => {
+      info(`未发现 ${PKG_NAME}`)
+      resolve(false);
     })
   });
 }

@@ -8,15 +8,26 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Context from './Context';
-import loader from './loader';
+import defaultLoader from './loader';
 
 var Provider = function Provider(_ref) {
-  var children = _ref.children;
+  var loader = _ref.loader,
+      children = _ref.children;
+  console.log('loadwidget1', loader);
 
   var _useState = useState({}),
       _useState2 = _slicedToArray(_useState, 2),
       widgetPool = _useState2[0],
       setWidgetPool = _useState2[1];
+
+  var _useState3 = useState(function () {
+    return loader || defaultLoader;
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      widgetLoader = _useState4[0],
+      setWidgetLoader = _useState4[1];
+
+  console.log('loadwidget2', widgetLoader);
 
   var loadWidget = function loadWidget(_ref2) {
     var id = _ref2.id,
@@ -25,7 +36,7 @@ var Provider = function Provider(_ref) {
     var TargetWidget = widgetPool[id];
 
     if (!TargetWidget) {
-      var widget = loader({
+      var widget = widgetLoader({
         id: id,
         version: version
       }, loadOptions);
@@ -37,7 +48,10 @@ var Provider = function Provider(_ref) {
   };
 
   return React.createElement(Context.Provider, {
-    value: loadWidget
+    value: {
+      setWidgetLoader: setWidgetLoader,
+      loadWidget: loadWidget
+    }
   }, children);
 };
 

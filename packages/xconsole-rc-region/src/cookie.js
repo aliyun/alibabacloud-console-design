@@ -2,6 +2,7 @@ import Cookie from 'js-cookie'
 
 // 默认标识
 const DEFAULT_COOKIE_KEY = 'activeRegionId'
+const CURRENT_DEFAULT_COOKIE_KEY = 'currentRegionId'
 
 // 区分国内站和国际站
 const REG_HOST = /\.?(aliyun|alibabacloud)(\.[\w.-]+)/
@@ -39,7 +40,12 @@ const getHost = () => {
  * 从 cookie 中获取当前的 region id
  * @param {String=} key
  */
-const getActiveId = (key = DEFAULT_COOKIE_KEY) => Cookie.get(key)
+const getActiveId = (key = '') => {
+  if (key === '') {
+    return Cookie.get(CURRENT_DEFAULT_COOKIE_KEY) || Cookie.get(DEFAULT_COOKIE_KEY) || 'cn-hangzhou';
+  }
+  return Cookie.get(key);
+}
 
 /**
  * 将 region id 存放到 cookie 中

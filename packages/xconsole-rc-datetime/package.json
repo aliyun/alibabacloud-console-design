@@ -7,7 +7,7 @@
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
   "bugs": {
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
@@ -32,6 +32,7 @@
     "clean": "rm -rf es build lib yarn.lock"
   },
   "peerDependencies": {
+    "@alicloud/console-components": "^1.0.0",
     "@alicloud/console-components-intl": "^1.0.9",
     "moment": "^2.x",
     "prop-types": "^15.x",

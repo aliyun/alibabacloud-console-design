@@ -3,8 +3,9 @@
   "version": "1.0.0-beta.1",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
+  "license": "ISC",
   "description": "generator",
   "main": "lib/index.js",
   "scripts": {
@@ -14,7 +15,8 @@
     "watch": "tsc -watch -d true -p ./",
     "test": "jest",
     "cov": "jest  --coverage",
-    "prepare": "npm run compile"
+    "prepare": "npm run compile",
+    "prepublish": "npm run compile"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",

@@ -7,15 +7,15 @@
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
   "bugs": {
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
   },
   "author": {
-    "name" : "",
-    "email" : "",
-    "url" : ""
+    "name": "",
+    "email": "",
+    "url": ""
   },
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.0",
@@ -55,5 +55,8 @@
   },
   "publishConfig": {
     "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "dependencies": {
+    "moment": "^2.24.0"
   }
 }

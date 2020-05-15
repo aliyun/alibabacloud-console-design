@@ -207,7 +207,7 @@ export default {
 
         warning(
           typeof requestId === 'string',
-          `[@ali/wind-rc-risk] Expect 'requestId' to be a string, but get a ${Object.prototype.toString.call(requestId)}.`
+          `[@alicloud/xconsole-rc-risk] Expect 'requestId' to be a string, but get a ${Object.prototype.toString.call(requestId)}.`
         )
 
         // 存储 requestId
@@ -262,7 +262,7 @@ export default {
       // *  DO NOT remove this funcion or you'll get be fired  *
       // *******************************************************
 
-      // 这个函数里没有任何逻辑, 它存在的意义在于通过 `@ali/wind-action-creator` 为
+      // 这个函数里没有任何逻辑, 它存在的意义在于通过 `@alicloud/xconsole-action-creator` 为
       // 外界提供可用的 action creator, 以便可以通过 actions.submit()
       // 来触发这个 action. 具体的执行在 capture 函数中, 静静地等待这个 action 的到来...
     },

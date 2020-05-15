@@ -1,28 +1,27 @@
 {
   "name": "@alicloud/xconsole-error-center",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
   "bugs": {
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
   },
   "author": {
-    "name" : "",
-    "email" : "",
-    "url" : ""
+    "name": "",
+    "email": "",
+    "url": ""
   },
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
-    "@ali/widget-loader": "^2.0.0-rc.1",
-    "@ali/error-prompt": "^0.1.6",
-    "@ali/nb-rc-dialog": "^0.1.4",
+    "@alicloud/xconsole-rc-error-prompt": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-ali": "^6.0.0",
@@ -35,6 +34,7 @@
   },
   "scripts": {
     "prepublish": "rm -rf dist lib es && npm run babel",
+    "build:dev": "npm run babel",
     "build": "breezr build --engine webpack",
     "babel": "breezr build --engine babel",
     "babel:esm": "breezr build --engine babel --es-module",
@@ -46,16 +46,17 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "@ali/error-prompt": "^0.1.6",
-    "@ali/nb-rc-dialog": "^0.1.4"
+    "@alicloud/xconsole-rc-error-prompt": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1"
   },
   "publishConfig": {
     "registry": "http://registry.npm.alibaba-inc.com"
   },
   "dependencies": {
-    "@alife/next": "^1.16.7",
+    "@alicloud/console-components": "^1.0.20",
     "lodash.get": "^4.4.2",
-    "lodash.reduce": "^4.6.0"
+    "lodash.reduce": "^4.6.0",
+    "moment": "^2.24.0"
   },
   "gitHead": "555e8f459f0201bb1529801d95942f924649a83a"
 }

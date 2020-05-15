@@ -1,5 +1,5 @@
 /* RegionContext
- * 负责从 @ali/wind-rc-region 的 model 中获取 activeRegionId 并且以 Context 提供给子孙组件
+ * 负责从 @alicloud/xconsole-rc-region 的 model 中获取 activeRegionId 并且以 Context 提供给子孙组件
  */
 
 import React from 'react'

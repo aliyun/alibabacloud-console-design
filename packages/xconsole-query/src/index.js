@@ -28,13 +28,10 @@ const XConsoleQuery = ({
   const error = model.selectors.error(state)
 
   const loadData = (vars) => {
-    // fix 修复当出现大量渲染的时候，对在发生的请求不做重新请求调用
-    if (loading !== true) {
-      dispatch(model.action(vars, {
-        onCompleted: isFunction(onCompleted) ? onCompleted : null,
-        onError: isFunction(onError) ? onError : null,
-      }))
-    }
+    dispatch(model.action(vars, {
+      onCompleted: isFunction(onCompleted) ? onCompleted : null,
+      onError: isFunction(onError) ? onError : null,
+    }))
   }
 
   // refetch

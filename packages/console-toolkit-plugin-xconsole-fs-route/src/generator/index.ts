@@ -14,7 +14,7 @@ interface AppInfo {
 const _BOM = /^\uFEFF/;
 
 /**
- * 
+ *
  */
 export class Generator {
   private dir: string;
@@ -28,25 +28,25 @@ export class Generator {
     this.genRoutes(app);
     this.getRouteConfig(app);
     // await genCreateModel();
-    this.genIndex();
+    this.genIndex(app);
     this.genApp(app);
-    this.genInitializer();
+    this.genInitializer(app);
   }
 
   public genRoutes(app: AppInfo) {
     this.render('routes', app);
   }
 
-  public genIndex() {
-    this.render('index');
+  public genIndex(app: AppInfo) {
+    this.render('index', app);
   }
 
   public genApp(app: AppInfo) {
     this.render('app', app);
   }
 
-  public genInitializer() {
-    this.render('initializer');
+  public genInitializer(app: AppInfo) {
+    this.render('initializer', app);
   }
 
   public getRouteConfig(app: AppInfo) {
@@ -59,7 +59,7 @@ export class Generator {
     const routesMetas = [...app.globalRoutes, ...app.routes];
     const imports = routesMetas.map((route) => route.getComponents()).join('\n');
     const routes = routesMetas.map((route) => route.getRouteCode()).join(',\n');
-    const route_config = 
+    const route_config =
 `
 ${imports}
 export default{

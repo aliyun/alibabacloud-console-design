@@ -40,7 +40,7 @@ export default async (api: PluginAPI, options: PluginOptions) => {
 };
 
 async function watchAndBuild(api: PluginAPI, options: PluginOptions) {
-  const watcher = chokidar.watch('./src/**/*')
+  const watcher = chokidar.watch('./src/pages/**')
     .on('all', debounce(() => {
       console.log('监听到 pages 下文件变化，重新生成 .xconsole 内容');
       buildRoute(api, options);

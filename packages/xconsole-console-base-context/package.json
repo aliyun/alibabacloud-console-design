@@ -6,7 +6,7 @@
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
   "bugs": {
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
@@ -19,7 +19,6 @@
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
-    "@ali/widget-loader": "^2.0.0-rc.1",
     "@alicloud/console-components": "^1.0.20",
     "@alife/dpl-console-design-2018": "^1.19.1",
     "@alife/next": "^1.13.10",

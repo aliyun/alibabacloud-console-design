@@ -29,7 +29,7 @@ function consoleResponseInterceptor(response) {
   ) {
     const error: IError = new Error('Multi OpenAPI calls with failed request.');
     error.response = response;
-    if (!ignoreError) {
+    if (ignoreError !== true) {
       throw error;
     }
     return apiResponseData;
@@ -37,7 +37,7 @@ function consoleResponseInterceptor(response) {
     // Single api failed with an error message
     const error: IError = new Error(apiResponseData.message);
     error.response = response;
-    if (!ignoreError) {
+    if (ignoreError !== true) {
       throw error;
     }
     return apiResponseData;
@@ -45,7 +45,7 @@ function consoleResponseInterceptor(response) {
     // Single api failed without an error message
     const error: IError = new Error('OpenAPI failed without a message.');
     error.response = response;
-    if (!ignoreError) {
+    if (ignoreError !== true) {
       throw error;
     }
     return apiResponseData;

@@ -1,15 +1,10 @@
 module.exports = {
   presets: [
     [
-      "@alicloud/console-toolkit-preset-wind-component",
+      '@alicloud/console-toolkit-preset-wind-component',
       {
-        moduleName: "@alicloud/xconsole-mutation",
-        external: ["@ali/widget-loader"],
-        globals: {
-          "@ali/widget-loader": "widgetLoader",
-          "@alicloud/xconsole-mutation": "XConsoleMutation"
-        }
-      }
-    ]
-  ]
+        moduleName: '@alicloud/xconsole-mutation',
+      },
+    ],
+  ],
 };

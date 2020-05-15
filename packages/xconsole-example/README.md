@@ -1,6 +1,0 @@
-# XConsole
-
-## Description
-
-## Author
-

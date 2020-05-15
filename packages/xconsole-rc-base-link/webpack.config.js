@@ -8,7 +8,7 @@ module.exports = {
     libraryTarget: 'umd',
   },
   alias: {
-    '@ali/wind-rc-link': path.join(__dirname, 'src/index.js'),
+    '@alicloud/xconsole-rc-base-link': path.join(__dirname, 'src/index.js'),
   },
   externals: {
     react: {
