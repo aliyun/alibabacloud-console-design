@@ -10,11 +10,14 @@ import { WidgetLoadManagementProvider } from '@alicloud/xconsole-widget-load-man
 const Provider = ({
   app,
   history,
+  widgetLoader,
+  uis,
   children,
 }) => {
   const value = {
     app,
     history,
+    uis
   }
 
   return (
@@ -22,7 +25,7 @@ const Provider = ({
       <ConsoleBaseProvider>
         <RegionProvider history={history}>
           <ModelProvider app={app}>
-            <WidgetLoadManagementProvider>
+            <WidgetLoadManagementProvider loader={widgetLoader}>
               {children}
             </WidgetLoadManagementProvider>
           </ModelProvider>

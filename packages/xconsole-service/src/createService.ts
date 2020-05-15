@@ -7,11 +7,13 @@ export interface IOptions {
   useCors?: boolean;
   data?: any;
   risk?: any;
+  url?: string;
+  method?: string;
 }
 
 const defaultOptions = {
   apiType: 'open',
-  ignoreError: false,
+  ignoreError: true,
   description: null,
   useCors: false,
   risk: {
@@ -54,20 +56,32 @@ export default (
     })
   }
   // @ts-ignore
-  return params => request({
-    ...opts,
-    data: opts.data ? {
-      ...opts.data,
-      ...params,
-    } : {
+  return (params, overlap? = false) => {
+    let data = {
       product,
       action,
       params,
-    },
-    apiType: opts.apiType, // one-console 对应的接口类型
-    ignoreError: opts.ignoreError, // 是否忽略 api 异常
-    description: opts.description || action, // 当前请求的描述
-    useCors: false,
-    risk: opts.risk,
-  })
+    };
+    if (opts.data) {
+      data = overlap ? {
+        product,
+        action,
+        ...opts.data,
+        params: params ? params : Object.assign({}, opts.data.params || {}, params || {})
+      } : {
+        ...opts.data,
+        params,
+      }
+    };
+    // @ts-ignore
+    return request({
+      ...opts,
+      data,
+      apiType: opts.apiType, // one-console 对应的接口类型
+      ignoreError: opts.ignoreError, // 是否忽略 api 异常
+      description: opts.description || action, // 当前请求的描述
+      useCors: false,
+      risk: opts.risk,
+    })
+  }
 }

@@ -24,8 +24,7 @@ const defaultModel = {
   },
 }
 
-export default ({ service, initialValue, ...rest }) => {
-  const namespace = uuid()
+export default ({ service, initialValue, namespace = uuid(), ...rest }) => {
   if (_.isFunction(service)) {
     const dvaModel = {
       ...defaultModel,
@@ -33,6 +32,10 @@ export default ({ service, initialValue, ...rest }) => {
       effects: {
         action: takeLatest(function* ({ payload, meta = {} }, { call, put }) {
           try {
+            yield put({
+              type: 'save',
+              payload: { APIError: null },
+            })
             const result = yield call(service, payload)
             yield put({
               type: 'save',
@@ -46,6 +49,7 @@ export default ({ service, initialValue, ...rest }) => {
               }, 200)
             }
           } catch (error) {
+            console.log('debugme try catch', error);
             yield put({
               type: 'save',
               payload: { APIError: error },
@@ -55,6 +59,8 @@ export default ({ service, initialValue, ...rest }) => {
                 meta.onError(error)
               }, 200)
             }
+
+            throw error;
           }
         }),
       }

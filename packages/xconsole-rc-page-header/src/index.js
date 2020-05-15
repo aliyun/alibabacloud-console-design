@@ -7,6 +7,7 @@ import { Link } from 'dva/router';
 import './index.less'
 
 const PageHeader = ({
+  history,
   title,
   subTitle,
   subSwitcher,
@@ -17,8 +18,6 @@ const PageHeader = ({
   children,
   ...restProps
 }) => {
-
-  console.log('debugme', breadcrumbs)
 
   const breadcrumbItems = breadcrumbs.map(({title, text, to, ...restProps}) => (
     <Page.Breadcrumb.Item key="home">
@@ -46,7 +45,9 @@ const PageHeader = ({
         ) : subTitle}
         hasBackArrow={!!historyBack}
         onBackArrowClick={() => {
-          history.pushState(null, null, historyBack)
+          if (history) {
+            history.push(historyBack)
+          }
         }}
       />
       {

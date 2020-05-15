@@ -9,6 +9,7 @@ const XConsoleLogger = ({
 }) => {
   const logger = new Logger({
     spma: config.spma,
+    global: routeConfig.global,
     routeConfigs: routeConfig.routes,
   })
 

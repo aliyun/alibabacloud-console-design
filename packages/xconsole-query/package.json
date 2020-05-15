@@ -6,7 +6,7 @@
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
   "bugs": {
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
@@ -19,7 +19,6 @@
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
-    "@ali/widget-loader": "^2.0.0-rc.1",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-ali": "^6.0.0",
@@ -32,6 +31,7 @@
   },
   "scripts": {
     "prepublish": "npm run clean && npm run build && npm run babel && npm run babel:esm",
+    "build:dev": "npm run build && npm run babel && npm run babel:esm",
     "babel": "breezr build --engine babel",
     "babel:esm": "breezr build --engine babel --es-module",
     "build": "breezr build --engine webpack",

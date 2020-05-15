@@ -73,7 +73,7 @@ export default (function (_ref) {
                     }, 200);
                   }
 
-                  _context.next = 16;
+                  _context.next = 18;
                   break;
 
                 case 11:
@@ -94,7 +94,10 @@ export default (function (_ref) {
                     }, 200);
                   }
 
-                case 16:
+                  console.log('debugme try catch', _context.t0);
+                  throw _context.t0;
+
+                case 18:
                 case "end":
                   return _context.stop();
               }

@@ -1,4 +1,4 @@
-import presetWind from '@ali/breezr-preset-wind';
+import presetWind from '@alicloud/console-toolkit-preset-official';
 
 
 export default (config: any, args: any) => {

@@ -1,5 +1,6 @@
 import { resolve } from 'path';
-import { PluginAPI, PluginOptions } from '@@alicloud/console-toolkit-core';
+import { PluginAPI, PluginOptions } from '@alicloud/console-toolkit-core';
+import { getEnv } from '@alicloud/console-toolkit-shared-utils'
 import { GENERATOR_URL } from './constants';
 
 export default function (api: PluginAPI, options: PluginOptions) {
@@ -9,4 +10,11 @@ export default function (api: PluginAPI, options: PluginOptions) {
     type: 'git',
     url: GENERATOR_URL
   });
+
+  api.on('onBuildEnd', () => {
+    const env = getEnv();
+    if (env.isCloudBuild()) {
+      // TODO XXXX
+    }
+  })
 }

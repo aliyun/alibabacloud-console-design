@@ -6,20 +6,19 @@
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
   "bugs": {
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
   },
   "author": {
-    "name" : "",
-    "email" : "",
-    "url" : ""
+    "name": "",
+    "email": "",
+    "url": ""
   },
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
-    "@ali/widget-loader": "^2.0.0-rc.1",
     "@alicloud/console-components": "^1.0.20",
     "@alife/dpl-console-design-2018": "^1.19.1",
     "@alife/next": "^1.13.10",
@@ -49,6 +48,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "lodash.map": "^4.6.0",
+    "moment": "^2.24.0",
     "rc-form": "^2.4.4"
   }
 }

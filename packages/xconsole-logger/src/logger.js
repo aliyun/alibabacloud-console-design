@@ -38,19 +38,22 @@ const setArmsPage = function (path) {
 export default class {
   constructor({
     spma = SPMA,
+    global = {},
     routeConfigs = [],
   }) {
     this.spma = spma
-    this.pathRules = map(routeConfigs, config => `/${config.path}`)
+    // 这里需要将 prefix 加到路径上
+    this.pathRules = map(routeConfigs, config => `${global.prefix || ''}/${config.path}`)
     this.logConfig = reduce(routeConfigs, (result, current) => ({
       ...result,
-      [`/${current.path}`]: get(current, 'config.spmb'),
+      [`${global.prefix || ''}/${current.path}`]: get(current, 'config.spmb'),
     }), {})
   }
 
   log(pathname) {
     const path = matchPathRules(this.pathRules, pathname)
     const spmb = get(this.logConfig, path)
+
     if (spmb) {
       logSpm(this.spma, spmb)
     }

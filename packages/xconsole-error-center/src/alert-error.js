@@ -1,4 +1,4 @@
-import errorPrompt from '@ali/error-prompt';
+import errorPrompt from '@alicloud/xconsole-rc-error-prompt';
 import _get from 'lodash.get'
 
 const LOCALE = _get(window, 'ALIYUN_CONSOLE_CONFIG.LOCALE') || 'zh-CN'

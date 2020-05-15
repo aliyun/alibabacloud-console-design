@@ -9,6 +9,7 @@ import { WidgetLoadManagementProvider } from '@alicloud/xconsole-widget-load-man
 var Provider = function Provider(_ref) {
   var app = _ref.app,
       history = _ref.history,
+      widgetLoader = _ref.widgetLoader,
       children = _ref.children;
   var value = {
     app: app,
@@ -20,7 +21,9 @@ var Provider = function Provider(_ref) {
     history: history
   }, React.createElement(ModelProvider, {
     app: app
-  }, React.createElement(WidgetLoadManagementProvider, null, children)))));
+  }, React.createElement(WidgetLoadManagementProvider, {
+    loader: widgetLoader
+  }, children)))));
 };
 
 Provider.displayName = 'WindProProvider';

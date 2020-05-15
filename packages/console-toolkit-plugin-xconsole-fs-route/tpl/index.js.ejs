@@ -1,5 +1,11 @@
 import { mount } from '@alicloud/console-os-react-portal';
 import './initializer'
 import App from './app'
-console.log(App,'debugme');
-export default mount(App, document.getElementById('app'), <%= global.appId %>);
+
+
+export default mount(
+  App,
+  document.getElementById('app'),
+  '<%= global.appId %>'
+);
+

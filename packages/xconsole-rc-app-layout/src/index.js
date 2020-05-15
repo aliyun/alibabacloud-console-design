@@ -4,55 +4,52 @@ import { wrapDisplayName } from 'recompose'
 import { matchPath, withRouter } from 'dva/router'
 import AppLayout from '@alicloud/console-components-app-layout'
 import each from 'lodash.foreach'
+import isArray from 'lodash/isArray';
 import Nav from './Nav'
 import Context from './Context'
+import Aside from './Aside'
+
+let noticeFlag = false;
 
 const XConsoleAppLayout = ({
   sidebar = {},
+  appConfig = {},
   location: {
     pathname,
   },
   children,
 }) => {
-  const [collapsed, setCollapsed] = useState(false)
+  const [ title, setTitle] = useState(sidebar.title || 'XConsole')
+  const [ navs, setNavs] = useState(sidebar.navs || [])
 
-  // save prev collapsed
-  const prevState = useRef()
-  useEffect(() => {
-    prevState.current = collapsed
-  })
-
-  useEffect(() => {
-    let collapse = false
-    each(sidebar.collapsedKeys, (key) => {
-      if (matchPath(pathname, { path: key, exact: true, strict: true })) {
-        collapse = true
-        return true
-      }
-    })
-    setCollapsed(collapse)
-  }, [pathname])
-
-  const toggleNavCollapsed = (prevCollapsed) => {
-    setCollapsed(
-      typeof prevCollapsed === 'boolean' ?
-        !prevCollapsed : !prevState.current
+  if (
+    noticeFlag === false && (
+      typeof sidebar.defaultOpenKeys !== 'undefined'
+      || typeof sidebar.collapsedKeys !== 'undefined'
+      || typeof sidebar.invisiblePaths !== 'undefined'
     )
+  ) {
+    noticeFlag = true;
+    console.warn('[xconsole rc-app-layout] sidebar.js 中关于 defaultOpenKeys collapsedKeys invisiblePaths 的配置不再推荐使用，请在 appConfig.js 中配置 consoleMenu， 具体配置信息及字段说明请前往官网查看 【开发指南】 文档。')
   }
 
-  const providerValue = { navCollapsed: collapsed }
-
   return (
-    <AppLayout
-      adjustHeight={50}
-      nav={<Nav {...sidebar} />}
-      navCollapsed={collapsed}
-      onNavCollapseTriggerClick={toggleNavCollapsed}
-    >
-      <Context.Provider value={providerValue}>
+    <Context.Provider value={{
+      sidebar: {
+        title,
+        navs,
+        collapsedKeys: [],
+      },
+      setTitle,
+      setNavs
+    }}>
+      <Aside
+        appConfig={appConfig}
+        location={location}
+      >
         {children}
-      </Context.Provider>
-    </AppLayout>
+      </Aside>
+    </Context.Provider>
   )
 }
 

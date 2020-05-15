@@ -1,22 +1,26 @@
 import getRoutes from '@alicloud/xconsole/lib'
 import sidebar from '~/sidebar'
-import routeConfig from './route_config';
-
 <% if(global.hasLayout){ %>
 import AppLayout from '~/layout';
 <% } else { %>
 import { AppLayout } from '@alicloud/xconsole'
 <% } %>
-
 <% if(global.hasAppConfig){ %>
 import appConfig from '~/appConfig';
-<% } else { %>
+<% } %>
+import routeConfig from './route_config';
+
+<% if(!global.hasAppConfig){ %>
 const appConfig = {}
 <% } %>
 
-export default getRoutes({
-  sidebar,
-  routeConfig,
-  AppLayout,
-  appConfig,
-});
+export default (config = {}) => {
+
+  return getRoutes({
+    sidebar,
+    routeConfig,
+    AppLayout,
+    appConfig,
+    ...config
+  })
+};

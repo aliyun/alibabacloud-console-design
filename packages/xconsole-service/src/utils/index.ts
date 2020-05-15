@@ -1,9 +1,10 @@
-import docCookies from './docCookies';
+import Cookies from 'js-cookie';
 
 const ALIYUN_CONSOLE_CONFIG = 'ALIYUN_CONSOLE_CONFIG';
 const RISK_INFO = 'RISK_INFO';
 const SEC_TOKEN = 'SEC_TOKEN';
 const REGION_COOKIE_NAME = 'activeRegionId';
+const CURRENT_REGION_COOKIE_NAME = 'currentRegionId';
 const LOCALE = 'LOCALE';
 
 export const getGlobalVariable = (varibaleName) => {
@@ -54,5 +55,5 @@ export const getLocale = function() {
 };
 
 export const getActiveRegionId = function() {
-  return docCookies.getItem(REGION_COOKIE_NAME);
+  return Cookies.get(CURRENT_REGION_COOKIE_NAME) || Cookies.get(REGION_COOKIE_NAME) || 'cn-hangzhou';
 };

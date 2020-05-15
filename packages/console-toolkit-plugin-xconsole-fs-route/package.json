@@ -1,9 +1,9 @@
 {
   "name": "@alicloud/console-toolkit-plugin-xconsole-fs-route",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.3",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
   "description": "file sytem route for breezr",
   "main": "lib/index.js",
@@ -11,6 +11,7 @@
     "ci": "tnpm run lint && tnpm run compile && tnpm run cov",
     "lint": "tslint --project .",
     "compile": "rm -rf ./lib && tsc -d true -p ./",
+    "build:dev": "tsc -d true -p ./",
     "watch": "tsc -watch -d true -p ./",
     "test": "jest",
     "cov": "jest  --coverage",

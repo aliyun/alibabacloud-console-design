@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Context from './Context'
-import { WindProContext } from '@alicloud/xconsole-provider'
+import WindProContext from './BaseContext'
 import createActions from '@alicloud/xconsole-action-creator'
 import { createSelector } from 'reselect'
 import { v1 as uuid } from 'uuid'

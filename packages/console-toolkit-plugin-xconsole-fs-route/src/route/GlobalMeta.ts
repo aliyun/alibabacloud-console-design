@@ -11,6 +11,8 @@ export interface GlobalOptions {
  *
  */
 export default class GlobalMeta {
+  hasUIConfig: boolean;
+  hasWidgetLoader: boolean;
   hasEntryCode: boolean;
   hasAppConfig: boolean;
   indexRoute: string;
@@ -22,6 +24,8 @@ export default class GlobalMeta {
   // globalModals: boolean;
 
   constructor(cwd: string, options: GlobalOptions) {
+    this.hasUIConfig = fs.existsSync(resolve(cwd, 'src/ui.js'));
+    this.hasWidgetLoader = fs.existsSync(resolve(cwd, 'src/loader.js'));
     this.hasEntryCode = fs.existsSync(resolve(cwd, 'src/app.js'));
     this.hasAppConfig = fs.existsSync(resolve(cwd, 'src/appConfig.js'));
     this.hasLayout = fs.existsSync(resolve(cwd, 'src/layout.js'));

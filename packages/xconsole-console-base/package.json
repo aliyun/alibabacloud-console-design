@@ -6,7 +6,7 @@
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/xconsole/xconsole.git"
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
   "bugs": {
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
@@ -19,7 +19,6 @@
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
-    "@ali/widget-loader": "^2.0.0-rc.1",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-ali": "^6.0.0",
@@ -39,6 +38,7 @@
     "test": "breezr test:unit"
   },
   "peerDependencies": {
+    "dva": "^2.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
@@ -47,7 +47,6 @@
     "registry": "http://registry.npm.alibaba-inc.com"
   },
   "dependencies": {
-    "dva": "^2.4.1",
     "lodash.get": "^4.4.2"
   }
 }

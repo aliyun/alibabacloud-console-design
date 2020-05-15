@@ -3,6 +3,30 @@
   "packages": [
     "packages/*"
   ],
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "message": "chore(release): Publish",
+      "npmClient": "tnpm",
+      "registry": "http://registry.npm.alibaba-inc.com"
+    },
+    "version": {
+      "allowBranch": [
+        "master",
+        "next",
+        "nightly",
+        "feat/rc-comp"
+      ],
+      "ignoreChanges": [
+        "*.md",
+        "*.mdx",
+        "**/stories/**",
+        "**/demo/**",
+        "**/publish-to-tnpm/**"
+      ],
+      "tagVersionPrefix": ""
+    }
+  },
   "version": "1.0.1-beta.1",
   "lerna": "2.11.0"
 }

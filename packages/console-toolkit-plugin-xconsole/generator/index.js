@@ -28,7 +28,7 @@ module.exports = class extends Generator {
     })
 
     this.props = await getDefInfo();
-    console.log(this.options.templatePath)
+
     if (this.options.templatePath) {
       this.sourceRoot(this.options.templatePath)
     }

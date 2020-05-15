@@ -1,13 +1,20 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Context from './Context'
-import loader from './loader'
+import defaultLoader from './loader'
 
 
 const Provider = ({
+  loader,
   children,
 }) => {
+  console.log('loadwidget1', loader)
   const [widgetPool, setWidgetPool] = useState({})
+  const [widgetLoader, setWidgetLoader] = useState(() => {
+    return loader || defaultLoader;
+  });
+
+  console.log('loadwidget2', widgetLoader)
   const loadWidget = ({
     id,
     version,
@@ -15,7 +22,7 @@ const Provider = ({
   }) => {
     let TargetWidget = widgetPool[id]
     if (!TargetWidget) {
-      const widget = loader({ id, version }, loadOptions)
+      const widget = widgetLoader({ id, version }, loadOptions)
       setWidgetPool({
         ...widgetPool,
         [id]: widget,
@@ -26,7 +33,10 @@ const Provider = ({
   }
 
   return (
-    <Context.Provider value={loadWidget}>
+    <Context.Provider value={{
+      setWidgetLoader,
+      loadWidget
+    }}>
       {children}
     </Context.Provider>
   )
