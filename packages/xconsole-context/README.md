@@ -4,10 +4,10 @@
 
 整合了以下几个 context
 
-* @ali/xconsole-console-base-context
-* @ali/xconsole-region-context
-* @ali/xconsole-model
-* @ali/xconsole-widget-load-management
+* @alicloud/xconsole-console-base-context
+* @alicloud/xconsole-region-context
+* @alicloud/xconsole-model
+* @alicloud/xconsole-widget-load-management
 
 ## Usage
 
