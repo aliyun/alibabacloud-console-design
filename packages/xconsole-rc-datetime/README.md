@@ -8,7 +8,11 @@
 
 ## APIs
 
-|参数|说明|类型|必填|默认值|
-|---|---|---|---|---|
-|value|时间值|``String | Number | Date``|√||
-|format|格式化选项|``String | Intl.DateTimeFormatOptions``|||
+### DateTime
+
+| Param | Type | Default | Description |
+|-------|------|---------|-------------|
+|value|`String | Number | Date`||时间值|
+|format|` 'date' | 'time' | 'dateTime' | 'dateTimeWithTimeZone' | Intl.DateTimeFormatOptions`||格式化选项，将时间日期进行本地化输出|
+
+[Intl.DateTimeFormatOptions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat)

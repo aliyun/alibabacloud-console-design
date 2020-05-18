@@ -1,11 +1,11 @@
-# @ali/wind-rc-risk
+# @alicloud/xconsole-rc-risk
 
-控制台风控组件
+> 控制台风控组件
 
 ## Installation
 
 ```
-tnpm i -S @ali/wind-rc-risk
+npm i -S @alicloud/xconsole-rc-risk
 ```
 
 ## Peer Dependencies
@@ -31,7 +31,7 @@ tnpm i -S @ali/wind-rc-risk
 **src/app.js**
 
 ```
-import { model as riskModel } from '@ali/wind-rc-risk'
+import { model as riskModel } from '@alicloud/xconsole-rc-risk'
 ...
 app.model(riskModel)
 ```
@@ -44,7 +44,7 @@ app.model(riskModel)
 >
 
 ```
-import Risk from '@ali/wind-rc-risk'
+import Risk from '@alicloud/xconsole-rc-risk'
 ...
 
 const App = () => (
@@ -57,12 +57,12 @@ const App = () => (
 
 ### 封装需要进行风控的接口
 
-当使用 `@ali/wind-service` 类库时，使用 `createService` 创建的接口在请求时，如果触发风控，都会抛出一个特殊的 Error
+当使用 `@alicloud/xconsole-service` 类库时，使用 `createService` 创建的接口在请求时，如果触发风控，都会抛出一个特殊的 Error
 
-`@ali/wind-rc-risk` 中的 `capture` 函数用于封装一个请求函数，并在其抛出对应 Error 的时候捕获并触发风控流程
+`@alicloud/xconsole-rc-risk` 中的 `capture` 函数用于封装一个请求函数，并在其抛出对应 Error 的时候捕获并触发风控流程
 
-```
-import { capture } from '@ali/wind-rc-risk'
+```js
+import { capture } from '@alicloud/xconsole-rc-risk'
 ...
 
 const deleteInstanceWithRisk = capture(deleteInstance)
@@ -70,9 +70,9 @@ const deleteInstanceWithRisk = capture(deleteInstance)
 
 ### 自定义错误捕获
 
-如果你没有使用 `@ali/wind-service` 创建请求接口，请自行封装自己的请求函数，在触发风控的时候抛出一个可以被识别的 Error
+如果你没有使用 `@alicloud/xconsole-service` 创建请求接口，请自行封装自己的请求函数，在触发风控的时候抛出一个可以被识别的 Error
 
-```
+```js
 const yourService = async (options) => {
   await resp = axios(options)
   if (resp.data.code === 'FoundRiskAndDoubleConfirm') {
@@ -87,7 +87,7 @@ const yourService = async (options) => {
 
 `capture` 函数的第二个参数可以对错误进行自定义捕获
 
-```
+```js
 const withRiskService = capture(yourService, {
   isRiskError(err) {
     return err.isRiskError
@@ -97,7 +97,7 @@ const withRiskService = capture(yourService, {
 
 在以短信和邮件方式二次验证时，需要向对应的客户端发送验证码，发送验证码时可能会发生错误，`capture` 会捕获对应错误并渲染错误信息。与 `isRiskError` 类似，你可以对该错误进行特征识别
 
-```
+```js
 const withRiskService = capture(yourService, {
   isVerifyCodeError(err) {
     return err.isVerifyCodeError
@@ -107,7 +107,7 @@ const withRiskService = capture(yourService, {
 
 在自定义的请求返回风控数据后，你还需要将风控数据映射到风控组件上
 
-```
+```js
 const withRiskService = capture(yourService, {
   mapRiskErrorToActionPayload(err) {
     const {
@@ -131,7 +131,7 @@ const withRiskService = capture(yourService, {
 
 在 effects 里调用已经被 capture 处理过的异步调用函数
 
-```
+```js
 export default {
   effects: {
     doSomething: function* ({ payload }, { call }) {

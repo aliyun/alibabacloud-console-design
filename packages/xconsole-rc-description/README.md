@@ -1,4 +1,4 @@
-# xconsole-rc-description
+# @alicloud/xconsole-rc-description
 
 为阿里云控制台提供信息描述组件。
 

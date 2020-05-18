@@ -1,6 +1,6 @@
-# xconsole-rc-page
+# @alicloud/xconsole-rc-page
 
-为阿里云控制台提供基于页面的基础布局
+> 为阿里云控制台提供基于页面的基础布局
 
 ## Usage
 

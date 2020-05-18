@@ -1,1 +1,1 @@
-# @ali/wind-dev-utils
+# @alicloud/xconsole-dev-utils

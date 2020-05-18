@@ -1,7 +1,4 @@
-# xconsole-portal
-
-> a wind library
-
+# @alicloud/xconsole-portal
 
 ## Usage
 
