@@ -28,7 +28,11 @@ function armsResponseInterceptor(response) {
   // API
   const { url, data: dataStr } = config
   const requestData = new URLSearchParams(dataStr)
-  const [targetUrl, targetApiType] = /\/data\/(.+)\.json/.exec(url)
+  const matches = /\/data\/(.+)\.json/.exec(url)
+  if (!matches) {
+    return response
+  }
+  const [targetUrl, targetApiType] = matches
   let api = targetUrl
   if (targetApiType.indexOf('multi') !== -1) {
     try {
