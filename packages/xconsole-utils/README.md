@@ -1,7 +1,4 @@
-# xconsole-logger
-
-> a wind library
-
+# @alicloud/xconsole-logger
 
 ## Usage
 

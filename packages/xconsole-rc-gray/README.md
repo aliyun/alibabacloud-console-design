@@ -1,11 +1,21 @@
-# wind-pro-rc-gray
+# @alicloud/xconsole-rc-gray
 
-> a wind library
+> 灰度组件，能根据 Viper 的灰度状态控制内容的展示和隐藏。
 
+## APIs
+
+### Gray
+
+| Param | Type | Default | Description |
+|--------|------|---------|-------------|
+|id|`string`||灰度 id|
 
 ## Usage
 
 ```js
-import WindProRcGray from '@ali/wind-pro-rc-gray';
-```
+import Gray from '@alicloud/xconsole-rc-gray';
 
+<Gray id="feature.cors.enable">
+  <Component />
+</Gray>
+```

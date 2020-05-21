@@ -10,13 +10,13 @@ ABOUT
 安装：
 
 ```
-tnpm install @ali/wind-less-mixin --save
+npm install @alicloud/xconsole-less --save
 ```
 
 在 LESS 文件中引入和使用：
 
 ```less
-@import '~@ali/wind-less-mixin'; // 如果 webpack 报找不到，可以尝试加上 `/index`
+@import '~@alicloud/xconsole-less'; // 如果 webpack 报找不到，可以尝试加上 `/index`
 
 // 使用值（只有以 @G_ 打头的是允许使用的）
 .selector {
@@ -152,7 +152,7 @@ code | 值 | 说明
 `.success-bg-light()` | 成功浅色背景 + 成功文本色
 
 ```less
-@import '~@ali/wind-less-mixin/index';
+@import '~@alicloud/xconsole-less/index';
 
 .your-selector {
   .error-text {
@@ -185,7 +185,7 @@ iconfont 工厂方法，默认生成以 `glyph-` 打头的 iconfont 样式。
 例子：
 
 ```less
-@import '~@ali/wind-less-mixin/index';
+@import '~@alicloud/xconsole-less/index';
 
 // 你需要手动引入自己的 font-face
 @font-face {
@@ -234,7 +234,7 @@ left ︎◀ |         | ▶ right
 例子：
 
 ```less
-@import '~@ali/wind-less-mixin/index';
+@import '~@alicloud/xconsole-less/index';
 
 .your-selector {
   #triangle.base();
@@ -256,7 +256,7 @@ left ︎◀ |         | ▶ right
 例子：
 
 ```less
-@import '~@ali/wind-less-mixin/index';
+@import '~@alicloud/xconsole-less/index';
 
 .your-selector {
   #responsive.retina { // retina 屏幕
@@ -286,7 +286,7 @@ left ︎◀ |         | ▶ right
 例子：
 
 ```less
-@import '~@ali/wind-less-mixin/index';
+@import '~@alicloud/xconsole-less/index';
 
 .your-selector {
   .some-text {
@@ -309,7 +309,7 @@ left ︎◀ |         | ▶ right
 例子：
 
 ```less
-@import '~@ali/wind-less-mixin/index';
+@import '~@alicloud/xconsole-less/index';
 
 ul.your-selector {
   #util.clearfix();

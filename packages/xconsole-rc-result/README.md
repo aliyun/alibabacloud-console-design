@@ -1,6 +1,6 @@
-# xconsole-rc-result
+# @alicloud/xconsole-rc-result
 
-为阿里云控制台提供结果页组件
+> 为阿里云控制台提供结果页组件
 
 ## Usage
 

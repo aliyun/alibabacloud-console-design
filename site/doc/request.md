@@ -10,9 +10,9 @@ sort: 7
 
 `Query` 组件提供了直观，透明的数据获取能力，通过传入数据模型和请求参数，就会把数据通过 render prop 的方式提供给 UI 组件，示例如下：
 
-```
-import { Query, model } from '@ali/xconsole'
-import { createService } from '@ali/wind-service'
+```js
+import { Query, model } from '@alicloud/xconsole'
+import { createService } from '@alicloud/xconsole-service'
 
 const GetInstances = model({
   service: async (variables) => {
@@ -36,7 +36,7 @@ export default () => (
 ### 重新获取数据
 当需要重新获取数据的时候，比如刷新或者搜索，Query 提供了简便的 refetch 方式：
 
-```
+```js
 export default () => (
   <Query
     query={GetInstances}
@@ -61,7 +61,7 @@ export default () => (
 ## 使用 Mutation 变更数据
 与 `Query` 相对，`Mutation ` 提供了数据变更的能力。示例代码如下：
 
-```
+```js
 const CreateInstance = model({
     service: async (variables) => {
       const result = await createService('ProductName', 'CreateInstance')(variables)
@@ -81,7 +81,7 @@ const CreateInstance = model({
 ### 与 Query 的联动
 `Mutation` 提供了一个非常好用的参数 `refetchQuery`，支持配置一个函数 `(result) => ({ query, variables})`，在数据变更请求成功，所有使用了 query 的 `Query` 组件都会自动更新数据，当我们需要在非父子组件中间做数据联动时会很方便。
 
-```
+```js
 export default () => (
   <Fragment>
     <Query

@@ -1,4 +1,4 @@
-# @ali/wind-rc-info
+# @alicloud/xconsole-rc-info
 
 信息展示
 

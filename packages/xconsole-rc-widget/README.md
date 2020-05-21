@@ -1,6 +1,6 @@
-# xconsole-rc-widget
+# @alicloud/xconsole-rc-widget
 
-为阿里云控制台提供快捷使用 Widget 的组件
+> 为阿里云控制台提供快捷使用 Widget 的组件
 
 ## Usage
 
