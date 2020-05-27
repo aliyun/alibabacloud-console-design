@@ -1,8 +1,7 @@
 {
-  "name": "@alicloud/xconsole-rc-page",
+  "name": "@alicloud/xconsole-context",
   "version": "1.0.0-beta.1",
   "main": "lib/index.js",
-  "module": "es/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
@@ -17,31 +16,25 @@
     "email" : "",
     "url" : ""
   },
+  "scripts": {
+    "prepublish": "npm run clean && npm run babel && npm run babel:esm",
+    "babel": "breezr build --engine babel",
+    "babel:esm": "breezr build --engine babel --es-module",
+    "build": "breezr build --engine webpack",
+    "storybook": "breezr start-storybook",
+    "clean": "rm -rf dist es build lib yarn.lock",
+    "dev": "npm run babel && npm run babel:esm"
+  },
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "@alicloud/console-components": "^1.0.20",
-    "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.5",
-    "@types/react": "^16.8.10",
-    "@types/react-dom": "^16.8.3",
+    "babel-loader": "^8.0.5",
     "jest": "^24.2.0-alpha.0",
     "less": "^3.0.0-alpha.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "ts-jest": "^23.10.5",
-    "tslint": "^5.8.0",
-    "typescript": "^3.0.3"
-  },
-  "scripts": {
-    "prepublish": "rm -rf dist lib es && npm run babel && npm run build && npm run babel:esm",
-    "build": "breezr build --engine webpack",
-    "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
-    "babel:esm": "breezr build --engine babel --es-module",
-    "storybook": "breezr start-storybook",
-    "start": "npm run storybook",
-    "test": "breezr test:unit"
+    "react-dom": "^16.8.6"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
@@ -52,8 +45,8 @@
     "registry": "http://registry.npm.alibaba-inc.com"
   },
   "dependencies": {
-    "@alicloud/console-components-page": "^1.0.5",
-    "dva": "^2.4.1",
-    "styled-components": "^4.4.0"
+    "@alicloud/xconsole-console-base-context": "^1.0.0-beta.1",
+    "@alicloud/xconsole-model":  "^1.0.0-beta.1",
+    "@alicloud/xconsole-region-context": "^1.0.0-beta.1"
   }
 }

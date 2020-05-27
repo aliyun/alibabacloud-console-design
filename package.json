@@ -2,7 +2,10 @@
   "name": "root",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/build-tools/*",
+    "packages/console-utils/*",
+    "example/*"
   ],
   "scripts": {
     "start": "cd packages/xconsole-example && tnpm i && tnpm start",
@@ -14,7 +17,6 @@
     "pub": "lerna publish"
   },
   "devDependencies": {
-    "@ali/lerna": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.31.0",
     "eslint": "^6.8.0",

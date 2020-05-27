@@ -33,7 +33,6 @@ export { default as DateTime } from '@alicloud/xconsole-rc-datetime';
 export { default as Form, FormContext } from '@alicloud/xconsole-rc-form';
 export { default as Link } from '@alicloud/xconsole-rc-link';
 export { default as Gray } from '@alicloud/xconsole-rc-gray';
-export { default as Widget } from '@alicloud/xconsole-rc-widget';
 export { default as Result } from '@alicloud/xconsole-rc-result';
 export { default as Feature } from '@alicloud/xconsole-rc-feature';
 export { default as AppLayout } from '@alicloud/xconsole-rc-app-layout';

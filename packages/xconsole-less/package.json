@@ -27,7 +27,6 @@
     "react-dom": "^16.x"
   },
   "devDependencies": {
-    "@ali/builder-abc": "^0.1.14",
     "classnames": "^2.2.6",
     "less": "^3.9.0",
     "prop-types": "^15.7.2",

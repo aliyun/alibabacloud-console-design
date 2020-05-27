@@ -35,10 +35,9 @@
     "watchpack": "^1.6.0",
     "error-overlay-webpack-plugin": "*",
     "react-dev-utils": "*",
-    "react-hot-loader": "^4.1.2",
+    "react-hot-loader": "^4.1.2"
   },
   "dependencies": {
-    "@ali/breezr-plugin-mocks": "*",
     "@alicloud/xconsole-rc-error-prompt": "^1.0.0-beta.1",
     "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1",
     "@alicloud/console-components": "^1.0.20",
@@ -82,7 +81,6 @@
     "@alicloud/xconsole-rc-region": "^1.0.0-beta.1",
     "@alicloud/xconsole-rc-result": "^1.0.0-beta.1",
     "@alicloud/xconsole-rc-step": "^1.0.0-beta.1",
-    "@alicloud/xconsole-rc-widget": "^1.0.0-beta.1",
     "@alicloud/xconsole-service": "^1.0.0-beta.1",
     "@types/react": "^16.8.24",
     "@types/webpack-env": "^1.14.0",
