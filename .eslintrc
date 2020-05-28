@@ -41,7 +41,8 @@
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ]
+    ],
+    "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"]
   },
   "plugins": [
     "@typescript-eslint",
