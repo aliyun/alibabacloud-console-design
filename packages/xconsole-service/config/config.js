@@ -1,11 +1,11 @@
 module.exports = {
   presets: [
     [
-      "@alicloud/console-toolkit-preset-wind-component",
+      '@alicloud/console-toolkit-preset-wind-component',
       {
-        moduleName: "@alicloud/xconsole-service",
-        useTypescript: true
-      }
-    ]
-  ]
+        moduleName: '@alicloud/xconsole-service',
+        useTypescript: true,
+      },
+    ],
+  ],
 };

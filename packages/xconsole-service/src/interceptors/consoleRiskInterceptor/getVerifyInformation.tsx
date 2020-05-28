@@ -8,16 +8,16 @@ export interface IVerifyInfo {
   vCode?: string;
 }
 
-function getVerifyInformation(options): Promise<IVerifyInfo> {
+function getVerifyInformation(options: any): Promise<IVerifyInfo> {
   return new Promise<IVerifyInfo>((resolve, reject) => {
     // eslint-disable-next-line prefer-const
     let { lastRequestId: requestId, risk, ...rest } = options;
-    let verifyCode;
+    let verifyCode: any;
 
-    function setRequestId(val) {
+    function setRequestId(val: any): void {
       requestId = val;
     }
-    function setVerifyCode(val) {
+    function setVerifyCode(val: string): void {
       verifyCode = val;
     }
 
@@ -25,7 +25,8 @@ function getVerifyInformation(options): Promise<IVerifyInfo> {
     const { title } = messages[verifyType];
 
     try {
-      Dialog.confirm({ // 弹出对话框
+      Dialog.confirm({
+        // 弹出对话框
         title,
         content: (
           <Form
@@ -45,11 +46,14 @@ function getVerifyInformation(options): Promise<IVerifyInfo> {
               reqId: requestId,
               vCode: verifyCode,
             });
-          } else {
-            console.warn( // eslint-disable-line no-console
-              '[getVerifyInformation] failed: ', requestId, verifyCode
-            );
           }
+          console.warn(
+            // eslint-disable-line no-console
+            '[getVerifyInformation] failed: ',
+            requestId,
+            verifyCode
+          );
+
           return false;
         },
         onCancel: () => {

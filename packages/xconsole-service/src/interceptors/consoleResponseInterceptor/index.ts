@@ -1,28 +1,26 @@
-import { APP_ERRORCODES } from './cons';
-import includes from 'lodash.includes';
-import pick from 'lodash.pick';
+/* eslint @typescript-eslint/no-throw-literal: "error" */
+/* eslint-disable @typescript-eslint/no-throw-literal */
 
-interface IError {
-  stack?: string;
-  response?: any;
-  message?: any;
-}
+import { IError, IResponse, IResponseData } from '../../types';
+import { ApiType } from '../../const';
 
-const serializeData = (data: any) => {
-  return JSON.parse(JSON.stringify(data))
-};
-
-function consoleResponseInterceptor(response) {
-  const { data: apiResponseData } = response;
-  const { config: { ignoreError } } = response;
+function consoleResponseInterceptor(
+  response: IResponse<IResponseData>
+): IResponse<IResponseData> {
+  const {
+    data: apiResponseData,
+    config: { apiType, ignoreError },
+  } = response;
+  if (apiType === ApiType.custom) return response;
   if (
     // Single api succeeded -> code 200, withFailedRequest undefined
     // Multi api succeeded  -> code 200, withFailedRequest false
     apiResponseData.code === '200' &&
     apiResponseData.withFailedRequest !== true
   ) {
-    return apiResponseData.data;
-  } else if (
+    return response;
+  }
+  if (
     // Multi api with failed request
     apiResponseData.code === '200' &&
     apiResponseData.withFailedRequest === true
@@ -32,24 +30,24 @@ function consoleResponseInterceptor(response) {
     if (ignoreError !== true) {
       throw error;
     }
-    return apiResponseData;
-  } else if (apiResponseData.message) {
+    return response;
+  }
+  if (apiResponseData.message) {
     // Single api failed with an error message
     const error: IError = new Error(apiResponseData.message);
     error.response = response;
     if (ignoreError !== true) {
       throw error;
     }
-    return apiResponseData;
-  } else {
-    // Single api failed without an error message
-    const error: IError = new Error('OpenAPI failed without a message.');
-    error.response = response;
-    if (ignoreError !== true) {
-      throw error;
-    }
-    return apiResponseData;
+    return response;
   }
+  // Single api failed without an error message
+  const error: IError = new Error('OpenAPI failed without a message.');
+  error.response = response;
+  if (ignoreError !== true) {
+    throw error;
+  }
+  return response;
 }
 
 export default consoleResponseInterceptor;

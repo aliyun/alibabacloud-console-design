@@ -22,7 +22,12 @@
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "@alife/dpl-console-design-2019": "^1.0.0",
+    "@rollup/plugin-commonjs": "^12.0.0",
+    "@rollup/plugin-json": "^4.0.3",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "@rollup/plugin-typescript": "^3.1.1",
     "@types/jest": "^24.0.18",
+    "@types/lodash.forin": "^4.4.6",
     "@types/node": "^12.7.5",
     "@types/react": "^16.8.10",
     "@types/react-dom": "^16.8.3",
@@ -32,16 +37,15 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "rollup-plugin-auto-external": "^2.0.0",
     "ts-jest": "^23.10.5",
     "tslint": "^5.8.0",
     "typescript": "^3.0.3"
   },
   "scripts": {
-    "prepublish": "rm -rf dist lib es && npm run babel && npm run build && npm run babel:esm",
+    "prepublish": "rm -rf dist lib es && npm run build",
     "build:dev": "npm run babel && npm run build && npm run babel:esm",
-    "build": "breezr build --engine webpack",
-    "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
-    "babel:esm": "breezr build --engine babel --es-module",
+    "build": "rollup -c && tsc --emitDeclarationOnly --declarationDir ./lib && tsc --emitDeclarationOnly --declarationDir ./es",
     "storybook": "breezr start-storybook",
     "start": "npm run storybook",
     "test": "breezr test:unit"
@@ -52,13 +56,14 @@
     "@alicloud/console-components": "^1.0.20"
   },
   "dependencies": {
+    "@ungap/url-search-params": "^0.2.0",
     "axios": "^0.18.1",
     "csstype": "^2.6.7",
     "js-cookie": "^2.2.1",
     "lodash.forin": "^4.4.0",
     "lodash.includes": "^4.3.0",
     "lodash.pick": "^4.4.0",
-    "@ungap/url-search-params": "^0.2.0"
+    "tslib": "^2.0.0"
   },
   "publishConfig": {
     "registry": "http://registry.npm.alibaba-inc.com"

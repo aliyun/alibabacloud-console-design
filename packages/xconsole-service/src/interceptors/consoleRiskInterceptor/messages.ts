@@ -8,13 +8,15 @@ const messages = {
       title: 'SMS Verification',
       detailDescription: 'Linked Phone',
       changeDescription: 'Change Linked Phone',
-      bindDescription: 'To protect the security of your account, please set up your phone number for SMS verification',
+      bindDescription:
+        'To protect the security of your account, please set up your phone number for SMS verification',
     },
     email: {
       title: 'Email Verification',
       detailDescription: 'Linked Email',
       changeDescription: 'Change Linked Email',
-      bindDescription: 'To protect the security of your account, please set up your email for Email verification',
+      bindDescription:
+        'To protect the security of your account, please set up your email for Email verification',
     },
     ga: {
       title: 'MFA Verification',
@@ -23,8 +25,10 @@ const messages = {
     },
     others: {
       setTitle: 'Verification Method Setup',
-      setTip: 'No Verification method detected! To protect the security of your account, please set up a verification method.',
+      setTip:
+        'No Verification method detected! To protect the security of your account, please set up a verification method.',
       goSet: 'Set Now',
+      cancel: 'Cancel',
       doneTip: 'Complete verification in the new window.',
       doneSet: 'The changes have been saved.',
       gotProblem: 'Encounter problems',
@@ -41,13 +45,15 @@ const messages = {
       title: 'SMS 認証',
       detailDescription: 'リンクされた電話',
       changeDescription: 'リンクされた電話の変更',
-      bindDescription: 'アカウントのセキュリティを保護するため、SMS 認証用の電話番号を設定してください',
+      bindDescription:
+        'アカウントのセキュリティを保護するため、SMS 認証用の電話番号を設定してください',
     },
     email: {
       title: '電子メール認証',
       detailDescription: 'リンクされた電子メール',
       changeDescription: 'リンクされた電子メールの変更',
-      bindDescription: 'アカウントのセキュリティを保護するため、電子メール認証用の電子メールを設定してください',
+      bindDescription:
+        'アカウントのセキュリティを保護するため、電子メール認証用の電子メールを設定してください',
     },
     ga: {
       title: 'MFA 認証',
@@ -56,8 +62,10 @@ const messages = {
     },
     others: {
       setTitle: '認証方法の設定',
-      setTip: '認証方法が検出されませんでした。アカウントのセキュリティを保護するため、認証方法を設定してください。',
+      setTip:
+        '認証方法が検出されませんでした。アカウントのセキュリティを保護するため、認証方法を設定してください。',
       goSet: '今すぐ設定',
+      cancel: 'キャンセル',
       doneTip: '新しいウィンドウで認証を完了してください。',
       doneSet: '変更が保存されました。',
       gotProblem: '問題の発生',
@@ -74,7 +82,8 @@ const messages = {
       title: '手机验证',
       detailDescription: '您绑定的手机',
       changeDescription: '更换手机',
-      bindDescription: '未检测到手机号码,为了保障您的账户安全，请先设置手机绑定。',
+      bindDescription:
+        '未检测到手机号码,为了保障您的账户安全，请先设置手机绑定。',
     },
     email: {
       title: '邮箱验证',
@@ -89,8 +98,10 @@ const messages = {
     },
     others: {
       setTitle: '设置验证方式',
-      setTip: '系统没有检测到您的验证方式!为了保障您的账户安全，请先设置验证方式。',
+      setTip:
+        '系统没有检测到您的验证方式!为了保障您的账户安全，请先设置验证方式。',
       goSet: '前往设置',
+      cancel: '取消',
       doneTip: '请在新窗口中完成验证方式的设置',
       doneSet: '完成设置',
       gotProblem: '遇到问题',
@@ -107,7 +118,8 @@ const messages = {
       title: '手機驗證',
       detailDescription: '您綁定的手機',
       changeDescription: '更換手機',
-      bindDescription: '未檢測到手機號碼,為了保障您的賬戶安全，請先設定手機綁定。',
+      bindDescription:
+        '未檢測到手機號碼,為了保障您的賬戶安全，請先設定手機綁定。',
     },
     email: {
       title: '郵箱驗證',
@@ -122,8 +134,10 @@ const messages = {
     },
     others: {
       setTitle: '設定驗證方式',
-      setTip: '系統沒有檢測到您的驗證方式!為了保障您的賬戶安全，請先設定驗證方式。',
+      setTip:
+        '系統沒有檢測到您的驗證方式!為了保障您的賬戶安全，請先設定驗證方式。',
       goSet: '前往設定',
+      cancel: '取消',
       doneTip: '請在新視窗中完成驗證方式的設定',
       doneSet: '完成設定',
       gotProblem: '遇到問題',
@@ -135,5 +149,4 @@ const messages = {
   },
 };
 
-
-export default (messages[locale] || messages['en-US']);
+export default (messages as any)[locale] || messages['en-US'];

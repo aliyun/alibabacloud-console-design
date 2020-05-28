@@ -1,4 +1,4 @@
-/*\
+/* \
 |*|
 |*|  :: cookies.js ::
 |*|
@@ -17,7 +17,7 @@
 |*|  * docCookies.hasItem(name)
 |*|  * docCookies.keys()
 |*|
-\*/
+\ */
 /* eslint-disable */
 export default {
   getItem: function (sKey) {

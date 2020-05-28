@@ -1,119 +1,86 @@
 import createService from './createService';
+import { IOptions, ServicePromise } from './types';
+import { ApiType } from './const';
 
-export interface IOptions {
-  ignoreError?: boolean;
-  risk?: {
-    code?: {
-      [key: string]: string;
-    },
-    url?: {
-      [key: string]: string;
+type ClientRequest = <D>(
+  product: string,
+  action?: string | any[],
+  params?: {},
+  options?: IOptions
+) => ServicePromise<D>;
+
+export default (
+  clientOptions: IOptions
+): {
+  request: ClientRequest;
+  innerApi: ClientRequest;
+  callApi: ClientRequest;
+} => {
+  const request: ClientRequest = <D>(
+    product: string,
+    action?: string | any[],
+    params?: any,
+    options?: IOptions
+  ): ServicePromise<D> => {
+    if (typeof action === 'string') {
+      return createService(product, action, {
+        ignoreError: false,
+        ...clientOptions,
+        ...options,
+        apiType: ApiType.open,
+      })<D>(params);
     }
+    return createService(product, null, {
+      ignoreError: false,
+      ...clientOptions,
+      ...options,
+      apiType: ApiType.open,
+    })<D>(action);
   };
-}
 
-export default (clientOptions: IOptions) => {
-  function request(
+  const innerApi: ClientRequest = <D>(
     product: string,
-    action?: string,
-    params?: {},
+    action?: string | any[],
+    params?: any,
     options?: IOptions
-  ): any;
-  function request(
-    product: string,
-    action?: any[],
-    options?: IOptions
-  ): any;
-  function request(
-    product: string,
-    action: any,
-    params?: {},
-    options?: IOptions
-  ) {
+  ): ServicePromise<D> => {
     if (typeof action === 'string') {
-     return createService(product, action, {
-       apiType: 'open',
-       ignoreError: false,
-       ...clientOptions,
-       ...options
-     })(params);
-    } else {
-     return createService(product, null, {
-       apiType: 'open',
-       ignoreError: false,
-       ...clientOptions,
-       ...options
-     })(action);
+      return createService(product, action, {
+        apiType: ApiType.inner,
+        ignoreError: false,
+        ...clientOptions,
+        ...options,
+      })<D>(params);
     }
-  }
+    return createService(product, null, {
+      apiType: ApiType.inner,
+      ignoreError: false,
+      ...clientOptions,
+      ...options,
+    })<D>(action);
+  };
 
-  function innerApi(
+  const callApi: ClientRequest = <D>(
     product: string,
-    action?: string,
-    params?: {},
+    action?: string | any[],
+    params?: any,
     options?: IOptions
-  ): any;
-  function innerApi(
-    product: string,
-    action?: any[],
-    options?: IOptions
-  ): any;
-  function innerApi(
-    product: string,
-    action: any,
-    params?: {},
-    options?: IOptions
-  ) {
+  ): ServicePromise<D> => {
     if (typeof action === 'string') {
-     return createService(product, action, {
-       apiType: 'inner',
-       ignoreError: false,
-       ...clientOptions,
-       ...options
-     })(params);
-    } else {
-     return createService(product, null, {
-       apiType: 'inner',
-       ignoreError: false,
-       ...clientOptions,
-       ...options
-     })(action);
+      return createService(product, action, {
+        apiType: ApiType.app,
+        ignoreError: false,
+        ...clientOptions,
+        ...options,
+      })<D>(params);
     }
-  }
-
-  function callApi(
-    product: string,
-    action?: string,
-    params?: {},
-    options?: IOptions
-  ): any;
-  function callApi(
-    product: string,
-    action?: any[],
-    options?: IOptions
-  ): any;
-  function callApi(
-    product: string,
-    action: any,
-    params?: {},
-    options?: IOptions
-  ) {
-    if (typeof action === 'string') {
-     return createService(product, action, {
-       apiType: 'app',
-       ignoreError: false,
-       ...clientOptions,
-       ...options
-     })(params);
-    } else {
-     return createService(product, null, {
-       apiType: 'app',
-       ignoreError: false,
-       ...clientOptions,
-       ...options
-     })(action);
-    }
-  }
+    return createService(product, null, {
+      apiType: ApiType.app,
+      ignoreError: false,
+      ...clientOptions,
+      ...options,
+    })<D>(action);
+  };
 
   return {
     request,
