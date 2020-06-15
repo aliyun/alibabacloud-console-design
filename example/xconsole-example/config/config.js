@@ -7,7 +7,7 @@ module.exports = {
   product: 'xconsole',
   // 路由配置
   routes: {
-    index: 'overview',
+    index: 'index',
   },
   // 加入监控脚本
   armsId: 'mock_amrs_id',

@@ -24,7 +24,7 @@ var defaultModel = {
     save: function save(state, action) {
       var _action$payload = action.payload,
           payload = _action$payload === void 0 ? {} : _action$payload;
-      return _objectSpread({}, state, {}, payload);
+      return _objectSpread(_objectSpread({}, state), payload);
     }
   },
   effects: {},
@@ -172,11 +172,11 @@ var ListModel = function ListModel(props) {
     return result;
   }, fetchEffect);
 
-  var model = _objectSpread({}, defaultModel, {
+  var model = _objectSpread(_objectSpread({}, defaultModel), {}, {
     effects: effects
   });
 
-  return React.createElement(Model, {
+  return /*#__PURE__*/React.createElement(Model, {
     model: model
   }, props.children);
 };
@@ -188,8 +188,8 @@ ListModel.propTypes = {
 
 ListModel.extend = function (extra) {
   return function (props) {
-    return React.createElement(Model, {
-      model: _objectSpread({}, defaultModel, {}, extra)
+    return /*#__PURE__*/React.createElement(Model, {
+      model: _objectSpread(_objectSpread({}, defaultModel), extra)
     }, props.children);
   };
 };

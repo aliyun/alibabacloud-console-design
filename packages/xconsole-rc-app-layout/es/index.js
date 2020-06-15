@@ -1,10 +1,15 @@
 import _extends from "@babel/runtime/helpers/esm/extends";
 import _classCallCheck from "@babel/runtime/helpers/esm/classCallCheck";
 import _createClass from "@babel/runtime/helpers/esm/createClass";
+import _inherits from "@babel/runtime/helpers/esm/inherits";
 import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConstructorReturn";
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
-import _inherits from "@babel/runtime/helpers/esm/inherits";
 import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
 import React, { useState, useRef, useEffect, Component } from 'react';
 import PropTypes from 'prop-types';
 import { wrapDisplayName } from 'recompose';
@@ -40,7 +45,7 @@ var XConsoleAppLayout = function XConsoleAppLayout(_ref) {
     console.warn('[xconsole rc-app-layout] sidebar.js 中关于 defaultOpenKeys collapsedKeys invisiblePaths 的配置不再推荐使用，请在 appConfig.js 中配置 consoleMenu， 具体配置信息及字段说明请前往官网查看 【开发指南】 文档。');
   }
 
-  return React.createElement(Context.Provider, {
+  return /*#__PURE__*/React.createElement(Context.Provider, {
     value: {
       sidebar: {
         title: title,
@@ -50,7 +55,7 @@ var XConsoleAppLayout = function XConsoleAppLayout(_ref) {
       setTitle: setTitle,
       setNavs: setNavs
     }
-  }, React.createElement(Aside, {
+  }, /*#__PURE__*/React.createElement(Aside, {
     appConfig: appConfig,
     location: location
   }, children));
@@ -70,10 +75,12 @@ export var withNavCollapsed = function withNavCollapsed(WrappedComponent) {
   return _temp = _class = /*#__PURE__*/function (_Component) {
     _inherits(H, _Component);
 
+    var _super = _createSuper(H);
+
     function H() {
       _classCallCheck(this, H);
 
-      return _possibleConstructorReturn(this, _getPrototypeOf(H).apply(this, arguments));
+      return _super.apply(this, arguments);
     }
 
     _createClass(H, [{
@@ -81,9 +88,9 @@ export var withNavCollapsed = function withNavCollapsed(WrappedComponent) {
       value: function render() {
         var _this = this;
 
-        return React.createElement(Context.Consumer, null, function (_ref2) {
+        return /*#__PURE__*/React.createElement(Context.Consumer, null, function (_ref2) {
           var navCollapsed = _ref2.navCollapsed;
-          return React.createElement(WrappedComponent, _extends({}, _this.props, {
+          return /*#__PURE__*/React.createElement(WrappedComponent, _extends({}, _this.props, {
             navCollapsed: navCollapsed
           }));
         });

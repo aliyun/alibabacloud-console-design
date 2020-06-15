@@ -7,7 +7,7 @@ var Container = function Container(_ref) {
       style = _ref.style,
       shape = _ref.shape,
       children = _ref.children;
-  return React.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: classNames('xconsole-rc-region', className, shape),
     style: style
   }, children);

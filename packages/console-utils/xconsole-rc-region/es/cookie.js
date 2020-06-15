@@ -8,7 +8,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 import Cookie from 'js-cookie'; // 默认标识
 
-var DEFAULT_COOKIE_KEY = 'activeRegionId'; // 区分国内站和国际站
+var DEFAULT_COOKIE_KEY = 'activeRegionId';
+var CURRENT_DEFAULT_COOKIE_KEY = 'currentRegionId'; // 区分国内站和国际站
 
 var REG_HOST = /\.?(aliyun|alibabacloud)(\.[\w.-]+)/;
 /**
@@ -52,7 +53,12 @@ var getHost = function getHost() {
 
 
 var getActiveId = function getActiveId() {
-  var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_COOKIE_KEY;
+  var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+  if (key === '') {
+    return Cookie.get(CURRENT_DEFAULT_COOKIE_KEY) || Cookie.get(DEFAULT_COOKIE_KEY) || 'cn-hangzhou';
+  }
+
   return Cookie.get(key);
 };
 /**

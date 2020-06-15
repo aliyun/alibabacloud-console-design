@@ -58,7 +58,7 @@ export var union = function union(origin, input) {
     var _ref = inputRecord || {},
         endpoint = _ref.endpoint;
 
-    return _objectSpread({}, formattedItem, {
+    return _objectSpread(_objectSpread({}, formattedItem), {}, {
       disabled: disabled,
       endpoint: endpoint
     });
@@ -86,7 +86,7 @@ var mapCollectionToDescriptor = function mapCollectionToDescriptor(collection) {
   var district = getDistrictFromCollection(collection);
   var formattedDistrict = formatDistrict(district);
   var sortedCollection = sortCollection(collection);
-  return _objectSpread({}, formattedDistrict, {
+  return _objectSpread(_objectSpread({}, formattedDistrict), {}, {
     list: sortedCollection
   });
 };

@@ -11,17 +11,17 @@ var List = function List(_ref) {
       dataSource = _ref.dataSource,
       onItemClick = _ref.onItemClick,
       format = _ref.format;
-  return React.createElement("dl", {
+  return /*#__PURE__*/React.createElement("dl", {
     className: classNames('wind-rc-region-list', className),
     style: style
-  }, label && React.createElement("dt", null, label), dataSource.map(function (item) {
+  }, label && /*#__PURE__*/React.createElement("dt", null, label), dataSource.map(function (item) {
     var data = item;
 
     if (format) {
       data = format(data);
     }
 
-    return React.createElement(Item, {
+    return /*#__PURE__*/React.createElement(Item, {
       key: "wind-rc-region-item-".concat(data.id || data.name),
       id: data.id,
       label: data.name,

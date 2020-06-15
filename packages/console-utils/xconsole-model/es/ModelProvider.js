@@ -46,7 +46,7 @@ export default (function (props) {
     }
   };
 
-  return React.createElement(Context.Provider, {
+  return /*#__PURE__*/React.createElement(Context.Provider, {
     value: {
       attach: attach,
       detach: detach,

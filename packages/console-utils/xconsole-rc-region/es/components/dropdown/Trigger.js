@@ -1,8 +1,13 @@
 import _classCallCheck from "@babel/runtime/helpers/esm/classCallCheck";
 import _createClass from "@babel/runtime/helpers/esm/createClass";
+import _inherits from "@babel/runtime/helpers/esm/inherits";
 import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConstructorReturn";
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
-import _inherits from "@babel/runtime/helpers/esm/inherits";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -11,10 +16,12 @@ import { Icon } from '@alicloud/console-components';
 var Trigger = /*#__PURE__*/function (_Component) {
   _inherits(Trigger, _Component);
 
+  var _super = _createSuper(Trigger);
+
   function Trigger() {
     _classCallCheck(this, Trigger);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Trigger).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass(Trigger, [{
@@ -27,14 +34,14 @@ var Trigger = /*#__PURE__*/function (_Component) {
           active = _this$props.active,
           onMouseEnter = _this$props.onMouseEnter,
           onMouseLeave = _this$props.onMouseLeave;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: classNames('wind-rc-region', 'dropdown', 'dropdown-trigger', {
           active: active === true
         }, className),
         style: style,
         onMouseEnter: onMouseEnter,
         onMouseLeave: onMouseLeave
-      }, React.createElement("span", null, label), React.createElement(Icon, {
+      }, /*#__PURE__*/React.createElement("span", null, label), /*#__PURE__*/React.createElement(Icon, {
         type: "arrow-down",
         size: "xs"
       }));

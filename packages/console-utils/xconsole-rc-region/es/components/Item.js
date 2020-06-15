@@ -14,7 +14,7 @@ var Item = function Item(_ref) {
       _ref$disabled = _ref.disabled,
       disabled = _ref$disabled === void 0 ? false : _ref$disabled,
       onItemClick = _ref.onItemClick;
-  return React.createElement("dd", {
+  return /*#__PURE__*/React.createElement("dd", {
     className: classNames('wind-rc-region-item', {
       active: active,
       disabled: disabled
@@ -22,7 +22,7 @@ var Item = function Item(_ref) {
     onClick: function onClick(e) {
       return !disabled && onItemClick(id, e);
     }
-  }, React.createElement("a", {
+  }, /*#__PURE__*/React.createElement("a", {
     title: label,
     name: "#".concat(label),
     onClick: onLinkClick

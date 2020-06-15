@@ -51,7 +51,7 @@ var Model = function Model(props) {
       dvaInstance.unmodel();
     };
   }, []);
-  return React.createElement(Context.Provider, {
+  return /*#__PURE__*/React.createElement(Context.Provider, {
     value: value
   }, props.children);
 };

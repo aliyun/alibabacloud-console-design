@@ -22,7 +22,7 @@ var hijackOnItemClick = mapProps(function (ownerProps) {
   var _onItemClick = region.onItemClick,
       restRegionProps = _objectWithoutProperties(region, ["onItemClick"]);
 
-  return _objectSpread({}, restProps, {}, restRegionProps, {
+  return _objectSpread(_objectSpread(_objectSpread({}, restProps), restRegionProps), {}, {
     onItemClick: function onItemClick() {
       var propOnItemClick = ownerProps.onItemClick;
 

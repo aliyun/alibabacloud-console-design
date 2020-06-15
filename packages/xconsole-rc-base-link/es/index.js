@@ -2,10 +2,14 @@ import _extends from "@babel/runtime/helpers/esm/extends";
 import _objectWithoutProperties from "@babel/runtime/helpers/esm/objectWithoutProperties";
 import _classCallCheck from "@babel/runtime/helpers/esm/classCallCheck";
 import _createClass from "@babel/runtime/helpers/esm/createClass";
+import _inherits from "@babel/runtime/helpers/esm/inherits";
 import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConstructorReturn";
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
-import _inherits from "@babel/runtime/helpers/esm/inherits";
 import _defineProperty from "@babel/runtime/helpers/esm/defineProperty";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -40,7 +44,7 @@ var getExactClassName = function getExactClassName(shape, type, size, disabled) 
 
     var btnTypeClassName = "".concat(btnClassName, "-").concat(type);
     var btnSizeClassName = "".concat(nextClassName, "-").concat(size);
-    return _objectSpread({}, result, (_objectSpread2 = {}, _defineProperty(_objectSpread2, btnClassName, true), _defineProperty(_objectSpread2, btnTypeClassName, true), _defineProperty(_objectSpread2, btnSizeClassName, true), _objectSpread2));
+    return _objectSpread(_objectSpread({}, result), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, btnClassName, true), _defineProperty(_objectSpread2, btnTypeClassName, true), _defineProperty(_objectSpread2, btnSizeClassName, true), _objectSpread2));
   }
 
   return result;
@@ -49,9 +53,9 @@ var getExactClassName = function getExactClassName(shape, type, size, disabled) 
 var Link = /*#__PURE__*/function (_Component) {
   _inherits(Link, _Component);
 
-  function Link() {
-    var _getPrototypeOf2;
+  var _super = _createSuper(Link);
 
+  function Link() {
     var _this;
 
     _classCallCheck(this, Link);
@@ -60,7 +64,7 @@ var Link = /*#__PURE__*/function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Link)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
     _this.state = {
       useReactRouterLink: true
     };
@@ -107,7 +111,7 @@ var Link = /*#__PURE__*/function (_Component) {
       var exactClassName = classNames(baseClassName, getExactClassName(shape, type, size, exactDisabled));
 
       if (exactDisabled || !exactLinkTargetPath) {
-        return React.createElement("span", _extends({
+        return /*#__PURE__*/React.createElement("span", _extends({
           className: exactClassName
         }, restProps));
       }
@@ -115,14 +119,14 @@ var Link = /*#__PURE__*/function (_Component) {
       var useReactRouterLink = this.state.useReactRouterLink;
 
       if (href || !useReactRouterLink) {
-        return React.createElement("a", _extends({
+        return /*#__PURE__*/React.createElement("a", _extends({
           className: exactClassName
         }, restProps, {
           href: exactLinkTargetPath
         }));
       }
 
-      return React.createElement(RouteLink, _extends({
+      return /*#__PURE__*/React.createElement(RouteLink, _extends({
         className: exactClassName
       }, restProps));
     }

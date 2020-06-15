@@ -1,4 +1,4 @@
-import intl from '@ali/wind-intl'
+import {intl} from '@alicloud/xconsole'
 
 export default {
   title: 'XConsole',

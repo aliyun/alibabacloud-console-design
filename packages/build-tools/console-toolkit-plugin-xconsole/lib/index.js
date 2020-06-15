@@ -45,7 +45,7 @@ function default_1(api, options) {
         path: path_1.resolve(__dirname, '../generator/index.js'),
         namespace: 'XconsoleProject',
         type: 'git',
-        url: constants_1.GENERATOR_URL
+        url: constants_1.GENERATOR_URL,
     });
     api.on('onBuildEnd', function () { return __awaiter(_this, void 0, void 0, function () {
         var env;

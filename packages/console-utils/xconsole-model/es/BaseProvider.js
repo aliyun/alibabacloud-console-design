@@ -4,7 +4,7 @@ import Context from './BaseContext';
 import ModelProvider from './ModelProvider';
 
 var Provider = function Provider(props) {
-  return React.createElement(ModelProvider, {
+  return /*#__PURE__*/React.createElement(ModelProvider, {
     app: props.app
   }, props.children);
 };

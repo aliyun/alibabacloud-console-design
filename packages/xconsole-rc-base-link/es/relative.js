@@ -19,7 +19,7 @@ var transRelativeUrl = withProps(function (props) {
   var combinedProps = {};
 
   if (to) {
-    combinedProps = _objectSpread({}, combinedProps, {
+    combinedProps = _objectSpread(_objectSpread({}, combinedProps), {}, {
       to: resolvePathname(to, exactPathname)
     });
   }

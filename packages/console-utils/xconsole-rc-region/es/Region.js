@@ -1,9 +1,14 @@
 import _classCallCheck from "@babel/runtime/helpers/esm/classCallCheck";
 import _createClass from "@babel/runtime/helpers/esm/createClass";
-import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConstructorReturn";
-import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/esm/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
+import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
@@ -13,9 +18,9 @@ import DropdownRegion from './components/dropdown';
 var Region = /*#__PURE__*/function (_Component) {
   _inherits(Region, _Component);
 
-  function Region() {
-    var _getPrototypeOf2;
+  var _super = _createSuper(Region);
 
+  function Region() {
     var _this;
 
     _classCallCheck(this, Region);
@@ -24,7 +29,7 @@ var Region = /*#__PURE__*/function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Region)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
     _this.state = {
       activeId: _this.props.defaultActiveId
     };
@@ -94,8 +99,8 @@ var Region = /*#__PURE__*/function (_Component) {
           }
       }
 
-      var element = React.createElement(Element, props);
-      return domNode ? createPortal(element, domNode) : element;
+      var element = /*#__PURE__*/React.createElement(Element, props);
+      return domNode ? /*#__PURE__*/createPortal(element, domNode) : element;
     }
   }], [{
     key: "getPortalDomNode",

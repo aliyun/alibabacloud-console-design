@@ -18,7 +18,7 @@ var defaultModel = {
     save: function save(state, action) {
       var _action$payload = action.payload,
           payload = _action$payload === void 0 ? {} : _action$payload;
-      return _objectSpread({}, state, {}, payload);
+      return _objectSpread(_objectSpread({}, state), payload);
     }
   },
   effects: {},
@@ -35,12 +35,12 @@ var defaultModel = {
 export default (function (_ref) {
   var service = _ref.service,
       initialValue = _ref.initialValue,
-      rest = _objectWithoutProperties(_ref, ["service", "initialValue"]);
-
-  var namespace = uuid();
+      _ref$namespace = _ref.namespace,
+      namespace = _ref$namespace === void 0 ? uuid() : _ref$namespace,
+      rest = _objectWithoutProperties(_ref, ["service", "initialValue", "namespace"]);
 
   if (_.isFunction(service)) {
-    var dvaModel = _objectSpread({}, defaultModel, {
+    var dvaModel = _objectSpread(_objectSpread({}, defaultModel), {}, {
       namespace: namespace,
       effects: {
         action: takeLatest( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(_ref2, _ref3) {
@@ -54,11 +54,20 @@ export default (function (_ref) {
                   call = _ref3.call, put = _ref3.put;
                   _context.prev = 2;
                   _context.next = 5;
-                  return call(service, payload);
+                  return put({
+                    type: 'save',
+                    payload: {
+                      APIError: null
+                    }
+                  });
 
                 case 5:
+                  _context.next = 7;
+                  return call(service, payload);
+
+                case 7:
                   result = _context.sent;
-                  _context.next = 8;
+                  _context.next = 10;
                   return put({
                     type: 'save',
                     payload: {
@@ -66,20 +75,21 @@ export default (function (_ref) {
                     }
                   });
 
-                case 8:
+                case 10:
                   if (meta.onCompleted) {
                     _.delay(function () {
                       meta.onCompleted(result);
                     }, 200);
                   }
 
-                  _context.next = 18;
+                  _context.next = 20;
                   break;
 
-                case 11:
-                  _context.prev = 11;
+                case 13:
+                  _context.prev = 13;
                   _context.t0 = _context["catch"](2);
-                  _context.next = 15;
+                  console.log('debugme try catch', _context.t0);
+                  _context.next = 18;
                   return put({
                     type: 'save',
                     payload: {
@@ -87,22 +97,21 @@ export default (function (_ref) {
                     }
                   });
 
-                case 15:
+                case 18:
                   if (meta.onError) {
                     _.delay(function () {
                       meta.onError(_context.t0);
                     }, 200);
                   }
 
-                  console.log('debugme try catch', _context.t0);
                   throw _context.t0;
 
-                case 18:
+                case 20:
                 case "end":
                   return _context.stop();
               }
             }
-          }, _callee, null, [[2, 11]]);
+          }, _callee, null, [[2, 13]]);
         }))
       }
     });

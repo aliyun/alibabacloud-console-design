@@ -21,7 +21,7 @@ var renderProps = function renderProps(props, injectPropName) {
         componentProps[injectPropName] = args;
       }
 
-      return React.createElement(RenderComponent, componentProps);
+      return /*#__PURE__*/React.createElement(RenderComponent, componentProps);
     }
 
     var exactRender = children || render;
@@ -30,13 +30,13 @@ var renderProps = function renderProps(props, injectPropName) {
       return exactRender.apply(void 0, args);
     }
 
-    if (isValidElement(exactRender)) {
-      return React.createElement(exactRender.type, exactRender.props);
+    if ( /*#__PURE__*/isValidElement(exactRender)) {
+      return /*#__PURE__*/React.createElement(exactRender.type, exactRender.props);
     }
 
     if (isArray(exactRender)) {
       return Children.map(exactRender, function (child) {
-        return React.createElement(child.type, child.props);
+        return /*#__PURE__*/React.createElement(child.type, child.props);
       });
     }
 

@@ -13,11 +13,11 @@ export var transTitleToHeader = function transTitleToHeader(title) {
 };
 export var transNavToItems = function transNavToItems(navs) {
   return map(navs, function (nav) {
-    return _objectSpread({}, nav, {
+    return _objectSpread(_objectSpread({}, nav), {}, {
       label: nav.title,
       visible: isUndefined(nav.hide) ? true : !nav.hide,
       items: isUndefined(nav.subNav) ? null : map(nav.subNav, function (sub) {
-        return _objectSpread({}, sub, {
+        return _objectSpread(_objectSpread({}, sub), {}, {
           label: sub.title,
           visible: isUndefined(sub.hide) ? true : !sub.hide
         });
@@ -32,7 +32,7 @@ var getToPath = function getToPath(extraParams) {
     var routeParams = get(routeProps, 'match.params') || {};
 
     try {
-      path = generatePath(item.key, _objectSpread({}, routeParams, {}, extraParams));
+      path = generatePath(item.key, _objectSpread(_objectSpread({}, routeParams), extraParams));
     } catch (error) {
       console.warn("[XConsole AppLayout] ".concat(error));
     }

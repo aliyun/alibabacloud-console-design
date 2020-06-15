@@ -21,7 +21,7 @@ var Menu = function Menu(_ref) {
 
   var determinedHeader = header || transTitleToHeader(title);
   var determinedItems = items || transNavToItems(navs);
-  return React.createElement(ConsoleMenu, _extends({
+  return /*#__PURE__*/React.createElement(ConsoleMenu, _extends({
     header: determinedHeader,
     items: withDefaultToPath(determinedItems, extraParams)
   }, restProps));

@@ -48,32 +48,32 @@ var Nav = function Nav(_ref) {
     }
 
     return map(navs, function (nav) {
-      var determinedNav = _objectSpread({}, nav, {
+      var determinedNav = _objectSpread(_objectSpread({}, nav), {}, {
         label: nav.title
       });
 
       if (nav.key && !nav.href) {
-        determinedNav = _objectSpread({}, determinedNav, {
+        determinedNav = _objectSpread(_objectSpread({}, determinedNav), {}, {
           to: function to(routeProps, item) {
             var params = get(routeProps, 'match.params');
-            return tryGeneratePath(item.key, _objectSpread({}, params, {}, param));
+            return tryGeneratePath(item.key, _objectSpread(_objectSpread({}, params), param));
           }
         });
       }
 
       if (nav.subNav) {
-        determinedNav = _objectSpread({}, determinedNav, {
+        determinedNav = _objectSpread(_objectSpread({}, determinedNav), {}, {
           label: nav.title,
           items: map(determinedNav.subNav, function (subNavItem) {
-            var _subNavItem = _objectSpread({}, subNavItem, {
+            var _subNavItem = _objectSpread(_objectSpread({}, subNavItem), {}, {
               label: subNavItem.title
             });
 
             if (subNavItem.key && !subNavItem.href) {
-              _subNavItem = _objectSpread({}, _subNavItem, {
+              _subNavItem = _objectSpread(_objectSpread({}, _subNavItem), {}, {
                 to: function to(routeProps, item) {
                   var params = get(routeProps, 'match.params');
-                  return tryGeneratePath(item.key, _objectSpread({}, params, {}, param));
+                  return tryGeneratePath(item.key, _objectSpread(_objectSpread({}, params), param));
                 }
               });
             }
@@ -87,7 +87,7 @@ var Nav = function Nav(_ref) {
     });
   };
 
-  return React.createElement(ConsoleMenu, _extends({
+  return /*#__PURE__*/React.createElement(ConsoleMenu, _extends({
     header: header || title,
     items: items || getMenuItems()
   }, restProps));

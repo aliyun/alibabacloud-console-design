@@ -41,7 +41,7 @@ export default {
     update: function update(state, action) {
       var _action$payload = action.payload,
           payload = _action$payload === void 0 ? {} : _action$payload;
-      return _objectSpread({}, state, {}, payload);
+      return _objectSpread(_objectSpread({}, state), payload);
     }
   },
   effects: {

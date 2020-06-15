@@ -104,8 +104,8 @@ var XConsoleAppLayoutAside = function XConsoleAppLayoutAside(_ref) {
   var providerValue = {
     navCollapsed: collapsed
   };
-  var nav = showSidebar ? React.createElement(Nav, sidebar) : null;
-  return React.createElement(AppLayout, {
+  var nav = showSidebar ? /*#__PURE__*/React.createElement(Nav, sidebar) : null;
+  return /*#__PURE__*/React.createElement(AppLayout, {
     adjustHeight: 50,
     nav: nav,
     navCollapsed: collapsed,

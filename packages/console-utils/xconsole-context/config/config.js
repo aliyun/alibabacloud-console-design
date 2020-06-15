@@ -1,9 +1,9 @@
 module.exports = {
   presets: [
     [
-      "@alicloud/console-toolkit-preset-wind-component",
+      '@alicloud/console-toolkit-preset-wind-component',
       {
-        moduleName: "XConsoleContext"
+        moduleName: 'XConsoleContext',
       }
     ]
   ]
