@@ -17,9 +17,6 @@
     "email" : "",
     "url" : ""
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "engines": {
     "node": ">=7.6.0"
   },

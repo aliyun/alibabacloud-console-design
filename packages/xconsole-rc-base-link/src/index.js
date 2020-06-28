@@ -80,6 +80,7 @@ class Link extends Component {
       shape = 'text',
       type = 'normal',
       size = 'medium',
+      className = '',
       ...restProps
     } = this.props
 
@@ -94,6 +95,7 @@ class Link extends Component {
     }
 
     const exactClassName = classNames(
+      className,
       baseClassName,
       getExactClassName(shape, type, size, exactDisabled)
     )

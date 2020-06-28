@@ -35,7 +35,7 @@
     "watchpack": "^1.6.0",
     "error-overlay-webpack-plugin": "*",
     "react-dev-utils": "*",
-    "react-hot-loader": "^4.1.2",
+    "react-hot-loader": "^4.1.2"
   },
   "dependencies": {
     "@ali/breezr-plugin-mocks": "*",

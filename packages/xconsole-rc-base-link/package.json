@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-base-link",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "",
   "main": "lib/index.js",
   "license": "MIT",
@@ -16,9 +16,6 @@
     "name" : "",
     "email" : "",
     "url" : ""
-  },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
   },
   "engines": {
     "node": ">=7.6.0"

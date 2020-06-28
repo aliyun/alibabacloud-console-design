@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-service",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
@@ -59,8 +59,5 @@
     "lodash.includes": "^4.3.0",
     "lodash.pick": "^4.4.0",
     "@ungap/url-search-params": "^0.2.0"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
   }
 }

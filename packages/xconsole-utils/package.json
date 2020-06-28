@@ -43,8 +43,5 @@
     "lodash.map": "^4.6.0",
     "lodash.reduce": "^4.6.0",
     "path-to-regexp": "^3.0.0"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
   }
 }

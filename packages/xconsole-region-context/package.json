@@ -43,8 +43,5 @@
     "clean": "rm -rf dist es build lib yarn.lock",
     "start": "npm run storybook",
     "test": "breezr test:unit"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
   }
 }

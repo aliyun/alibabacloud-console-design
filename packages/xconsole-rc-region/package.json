@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-region",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Make your app regionable",
   "main": "lib/index.js",
   "license": "MIT",
@@ -16,9 +16,6 @@
     "name": "",
     "email": "",
     "url": ""
-  },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
   },
   "scripts": {
     "prepublish": "npm run clean && npm run build && npm run babel && npm run babel:esm",
