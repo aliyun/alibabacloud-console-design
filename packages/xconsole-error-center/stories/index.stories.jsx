@@ -1,12 +1,22 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { storiesOf } from '@storybook/react';
-import XconsoleErrorCenter from '../src/index'
+import { ErrorConsume } from '../src/index'
 
 storiesOf('XconsoleErrorCenter', module)
   .add('XconsoleErrorCenter', () => {
-   return (<div id="app-wrapper">
+    
+    useEffect(() => {
+      ErrorConsume({
+        code: 'demo'
+      }, {
+        demo: {
+          title: 'test'
+        }
+      })
+    }, []);
+
+    return (<div id="app-wrapper">
       <div id="app">
-       <XconsoleErrorCenter />
       </div>
     </div>);
   })
