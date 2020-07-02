@@ -40,9 +40,6 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "dependencies": {
     "lodash.get": "^4.4.2",
     "lodash.reduce": "^4.6.0"

@@ -50,9 +50,6 @@
     "lodash": "^4.17.11",
     "path-to-regexp": "^3.0.0"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "ci": {
     "type": "aoneci",
     "version": "8",
