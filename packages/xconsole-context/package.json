@@ -29,8 +29,6 @@
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "@alicloud/console-components": "^1.0.20",
-    "@alife/dpl-console-design-2018": "^1.19.1",
-    "@alife/next": "^1.13.10",
     "babel-loader": "^8.0.5",
     "jest": "^24.2.0-alpha.0",
     "less": "^3.0.0-alpha.3",

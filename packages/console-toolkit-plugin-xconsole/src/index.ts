@@ -11,7 +11,7 @@ export default function (api: PluginAPI, options: PluginOptions) {
     url: GENERATOR_URL
   });
 
-  api.on('onBuildEnd', () => {
+  api.on('onBuildEnd', async () => {
     const env = getEnv();
     if (env.isCloudBuild()) {
       // TODO XXXX

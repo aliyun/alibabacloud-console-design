@@ -24,7 +24,6 @@
     "start": "abc dev",
     "build": "abc build",
     "babel": "abc babel",
-    "prepublish": "abc babel && abc build",
     "pub": "abc publish",
     "lint": "eslint src/"
   },
