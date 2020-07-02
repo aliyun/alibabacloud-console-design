@@ -46,6 +46,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "@alicloud/xconsole": "^1.0.0-beta.1",
     "@alicloud/xconsole-rc-error-prompt": "^1.0.0-beta.1",
     "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1"
   },
@@ -56,7 +57,9 @@
     "@alicloud/console-components": "^1.0.20",
     "lodash.get": "^4.4.2",
     "lodash.reduce": "^4.6.0",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.5"
   },
   "gitHead": "555e8f459f0201bb1529801d95942f924649a83a"
 }
