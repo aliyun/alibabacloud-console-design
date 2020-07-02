@@ -49,9 +49,6 @@
     "@alicloud/xconsole-rc-error-prompt": "^1.0.0-beta.1",
     "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "dependencies": {
     "@alicloud/console-components": "^1.0.20",
     "lodash.get": "^4.4.2",
