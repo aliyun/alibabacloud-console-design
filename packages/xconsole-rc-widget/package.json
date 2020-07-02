@@ -21,7 +21,6 @@
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "@alicloud/console-components": "^1.0.20",
-    "@alife/dpl-console-design-2019": "^1.0.0",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.5",
     "@types/react": "^16.8.10",
@@ -51,6 +50,6 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@ali/widget-loader": "^3.9.3"
+    "@alicloud/xconsole-widget-load-management":  "^1.0.0-beta.1"
   }
 }

@@ -13,12 +13,9 @@
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
   },
   "author": {
-    "name" : "",
-    "email" : "",
-    "url" : ""
-  },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
+    "name": "",
+    "email": "",
+    "url": ""
   },
   "peerDependencies": {
     "less": "^3.x",
@@ -27,14 +24,12 @@
     "react-dom": "^16.x"
   },
   "devDependencies": {
-    "@ali/builder-abc": "^0.1.14",
+    "@alicloud/console-toolkit-cli": "^1.0.3",
+    "@alicloud/console-toolkit-preset-wind-component": "^1.0.6",
     "classnames": "^2.2.6",
     "less": "^3.9.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
-  },
-  "scripts": {
-    "start": "abc dev"
   }
 }

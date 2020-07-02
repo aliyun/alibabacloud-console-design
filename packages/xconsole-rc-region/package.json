@@ -37,7 +37,6 @@
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "@alicloud/console-components": "^1.0.20",
-    "@ali/builder-abc": "^0.1.5",
     "dva": "^2.3.1",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
