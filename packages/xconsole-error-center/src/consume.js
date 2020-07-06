@@ -1,15 +1,22 @@
 import * as ErrorConsumers from './internal';
 import _get from 'lodash.get';
 
-const consume = (error, errorCodes, include, exclude) => {
-  const code = _get(error, 'response.data.code') || error.code;
-  const errorConfig = errorCodes[code];
+const process = ({
+  error,
+  code,
+  errorConfig
+}) => {
+  if (!errorConfig) return;
+  if (typeof errorConfig === 'function') return errorConfig(error, code);
 
-  if (typeof errorConfig === 'function') return errorConfig(error);
-  
-  const { type = 'prompt', enable = true } = (errorConfig || {});
-
+  const { enable, type = '' } = errorConfig;
   if (!enable) return;
+  if (ErrorConsumers[type]) ErrorConsumers[type]({ error, code, errorConfig });
+};
+
+const consume = (error, errorCodes, include, exclude, globalErrorCode) => {
+  const code = _get(error, 'response.data.code') || error.code;
+  const errorConfig = errorCodes[code] || globalErrorCode;
 
   if (include && include instanceof Array) {
     if (!include.find((rule) => {
@@ -23,11 +30,11 @@ const consume = (error, errorCodes, include, exclude) => {
     })) return;
   }
 
-  if (ErrorConsumers[type]) {
-    ErrorConsumers[type]({ error, code, errorConfig });
-  } else {
-    ErrorConsumers.prompt({ error, code, errorConfig });
-  }
+  process({
+    error,
+    code,
+    errorConfig
+  });
 }
 
 export default consume;

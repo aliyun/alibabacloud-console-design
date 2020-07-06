@@ -13,7 +13,8 @@ export default ({
     errorCode,
     errorCodes,
     include,
-    exclude
+    exclude,
+    globalErrorCode,
   } = {},
 }) => {
   if (process.env.NODE_ENV === 'development' && errorCode) {
@@ -30,7 +31,7 @@ export default ({
         console.error('[XConsole error-center]', err, err.response); // eslint-disable-line no-console
       }
 
-      consume(err, lastErrorCodes, include, exclude);
+      consume(err, lastErrorCodes, include, exclude, globalErrorCode);
     },
   }
 };
@@ -38,5 +39,5 @@ export default ({
 export const ErrorConsume = consume;
 
 export const ErrorPrompt = (err, { errorConfig = {} }) => {
-  consume(err, errorConfig);
+  consume(err, { ...errorConfig, type: 'prompt', enable: true });
 };
