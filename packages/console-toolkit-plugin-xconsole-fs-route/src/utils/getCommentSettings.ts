@@ -19,6 +19,7 @@ export const getCommentConfig = (code: string) => {
         const yamlResult = yaml.safeLoad(v);
         return {
           ...memo,
+          // @ts-ignore
           ...yamlResult,
         };
       } catch (e) {

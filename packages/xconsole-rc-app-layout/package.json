@@ -20,8 +20,6 @@
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "@alicloud/console-components": "^1.0.20",
-    "@alife/dpl-console-design-2019": "^1.1.1",
-    "@alife/next": "^1.13.10",
     "babel-loader": "^8.0.5",
     "dva": "^2.4.1",
     "history": "^4.9.0",
@@ -45,9 +43,6 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "dva": "^2.4.1"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
   },
   "dependencies": {
     "@alicloud/console-components-app-layout": "^1.0.4",
