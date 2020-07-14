@@ -2,6 +2,7 @@
   "name": "@alicloud/xconsole-context",
   "version": "1.0.0-beta.1",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
@@ -12,9 +13,9 @@
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
   },
   "author": {
-    "name" : "",
-    "email" : "",
-    "url" : ""
+    "name": "Boelroy",
+    "email": "boelroy@live.com",
+    "url": "https://github.com/Boelroy"
   },
   "scripts": {
     "prepublish": "npm run clean && npm run babel && npm run babel:esm",
@@ -26,15 +27,16 @@
     "dev": "npm run babel && npm run babel:esm"
   },
   "devDependencies": {
+    "@alicloud/console-components": "^1.0.20",
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
-    "@alicloud/console-components": "^1.0.20",
     "babel-loader": "^8.0.5",
     "jest": "^24.2.0-alpha.0",
     "less": "^3.0.0-alpha.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.2.0"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
@@ -45,8 +47,8 @@
     "registry": "http://registry.npm.alibaba-inc.com"
   },
   "dependencies": {
-    "@alicloud/xconsole-console-base-context": "^1.0.0-beta.1",
-    "@alicloud/xconsole-model":  "^1.0.0-beta.1",
-    "@alicloud/xconsole-region-context": "^1.0.0-beta.1"
+    "@types/js-cookie": "^2.2.6",
+    "js-cookie": "^2.2.1",
+    "lodash": "^4.17.19"
   }
 }

@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext } from 'react';
 
 // @ts-ignore
 import { Route, Switch, Redirect } from 'dva/router';
@@ -12,12 +12,6 @@ import ConsoleBase from '@alicloud/xconsole-console-base';
 import Logger from '@alicloud/xconsole-logger';
 // @ts-ignore
 import get from 'lodash.get';
-
-const _log = (...args) => {
-  if (process.env.NODE_ENV === 'development') {
-    console.warn('[xconsole kernal]', ...args); // eslint-disable-line no-console
-  }
-};
 
 const getRouteComp = ({ routeConfig, regionList, route, routePath }) => {
   let routeComp = (
@@ -46,7 +40,6 @@ const getRouteComp = ({ routeConfig, regionList, route, routePath }) => {
 };
 
 const getRoute = ({ routeConfig, regionList }) => {
-  _log('routeConfig', routeConfig);
   const aliasRouter = [];
   const routers = routeConfig.routes.map((route) => {
     let routeComp = getRouteComp({
@@ -72,7 +65,6 @@ const getRoute = ({ routeConfig, regionList }) => {
     return routeComp;
   });
 
-  _log('routers', routers.concat(aliasRouter));
   return routers.concat(aliasRouter);
 };
 
@@ -101,11 +93,13 @@ export default ({
     if (module.default) {
       PageLayout = module.default;
     }
-  } catch (e) {}
+  } catch (e) {
+    // nothing
+  }
 
   return (
     <Route path="/">
-      <Fragment>
+      <>
         {appConfig.consoleBase && <ConsoleBase {...appConfig.consoleBase} />}
         {appConfig.logger && appConfig.logger.enable && (
           <Logger
@@ -128,7 +122,7 @@ export default ({
             />
           </AppLayout>
         </Switch>
-      </Fragment>
+      </>
     </Route>
   );
 };

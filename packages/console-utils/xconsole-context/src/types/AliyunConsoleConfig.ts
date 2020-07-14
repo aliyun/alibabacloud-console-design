@@ -1,33 +1,36 @@
-interface IChannelStatus {
-  [key: string]: {
-    status: boolean;
-    attribute: { regions: string[] } | undefined;
-  };
+export interface IChannelStatus {
+  status: boolean;
+  attribute?: { regions: string[] } | undefined;
 }
 
-interface IChannelLinks {
+export interface IChannelStatusMap {
+  [key: string]: IChannelStatus;
+}
+
+export interface IChannelLinks {
   [key: string]: string;
 }
 
-interface ILabel {
+export interface ILabel {
   [key: string]: any[];
 }
 
-interface IOpenStatusMap {
+export interface IOpenStatusMap {
   [key: string]: IOpenStatus;
 }
 
-interface IRegion {
+export interface IRegion {
   name: string;
-  physicalList: { id: string }[];
+  id?: string;
+  physicalList?: { id: string }[];
   regionId: string;
-  zoneList: {
+  zoneList?: {
     name: string;
     zoneId: string;
   }[];
 }
 
-interface IOpenStatus {
+export interface IOpenStatus {
   enabled: 'true' | 'false';
 }
 
@@ -35,15 +38,23 @@ interface IGrayStatus {
   [key: string]: boolean;
 }
 
+export type ChannelEnum = 'CN' | 'INTL' | 'JP' | string;
+
+export type fEnv = 'daily' | 'pre';
+
+export type LangEnum = 'en' | 'zh' | 'ja';
+
+export type AccountType = 'main' | 'sub' | 'sts';
+
 export interface IAliyunConsoleConfig {
   /**
    * 渠道信息
    */
-  CHANNEL: 'CN' | 'INTL' | 'JP' | string;
+  CHANNEL: ChannelEnum;
   /**
    * 当前运行环境
    */
-  fEnv?: 'daily' | 'pre';
+  fEnv?: fEnv;
 
   /**
    * 当前运行环境
@@ -52,7 +63,7 @@ export interface IAliyunConsoleConfig {
   /**
    * 当前语言
    */
-  LANG: 'en' | 'zh' | 'ja';
+  LANG: LangEnum;
   /**
    * 当前国际化地域信息
    */
@@ -84,11 +95,11 @@ export interface IAliyunConsoleConfig {
   /**
    * 账号类型
    */
-  ACCOUNT_TYPE: 'main' | 'sub' | 'sts';
+  ACCOUNT_TYPE: AccountType;
   /**
    * 渠道开关
    */
-  CHANNEL_FEATURE_STATUS: IChannelStatus;
+  CHANNEL_FEATURE_STATUS: IChannelStatusMap;
   /**
    * 渠道链接
    */
@@ -112,7 +123,7 @@ export interface IAliyunConsoleConfig {
   /**
    * 规则中心配置
    */
-  RULE_CONFIG: Record<string, any>;
+  RULE_CONFIG: Record<string, string>;
   /**
    * 默认页面输出API调用
    */

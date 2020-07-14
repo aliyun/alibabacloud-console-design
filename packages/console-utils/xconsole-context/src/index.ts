@@ -1,6 +1,11 @@
-export { default as WindProProvider } from './Provider';
-export { default as WindProContext } from './Context';
+import consoleConfig from './console/index';
+import region from './region/index';
 
-export * from '@alicloud/xconsole-console-base-context';
-export * from '@alicloud/xconsole-region-context';
-export * from '@alicloud/xconsole-model';
+export { ConsoleContext } from './context/Context';
+
+export { default as withConsoleConfig } from './withConsoleContext';
+
+export default {
+  consoleConfig,
+  region
+};
