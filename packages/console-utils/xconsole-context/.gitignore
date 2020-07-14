@@ -80,6 +80,7 @@ typings/
 .dynamodb/
 
 
-lib
-dist
+lib/
+es/
+dist/
 .DS_Store
