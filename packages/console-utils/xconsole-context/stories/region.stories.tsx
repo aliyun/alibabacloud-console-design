@@ -26,7 +26,7 @@ storiesOf('Console Configuration', module).add('Region', () => {
     <div id="app-wrapper">
       <Router>
         <Switch>
-          <Route path="/:regionId" 
+          <Route path="/:regionId?" 
             render={(props) => (
               <App
                 {...props}

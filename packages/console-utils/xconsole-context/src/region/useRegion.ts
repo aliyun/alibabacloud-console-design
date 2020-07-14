@@ -3,15 +3,18 @@ import { useEffect, useState } from 'react';
 import ConsoleBase from '../console/ConsoleBase';
 
 import ConsoleRegion from './index';
-import { getActiveId } from './cookies';
 import { IConsoleContextProp } from '../types/index';
 import { determineRegionId } from './determineRegionId';
 
 type Region = typeof ConsoleRegion;
 
+const hasRegionId = (match) => {
+  return match.params && match.params.hasOwnProperty('regionId');
+}
+
 const reroute = (props: IConsoleContextProp<{regionId?: string}>, nextRegionId: string) => {
   const { history, match } = props;
-  if (match && match.path && match.params.regionId) {
+  if (match && match.path && hasRegionId(match)) {
     const { path } = match;
     history.push(path.replace(':regionId', nextRegionId));
   }
@@ -40,7 +43,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
    * 处理路由
    */
   useEffect(() => {
-    if (!match.params.regionId) {
+    if (!hasRegionId(match)) {
       return;
     }
 
