@@ -1,5 +1,5 @@
 import errorPrompt from '@alicloud/xconsole-rc-error-prompt';
-import { intl } from '@alicloud/xconsole';
+import intl from '@alicloud/console-components-intl';
 import _get from 'lodash.get';
 import { FoundRiskAndDoubleConfirm, ConsoleNeedLogin } from '../const';
 
@@ -11,10 +11,11 @@ export default ({
   error,
   code,
   errorConfig,
+  getMessage,
 }) => {
   const {
     i18nMessages = {}
-  } = errorConfig;
+  } = (errorConfig || {});
 
   errorPrompt({
     locale: LOCALE,
@@ -32,12 +33,16 @@ export default ({
     },
     getMessage(err) {
       const responseMessage = _get(err, 'response.data.message') || err.message || 'No Message Returned.';
+
       if (errorConfig) {
         if (typeof errorConfig.message === 'function') {
           const result = message(responseMessage);
           return (typeof result === 'string' || typeof result === 'number') ? result : responseMessage
         }
         return intl2(errorConfig.message, responseMessage)
+      }
+      if ((!errorConfig || !errorConfig.message) && getMessage) {
+        return getMessage(code, _get(err, 'response.data.message'))
       }
       return responseMessage
     },

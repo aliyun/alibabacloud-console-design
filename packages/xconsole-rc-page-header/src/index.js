@@ -16,6 +16,8 @@ const PageHeader = ({
   historyBack,
   nav,
   children,
+  onBackArrowClick,
+  hasBackArrow,
   ...restProps
 }) => {
 
@@ -43,8 +45,11 @@ const PageHeader = ({
             {...subSwitcher}
           />
         ) : subTitle}
-        hasBackArrow={!!historyBack}
+        hasBackArrow={hasBackArrow || !!historyBack}
         onBackArrowClick={() => {
+          if (onBackArrowClick) {
+            return onBackArrowClick()
+          }
           if (history) {
             history.push(historyBack)
           }

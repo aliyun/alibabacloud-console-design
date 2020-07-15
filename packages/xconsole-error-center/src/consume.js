@@ -1,7 +1,7 @@
 import * as ErrorConsumers from './internal';
 import _get from 'lodash.get';
 
-const consume = (error, errorCodes, include, exclude) => {
+const consume = (error, errorCodes, include, exclude, getMessage) => {
   const code = _get(error, 'response.data.code') || error.code;
   const errorConfig = errorCodes[code];
 
@@ -24,9 +24,9 @@ const consume = (error, errorCodes, include, exclude) => {
   }
 
   if (ErrorConsumers[type]) {
-    ErrorConsumers[type]({ error, code, errorConfig });
+    ErrorConsumers[type]({ error, code, errorConfig, getMessage });
   } else {
-    ErrorConsumers.prompt({ error, code, errorConfig });
+    ErrorConsumers.prompt({ error, code, errorConfig, getMessage });
   }
 }
 
