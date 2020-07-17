@@ -1,4 +1,5 @@
-import getRoutes from '@alicloud/xconsole/lib'
+import React from 'react';
+import XConsoleApp from '@alicloud/xconsole'
 import sidebar from '~/sidebar'
 <% if(global.hasLayout){ %>
 import AppLayout from '~/layout';
@@ -14,13 +15,11 @@ import routeConfig from './route_config';
 const appConfig = {}
 <% } %>
 
-export default (config = {}) => {
-
-  return getRoutes({
+export default (config = {}) => (
+  <XConsoleApp {...{
     sidebar,
     routeConfig,
     AppLayout,
     appConfig,
     ...config
-  })
-};
+  }} />);

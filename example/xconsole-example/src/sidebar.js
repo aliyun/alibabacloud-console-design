@@ -13,6 +13,7 @@ export default {
     '/success-result',
     '/fail-result',
   ],
+
   navs: [
     {
       title: intl('menu.title.overview'),

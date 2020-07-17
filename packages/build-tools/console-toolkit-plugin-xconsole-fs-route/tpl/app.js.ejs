@@ -5,7 +5,7 @@ import { Router } from 'dva/router'
 import createLoading from 'dva-loading'
 import { createBrowserHistory, createHashHistory } from 'history'
 
-import { withProvider, RcRegion, ErrorCenter, WindProProvider } from '@alicloud/xconsole'
+import { withProvider } from '@alicloud/xconsole'
 
 <% if(global.hasUIConfig){ %>
 // 如果配置了自定义 UI 系统，则使用项目配置
@@ -36,7 +36,7 @@ import '../styles/index.less'
 
 
 
-const { register } = RcRegion
+// const { register } = RcRegion
 <% if(!global.hasWidgetLoader){ %>
 // 未指定自定义 widgetLoader 逻辑
 const widgetLoader = null;
@@ -55,28 +55,21 @@ const _history = createBrowserHistory();
 
 const app = dva({ history: _history })
 
-app.use(register(app))
+//app.use(register(app))
 app.use(createLoading())
 
-if (appConfig.errorCenter && appConfig.errorCenter.enable) {
-  app.use(ErrorCenter(appConfig))
-}
+//if (appConfig.errorCenter && appConfig.errorCenter.enable) {
+//  app.use(ErrorCenter(appConfig))
+//}
 
 const Routes = getRoutes({
   history: _history
 })
 
 app.router(({ history }) => (
-  <WindProProvider
-    app={app}
-    history={history}
-    widgetLoader={widgetLoader}
-    uis={uis}
-  >
-    <Router history={history}>
-      <Routes />
-    </Router>
-  </WindProProvider>
+  <Router history={history}>
+    <Routes />
+  </Router>
 ))
 
 const OriginApp = withProvider()(app.start())

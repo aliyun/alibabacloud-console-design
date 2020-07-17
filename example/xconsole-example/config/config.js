@@ -1,3 +1,4 @@
+const { resolve } = require('path');
 /**
  * 整个应用构建, 编译配置
  */
@@ -9,6 +10,9 @@ module.exports = {
   routes: {
     index: 'index',
   },
+
+  useTypescript: true,
+
   // 加入监控脚本
   armsId: 'mock_amrs_id',
   // 开启 topbar, sidebar
@@ -38,5 +42,8 @@ module.exports = {
 
   useTerserPlugin: true,
   // 自定义 webpack 配置
-  // webpack: (config) => { /* 请自行用 webpack-merge 和传入的 config 做合并 */}
+  webpack: (config) => { 
+    config.resolve.alias['react'] = resolve(__dirname, '../../../node_modules/react/index.js')
+    return config;
+  }
 }
