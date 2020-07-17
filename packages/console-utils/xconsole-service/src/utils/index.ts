@@ -1,13 +1,14 @@
-import Cookies from 'js-cookie';
+import docCookies from './docCookies';
+import {
+  ALIYUN_CONSOLE_CONFIG,
+  RISK_INFO,
+  SEC_TOKEN,
+  REGION_COOKIE_NAME,
+  CURRENT_REGION_COOKIE_NAME,
+  LOCALE,
+} from '../const';
 
-const ALIYUN_CONSOLE_CONFIG = 'ALIYUN_CONSOLE_CONFIG';
-const RISK_INFO = 'RISK_INFO';
-const SEC_TOKEN = 'SEC_TOKEN';
-const REGION_COOKIE_NAME = 'activeRegionId';
-const CURRENT_REGION_COOKIE_NAME = 'currentRegionId';
-const LOCALE = 'LOCALE';
-
-export const getGlobalVariable = (varibaleName) => {
+export const getGlobalVariable = (varibaleName?: string): any => {
   if (typeof varibaleName === 'undefined') {
     throw new Error('VariableName must be provided');
   }
@@ -17,10 +18,10 @@ export const getGlobalVariable = (varibaleName) => {
       but actually got: ${typeof varibaleName}`
     );
   }
-  return window[varibaleName];
+  return (window as { [key: string]: any })[varibaleName];
 };
 
-export const getConsoleConfig = (key) => {
+export const getConsoleConfig = (key: string): any => {
   if (typeof key === 'undefined') {
     throw new Error('Config key must be provided');
   }
@@ -29,31 +30,36 @@ export const getConsoleConfig = (key) => {
   return config && config[key];
 };
 
-export const getRiskInfo = () => {
+export const getRiskInfo = (): any => {
   const riskInfo = getGlobalVariable(RISK_INFO);
   return riskInfo || {};
 };
 
-export const getSecToken = function() {
+export const getSecToken = (): any => {
   return getConsoleConfig(SEC_TOKEN);
 };
 
-export const getUmid = function() {
+export const getUmid = (): string => {
   const riskInfo = getRiskInfo();
   return riskInfo.UMID;
 };
 
-export const getCollina = function() {
+export const getCollina = (): string => {
   const riskInfo = getRiskInfo();
   if (typeof riskInfo.GETUA === 'function') {
     return riskInfo.GETUA() || 'Fake collina generated in [getCollina]';
   }
+  return '';
 };
 
-export const getLocale = function() {
+export const getLocale = (): string => {
   return getConsoleConfig(LOCALE);
 };
 
-export const getActiveRegionId = function() {
-  return Cookies.get(CURRENT_REGION_COOKIE_NAME) || Cookies.get(REGION_COOKIE_NAME) || 'cn-hangzhou';
+export const getActiveRegionId = (): string => {
+  return (
+    docCookies.getItem(CURRENT_REGION_COOKIE_NAME) ||
+    docCookies.getItem(REGION_COOKIE_NAME) ||
+    'cn-hangzhou'
+  );
 };

@@ -1,66 +1,45 @@
-import * as XconsoleService from '../src/index'
+import { render, waitFor } from '@testing-library/react';
+import React from 'react';
+import { ApiType } from '../src/types';
+import { useService } from '../src/index';
 
-import {
-  AxiosRequestConfig,
-  AxiosResponse
-} from 'axios/index';
+describe('useService', () => {
+  it('should return successful', async () => {
+    let response: any = null;
 
-const exportsInfo = [
-  'createService',
-  'createApiClient',
-  'getConsoleConfig',
-  'getGlobalVariable',
-  'getLocale',
-  'getUmid',
-  'getActiveRegionId',
-  'getCollina',
-  'getRiskInfo',
-  'getSecToken',
-  'request',
-  'consoleRequestInterceptor',
-  'searchParamsInterceptor',
-  'consoleRiskInterceptor',
-  'consoleResponseInterceptor'
-]
+    function Page(): JSX.Element {
+      const { data, error } = useService(
+        'ram',
+        'ListUsers',
+        {
+          apiType: ApiType.open,
+          method: 'post',
+          url: 'https://mocks.alibaba-inc.com/mock/oneconsole/data/api.json',
+          data: {
+            sec_token: '',
+            collina: '',
+            umid: '',
+            region: '',
+          },
+        },
+        {},
+        true
+      );
 
-const testRequestInterceptor = (config: AxiosRequestConfig) => {
-  console.log('config', config);
+      if (error) console.log('response Error:', error);
 
-  return config;
-}
+      response = data;
 
-const testResponseInterceptor = (response?: AxiosResponse) => {
-  console.log('response', response);
-  return response;
-}
+      return <div>{JSON.stringify(data)}</div>;
+    }
+    const { container } = render(<Page />);
 
-describe('XconsoleService #main', () => {
-  it('exports in correct type and elements', () => {
-    Object.keys(XconsoleService).forEach((_key) => {
-      const serviceFunc = XconsoleService[_key];
-      expect(typeof serviceFunc).toBe('function');
-      expect(exportsInfo.indexOf(_key)).toBeGreaterThanOrEqual(0);
-    })
-  })
-})
-
-describe('XconsoleService createService', () => {
-  it('exports in correct type and elements', () => {
-    const fn = XconsoleService.createService;
-    const req = XconsoleService.request;
-
-    req.interceptors.request.use(testRequestInterceptor)
-
-    req.interceptors.response.use(testResponseInterceptor)
-
-    const instanceA = fn('a', 'b');
-    const instanceB = fn('a');
-    const instanceC = fn('a', 'b', {});
-    const instanceD = fn('a');
-    const r1 = instanceA({});
-    console.log(req);
-    console.log(instanceB({}))
-    console.log(instanceC({}))
-    console.log(instanceD({}))
-  })
-})
+    await waitFor(
+      () => {
+        if (response === undefined) throw new Error('not response');
+        expect(response).not.toBeNull();
+      },
+      { container }
+    );
+  });
+});
