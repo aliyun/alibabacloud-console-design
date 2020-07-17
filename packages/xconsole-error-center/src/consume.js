@@ -4,17 +4,18 @@ import _get from 'lodash.get';
 const process = ({
   error,
   code,
-  errorConfig
+  errorConfig,
+  getMessage
 }) => {
   if (!errorConfig) return;
   if (typeof errorConfig === 'function') return errorConfig(error, code);
 
   const { enable, type = '' } = errorConfig;
   if (!enable) return;
-  if (ErrorConsumers[type]) ErrorConsumers[type]({ error, code, errorConfig });
+  if (ErrorConsumers[type]) ErrorConsumers[type]({ error, code, errorConfig, getMessage });
 };
 
-const consume = (error, errorCodes, include, exclude, globalErrorCode) => {
+const consume = (error, errorCodes, include, exclude, globalErrorCode, getMessage) => {
   const code = _get(error, 'response.data.code') || error.code;
   const errorConfig = errorCodes[code] || globalErrorCode;
 
@@ -33,7 +34,8 @@ const consume = (error, errorCodes, include, exclude, globalErrorCode) => {
   process({
     error,
     code,
-    errorConfig
+    errorConfig,
+    getMessage
   });
 }
 
