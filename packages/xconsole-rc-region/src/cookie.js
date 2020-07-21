@@ -42,7 +42,7 @@ const getHost = () => {
  */
 const getActiveId = (key = '') => {
   if (key === '') {
-    return Cookie.get(CURRENT_DEFAULT_COOKIE_KEY) || Cookie.get(DEFAULT_COOKIE_KEY) || 'cn-hangzhou';
+    return Cookie.get(DEFAULT_COOKIE_KEY) || Cookie.get(CURRENT_DEFAULT_COOKIE_KEY) || 'cn-hangzhou';
   }
   return Cookie.get(key);
 }

@@ -1,7 +1,7 @@
 import errorPrompt from '@alicloud/xconsole-rc-error-prompt';
 import intl from '@alicloud/console-components-intl';
 import _get from 'lodash.get';
-import { FoundRiskAndDoubleConfirm, ConsoleNeedLogin } from '../const';
+import { FoundRiskAndDoubleConfirm, ConsoleNeedLogin, PostonlyOrTokenError } from '../const';
 
 const LOCALE = _get(window, 'ALIYUN_CONSOLE_CONFIG.LOCALE') || 'zh-CN'
 
@@ -29,7 +29,7 @@ export default ({
       if (errorConfig) {
         return intl2(errorConfig.title)
       }
-      return intl2(code, 'Error Notice')
+      // return intl2(code, 'Error Notice')
     },
     getMessage(err) {
       const responseMessage = _get(err, 'response.data.message') || err.message || 'No Message Returned.';
@@ -97,7 +97,7 @@ export default ({
       // TODO 支持其他行为
 
       // 同意对 NeedLogin 默认处理，直接刷新页面，让 OneConsole 层去进行登录 redirect
-      if (code === ConsoleNeedLogin) {
+      if (code === ConsoleNeedLogin || code === PostonlyOrTokenError) {
         window.location.reload();
         return false;
       }

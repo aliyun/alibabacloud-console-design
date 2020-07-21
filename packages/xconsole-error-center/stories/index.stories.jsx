@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import '@alicloud/xconsole-rc-dialog/dist/index.css';
+import '@alicloud/xconsole-rc-error-prompt/dist/index.css';
 import { storiesOf } from '@storybook/react';
 import { ErrorConsume } from '../src/index'
 
@@ -7,10 +9,10 @@ storiesOf('XconsoleErrorCenter', module)
     
     useEffect(() => {
       ErrorConsume({
-        code: 'demo'
+        code: 'test'
       }, {
         demo: {
-          title: 'test'
+          // title: 'test'
         }
       })
     }, []);

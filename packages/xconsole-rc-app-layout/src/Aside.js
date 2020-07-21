@@ -95,7 +95,7 @@ const XConsoleAppLayoutAside = ({
 
   const providerValue = { navCollapsed: collapsed }
 
-  const nav = showSidebar ? <Nav {...sidebar} /> : null;
+  const nav = showSidebar ? <Nav {...sidebar} currentPath={pathname} /> : null;
   return (
     <AppLayout
       adjustHeight={50}

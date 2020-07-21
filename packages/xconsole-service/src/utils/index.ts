@@ -55,5 +55,5 @@ export const getLocale = function() {
 };
 
 export const getActiveRegionId = function() {
-  return Cookies.get(CURRENT_REGION_COOKIE_NAME) || Cookies.get(REGION_COOKIE_NAME) || 'cn-hangzhou';
+  return Cookies.get(REGION_COOKIE_NAME) || Cookies.get(CURRENT_REGION_COOKIE_NAME) || 'cn-hangzhou';
 };
