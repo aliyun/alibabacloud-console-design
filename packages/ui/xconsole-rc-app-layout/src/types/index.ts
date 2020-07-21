@@ -1,18 +1,15 @@
-import { Location } from 'history';
+import { RouteComponentProps } from 'dva/router';
+import { IRoutableItemDescriptor } from '@alicloud/console-components-console-menu/lib/ItemDescriptor';
 
-type PathRule = string[] | RegExp[];
+export type PathRule = string[] | RegExp[];
 
-export interface INavConfig {
+export interface INavConfig extends IRoutableItemDescriptor {
   // 导航标题
   title: string;
   // 导航 key
   key: string;
-  // 如果 href 存在就是个 a 链接的外链
-  href?: string;
-  // a 的 props
-  linkProps?: Record<string, any>;
   // 子导航
-  subNav?: INavConfig;
+  subNav?: INavConfig[];
   // 高亮的
   highlight?: string[];
 }
@@ -45,14 +42,23 @@ export interface ISidebarConfig {
   // 侧边栏的
   navs: INavConfig[];
 
-  defaultOpenKeys: string[];
-  collapsedKeys: string[];
-  invisiblePaths: string[];
+  defaultOpenKeys?: string[];
+  collapsedKeys?: string[];
+  invisiblePaths?: string[];
 }
 
-export interface IProp {
+export interface IProp extends RouteComponentProps {
   sidebar: ISidebarConfig;
-  consoleMenu: IConsoleMenuConfig;
-  location: Location;
-  children: React.ReactChildren;
+  consoleMenu?: IConsoleMenuConfig;
+  children?: React.ReactChildren;
+}
+
+export interface IMenuProps {
+  header?: string;
+  title?: string;
+  navs?: INavConfig[];
+  items?: INavConfig[];
+  currentPath?: string;
+  defaultOpenKeys?: string[];
+  collapsedKeys?: PathRule;
 }

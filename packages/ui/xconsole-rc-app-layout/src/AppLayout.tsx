@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { wrapDisplayName } from 'recompose';
 import { withRouter } from 'dva/router';
 import { IProp } from './types/index';
 import Context from './Context';
@@ -41,15 +40,3 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
 };
 
 export default withRouter(XConsoleAppLayout);
-
-export const withNavCollapsed = (WrappedComponent) => {
-  const H = () => (
-    <Context.Consumer>
-      {({ navCollapsed }) => (
-        <WrappedComponent {...this.props} navCollapsed={navCollapsed} />
-      )}
-    </Context.Consumer>
-  );
-  H.displayName = wrapDisplayName(WrappedComponent, 'withAppLayoutCollapsed');
-  return H;
-};

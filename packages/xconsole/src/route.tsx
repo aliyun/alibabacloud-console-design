@@ -1,13 +1,17 @@
 import React, { createElement } from 'react';
-import { withConsoleConfig } from '../node_modules/@alicloud/xconsole-context/lib/index';
 import { Route, RouteProps } from 'react-router-dom';
+import { withConsoleConfig } from '@alicloud/xconsole-context';
 import { XConsoleAppProps } from './types/XConsoleAppProps';
 import { RouteItem, RouteConfig } from './types/RouteConfig';
 
-const getPageComponent = (routePath: string, route: RouteItem, appProps: XConsoleAppProps) => {
+const getPageComponent = (
+  routePath: string,
+  route: RouteItem,
+  appProps: XConsoleAppProps
+) => {
   const { routeConfig, appConfig } = appProps;
   // @ts-ignore
-  const pageComponent = withConsoleConfig<RouteConfig>(route.component)
+  const pageComponent = withConsoleConfig<RouteConfig>(route.component);
 
   const routeProps = {
     path: `${routeConfig.global.prefix}/${routePath}`,
@@ -20,19 +24,17 @@ const getPageComponent = (routePath: string, route: RouteItem, appProps: XConsol
         // @ts-ignore
         region: appConfig.region,
       });
-    }
+    },
   };
 
-  return (
-    <Route {...routeProps} />
-  );
+  return <Route {...routeProps} />;
 };
 
 export const getRouteFromConfig = (appProps: XConsoleAppProps) => {
   const { routeConfig } = appProps;
   const aliasRouter = [];
   const routers = routeConfig.routes.map((route) => {
-    let routeComp = getPageComponent(route.path, route, appProps);
+    const routeComp = getPageComponent(route.path, route, appProps);
 
     if (route.config.aliasRouter && route.config.aliasRouter.map) {
       route.config.aliasRouter.forEach((aliasPath) => {

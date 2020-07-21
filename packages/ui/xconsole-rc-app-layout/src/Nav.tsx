@@ -1,99 +1,106 @@
-import React, { useContext } from 'react'
-import PropTypes from 'prop-types'
-import { RegionContext } from '@alicloud/xconsole-region-context'
-import ConsoleMenu from '@alicloud/console-components-console-menu/lib/RoutableMenu'
-import { generatePath } from 'dva/router'
-import map from 'lodash.map'
-import get from 'lodash.get'
-import isUndefined from 'lodash.isundefined'
+import React from 'react';
+import { generatePath } from 'dva/router';
+import ConsoleMenu from '@alicloud/console-components-console-menu/lib/RoutableMenu';
+import map from 'lodash.map';
+import get from 'lodash.get';
+import isUndefined from 'lodash.isundefined';
+import { IMenuProps, INavConfig } from './types/index';
+import useOpenKeys from './hooks/useOpenKeys';
 
-const tryGeneratePath = (key, params) => {
-  let path
+const tryGeneratePath = (key: string, params: any): string => {
   try {
-    path = generatePath(key, params)
+    return generatePath(key, params);
   } catch (error) {
-    console.warn(`[XConsole AppLayout] ${error}`)
-    return ''
+    return '';
   }
-  return path
-}
+};
 
-const Nav = ({
-  header,
-  items,
-  title,
-  navs,
-  collapsedKeys,
-  ...restProps
-}) => {
-  const regionParams = useContext(RegionContext) || {}
-  const param = regionParams ? { regionId: regionParams.activeRegionId } : {}
-  const getMenuItems = () => {
+const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
+  const {
+    header,
+    items,
+    title,
+    navs,
+    collapsedKeys,
+    defaultOpenKeys,
+    currentPath,
+    ...restProps
+  } = props;
+
+  // TODO: handle region
+  const param = {};
+
+  const getMenuItems = (): INavConfig[] => {
     if (isUndefined(navs)) {
-      console.warn('[XConsoleAppLayout] sidebar.navs is required')
-      return []
+      console.warn('[XConsoleAppLayout] sidebar.navs is required');
+      return [];
     }
 
     return map(navs, (nav) => {
       let determinedNav = {
         ...nav,
         label: nav.title,
-      }
+      };
+
       if (nav.key && !nav.href) {
         determinedNav = {
           ...determinedNav,
+          // @ts-ignore
           to: (routeProps, item) => {
-            const params = get(routeProps, 'match.params')
+            const params = get(routeProps, 'match.params');
             return tryGeneratePath(item.key, {
               ...params,
               ...param,
-            })
+            });
           },
-        }
+        };
       }
       if (nav.subNav) {
         determinedNav = {
           ...determinedNav,
           label: nav.title,
+          // @ts-ignore
           items: map(determinedNav.subNav, (subNavItem) => {
-            let _subNavItem = {
+            let navItem = {
               ...subNavItem,
               label: subNavItem.title,
-            }
+            };
             if (subNavItem.key && !subNavItem.href) {
-              _subNavItem = {
-                ..._subNavItem,
+              navItem = {
+                ...navItem,
+                // @ts-ignore
                 to: (routeProps, item) => {
-                  const params = get(routeProps, 'match.params')
+                  const params = get(routeProps, 'match.params');
                   return tryGeneratePath(item.key, {
                     ...params,
                     ...param,
-                  })
+                  });
                 },
-              }
+              };
             }
-            return _subNavItem
+            return navItem;
           }),
-        }
+        };
       }
-      return determinedNav
-    })
-  }
+      return determinedNav;
+    });
+  };
+
+  const { openKeys, onOpenKeys } = useOpenKeys(
+    defaultOpenKeys,
+    navs,
+    currentPath
+  );
 
   return (
     <ConsoleMenu
       header={header || title}
       items={items || getMenuItems()}
+      openKeys={openKeys}
+      onOpen={onOpenKeys}
       {...restProps}
     />
-  )
-}
+  );
+};
 
-Nav.propTypes = {
-  header: PropTypes.node,
-  title: PropTypes.node,
-  items: PropTypes.arrayOf(PropTypes.any),
-  navs: PropTypes.arrayOf(PropTypes.any),
-}
-
-export default Nav
+export default Nav;

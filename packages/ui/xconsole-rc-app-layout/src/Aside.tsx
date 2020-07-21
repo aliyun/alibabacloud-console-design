@@ -1,18 +1,41 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
-import { matchPath, withRouter } from 'dva/router';
+import React, { useContext } from 'react';
 import AppLayout from '@alicloud/console-components-app-layout';
-import each from 'lodash.foreach';
 import Nav from './Nav';
 import Context from './Context';
-import { IProp } from './types/index';
+import { IProp, PathRule } from './types/index';
+import { isPathMatch } from './utils/index';
+import useCollapsed from './hooks/useCollapsed';
 
-const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = ({
-  consoleMenu = {},
-  location: { pathname },
-  children,
-}: Partial<IProp>) => {
+const computeSidebarVisibleStatus = (
+  pathname: string,
+  displayPath: PathRule,
+  notDisplayPath: PathRule,
+  invisiblePaths: PathRule
+): boolean => {
+  let sidebarVisible = true;
+  // 当 displayPath 被设置时， 所有路径下都不展示侧边栏
+  if (typeof displayPath !== 'undefined') {
+    sidebarVisible = false;
+    sidebarVisible = isPathMatch(pathname, displayPath);
+  } else {
+    sidebarVisible = !isPathMatch(
+      pathname,
+      notDisplayPath || invisiblePaths || []
+    );
+  }
+  return sidebarVisible;
+};
+
+const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = (
+  props: Partial<IProp>
+) => {
+  const {
+    consoleMenu = {},
+    location: { pathname },
+    children,
+  } = props;
+
   const { sidebar } = useContext(Context);
-  const [collapsed, setCollapsed] = useState(false);
 
   const {
     displayPath,
@@ -21,92 +44,31 @@ const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = ({
     defaultOpen = [],
   } = consoleMenu;
 
-  const getPathIsMatch = (path, paths = []) => {
-    let pathIsMatch = false;
-    paths.some((_path) => {
-      let isMatch = null;
+  const sidebarVisible = computeSidebarVisibleStatus(
+    pathname,
+    displayPath,
+    notDisplayPath,
+    sidebar.invisiblePaths
+  );
 
-      if (_path === '*') {
-        pathIsMatch = true;
-        return true;
-      }
+  // 合并 sidebar 的 defaultOpenKeys
+  sidebar.defaultOpenKeys = defaultOpen;
 
-      if (_path instanceof RegExp) {
-        isMatch = _path.test(path);
-      } else {
-        isMatch = matchPath(path, {
-          path: _path,
-          exact: true,
-          strict: true,
-        });
-      }
+  const { collapsed, onNavCollapseTriggerClick } = useCollapsed(
+    pathname,
+    collapsedPath
+  );
 
-      if (isMatch) {
-        pathIsMatch = true;
-        return true;
-      }
-      return false;
-    });
-
-    return pathIsMatch;
-  };
-
-  let showSidebar = true;
-
-  // 当 displayPath 被设置时， 所有路径下都不展示侧边栏
-  if (typeof displayPath !== 'undefined') {
-    showSidebar = false;
-    showSidebar = getPathIsMatch(pathname, displayPath);
-  } else {
-    showSidebar = !getPathIsMatch(
-      pathname,
-      notDisplayPath || sidebar.invisiblePaths || []
-    );
-  }
-
-  sidebar.defaultOpenKeys = sidebar.defaultOpenKeys || [];
-  defaultOpen.forEach((item) => {
-    sidebar.defaultOpenKeys.push(item);
-  });
-
-  // save prev collapsed
-  const prevState = useRef();
-  useEffect(() => {
-    prevState.current = collapsed;
-  });
-
-  useEffect(() => {
-    let collapse = false;
-    const collapsedTarget =
-      collapsedPath.length > 0 ? collapsedPath : sidebar.collapsedKeys || [];
-    each(collapsedTarget, (key) => {
-      if (matchPath(pathname, { path: key, exact: true, strict: true })) {
-        collapse = true;
-        return true;
-      }
-    });
-    setCollapsed(collapse);
-  }, [pathname]);
-
-  const toggleNavCollapsed = (prevCollapsed) => {
-    setCollapsed(
-      typeof prevCollapsed === 'boolean' ? !prevCollapsed : !prevState.current
-    );
-  };
-
-  const nav = showSidebar ? <Nav {...sidebar} /> : null;
   return (
     <AppLayout
       adjustHeight={50}
-      nav={nav}
+      nav={sidebarVisible ? <Nav {...sidebar} currentPath={pathname} /> : null}
       navCollapsed={collapsed}
-      onNavCollapseTriggerClick={toggleNavCollapsed}
+      onNavCollapseTriggerClick={onNavCollapseTriggerClick}
     >
       {children}
     </AppLayout>
   );
 };
-
-XConsoleAppLayoutAside.displayName = 'XConsoleAppLayoutAside';
 
 export default XConsoleAppLayoutAside;

@@ -1,6 +1,8 @@
+import { ISidebarConfig } from '../src/index';
+
 const intl = (key) => key;
 
-export const sidebar = {
+export const sidebar: ISidebarConfig = {
   title: 'XConsole',
   navs: [
     {
@@ -13,6 +15,7 @@ export const sidebar = {
     },
     {
       title: intl('menu.title.list'),
+      key: '/test1',
       subNav: [
         {
           title: intl('menu.title.list.basic'),
@@ -35,6 +38,7 @@ export const sidebar = {
     },
     {
       title: intl('menu.title.profile'),
+      key: '/test2',
       subNav: [
         {
           title: intl('menu.title.profile.basic'),
@@ -49,6 +53,7 @@ export const sidebar = {
     },
     {
       title: intl('menu.title.form'),
+      key: '/test3',
       subNav: [
         {
           title: intl('menu.title.form.basic'),
@@ -58,6 +63,7 @@ export const sidebar = {
     },
     {
       title: intl('menu.title.result'),
+      key: '/test5',
       subNav: [
         {
           title: intl('menu.title.result.success'),

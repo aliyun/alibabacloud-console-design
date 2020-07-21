@@ -1,11 +1,15 @@
-# wind-pro-rc-app-layout
+# xconsole-rc-app-layout
 
-> a wind library
-
+> XConsole 封装的特定的侧边导航
 
 ## Usage
 
 ```js
-import WindProRcAppLayout from '@ali/wind-pro-rc-app-layout';
+import XConsoleRcAppLayout from '@alicloud/xconsole-rc-app-layout';
+
+<XConsoleRcAppLayout
+  sidebar={}
+  consoleMenu={}
+/>
 ```
 
