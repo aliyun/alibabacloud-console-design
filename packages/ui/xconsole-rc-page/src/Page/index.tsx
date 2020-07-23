@@ -1,8 +1,4 @@
-import React, {
-  ReactNode,
-  ReactElement,
-  SyntheticEvent,
-} from 'react';
+import React, { ReactNode, ReactElement, SyntheticEvent } from 'react';
 import Page from '@alicloud/console-components-page';
 import Breadcrumb, { IBreadcrumbItem } from '../Breadcrumb';
 
@@ -20,7 +16,7 @@ interface IProps {
   children?: ReactNode;
 }
 
-const XconsoleRcPage = function({
+const XconsoleRcPage = function ({
   breadcrumb,
   breadcrumbExtra,
   breadcrumbExtraAlign,
@@ -47,9 +43,7 @@ const XconsoleRcPage = function({
       >
         {titleExtra}
       </Page.Header>
-      <Page.Content menu={menu}>
-        {children}
-      </Page.Content>
+      <Page.Content menu={menu}>{children}</Page.Content>
     </Page>
   );
 };

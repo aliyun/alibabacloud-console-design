@@ -1,8 +1,8 @@
-import { ISidebarConfig } from '../src/index';
+import { SidebarConfig } from '../src/index';
 
 const intl = (key) => key;
 
-export const sidebar: ISidebarConfig = {
+export const sidebar: SidebarConfig = {
   title: 'XConsole',
   navs: [
     {

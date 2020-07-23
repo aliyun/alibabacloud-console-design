@@ -7,5 +7,5 @@ export { default as withConsoleConfig } from './withConsoleContext';
 
 export default {
   consoleConfig,
-  region
+  region,
 };
