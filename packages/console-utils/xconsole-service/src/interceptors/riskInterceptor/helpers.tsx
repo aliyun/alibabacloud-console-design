@@ -1,13 +1,16 @@
 import React from 'react';
 import { Dialog } from '@alicloud/console-components';
 import messages from './messages';
+import { Risk } from '../../types';
 
-
-function gotoSetVerificationMethod(verifyUrl) {
+function gotoSetVerificationMethod(verifyUrl: any): void {
   window.open(verifyUrl.bindMobileHelp, '_blank');
 }
 
-function confirmSettingFinish(verifyMessages, verifyUrl) {
+function confirmSettingFinish(
+  verifyMessages: any,
+  verifyUrl: Risk['url']
+): void {
   Dialog.confirm({
     title: verifyMessages.setTitle,
     content: verifyMessages.doneTip,
@@ -16,13 +19,16 @@ function confirmSettingFinish(verifyMessages, verifyUrl) {
       cancel: verifyMessages.gotProblem,
     },
     onCancel: () => {
-      gotoSetVerificationMethod(verifyUrl)
+      gotoSetVerificationMethod(verifyUrl);
     },
     needWrapper: false,
   });
 }
 
-export function guideToVerificationMethodSetting(verifyType, risk) {
+export function guideToVerificationMethodSetting(
+  verifyType: string,
+  risk: Risk = {}
+): void {
   const { url: verifyUrl } = risk;
   const verifyMessages = {
     ...messages[verifyType],
@@ -31,20 +37,23 @@ export function guideToVerificationMethodSetting(verifyType, risk) {
   Dialog.confirm({
     title: verifyMessages.setTitle,
     onOk: () => {
-      gotoSetVerificationMethod(verifyUrl)
-      confirmSettingFinish(verifyMessages, verifyUrl)
+      gotoSetVerificationMethod(verifyUrl);
+      confirmSettingFinish(verifyMessages, verifyUrl);
     },
     content: <div>{verifyMessages.setTip}</div>,
-    // @ts-ignore
     locale: {
       ok: verifyMessages.goSet,
+      cancel: verifyMessages.cancel,
     },
     footerActions: ['ok'],
     needWrapper: false,
   });
 }
 
-export function guideToVerificationDetailSetting(verifyType, risk) {
+export function guideToVerificationDetailSetting(
+  verifyType: string,
+  risk: Risk = {}
+): void {
   const { url: verifyUrl } = risk;
   const verifyMessages = {
     ...messages[verifyType],
@@ -54,12 +63,12 @@ export function guideToVerificationDetailSetting(verifyType, risk) {
     title: verifyMessages.title,
     content: verifyMessages.bindDescription,
     onOk: () => {
-      gotoSetVerificationMethod(verifyUrl)
-      confirmSettingFinish(verifyMessages, verifyUrl)
+      gotoSetVerificationMethod(verifyUrl);
+      confirmSettingFinish(verifyMessages, verifyUrl);
     },
-    // @ts-ignore
     locale: {
       ok: verifyMessages.goSet,
+      cancel: verifyMessages.cancel,
     },
     footerActions: ['ok'],
     needWrapper: false,

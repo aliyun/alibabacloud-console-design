@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {
-  Button,
-  Input,
-  Grid,
-  Form,
- } from '@alicloud/console-components';
+import { Button, Input, Grid, Form } from '@alicloud/console-components';
 import { getSecToken, getUmid, getCollina } from '../../utils';
-import searchParamsInterceptor from '../searchParamsInterceptor';
+import searchParamsInterceptor from '../paramsInterceptor';
 import messages from './messages';
 
 const { Col, Row } = Grid;
@@ -19,7 +14,6 @@ const axiosInstance = axios.create();
 
 axiosInstance.interceptors.request.use(searchParamsInterceptor);
 
-
 interface IProps {
   options?: {
     codeType?: string;
@@ -27,20 +21,22 @@ interface IProps {
     verifyDetail?: any;
     isVerifyCodeValid?: any;
   };
-  setVerifyCode?: (value: any ) => void;
-  setRequestId?: (id: string) => void;
+  setVerifyCode?: (value: string) => void;
+  setRequestId?: (id: any) => void;
   onError?: (value: any) => void;
   risk: any;
 }
 
 interface IState {
-  isCountdownStarted?: boolean;
-  countdown?: number;
+  isCountdownStarted: boolean;
+  countdown: number;
 }
 
 class VerifyForm extends Component<IProps, IState> {
-  timer: number;
-  verifyUrl: { [key: string]: string;};
+  timer: number | null;
+
+  verifyUrl: { [key: string]: string };
+
   constructor(props: IProps) {
     super(props);
     this.timer = null;
@@ -56,24 +52,19 @@ class VerifyForm extends Component<IProps, IState> {
     this.clearTimer = this.clearTimer.bind(this);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     this.clearTimer();
   }
 
-  onInputChange(value) {
-    this.props.setVerifyCode(value.trim());
+  onInputChange(value: string): void {
+    const { setVerifyCode } = this.props;
+    setVerifyCode?.(value.trim());
   }
 
-  async onGenerateVerifyCode() {
+  async onGenerateVerifyCode(): Promise<void> {
     this.startCountdownTimer();
 
-    const {
-      options: {
-        codeType,
-        verifyType,
-      },
-      setRequestId,
-     } = this.props;
+    const { options: { codeType, verifyType } = {}, setRequestId } = this.props;
     const reqData = {
       codeType,
       verifyType,
@@ -90,12 +81,14 @@ class VerifyForm extends Component<IProps, IState> {
         timeout: 15000,
       });
 
-      const { data: { data: resData } } = res;
+      const {
+        data: { data: resData },
+      } = res;
       if (!resData) {
         throw new Error('[generateVerifyCode] failed');
       }
 
-      setRequestId(resData.requestId); // 保存发送验证码请求的 requestId
+      setRequestId?.(resData.requestId); // 保存发送验证码请求的 requestId
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error('[onGenerateVerifyCode] failed: ', e.message);
@@ -104,32 +97,32 @@ class VerifyForm extends Component<IProps, IState> {
     }
   }
 
-  startCountdownTimer() {
+  startCountdownTimer(): void {
+    const { countdown } = this.state;
     this.updateCountdown(60);
     this.timer = window.setInterval(() => {
-      if (this.state.countdown <= 0) {
-        this.clearTimer()
-        return
+      if (countdown <= 0) {
+        this.clearTimer();
+        return;
       }
-      let _countdown = this.state.countdown
-      this.updateCountdown(--_countdown) // eslint-disable-line
+      this.updateCountdown(countdown - 1);
     }, 1000);
   }
 
-  updateCountdown(value) {
+  updateCountdown(value: number): void {
     this.setState({
       countdown: value,
       isCountdownStarted: value !== 0,
     });
   }
 
-  clearTimer() {
-    clearInterval(this.timer);
+  clearTimer(): void {
+    if (this.timer) clearInterval(this.timer);
   }
 
-  render() {
+  render(): JSX.Element {
     const {
-      options: { verifyType, verifyDetail, isVerifyCodeValid },
+      options: { verifyType = '', verifyDetail, isVerifyCodeValid } = {},
     } = this.props;
 
     const verifyMessages = {
@@ -137,11 +130,7 @@ class VerifyForm extends Component<IProps, IState> {
       ...messages.others,
     };
 
-    const {
-      isCountdownStarted,
-      countdown,
-    } = this.state;
-
+    const { isCountdownStarted, countdown } = this.state;
 
     return (
       <Form style={{ width: '400px' }}>
@@ -167,21 +156,19 @@ class VerifyForm extends Component<IProps, IState> {
             <Col>
               <Input onChange={this.onInputChange} style={{ width: 80 }} />
             </Col>
-            {
-              verifyType !== 'ga' ?
-                <Col>
-                  {
-                    isCountdownStarted ?
-                      <Button disabled>
-                        {`${verifyMessages.reSend.replace('{s}', countdown)}`}
-                      </Button> :
-                      <Button onClick={this.onGenerateVerifyCode}>
-                        {verifyMessages.sendCode}
-                      </Button>
-                  }
-                </Col> :
-                null
-            }
+            {verifyType !== 'ga' ? (
+              <Col>
+                {isCountdownStarted ? (
+                  <Button disabled>
+                    {`${verifyMessages.reSend.replace('{s}', countdown)}`}
+                  </Button>
+                ) : (
+                  <Button onClick={this.onGenerateVerifyCode}>
+                    {verifyMessages.sendCode}
+                  </Button>
+                )}
+              </Col>
+            ) : null}
           </Row>
         </Form.Item>
       </Form>

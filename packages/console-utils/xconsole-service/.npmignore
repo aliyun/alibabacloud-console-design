@@ -1,8 +1,3 @@
-.gitignore
-
-node_module
-
 src
-
+config
 tsconfig.json
-tslint.json
