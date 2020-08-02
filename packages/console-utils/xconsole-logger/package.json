@@ -44,7 +44,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "dva": "^2.4.1",
+    "dva": "2.6.0-beta.20",
     "lodash.get": "^4.4.2",
     "lodash.map": "^4.6.0",
     "lodash.reduce": "^4.6.0",

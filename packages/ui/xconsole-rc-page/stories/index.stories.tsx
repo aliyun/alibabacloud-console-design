@@ -24,7 +24,7 @@ storiesOf('XconsoleRcPage', module).add('XconsoleRcPage', () => {
       <div id="app">
         <Router history={history}>
           <XconsoleRcPage
-            breadcrumb={breadcrumb}
+            breadcrumbs={breadcrumb}
             breadcrumbExtra={<Link to="/home">帮助</Link>}
             breadcrumbExtraAlign="right"
             title="标题"

@@ -4,7 +4,7 @@ import sidebar from '~/sidebar'
 <% if(global.hasLayout){ %>
 import AppLayout from '~/layout';
 <% } else { %>
-import { AppLayout } from '@alicloud/xconsole'
+import { AppLayout } from '@alicloud/xconsole/ui'
 <% } %>
 <% if(global.hasAppConfig){ %>
 import appConfig from '~/appConfig';
@@ -15,7 +15,7 @@ import routeConfig from './route_config';
 const appConfig = {}
 <% } %>
 
-export default (config = {}) => (
+export default (config = {}) => () => (
   <XConsoleApp {...{
     sidebar,
     routeConfig,

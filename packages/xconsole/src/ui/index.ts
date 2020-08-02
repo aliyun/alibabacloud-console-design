@@ -1,4 +1,4 @@
-export * from '@alicloud/console-components';
+export * from '@alife/alicloud-components';
 
 export { default as PageHeader } from '../lib/rc-page';
 

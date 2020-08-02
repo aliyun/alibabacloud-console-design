@@ -1,65 +1,60 @@
 import React from 'react';
+import XConsoleRcPage from '@alicloud/xconsole-rc-page';
 import { Select } from '@alicloud/console-components';
-import Page from '@alicloud/console-components-page';
-import { Link } from 'dva/router';
-import NavContent from './NavContent';
+
+import Menu from './Menu';
 import { IProps } from './types';
+import NavContent from './NavContent';
 
 import './index.less';
 
-const PageHeader: React.FC<IProps> = ({
-  history,
-  title,
-  subTitle,
-  subSwitcher,
-  breadcrumbs,
-  extra,
-  historyBack,
-  nav,
-  children,
-  onBackArrowClick,
-  hasBackArrow,
-  ...restProps
-}: IProps) => {
-  const breadcrumbItems = breadcrumbs.map(
-    ({ title: linkTitle, text, to, ...restLinkProps }) => (
-      <Page.Breadcrumb.Item key="home">
-        {to ? (
-          <Link to={to} {...restLinkProps}>
-            {linkTitle || text}
-          </Link>
-        ) : (
-          text
-        )}
-      </Page.Breadcrumb.Item>
-    )
-  );
+export const PageHeader: React.FC<IProps> = (props: IProps) => {
+  const {
+    history,
+    title,
+    subTitle,
+    subSwitcher,
+    breadcrumbs,
+    extra,
+    historyBack,
+    nav,
+    children,
+    onBackArrowClick,
+    hasBackArrow,
+    ...restProps
+  } = props;
 
   return (
-    <Page {...restProps}>
-      <Page.Header
-        breadcrumb={<Page.Breadcrumb>{breadcrumbItems}</Page.Breadcrumb>}
-        breadcrumbExtra={extra}
-        title={title}
-        subTitle={
-          subSwitcher ? <Select size="small" {...subSwitcher} /> : subTitle
+    <XConsoleRcPage
+      breadcrumbs={breadcrumbs}
+      breadcrumbExtra={extra}
+      pageProps={restProps}
+      title={title}
+      subTitle={
+        subSwitcher ? <Select size="small" {...subSwitcher} /> : subTitle
+      }
+      menu={nav && nav.shape === 'menu' ? <Menu nav={nav} /> : null}
+      hasBackArrow={hasBackArrow || !!historyBack}
+      /* eslint-disable */
+      onBackArrowClick={(): void => {
+        if (onBackArrowClick) {
+          return onBackArrowClick();
         }
-        hasBackArrow={hasBackArrow || !!historyBack}
-        onBackArrowClick={(): void => {
-          if (onBackArrowClick) {
-            return onBackArrowClick();
-          }
-          if (history) {
-            history.push(historyBack);
-          }
-        }}
-      />
-      {nav ? (
-        <NavContent nav={nav}>{children}</NavContent>
-      ) : (
-        <Page.Content>{children}</Page.Content>
-      )}
-    </Page>
+        if (history) {
+          history.push(historyBack);
+        }
+      }}
+    >
+      {
+        // @ts-ignore
+        nav && nav.shape === 'tab' ? (
+          // @ts-ignore
+          <NavContent nav={nav}>{children}</NavContent>
+        ) : (
+          children
+        )
+      }
+    </XConsoleRcPage>
   );
 };
 

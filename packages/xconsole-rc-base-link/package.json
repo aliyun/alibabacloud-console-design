@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "@alicloud/console-components": "^1.0.20",
-    "dva": "^2.3.1",
+    "dva": "2.6.0-beta.20",
     "lodash": "^4.17.10",
     "prop-types": "^15.x",
     "react": "^16.x",
@@ -44,7 +44,7 @@
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "@alicloud/console-components": "^1.0.20",
     "babel-eslint": "^8.2.3",
-    "dva": "^2.3.1",
+    "dva": "2.6.0-beta.20",
     "eslint": "^4.19.1",
     "eslint-config-ali": "^3.1.0",
     "eslint-plugin-import": "^2.11.0",

@@ -1,9 +1,9 @@
 import React, { ReactNode, ReactElement, SyntheticEvent } from 'react';
-import Page from '@alicloud/console-components-page';
+import Page, { IPageProps } from '@alicloud/console-components-page';
 import Breadcrumb, { IBreadcrumbItem } from '../Breadcrumb';
 
 interface IProps {
-  breadcrumb?: IBreadcrumbItem[];
+  breadcrumbs?: IBreadcrumbItem[];
   breadcrumbExtra?: ReactNode;
   breadcrumbExtraAlign?: 'left' | 'right';
   title?: ReactNode;
@@ -14,27 +14,31 @@ interface IProps {
   onBackArrowClick?: (e: SyntheticEvent) => void | never;
   menu?: ReactNode;
   children?: ReactNode;
+  pageProps?: IPageProps;
 }
 
-const XconsoleRcPage = function ({
-  breadcrumb,
-  breadcrumbExtra,
-  breadcrumbExtraAlign,
-  title,
-  subTitle,
-  titleExtra,
-  titleExtraAlign,
-  hasBackArrow,
-  onBackArrowClick,
-  menu,
-  children,
-}: IProps): ReactElement {
+const XconsoleRcPage: React.FC<IProps> = (props: IProps) => {
+  const {
+    breadcrumbs,
+    breadcrumbExtra,
+    breadcrumbExtraAlign,
+    title,
+    subTitle,
+    titleExtra,
+    titleExtraAlign,
+    hasBackArrow,
+    onBackArrowClick,
+    menu,
+    children,
+    pageProps,
+  } = props;
+
   return (
-    <Page>
+    <Page {...pageProps}>
       <Page.Header
         title={title}
         subTitle={subTitle}
-        breadcrumb={<Breadcrumb items={breadcrumb} />}
+        breadcrumb={<Breadcrumb items={breadcrumbs} />}
         breadcrumbExtra={breadcrumbExtra}
         breadcrumbExtraAlign={breadcrumbExtraAlign}
         hasBackArrow={hasBackArrow}

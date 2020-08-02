@@ -26,7 +26,7 @@ export default {
       subNav: [
         {
           title: intl('menu.title.list.basic'),
-          key: '/:regionId/basic-list',
+          key: '/basic-list',
         },
         {
           title: intl('menu.title.list.selection'),

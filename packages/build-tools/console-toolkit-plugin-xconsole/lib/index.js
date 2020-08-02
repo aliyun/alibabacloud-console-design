@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var path_1 = require("path");
-var console_toolkit_shared_utils_1 = require("@alicloud/console-toolkit-shared-utils");
 var constants_1 = require("./constants");
 function default_1(api, options) {
     var _this = this;
@@ -47,14 +46,12 @@ function default_1(api, options) {
         type: 'git',
         url: constants_1.GENERATOR_URL,
     });
-    api.on('onBuildEnd', function () { return __awaiter(_this, void 0, void 0, function () {
-        var env;
+    api.on('onChainWebpack', function (config) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            env = console_toolkit_shared_utils_1.getEnv();
-            if (env.isCloudBuild()) {
-                // TODO XXXX
-            }
-            return [2 /*return*/];
+            // config.resolve.alias
+            //     .set('@ali/wind', '@alife/alicloud-components')
+            //     .set('@alicloud/console-components', '@alife/alicloud-components');
+            // return [2 /*return*/];
         });
     }); });
 }

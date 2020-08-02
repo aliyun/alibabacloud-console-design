@@ -18,7 +18,7 @@ export interface IOptions<Result, Item> {
   NextToken?: string;
   MaxResults?: number;
   formatResult?: (
-    x: Result,
+    x: Result
   ) => {
     total: number;
     data: Item[];
@@ -36,12 +36,15 @@ export interface IFnParams {
 
 export default function useList<Result = any, Item = any>(
   fn: (params: IFnParams) => Promise<Result>,
-  options: IOptions<Result, Item>,
+  options: IOptions<Result, Item>
 ): IResponse<Item> {
   const {
-    Page, PageSize,
-    NextToken, MaxResults,
-    formatResult, swrConfig
+    Page,
+    PageSize,
+    NextToken,
+    MaxResults,
+    formatResult,
+    swrConfig,
   } = options;
 
   const useNextToken = typeof NextToken === 'string';
@@ -58,38 +61,47 @@ export default function useList<Result = any, Item = any>(
   /* 开始的时间戳 */
   const startTime = useRef(new Date().getTime());
 
-  const fetcher = (page: number, pageSize: number, nextToken: string, maxResults: number, startTime: number) => {
+  const fetcher = (
+    page: number,
+    pageSize: number,
+    nextToken: string,
+    maxResults: number,
+    startTime: number
+  ) => {
     if (useNextToken) {
       prevNT.current = curNT.current;
       curNT.current = nextToken;
       nextNT.current = nextToken;
     }
-    return fn({ page, pageSize, nextToken, maxResults, startTime }).then((result) => {
-      if (!result) return;
+    return fn({ page, pageSize, nextToken, maxResults, startTime }).then(
+      (result) => {
+        if (!result) return;
 
-      const { total, nextToken, data } = (formatResult
-        ? formatResult(result)
-        : result) as any;
-      if (total)  pageTotal.current = total;
-      if (useNextToken) nextNT.current = nextToken;
-      
-      return data as Item[];
-    } );
-  }
-  const { data, isValidating: loading, mutate } = useSWR<Item[] | undefined, any>(
-    [page, pageSize, nextToken, maxResults, startTime],
-    fetcher,
-    { ...swrConfig }
-  );
+        const { total, nextToken, data } = (formatResult
+          ? formatResult(result)
+          : result) as any;
+        if (total) pageTotal.current = total;
+        if (useNextToken) nextNT.current = nextToken;
+
+        return data as Item[];
+      }
+    );
+  };
+  const { data, isValidating: loading, mutate } = useSWR<
+    Item[] | undefined,
+    any
+  >([page, pageSize, nextToken, maxResults, startTime], fetcher, {
+    ...swrConfig,
+  });
 
   const loadNext = useCallback(() => {
-    if (pageTotal.current && pageTotal.current <= (page as number) * pageSize) {
+    if (pageTotal.current && pageTotal.current <= page * pageSize) {
       return;
     }
     if (useNextToken) {
       setNextToken(nextNT.current);
     } else {
-      setPage(page => page as number + 1);
+      setPage((page) => page + 1);
     }
   }, []);
 
@@ -100,7 +112,7 @@ export default function useList<Result = any, Item = any>(
       if (page - 1 > 0) {
         return;
       }
-      setPage(page => page - 1);
+      setPage((page) => page - 1);
     }
   }, []);
 

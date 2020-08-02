@@ -1,7 +1,7 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { ApiType } from './const';
+import { ApiType } from './const/index';
 
-export * from './const';
+export * from './const/index';
 
 export interface IOptionsData {
   product?: string;

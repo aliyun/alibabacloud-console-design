@@ -1,6 +1,6 @@
 import { resolve } from 'path';
+import * as Chain from 'webpack-chain';
 import { PluginAPI, PluginOptions } from '@alicloud/console-toolkit-core';
-import { getEnv } from '@alicloud/console-toolkit-shared-utils'
 import { GENERATOR_URL } from './constants';
 
 export default function (api: PluginAPI, options: PluginOptions) {
@@ -11,10 +11,9 @@ export default function (api: PluginAPI, options: PluginOptions) {
     url: GENERATOR_URL,
   });
 
-  api.on('onBuildEnd', async () => {
-    const env = getEnv();
-    if (env.isCloudBuild()) {
-      // TODO XXXX
-    }
-  });
+  // api.on('onChainWebpack', async (config: Chain) => {
+  //   config.resolve.alias
+  //     .set('@ali/wind', '@alife/alicloud-components')
+  //     .set('@alicloud/console-components', '@alife/alicloud-components');
+  // });
 }

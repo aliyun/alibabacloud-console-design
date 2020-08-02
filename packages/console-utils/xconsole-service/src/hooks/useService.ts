@@ -1,5 +1,5 @@
-import createService from '../service';
 import useSWR, { responseInterface } from 'swr';
+import createService from '../service';
 import { IOptions, ApiType } from '../types';
 
 const useService = <D, E = any>(
@@ -27,32 +27,32 @@ const useService = <D, E = any>(
 export const useOpenApi = <D, E = any>(
   product: string,
   action: string,
-  options: Omit<IOptions, 'apiType'>,
-  params: any
+  params?: any,
+  options?: Omit<IOptions, 'apiType'>
 ): responseInterface<D, E> =>
   useService(product, action, { ...options, apiType: ApiType.open }, params);
 
 export const useInnerApi = <D, E = any>(
   product: string,
   action: string,
-  options: Omit<IOptions, 'apiType'>,
-  params: any
+  params?: any,
+  options?: Omit<IOptions, 'apiType'>
 ): responseInterface<D, E> =>
   useService(product, action, { ...options, apiType: ApiType.inner }, params);
 
 export const usePluginApi = <D, E = any>(
   product: string,
   action: string,
-  options: Omit<IOptions, 'apiType'>,
-  params: any
+  params?: any,
+  options?: Omit<IOptions, 'apiType'>
 ): responseInterface<D, E> =>
   useService(product, action, { ...options, apiType: ApiType.plugin }, params);
 
 export const useAppApi = <D, E = any>(
   product: string,
   action: string,
-  options: Omit<IOptions, 'apiType'>,
-  params: any
+  params?: any,
+  options?: Omit<IOptions, 'apiType'>
 ): responseInterface<D, E> =>
   useService(product, action, { ...options, apiType: ApiType.plugin }, params);
 

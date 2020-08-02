@@ -50,7 +50,7 @@
     "@alicloud/xconsole-model":  "^1.0.0-beta.1",
     "@types/react": "^16.8.24",
     "@types/webpack-env": "^1.14.0",
-    "dva": "^2.4.1",
+    "dva": "2.6.0-beta.20",
     "lodash.isequal": "^4.5.0",
     "lodash.isfunction": "^3.0.9"
   }

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Breadcrumb as WindBreadcrumb } from '@alicloud/console-components-page';
+import { Breadcrumb } from '@alicloud/console-components-page';
 import { Link } from 'dva/router';
 
 export interface IBreadcrumbItem {
@@ -11,16 +11,16 @@ export interface IProps {
   items: IBreadcrumbItem[];
 }
 
-const Breadcrumb = function ({ items = [] }: IProps): ReactElement {
+const RcBreadcrumb = function ({ items = [] }: IProps): ReactElement {
   return (
-    <WindBreadcrumb>
-      {items.map(({ text, to }, index: number) => (
-        <WindBreadcrumb.Item key={`${to}-${index}`}>
+    <Breadcrumb>
+      {items.map(({ text, to }) => (
+        <Breadcrumb.Item key={`${text}-${to}`}>
           {to ? <Link to={to}>{text}</Link> : text}
-        </WindBreadcrumb.Item>
+        </Breadcrumb.Item>
       ))}
-    </WindBreadcrumb>
+    </Breadcrumb>
   );
 };
 
-export default Breadcrumb;
+export default RcBreadcrumb;

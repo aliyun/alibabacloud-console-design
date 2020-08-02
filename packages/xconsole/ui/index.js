@@ -1,6 +1,7 @@
 export * from '@alicloud/console-components';
 
-// export { default as PageHeader } from '../lib/rc-page';
+export { default as PageHeader } from '../lib/rc-page';
+export { default as Page } from '../lib/rc-page';
 
 export { default as Result } from '@alicloud/xconsole-rc-result';
 export { default as DateTime } from '@alicloud/xconsole-rc-datetime';

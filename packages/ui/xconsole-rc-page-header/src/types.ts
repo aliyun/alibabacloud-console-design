@@ -2,6 +2,14 @@ import React from 'react';
 import { SelectProps } from '@alicloud/console-components/lib/select';
 import { History } from 'history';
 
+export interface INavProps {
+  shape: 'tab' | 'menu';
+  defaultActiveKey?: string;
+  activeKey?: string;
+  onChange?: () => void;
+  items?: any;
+}
+
 export interface IProps {
   title: string;
   subTitle: string;
@@ -14,12 +22,7 @@ export interface IProps {
   historyBack: string;
   history: History;
   extra: React.ReactNode;
-  nav: {
-    // 导航标题
-    title: string;
-    // 导航 key
-    key: string;
-  }[];
+  nav: INavProps;
   children: React.ReactNode;
   onBackArrowClick: () => void;
   hasBackArrow: boolean;
