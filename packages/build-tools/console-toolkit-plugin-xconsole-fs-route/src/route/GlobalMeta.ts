@@ -1,5 +1,5 @@
-import * as fs from 'fs';
 import { resolve } from 'path';
+import { existWithExt } from '../utils/resolveExt';
 
 export interface GlobalOptions {
   indexRoute: string;
@@ -24,11 +24,11 @@ export default class GlobalMeta {
   // globalModals: boolean;
 
   constructor(cwd: string, options: GlobalOptions) {
-    this.hasUIConfig = fs.existsSync(resolve(cwd, 'src/ui.js'));
-    this.hasWidgetLoader = fs.existsSync(resolve(cwd, 'src/loader.js'));
-    this.hasEntryCode = fs.existsSync(resolve(cwd, 'src/app.js'));
-    this.hasAppConfig = fs.existsSync(resolve(cwd, 'src/appConfig.js'));
-    this.hasLayout = fs.existsSync(resolve(cwd, 'src/layout.js'));
+    this.hasUIConfig = existWithExt(resolve(cwd, 'src/ui'));
+    this.hasWidgetLoader = existWithExt(resolve(cwd, 'src/loader'));
+    this.hasEntryCode = existWithExt(resolve(cwd, 'src/app'));
+    this.hasAppConfig = existWithExt(resolve(cwd, 'src/appConfig'));
+    this.hasLayout = existWithExt(resolve(cwd, 'src/layout'));
     this.indexRoute = options.indexRoute;
     this.prefix = options.prefix;
     this.mode = options.mode || 'browser';

@@ -1,4 +1,5 @@
 test
+plugins
 jest.config.js
 
 tsconfig.json

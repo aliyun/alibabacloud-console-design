@@ -12,7 +12,7 @@ interface RegionConfig {
 }
 
 interface ConsoleBaseConfig {
-  regionList?: { id: string, name: string }[];
+  regionList?: { id: string; name: string }[];
 }
 
 interface ConsoleMenuConfig {

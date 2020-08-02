@@ -8,7 +8,7 @@ module.exports = {
   product: 'xconsole',
   // 路由配置
   routes: {
-    index: 'index',
+    index: 'overview',
   },
 
   useTypescript: true,

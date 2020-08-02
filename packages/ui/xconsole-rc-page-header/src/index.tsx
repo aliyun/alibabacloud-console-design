@@ -60,4 +60,6 @@ export const PageHeader: React.FC<IProps> = (props: IProps) => {
 
 PageHeader.displayName = 'XConsoleRcPageHeader';
 
+export type PageHeaderProps = IProps;
+
 export default PageHeader;

@@ -4,7 +4,6 @@ import { intl } from '@alicloud/xconsole';
 import { useOpenApi } from '@alicloud/xconsole/hooks';
 import { Button, Icon, Dialog, Table, DateTime, Actions } from '@alicloud/xconsole/ui';
 
-console.log(useOpenApi)
 const { LinkButton } = Actions;
 
 const searchConfig = {
@@ -24,72 +23,75 @@ const searchConfig = {
 
 const DeleteButton = ({
   record,
-  variables,
-}) => (
+}) => {
+  // 这里发出请求，详情参见
+  const { run: deleteInstance } = useOpenApi('wind-demo', 'DeleteInstance', {}, { manual: true })
 
-  <Actions>
-    <LinkButton
-      disabled
-      onClick={() => {
-        alert('on click');
-      }}
-    >
-      详情
-    </LinkButton>
-    <LinkButton
-      onClick={() => {
-        Dialog.confirm({
-          title: intl('list.delete.title'),
-          content: intl('list.delete.content'),
-          onOk: () => deleteItem({ InstanceId: record.InstanceId }),
-        });
-      }}
-    >
-      {intl('list.delete')}
-    </LinkButton>
-    <LinkButton>编辑</LinkButton>
-    <LinkButton
-      onClick={() => {
-        alert('on click');
-      }}
-    >
-      释放
-    </LinkButton>
-    <LinkButton
-      disabled
-      onClick={() => {
-        alert('on click');
-      }}
-    >
-      暂停
-    </LinkButton>
-  </Actions>
-);
+  return (
+    <Actions>
+      <LinkButton
+        disabled
+        onClick={() => {
+          alert('on click');
+        }}
+      >
+        详情
+      </LinkButton>
+      <LinkButton
+        onClick={() => {
+          Dialog.confirm({
+            title: intl('list.delete.title'),
+            content: intl('list.delete.content'),
+            onOk: () => deleteInstance({ InstanceId: record.InstanceId }),
+          });
+        }}
+      >
+        {intl('list.delete')}
+      </LinkButton>
+      <LinkButton>编辑</LinkButton>
+      <LinkButton
+        onClick={() => {
+          alert('on click');
+        }}
+      >
+        释放
+      </LinkButton>
+      <LinkButton
+        disabled
+        onClick={() => {
+          alert('on click');
+        }}
+      >
+        暂停
+      </LinkButton>
+    </Actions>
+  )
+};
 
 export default () => {
-  const { data } = useOpenApi('wind-demo', 'DescribeInstances')
+  const { data, loading, run } = useOpenApi('wind-demo', 'DescribeInstances', {})
+
   return (
     <Table
       dataSource={data?.List}
-      loading={!data}
+      loading={loading}
       operation={{
         primary: (
           <Button type="primary">{intl('list.create')}</Button>
         ),
         secondary: (
-          <Button>
-            <Icon type="refresh" />
+          <Button onClick={() => run()}>
+            <Icon type="refresh"/>
           </Button>
         ),
       }}
       search={{
         ...searchConfig,
         onSearch: (value, filterValue) => {
-          // refetch({
-          //   ...variables,
-          //   PageNumber: 1,
-          //   [filterValue]: value,
-          // });
+          run({
+            PageNumber: 1,
+            [filterValue]: value,
+          });
         },
       }}
       pagination={{
@@ -98,10 +100,9 @@ export default () => {
         total: data?.TotalCount,
         pageSizeSelector: false,
         onChange: (pageNumber) => {
-          // refetch({
-          //   ...variables,
-          //   PageNumber: pageNumber,
-          // });
+          run({
+            PageNumber: pageNumber,
+          });
         },
       }}
       columns={[
@@ -123,7 +124,6 @@ export default () => {
           cell: (value, index, record) => (
             <DeleteButton
               record={record}
-              // variables={variables}
             />
           ),
         },

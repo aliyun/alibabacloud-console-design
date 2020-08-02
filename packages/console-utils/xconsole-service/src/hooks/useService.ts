@@ -1,59 +1,94 @@
-import useSWR, { responseInterface } from 'swr';
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import createService from '../service';
-import { IOptions, ApiType } from '../types';
+import { IOptions } from '../types';
+import useAsync from './useAsync';
+import { ApiType } from '../const/index';
 
-const useService = <D, E = any>(
-  product: string,
-  action: string,
-  options: IOptions,
-  params: any,
-  overlap?: boolean
-): responseInterface<D, E> => {
-  const requestService = createService(product, action, {
-    apiType: ApiType.custom,
-    ...options,
-  });
-  return useSWR<D, E>(
-    JSON.stringify({
-      product,
-      action,
-      params,
-    }),
-    () => requestService<D>(params, overlap),
-    {}
+interface IParams {
+  [key: string]: any;
+}
+
+interface IProps<T> extends Partial<IOptions> {
+  code?: string;
+  ignoreError?: boolean;
+  manual?: boolean;
+  service?: (p: IParams) => Promise<T>;
+  pollingInterval?: number;
+  onSuccess?: (d: T) => void;
+  onError?: (e: Error) => void;
+}
+
+export const useService = <R = any, P extends IParams = {}>(
+  service: (p: P) => Promise<R>,
+  params?: P,
+  opt: IProps<R> = {}
+) => {
+  return useAsync<P, R>(
+    async (runParams: P) => {
+      const res = await service(runParams || params);
+      return res;
+    },
+    [JSON.stringify(params), JSON.stringify(opt)],
+    {
+      manual: opt.manual,
+      pollingInterval: opt.pollingInterval,
+      onError: opt.onError,
+      onSuccess: opt.onSuccess,
+    }
   );
 };
 
-export const useOpenApi = <D, E = any>(
-  product: string,
+export const useOpenApi = <R = any, P extends IParams = {}>(
+  code: string,
   action: string,
-  params?: any,
-  options?: Omit<IOptions, 'apiType'>
-): responseInterface<D, E> =>
-  useService(product, action, { ...options, apiType: ApiType.open }, params);
+  params?: P,
+  opt: IProps<R> = {}
+) => {
+  const requestService = createService<P, R>(code, action, {
+    ...opt,
+    apiType: ApiType.open,
+  });
+  return useService<R, P>(requestService, params, opt);
+};
 
-export const useInnerApi = <D, E = any>(
-  product: string,
+export const useInnerApi = <R = any, P extends IParams = {}>(
+  code: string,
   action: string,
-  params?: any,
-  options?: Omit<IOptions, 'apiType'>
-): responseInterface<D, E> =>
-  useService(product, action, { ...options, apiType: ApiType.inner }, params);
+  params?: P,
+  opt: IProps<R> = {}
+) => {
+  const requestService = createService<P, R>(code, action, {
+    ...opt,
+    apiType: ApiType.inner,
+  });
+  return useService<R, P>(requestService, params, opt);
+};
 
-export const usePluginApi = <D, E = any>(
-  product: string,
+export const usePluginApi = <R = any, P extends IParams = {}>(
+  code: string,
   action: string,
-  params?: any,
-  options?: Omit<IOptions, 'apiType'>
-): responseInterface<D, E> =>
-  useService(product, action, { ...options, apiType: ApiType.plugin }, params);
+  params?: P,
+  opt: IProps<R> = {}
+) => {
+  const requestService = createService<P, R>(code, action, {
+    ...opt,
+    apiType: ApiType.plugin,
+  });
+  return useService<R, P>(requestService, params, opt);
+};
 
-export const useAppApi = <D, E = any>(
-  product: string,
+export const useAppApi = <R = any, P extends IParams = {}>(
+  code: string,
   action: string,
-  params?: any,
-  options?: Omit<IOptions, 'apiType'>
-): responseInterface<D, E> =>
-  useService(product, action, { ...options, apiType: ApiType.plugin }, params);
+  params?: P,
+  opt: IProps<R> = {}
+) => {
+  const requestService = createService<P, R>(code, action, {
+    ...opt,
+    apiType: ApiType.app,
+  });
+  return useService<R, P>(requestService, params, opt);
+};
 
 export default useService;

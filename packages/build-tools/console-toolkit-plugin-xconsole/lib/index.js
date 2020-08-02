@@ -46,14 +46,14 @@ function default_1(api, options) {
         type: 'git',
         url: constants_1.GENERATOR_URL,
     });
-    api.on('onChainWebpack', function (config) { return __awaiter(_this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            // config.resolve.alias
-            //     .set('@ali/wind', '@alife/alicloud-components')
-            //     .set('@alicloud/console-components', '@alife/alicloud-components');
-            // return [2 /*return*/];
-        });
-    }); });
+    // api.on('onChainWebpack', function (config) { return __awaiter(_this, void 0, void 0, function () {
+    //     // return __generator(this, function (_a) {
+    //     //     // config.resolve.alias
+    //     //     //     .set('@ali/wind', '@alife/alicloud-components')
+    //     //     //     .set('@alicloud/console-components', '@alife/alicloud-components');
+    //     //     // return [2 /*return*/];
+    //     // });
+    // }); });
 }
 exports.default = default_1;
 //# sourceMappingURL=index.js.map

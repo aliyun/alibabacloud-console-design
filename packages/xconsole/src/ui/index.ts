@@ -1,6 +1,6 @@
 export * from '@alife/alicloud-components';
 
-export { default as PageHeader } from '../lib/rc-page';
+export { default as PageHeader, PageProps } from '../rc-page/index';
 
 export { default as Link } from '@alicloud/xconsole-rc-link';
 export { default as Result } from '@alicloud/xconsole-rc-result';

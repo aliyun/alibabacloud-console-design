@@ -1,6 +1,6 @@
-import { AppConfig } from "./AppConfig";
-import { RouteConfig } from "./RouteConfig";
 import { History } from 'history';
+import { AppConfig } from './AppConfig';
+import { RouteConfig } from './RouteConfig';
 
 export interface XConsoleAppProps {
   history: History;

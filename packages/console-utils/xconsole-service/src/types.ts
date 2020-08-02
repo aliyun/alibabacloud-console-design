@@ -64,9 +64,7 @@ export interface IError {
   message: any;
 }
 
-export type ServicePromise<T> = Promise<T>;
-
-export type Service = <T>(params?: any, overlap?: boolean) => ServicePromise<T>;
+export type Service = <T, P = any>(params?: P, overlap?: boolean) => Promise<T>;
 
 export type RequestInterceptor = (options: IOptions) => AxiosRequestConfig;
 

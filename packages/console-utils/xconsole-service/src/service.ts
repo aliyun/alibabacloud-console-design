@@ -1,12 +1,6 @@
 import { AxiosInstance } from 'axios';
 import createRequest from './request';
-import {
-  IOptions,
-  IResponseData,
-  Service,
-  ServicePromise,
-  Actions,
-} from './types';
+import { IOptions, IResponseData, Service, Actions } from './types';
 
 const defaultOptions = {
   apiType: 'open',
@@ -31,13 +25,7 @@ const defaultOptions = {
 
 const request = createRequest();
 
-function createService(product: string, action: string): Service;
-function createService(
-  product: string,
-  action: string,
-  options: IOptions
-): Service;
-function createService(
+function createService<D = any, P = any>(
   product: string,
   action?: string,
   options: IOptions = {},
@@ -50,7 +38,8 @@ function createService(
   };
 
   if (!action) {
-    return async <D = any>(actions: Actions): ServicePromise<D> => {
+    // @ts-ignore
+    return async <D = any>(actions: Actions): Promise<D> => {
       // @ts-ignore
       const res = await requestInstance.request<IResponseData<D>, any>({
         ...opts,
@@ -71,7 +60,7 @@ function createService(
     };
   }
 
-  return async <D = any>(params: any, overlap = false): ServicePromise<D> => {
+  return async <D, P>(params: P, overlap = false): Promise<D> => {
     let data: IOptions['data'] = {
       product,
       action,
@@ -93,8 +82,8 @@ function createService(
             params,
           };
     }
-
-    const res = await requestInstance.request<IResponseData<D>, any>({
+    // @ts-ignore
+    const res = await requestInstance.request<IResponseData<D>, never>({
       ...opts,
       data,
       // @ts-ignore

@@ -1,18 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs = require("fs");
 var path_1 = require("path");
+var resolveExt_1 = require("../utils/resolveExt");
 /**
  *
  */
 var GlobalMeta = /** @class */ (function () {
     // globalModals: boolean;
     function GlobalMeta(cwd, options) {
-        this.hasUIConfig = fs.existsSync(path_1.resolve(cwd, 'src/ui.js'));
-        this.hasWidgetLoader = fs.existsSync(path_1.resolve(cwd, 'src/loader.js'));
-        this.hasEntryCode = fs.existsSync(path_1.resolve(cwd, 'src/app.js'));
-        this.hasAppConfig = fs.existsSync(path_1.resolve(cwd, 'src/appConfig.js'));
-        this.hasLayout = fs.existsSync(path_1.resolve(cwd, 'src/layout.js'));
+        this.hasUIConfig = resolveExt_1.existWithExt(path_1.resolve(cwd, 'src/ui'));
+        this.hasWidgetLoader = resolveExt_1.existWithExt(path_1.resolve(cwd, 'src/loader'));
+        this.hasEntryCode = resolveExt_1.existWithExt(path_1.resolve(cwd, 'src/app'));
+        this.hasAppConfig = resolveExt_1.existWithExt(path_1.resolve(cwd, 'src/appConfig'));
+        this.hasLayout = resolveExt_1.existWithExt(path_1.resolve(cwd, 'src/layout'));
         this.indexRoute = options.indexRoute;
         this.prefix = options.prefix;
         this.mode = options.mode || 'browser';

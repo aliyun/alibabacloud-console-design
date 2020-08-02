@@ -27,6 +27,11 @@
 // 使用如上配置后, 重新启动dev开发调试服务器(def dev),
 // 将会在上述的公共变量中输出对应仓库的字典配置
 export default {
+  'nav.basic.ui.scence': 'UI 场景',
+  'nav.basic.tech': '业务场景',
+  'nav.basic.tech.region': '区域化',
+  'nav.basic.tech.microfrontend': '微前端',
+
   'title.tab.profile': '标签详情页',
   'tabprofile.authentication': '认证管理',
   'tabprofile.groups': '加入的组',

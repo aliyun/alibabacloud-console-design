@@ -12,6 +12,7 @@ const Menu: React.FC<IProps> = ({
   nav: { defaultActiveKey, activeKey, onChange, items },
 }: IProps) => {
   return (
+    // @ts-ignore
     <Page.Menu
       // @ts-ignore
       onItemClick={onChange}

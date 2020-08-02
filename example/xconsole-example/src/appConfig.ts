@@ -1,4 +1,6 @@
-const config = {}
+import { AppConfig } from '@alicloud/xconsole';
+
+const config: AppConfig = {}
 
 // ConsoleBase 相关配置
 config.consoleBase = {
@@ -9,6 +11,17 @@ config.consoleBase = {
     { id: 'cn-qingdao', name: '华北 2' },
     { id: 'cn-shanghai', name: '华北 2' },
   ],
+}
+
+config.consoleMenu = {
+  defaultOpen: [
+    '/ui',
+    '/tech',
+  ],
+  collapsedPath: [
+    '/success-result',
+    '/fail-result',
+  ]
 }
 
 export default config
