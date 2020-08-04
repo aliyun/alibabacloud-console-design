@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": { "*": ["types/*"] },
       "module": "commonjs",
       "target": "es5",
       "outDir": "lib",
@@ -12,6 +10,7 @@
       ],
       "sourceMap": true,
       "rootDir": "src",
+      "skipLibCheck": true,
       /* Strict Type-Checking Option */
       "strict": true,   /* enable all strict type-checking options */
       /* Additional Checks */

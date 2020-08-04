@@ -2,6 +2,7 @@
 import React from 'react';
 import { History, Location } from 'history';
 import { match } from 'react-router';
+// @ts-ignore
 import PageHeader, { PageHeaderProps } from '@alicloud/xconsole-rc-page-header';
 import { useHistory } from '../hooks/route';
 

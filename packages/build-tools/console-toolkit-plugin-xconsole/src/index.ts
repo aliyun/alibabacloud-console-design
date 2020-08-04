@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import * as Chain from 'webpack-chain';
+// import * as Chain from 'webpack-chain';
 import { PluginAPI, PluginOptions } from '@alicloud/console-toolkit-core';
 import { GENERATOR_URL } from './constants';
 

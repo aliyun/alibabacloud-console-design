@@ -1,5 +1,6 @@
 import React, { createElement } from 'react';
 import { Route, RouteProps } from 'react-router-dom';
+// @ts-ignore
 import { withConsoleConfig } from '@alicloud/xconsole-context';
 import { XConsoleAppProps } from './types/XConsoleAppProps';
 import { RouteItem, RouteConfig } from './types/RouteConfig';

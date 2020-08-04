@@ -4,5 +4,5 @@ export {
   useOpenApi,
   useInnerApi,
   usePluginApi,
-  useAppApi,
+  useAppApi, // @ts-ignore
 } from '@alicloud/xconsole-service';

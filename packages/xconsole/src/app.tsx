@@ -6,6 +6,7 @@ import { XConsoleAppProps } from './types/XConsoleAppProps';
 const XConsoleApp: React.FunctionComponent<XConsoleAppProps> = (
   props: XConsoleAppProps
 ) => {
+  // @ts-ignore
   const { appConfig, history, sidebar, AppLayout, routeConfig } = props;
   return (
     <Router history={history}>

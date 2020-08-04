@@ -1,3 +1,4 @@
+// @ts-ignore
 import intl from '@alicloud/console-components-intl';
 
 intl.set(
@@ -13,10 +14,10 @@ intl.set(
 
 export {
   default as ConsoleUitls,
-  ConsoleContext,
+  ConsoleContext, // @ts-ignore
 } from '@alicloud/xconsole-context';
 
 export {
   default as intl,
-  withProvider,
+  withProvider, // @ts-ignore
 } from '@alicloud/console-components-intl';

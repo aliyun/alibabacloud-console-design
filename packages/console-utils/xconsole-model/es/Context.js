@@ -1,2 +1,2 @@
 import { createContext } from 'react';
-export default createContext();
+export default /*#__PURE__*/createContext();
