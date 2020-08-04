@@ -57,9 +57,6 @@
     "user-home": "^2.0.0",
     "yeoman-environment": "^2.3.4"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "ci": {
     "type": "aoneci",
     "version": "8",

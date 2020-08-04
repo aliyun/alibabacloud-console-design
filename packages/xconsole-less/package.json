@@ -17,9 +17,6 @@
     "email" : "",
     "url" : ""
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "peerDependencies": {
     "less": "^3.x",
     "prop-types": "^15.x",

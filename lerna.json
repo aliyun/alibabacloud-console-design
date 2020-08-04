@@ -2,11 +2,6 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
-    "publish": {
-      "message": "chore(release): Publish",
-      "npmClient": "tnpm",
-      "registry": "http://registry.npm.alibaba-inc.com"
-    },
     "version": {
       "allowBranch": [
         "master",

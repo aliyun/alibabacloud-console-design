@@ -41,9 +41,6 @@
     "@alicloud/console-toolkit-preset-official": "^1.0.0",
     "rimraf": "^3.0.0"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "ci": {
     "type": "aoneci",
     "version": "8",

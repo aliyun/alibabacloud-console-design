@@ -105,8 +105,5 @@
     "styled-components": "^4.4.1",
     "tslib": "^1.10.0"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "gitHead": "555e8f459f0201bb1529801d95942f924649a83a"
 }

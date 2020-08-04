@@ -48,9 +48,6 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "dependencies": {
     "@alicloud/console-components-page": "^1.0.5",
     "dva": "2.6.0-beta.20",
