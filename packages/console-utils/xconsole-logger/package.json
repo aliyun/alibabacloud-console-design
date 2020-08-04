@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-logger",
-  "version": "1.0.0-beta.3",
+  "version": "2.0.0-alpha.0",
   "main": "lib/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
@@ -12,9 +12,9 @@
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
   },
   "author": {
-    "name" : "",
-    "email" : "",
-    "url" : ""
+    "name": "",
+    "email": "",
+    "url": ""
   },
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.0",

@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-link",
-  "version": "1.0.0-beta.1",
+  "version": "2.0.0-alpha.0",
   "main": "lib/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
@@ -12,14 +12,14 @@
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
   },
   "author": {
-    "name" : "",
-    "email" : "",
-    "url" : ""
+    "name": "",
+    "email": "",
+    "url": ""
   },
   "devDependencies": {
+    "@alicloud/console-components": "^1.0.20",
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
-    "@alicloud/console-components": "^1.0.20",
     "babel-loader": "^8.0.5",
     "jest": "^24.2.0-alpha.0",
     "less": "^3.0.0-alpha.3",
@@ -41,8 +41,8 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@alicloud/xconsole-rc-base-link": "^1.0.0-beta.1",
     "@alicloud/xconsole-console-base-context": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-base-link": "^2.0.0-alpha.0",
     "lodash.get": "^4.4.2",
     "lodash.template": "^4.4.0"
   }

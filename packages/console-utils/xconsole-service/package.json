@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-service",
-  "version": "1.0.0-beta.1",
+  "version": "2.0.0-alpha.0",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
@@ -18,9 +18,9 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
+    "@alicloud/console-components": "^1.0.26",
     "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "@alicloud/console-components": "^1.0.26"
+    "react-dom": "^16.11.0"
   },
   "devDependencies": {
     "@alicloud/console-components": "^1.0.26",

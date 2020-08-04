@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-error-center",
-  "version": "1.0.0-beta.2",
+  "version": "2.0.0-alpha.0",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
@@ -20,8 +20,8 @@
   "devDependencies": {
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
-    "@alicloud/xconsole-rc-error-prompt": "^1.0.0-beta.1",
     "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-error-prompt": "^1.0.0-beta.1",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-ali": "^6.0.0",
@@ -43,11 +43,11 @@
     "test": "breezr test:unit"
   },
   "peerDependencies": {
+    "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-error-prompt": "^1.0.0-beta.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "@alicloud/xconsole-rc-error-prompt": "^1.0.0-beta.1",
-    "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1"
+    "react-dom": "^16.8.6"
   },
   "dependencies": {
     "@alicloud/console-components": "^1.0.20",

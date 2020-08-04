@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-model",
-  "version": "1.0.0-beta.1",
+  "version": "2.0.0-alpha.0",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -14,9 +14,9 @@
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
   },
   "author": {
-    "name" : "",
-    "email" : "",
-    "url" : ""
+    "name": "",
+    "email": "",
+    "url": ""
   },
   "directories": {
     "test": "test"

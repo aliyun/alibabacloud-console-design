@@ -1,11 +1,11 @@
 {
   "name": "@alicloud/console-toolkit-plugin-xconsole",
-  "version": "1.0.0-beta.1",
+  "version": "2.0.0-alpha.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/aliyun/alibabacloud-console-design.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "description": "generator",
   "main": "lib/index.js",
   "scripts": {
@@ -39,8 +39,8 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
-    "@alicloud/console-toolkit-plugin-generator": "^1.0.0-rc.7",
     "@alicloud/console-toolkit-core": "^1.0.0",
+    "@alicloud/console-toolkit-plugin-generator": "^1.0.0-rc.7",
     "@alicloud/console-toolkit-shared-utils": "^1.0.1",
     "axios": "^0.19.0",
     "chalk": "^2.4.2",
@@ -88,6 +88,5 @@
     "sourceMap": true,
     "instrument": true
   },
-  "author": "流司 <liusi.xbw@alibaba-inc.com>",
-  "license": "MIT"
+  "author": "流司 <liusi.xbw@alibaba-inc.com>"
 }

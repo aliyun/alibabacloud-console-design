@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-result",
-  "version": "1.0.0-beta.1",
+  "version": "2.0.0-alpha.0",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
@@ -18,12 +18,12 @@
     "url": ""
   },
   "devDependencies": {
-    "@alicloud/console-toolkit-cli": "^1.0.0",
-    "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "@alicloud/console-components": "^1.0.20",
     "@alicloud/console-components-info": "^1.0.4",
+    "@alicloud/console-toolkit-cli": "^1.0.0",
+    "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "@alicloud/xconsole-rc-description": "^1.0.0-beta.1",
-    "@alicloud/xconsole-rc-page": "^1.0.0-beta.1",
+    "@alicloud/xconsole-rc-page": "^2.0.0-alpha.0",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.5",
     "@types/react": "^16.8.10",
@@ -47,10 +47,10 @@
     "test": "breezr test:unit"
   },
   "peerDependencies": {
+    "@alicloud/console-components": "^1.0.20",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "@alicloud/console-components": "^1.0.20"
+    "react-dom": "^16.8.6"
   },
   "dependencies": {
     "moment": "^2.24.0"

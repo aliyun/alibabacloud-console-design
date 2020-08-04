@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-less",
-  "version": "1.0.0-beta.1",
+  "version": "2.0.0-alpha.0",
   "description": "阿里云控制台通用 LESS 常量及方法",
   "main": "index.less",
   "license": "MIT",
@@ -13,9 +13,9 @@
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
   },
   "author": {
-    "name" : "",
-    "email" : "",
-    "url" : ""
+    "name": "",
+    "email": "",
+    "url": ""
   },
   "peerDependencies": {
     "less": "^3.x",
