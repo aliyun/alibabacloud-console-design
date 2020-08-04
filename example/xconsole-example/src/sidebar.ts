@@ -27,16 +27,11 @@ export default {
           ],
         },
         {
-          title: intl('menu.title.profile'),
-          key: '/profile',
-          type: 'title',
-          subNav: [{
-            title: intl('menu.title.profile.basic'),
-            key: '/basic-profile',
-          }, {
-            title: intl('menu.title.profile.tab'),
-            key: '/tab-profile/auth',
-          }],
+          title: intl('menu.title.profile.basic'),
+          key: '/basic-profile',
+        }, {
+          title: intl('menu.title.profile.tab'),
+          key: '/tab-profile/auth',
         },
         {
           title: intl('menu.title.form.basic'),

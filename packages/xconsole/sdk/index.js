@@ -11,6 +11,8 @@ intl.set(
   }
 );
 
+export { model } from '@alicloud/xconsole-model';
+
 export {
   default as ConsoleUitls,
   ConsoleContext,

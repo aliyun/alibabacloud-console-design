@@ -14,7 +14,7 @@ const LogonInfo = () => {
         {
           dataIndex: 'Users',
           title: intl('AccountSummaryCard_Users'),
-          icon: 'user-fill',
+          icon: 'account',
         },
         {
           dataIndex: 'Groups',

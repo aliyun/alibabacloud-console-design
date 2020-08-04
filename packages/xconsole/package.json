@@ -82,7 +82,7 @@
     "@alicloud/xconsole-rc-step": "^1.0.0-beta.1",
     "@alicloud/xconsole-region-context": "^1.0.0-beta.1",
     "@alicloud/xconsole-service": "^1.0.0-beta.1",
-    "@alife/alicloud-components": "^0.0.7",
+    "@alife/alicloud-components": "^0.0.9",
     "@types/react": "^16.8.24",
     "@types/webpack-env": "^1.14.0",
     "babel-preset-breezr-wind": "^1.0.0-rc.7",

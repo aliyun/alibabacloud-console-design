@@ -1,3 +1,6 @@
+// import '@alicloud/console-components/dist/wind.css';
+import '@alife/alicloud-components/dist/console.css';
+
 export * from '@alicloud/console-components';
 
 export { default as PageHeader } from '../lib/rc-page';
