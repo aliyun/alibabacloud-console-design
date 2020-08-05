@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-model",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",

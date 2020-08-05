@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-mutation",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "main": "lib/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
@@ -47,7 +47,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@alicloud/xconsole-model": "^2.0.0-alpha.4",
+    "@alicloud/xconsole-model": "^2.0.0-alpha.5",
     "@types/react": "^16.8.24",
     "@types/webpack-env": "^1.14.0",
     "dva": "2.6.0-beta.20",

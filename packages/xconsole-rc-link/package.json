@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-link",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "main": "lib/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@alicloud/xconsole-console-base-context": "^1.0.0-beta.1",
-    "@alicloud/xconsole-rc-base-link": "^2.0.0-alpha.4",
+    "@alicloud/xconsole-rc-base-link": "^2.0.0-alpha.5",
     "lodash.get": "^4.4.2",
     "lodash.template": "^4.4.0"
   }
