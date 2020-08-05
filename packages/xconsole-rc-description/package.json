@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-description",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
@@ -52,7 +52,6 @@
   "dependencies": {
     "@alicloud/console-components-data-fields": "^1.0.4",
     "@alicloud/console-components-info": "^1.0.4",
-    "moment": "^2.24.0",
-    "styled-components": "^5.0.1"
+    "moment": "^2.24.0"
   }
 }

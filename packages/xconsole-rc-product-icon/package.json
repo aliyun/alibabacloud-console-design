@@ -50,7 +50,6 @@
   },
   "dependencies": {
     "@alicloud/console-components-page": "^1.0.5",
-    "dva": "^2.4.1",
-    "styled-components": "^4.4.0"
+    "dva": "^2.4.1"
   }
 }

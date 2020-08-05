@@ -2,8 +2,10 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import WindProRcAppLayout from '../src/index'
 import "@alicloud/console-components/dist/wind.css";
-import { Router, Route } from 'dva/router'
+import { Router, Route, matchPath } from 'dva/router'
 import createBrowserHistory from 'history/createBrowserHistory'
+
+window.matchPath = matchPath;
 
 const intl = key => key
 
@@ -47,7 +49,8 @@ const sidebar = {
       key: '/test',
       subNav: [{
         title: intl('menu.title.profile.basic'),
-        key: '/basic-profile',
+        key: '/basic-profile?test=1',
+        activePathPatterns: ['/basic-profile']
       }, {
         title: intl('menu.title.profile.tab'),
         key: '/tab-profile/auth',
@@ -78,7 +81,7 @@ const sidebar = {
 }
 
 const App = ({history}) => {
-  return <button onClick={() => history.push('/basic-profile')}>test</button>
+  return <button onClick={() => history.push('/basic-profile?test=1')}>test</button>
 }
 
 storiesOf('WindProRcAppLayout', module)

@@ -48,7 +48,6 @@
   "dependencies": {
     "@alicloud/console-components-page": "^1.0.5",
     "lodash.map": "^4.6.0",
-    "moment": "^2.24.0",
-    "styled-components": "^5.0.1"
+    "moment": "^2.24.0"
   }
 }

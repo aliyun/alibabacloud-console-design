@@ -54,6 +54,13 @@ export const getLocale = function() {
   return getConsoleConfig(LOCALE);
 };
 
+let getRegionId = null;
+
+export const setGetRegionIdFn = (fn) => {
+  getRegionId = fn;
+}
+
 export const getActiveRegionId = function() {
-  return Cookies.get(REGION_COOKIE_NAME) || Cookies.get(CURRENT_REGION_COOKIE_NAME) || 'cn-hangzhou';
+  const regionIdFromCookie = Cookies.get(REGION_COOKIE_NAME) || Cookies.get(CURRENT_REGION_COOKIE_NAME) || 'cn-hangzhou';
+  return  getRegionId ? getRegionId() : Cookies.get(REGION_COOKIE_NAME) || Cookies.get(CURRENT_REGION_COOKIE_NAME) || 'cn-hangzhou';
 };

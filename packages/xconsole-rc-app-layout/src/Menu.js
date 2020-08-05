@@ -8,6 +8,9 @@ import {
   withDefaultToPath,
 } from './utils'
 
+
+console.log(require.resolve('@alicloud/console-components-console-menu/lib/RoutableMenu'));
+
 const Menu = ({
   header,
   title,
