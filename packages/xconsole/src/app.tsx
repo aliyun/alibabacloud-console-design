@@ -13,7 +13,9 @@ const XConsoleApp: React.FunctionComponent<XConsoleAppProps> = (
       <AppLayout sidebar={sidebar} consoleMenu={appConfig.consoleMenu}>
         <Switch>
           {getRouteFromConfig(props)}
-          <Redirect to={routeConfig.global.redirect} />
+          <Redirect
+            to={`${routeConfig.global.prefix}/${routeConfig.global.redirect}`}
+          />
         </Switch>
       </AppLayout>
     </Router>
