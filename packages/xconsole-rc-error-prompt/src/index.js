@@ -134,7 +134,8 @@ export default function({
   getRequestBody = _noop,
   getRequestExtra = _noop,
   onConfirm,
-  onCancel
+  onCancel,
+  disableDetials
 } = {}) {
   const intl = intlSimple(locale, messages);
   const defaultTitle = intl('alert_error.title');
@@ -184,7 +185,7 @@ export default function({
       confirm: getConfirm(error, details) || defaultConfirm,
       cancel: getCancel(error, details) || defaultCancel,
       message: getMessage(error, details) || defaultGetMessage(error),
-      details
+      details: disableDetials ? null : details
     };
     const errorPromise = new Promise(resolve => {
       errorQueueObject.resolve = resolve;

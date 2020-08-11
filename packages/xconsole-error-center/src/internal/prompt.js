@@ -7,11 +7,44 @@ const LOCALE = _get(window, 'ALIYUN_CONSOLE_CONFIG.LOCALE') || 'zh-CN'
 
 const intl2 = (message, fallback = '') => message ? intl(message) : fallback;
 
+const defaultExtraInfo = {
+  getRequestId(err) {
+    return _get(err, 'response.data.requestId') || _get(err, 'requestId');
+  },
+  getRequestUrl(err) {
+    return _get(err, 'response.config.url') || _get(err, 'data.url');
+  },
+  getRequestMethod(err) {
+    return (_get(err, 'response.config.method') || _get(err, 'data.method') || '').toUpperCase();
+  },
+  getRequestParams(err) {
+    return _get(err, 'response.config.params') || _get(err, 'data.params');
+  },
+  getRequestBody(err) {
+    const ret = {};
+    const keys = ['region', 'product', 'action', 'params'];
+
+    keys.forEach(name => {
+      const val = _get(err, `response.config.originData.${name}`, null);
+      if (val !== null) {
+        ret[name] = val;
+      }
+    })
+    return ret
+  },
+  getRequestExtra(err) {
+    return {
+      RESPONSE: _get(err, 'response.data', ''),
+    };
+  }
+}
+
 export default ({
   error,
   code,
   errorConfig,
   getMessage,
+  disableExtraInfo
 }) => {
   const {
     i18nMessages = {}
@@ -58,35 +91,6 @@ export default ({
       }
       return ''
     },
-    getRequestId(err) {
-      return _get(err, 'response.data.requestId') || _get(err, 'requestId');
-    },
-    getRequestUrl(err) {
-      return _get(err, 'response.config.url') || _get(err, 'data.url');
-    },
-    getRequestMethod(err) {
-      return (_get(err, 'response.config.method') || _get(err, 'data.method') || '').toUpperCase();
-    },
-    getRequestParams(err) {
-      return _get(err, 'response.config.params') || _get(err, 'data.params');
-    },
-    getRequestBody(err) {
-      const ret = {};
-      const keys = ['region', 'product', 'action', 'params'];
-
-      keys.forEach(name => {
-        const val = _get(err, `response.config.originData.${name}`, null);
-        if (val !== null) {
-          ret[name] = val;
-        }
-      })
-      return ret
-    },
-    getRequestExtra(err) {
-      return {
-        RESPONSE: _get(err, 'response.data', ''),
-      };
-    },
     onConfirm(err) {
       // 如果错误码指定了重定向地址，则页面重定向到指定地址上
       if (errorConfig && errorConfig.confirmHref) {
@@ -111,5 +115,9 @@ export default ({
       }
       // TODO 支持其他行为
     },
+
+    // 显示其他额外的信息
+    ...defaultExtraInfo,
+    disableDetials: disableExtraInfo
   })(error);
 };

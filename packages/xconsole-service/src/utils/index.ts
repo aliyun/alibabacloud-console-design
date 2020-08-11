@@ -62,5 +62,5 @@ export const setGetRegionIdFn = (fn) => {
 
 export const getActiveRegionId = function() {
   const regionIdFromCookie = Cookies.get(REGION_COOKIE_NAME) || Cookies.get(CURRENT_REGION_COOKIE_NAME) || 'cn-hangzhou';
-  return  getRegionId ? getRegionId() : Cookies.get(REGION_COOKIE_NAME) || Cookies.get(CURRENT_REGION_COOKIE_NAME) || 'cn-hangzhou';
+  return  getRegionId ? getRegionId() : regionIdFromCookie;
 };
