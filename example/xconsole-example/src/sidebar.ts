@@ -13,7 +13,7 @@ export default {
         },
         {
           title: intl('menu.title.list.basic'),
-          key: '/basic-list',
+          key: '/:regionId/basic-list',
         },
         {
           title: intl('menu.title.list.selection'),

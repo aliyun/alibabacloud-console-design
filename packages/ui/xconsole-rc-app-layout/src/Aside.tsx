@@ -33,6 +33,7 @@ const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = (
     consoleMenu = {},
     location: { pathname },
     children,
+    menuParams,
   } = props;
 
   const { sidebar } = useContext(Context);
@@ -62,7 +63,7 @@ const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = (
   return (
     <AppLayout
       adjustHeight={50}
-      nav={sidebarVisible ? <Nav {...sidebar} currentPath={pathname} /> : null}
+      nav={sidebarVisible ? <Nav {...sidebar} currentPath={pathname} menuParams={menuParams}/> : null}
       navCollapsed={collapsed}
       onNavCollapseTriggerClick={onNavCollapseTriggerClick}
     >

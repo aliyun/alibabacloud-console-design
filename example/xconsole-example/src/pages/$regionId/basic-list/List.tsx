@@ -1,10 +1,11 @@
 /* eslint react/prop-types: 0 */
 import React, { useContext } from 'react';
 import { intl } from '@alicloud/xconsole';
-import { useOpenApi } from '@alicloud/xconsole/hooks';
+import { useOpenApi, useService } from '@alicloud/xconsole/hooks';
 import { Button, Icon, Dialog, Table, DateTime, Actions } from '@alicloud/xconsole/ui';
 
 const { LinkButton } = Actions;
+export const a = 1;
 
 const searchConfig = {
   filter: [

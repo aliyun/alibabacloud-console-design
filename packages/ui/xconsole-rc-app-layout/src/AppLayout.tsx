@@ -7,7 +7,7 @@ import Aside from './Aside';
 let noticeFlag = false;
 
 const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
-  const { sidebar, consoleMenu, location, children } = props;
+  const { sidebar, consoleMenu, location, children, menuParams } = props;
 
   const [title, setTitle] = useState(sidebar.title || 'XConsole');
   const [navs, setNavs] = useState(sidebar.navs || []);
@@ -32,7 +32,7 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
         setNavs,
       }}
     >
-      <Aside consoleMenu={consoleMenu} location={location}>
+      <Aside consoleMenu={consoleMenu} location={location} menuParams={menuParams}>
         {children}
       </Aside>
     </Context.Provider>

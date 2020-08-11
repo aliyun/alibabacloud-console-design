@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Icon, Card } from '@alicloud/xconsole/ui';
 import _ from 'lodash';
-import './index.scoped.less';
+import styles from './index.scoped.less';
 
 const { Row, Col } = Grid;
 const spans = { xxs: '24', xs: '24', s: '12', m: '6' };
@@ -18,11 +18,11 @@ const renderItems = (dataSource, items) => _.map(items, ({
   icon,
 }) => (
   <Col {...spans} key={dataIndex} >
-    <span styleName="count">
+    <span className={styles.count}>
       {dataSource[dataIndex]}
     </span>
     <h3>
-      <Icon styleName="icon" type={icon} size="xs" />
+      <Icon className={styles.icon} type={icon} size="xs" />
       {title}
     </h3>
   </Col>
@@ -30,7 +30,7 @@ const renderItems = (dataSource, items) => _.map(items, ({
 
 const StatCard = ({ title, items, dataSource }) => (
   <Card title={title} {...CardProps}>
-    <div styleName="stat-card">
+    <div className={styles['stat-card']}>
       <Row justify="space-between" wrap>
         { items && renderItems(dataSource, items) }
       </Row>

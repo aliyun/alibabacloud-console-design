@@ -24,6 +24,6 @@ export default () => (
       leftItems={[<Summary />]}
       rightItems={[<Account />]}
     />
-  </PageHeader>
+  </Page>
 );
 

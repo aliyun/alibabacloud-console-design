@@ -1,4 +1,6 @@
 import React, { createElement } from 'react';
+// @ts-ignore
+import { forApp } from '@ali/console-base-messenger';
 import { Route, RouteProps } from 'react-router-dom';
 // @ts-ignore
 import { withConsoleConfig } from '@alicloud/xconsole-context';
@@ -24,6 +26,7 @@ const getPageComponent = (
         ...props,
         // @ts-ignore
         region: appConfig.region,
+        consoleBase: forApp,
       });
     },
   };

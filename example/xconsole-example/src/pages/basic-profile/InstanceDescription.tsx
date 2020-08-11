@@ -4,10 +4,9 @@ import { useOpenApi } from '@alicloud/xconsole/hooks';
 import { Button, DateTime, Description } from '@alicloud/xconsole/ui';
 
 const InstanceDescription = () => {
-  const { data, loading } = useOpenApi('wind-demo', 'DescribeInstance')
+  const { data } = useOpenApi('wind-demo', 'DescribeInstance')
   return (
     <Description
-      loading={loading}
       title={intl('info.instance')}
       dataSource={data}
       items={[

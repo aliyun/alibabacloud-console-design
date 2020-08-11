@@ -51,6 +51,7 @@ export interface IProp extends RouteComponentProps {
   sidebar: ISidebarConfig;
   consoleMenu?: IConsoleMenuConfig;
   children?: React.ReactChildren;
+  menuParams: Record<string, any>;
 }
 
 export interface IMenuProps {
@@ -59,6 +60,7 @@ export interface IMenuProps {
   navs?: INavConfig[];
   items?: INavConfig[];
   currentPath?: string;
+  menuParams?: Record<string, any>;
   defaultOpenKeys?: string[];
   collapsedKeys?: PathRule;
 }

@@ -8,7 +8,7 @@ interface RegionConfig {
   // 默认 fallback 的 region
   defaultRegion?: string;
   // 路由匹配到 region 展示或者隐藏
-  regionPath?: PathRule;
+  reginbarVisiblePaths?: PathRule;
 }
 
 interface ConsoleBaseConfig {

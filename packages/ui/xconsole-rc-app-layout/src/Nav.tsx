@@ -24,11 +24,11 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
     collapsedKeys,
     defaultOpenKeys,
     currentPath,
+    menuParams,
     ...restProps
   } = props;
 
-  // TODO: handle region
-  const param = {};
+  const param = menuParams || {};
 
   const getMenuItems = (): INavConfig[] => {
     if (isUndefined(navs)) {

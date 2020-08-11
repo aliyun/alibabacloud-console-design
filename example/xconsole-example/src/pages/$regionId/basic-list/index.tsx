@@ -22,4 +22,6 @@ const ListPage = (props: PageProps) => {
   )
 }
 
+ListPage.regionBarVisible = false;
+
 export default ListPage;

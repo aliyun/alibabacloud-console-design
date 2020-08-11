@@ -6,7 +6,7 @@ import {
   REGION_COOKIE_NAME,
   CURRENT_REGION_COOKIE_NAME,
   LOCALE,
-} from '../const';
+} from '../const/index';
 
 export const getGlobalVariable = (varibaleName?: string): any => {
   if (typeof varibaleName === 'undefined') {
@@ -56,10 +56,19 @@ export const getLocale = (): string => {
   return getConsoleConfig(LOCALE);
 };
 
-export const getActiveRegionId = (): string => {
-  return (
-    docCookies.getItem(CURRENT_REGION_COOKIE_NAME) ||
+let getRegionId = null;
+
+// 为了设置能够从获取内存中保存的 region ID
+// 这个函数是提供给 xconsole 设置从 react-router 中获取的 regionId
+export const setGetRegionIdFn = (fn) => {
+  getRegionId = fn;
+}
+
+export const getActiveRegionId = function() {
+  const regionIdFromCookie = (
     docCookies.getItem(REGION_COOKIE_NAME) ||
+    docCookies.getItem(CURRENT_REGION_COOKIE_NAME) ||
     'cn-hangzhou'
   );
+  return getRegionId ? getRegionId() : regionIdFromCookie;
 };
