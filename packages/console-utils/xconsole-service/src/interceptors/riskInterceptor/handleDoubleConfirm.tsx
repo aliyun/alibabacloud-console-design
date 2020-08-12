@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { URLSearchParams } from '../paramsInterceptor';
+import { URLSearchParams } from '../paramsInterceptor/index';
 import getVerifyInformation from './getVerifyInformation';
 import {
   guideToVerificationMethodSetting,

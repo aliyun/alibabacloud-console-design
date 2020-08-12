@@ -40,7 +40,6 @@ function createService<D = any, P = any>(
   if (!action) {
     // @ts-ignore
     return async <D = any>(actions: Actions): Promise<D> => {
-      // @ts-ignore
       const res = await requestInstance.request<IResponseData<D>, any>({
         ...opts,
         data: opts.data
@@ -82,7 +81,6 @@ function createService<D = any, P = any>(
             params,
           };
     }
-    // @ts-ignore
     const res = await requestInstance.request<IResponseData<D>, never>({
       ...opts,
       data,
@@ -93,7 +91,7 @@ function createService<D = any, P = any>(
       useCors: false,
       risk: opts.risk,
     });
-
+    // @ts-ignore
     return res.data.data;
   };
 }

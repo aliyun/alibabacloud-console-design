@@ -3,9 +3,9 @@ import {
   getUmid,
   getCollina,
   getActiveRegionId,
-} from '../../utils';
+} from '../../utils/index';
 import { IOptions, IOptionsData } from '../../types';
-import { ApiType } from '../../const';
+import { ApiType } from '../../const/index';
 
 // 默认请求路径
 const BASE_URL = '/';

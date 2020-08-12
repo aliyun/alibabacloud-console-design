@@ -1,6 +1,6 @@
 import handleDoubleConfirm from './handleDoubleConfirm';
 import { IResponse, IResponseData } from '../../types';
-import { ApiType } from '../../const';
+import { ApiType } from '../../const/index';
 
 async function consoleRiskInterceptor(
   response: IResponse<IResponseData>

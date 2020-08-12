@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import URLSearchParams from '@ungap/url-search-params';
 import { IResponse, IResponseData } from '../../types';
 import logger from '../../utils/logger';

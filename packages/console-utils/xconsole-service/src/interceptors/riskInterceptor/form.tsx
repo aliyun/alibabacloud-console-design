@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Input, Grid, Form } from '@alicloud/console-components';
-import { getSecToken, getUmid, getCollina } from '../../utils';
-import searchParamsInterceptor from '../paramsInterceptor';
+import { getSecToken, getUmid, getCollina } from '../../utils/index';
+import searchParamsInterceptor from '../paramsInterceptor/index';
 import messages from './messages';
 
 const { Col, Row } = Grid;

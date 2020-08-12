@@ -1,6 +1,6 @@
 import URLSearchParams from '@ungap/url-search-params';
 import { IOptions } from '../../types';
-import { ApiType } from '../../const';
+import { ApiType } from '../../const/index';
 
 export { URLSearchParams };
 

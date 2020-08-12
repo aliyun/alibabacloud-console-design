@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
 import { IError, IResponse, IResponseData } from '../../types';
-import { ApiType } from '../../const';
+import { ApiType } from '../../const/index';
 
 function consoleResponseInterceptor(
   response: IResponse<IResponseData>

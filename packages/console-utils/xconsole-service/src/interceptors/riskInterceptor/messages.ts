@@ -1,4 +1,4 @@
-import { getLocale } from '../../utils';
+import { getLocale } from '../../utils/index';
 
 const locale = getLocale() || 'en-US';
 /* eslint-disable max-len */

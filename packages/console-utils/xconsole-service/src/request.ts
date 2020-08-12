@@ -1,15 +1,15 @@
 import axios, { AxiosInstance } from 'axios';
-import searchParamsInterceptor from './interceptors/paramsInterceptor';
-import consoleMockInterceptor from './interceptors/mockInterceptor';
+import searchParamsInterceptor from './interceptors/paramsInterceptor/index';
+import consoleMockInterceptor from './interceptors/mockInterceptor/index';
 import {
   consoleRequestInterceptor,
   consoleResponseInterceptor,
-} from './interceptors/consoleInterceptor';
-import consoleRiskInterceptor from './interceptors/riskInterceptor';
+} from './interceptors/consoleInterceptor/index';
+import consoleRiskInterceptor from './interceptors/riskInterceptor/index';
 import {
   armsRequestInterceptor,
   armsResponseInterceptor,
-} from './interceptors/armsInterceptor';
+} from './interceptors/armsInterceptor/index';
 import { RequestInterceptor, ResponseInterceptor } from './types';
 
 interface IInterceptors {
