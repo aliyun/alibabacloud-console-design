@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-less",
-  "version": "2.0.0-alpha.6",
+  "version": "2.0.0-alpha.7",
   "description": "阿里云控制台通用 LESS 常量及方法",
   "main": "index.less",
   "license": "MIT",
