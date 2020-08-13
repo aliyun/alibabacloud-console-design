@@ -48,6 +48,10 @@ export default {
       ]
     },
     {
+      key: '/ui',
+      type: 'divider'
+    },
+    {
       title: intl('nav.basic.tech'),
       key: '/tech',
       subNav: [
