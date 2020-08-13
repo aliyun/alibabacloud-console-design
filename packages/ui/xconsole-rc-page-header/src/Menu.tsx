@@ -1,6 +1,6 @@
 import React from 'react';
 import map from 'lodash.map';
-import Page from '@alicloud/console-components-page';
+import Page from '@alife/alicloud-components-console-page';
 
 import { INavProps } from './types';
 

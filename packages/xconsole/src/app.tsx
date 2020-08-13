@@ -11,7 +11,6 @@ const XConsoleApp: React.FunctionComponent<XConsoleAppProps> = (
   // @ts-ignore
   const { appConfig, history, sidebar, AppLayout, routeConfig } = props;
   const [ activeRegionId, setActiveRegionId ] = useState(undefined);
-  console.log('activeRegionId', activeRegionId)
   return (
     <Router history={history}>
       <RegionContext.Provider value={{activeRegionId, setActiveRegionId}}>

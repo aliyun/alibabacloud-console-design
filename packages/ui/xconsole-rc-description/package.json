@@ -1,9 +1,8 @@
 {
-  "name": "@alicloud/xconsole-rc-page",
-  "version": "2.0.0-alpha.6",
+  "name": "@alicloud/xconsole-rc-description",
+  "version": "1.0.0-beta.2",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "typings": "lib/index.d.ts",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
@@ -19,9 +18,9 @@
     "url": ""
   },
   "devDependencies": {
-    "@alicloud/console-components": "^1.0.20",
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
+    "@alicloud/console-components": "^1.0.20",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.5",
     "@types/react": "^16.8.10",
@@ -47,11 +46,12 @@
   "peerDependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "@alicloud/console-components": "^1.0.20"
   },
   "dependencies": {
-    "@alife/alicloud-components-console-page": "^0.1.0",
-    "dva": "2.6.0-beta.20",
-    "styled-components": "^4.4.0"
+    "@alicloud/console-components-data-fields": "^1.0.4",
+    "@alicloud/console-components-info": "^1.0.4",
+    "moment": "^2.24.0"
   }
 }

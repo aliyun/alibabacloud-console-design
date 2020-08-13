@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import AppLayout from '@alicloud/console-components-app-layout';
+import AppLayout from '@alife/alicloud-components-console-layout';
 import Nav from './Nav';
 import Context from './Context';
 import { IProp, PathRule } from './types/index';

@@ -1,5 +1,5 @@
 import React, { ReactNode, ReactElement, SyntheticEvent } from 'react';
-import Page, { IPageProps } from '@alicloud/console-components-page';
+import Page, { IPageProps } from '@alife/alicloud-components-console-page';
 import Breadcrumb, { IBreadcrumbItem } from '../Breadcrumb';
 
 interface IProps {

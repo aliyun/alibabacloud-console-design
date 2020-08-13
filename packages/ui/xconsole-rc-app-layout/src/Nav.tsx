@@ -1,6 +1,6 @@
 import React from 'react';
 import { generatePath } from 'dva/router';
-import ConsoleMenu from '@alicloud/console-components-console-menu/lib/RoutableMenu';
+import ConsoleMenu from '@alife/alicloud-components-console-menu/RoutableMenu';
 import map from 'lodash.map';
 import get from 'lodash.get';
 import isUndefined from 'lodash.isundefined';

@@ -2,7 +2,7 @@ import { AppConfig } from '@alicloud/xconsole';
 
 const config: AppConfig = {};
 
-// ConsoleBase 相关配置
+// Region 相关配置
 config.region = {
   // regionbar 展示的产品可用地域
   regionList: [
