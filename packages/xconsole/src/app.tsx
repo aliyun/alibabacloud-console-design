@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Router, Switch, Redirect } from 'react-router-dom';
-// @ts-ignore
+import { Router, Switch, Redirect } from 'dva/router';
 import { RegionContext } from '@alicloud/xconsole-context';
 import { getRouteFromConfig } from './route';
 import { XConsoleAppProps } from './types/XConsoleAppProps';
@@ -8,7 +7,6 @@ import { XConsoleAppProps } from './types/XConsoleAppProps';
 const XConsoleApp: React.FunctionComponent<XConsoleAppProps> = (
   props: XConsoleAppProps
 ) => {
-  // @ts-ignore
   const { appConfig, history, sidebar, AppLayout, routeConfig } = props;
   const [ activeRegionId, setActiveRegionId ] = useState(undefined);
   return (

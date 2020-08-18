@@ -5,7 +5,6 @@ import { useOpenApi, useService } from '@alicloud/xconsole/hooks';
 import { Button, Icon, Dialog, Table, DateTime, Actions } from '@alicloud/xconsole/ui';
 
 const { LinkButton } = Actions;
-export const a = 1;
 
 const searchConfig = {
   filter: [

@@ -6,4 +6,6 @@ export interface XConsoleAppProps {
   history: History;
   appConfig: AppConfig;
   routeConfig: RouteConfig;
+  sidebar,
+  AppLayout
 }
