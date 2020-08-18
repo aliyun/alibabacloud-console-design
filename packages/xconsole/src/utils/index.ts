@@ -1,4 +1,3 @@
-// @ts-ignore
 import intl from '@alicloud/console-components-intl';
 
 intl.set(
@@ -7,17 +6,19 @@ intl.set(
     messages: {},
   },
   {
+    // @ts-ignore
     determineLocale: true,
+    // @ts-ignore
     mergeMessages: {},
   }
 );
 
 export {
   default as ConsoleUitls,
-  ConsoleContext, // @ts-ignore
+  ConsoleContext
 } from '@alicloud/xconsole-context';
 
 export {
   default as intl,
-  withProvider, // @ts-ignore
+  withProvider
 } from '@alicloud/console-components-intl';
