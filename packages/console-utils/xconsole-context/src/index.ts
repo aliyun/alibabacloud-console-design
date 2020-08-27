@@ -10,3 +10,7 @@ export default {
   consoleConfig,
   region,
 };
+
+export { default as Gray } from './rc/Gray';
+export { default as ChannelLink } from './rc/ChannelLink';
+export { default as ChannelFeature } from './rc/ChannelFeature';

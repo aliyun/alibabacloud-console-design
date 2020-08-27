@@ -14,11 +14,14 @@ const hasRegionId = (match) => {
 }
 
 const reroute = (props: IConsoleContextProp<{regionId?: string}>, nextRegionId: string) => {
-  const { history, match } = props;
-  console.log('reroute nextRegionId: ', nextRegionId)
+  const { history, match, location } = props;
   if (match && match.path && hasRegionId(match)) {
     const { path } = match;
-    history.push(path.replace(':regionId', nextRegionId));
+    history.push({
+      pathname: path.replace(':regionId', nextRegionId),
+      search: location.search,
+      hash: location.hash,
+    });
   }
 }
 

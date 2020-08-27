@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import {
-  HashRouter as Router, Route, Switch
+  BrowserRouter as Router, Route, Switch
 } from 'react-router-dom';
 // @ts-ignore
 import { forApp } from '@ali/console-base-messenger';
@@ -17,7 +17,6 @@ const REGION_LIST = [
 // @ts-ignore
 const App = withConsoleConfig((props) => {
   const { region } = useContext(ConsoleContext);
-  console.log(region.getCurrentRegionId());
   return <div>{region.getCurrentRegionId()}</div>;
 });
 
@@ -31,12 +30,21 @@ storiesOf('Console Configuration', module).add('Region', () => {
               <App
                 {...props}
                 consoleBase={forApp}
-                regionList={REGION_LIST}
+                region={{
+                  regionList: REGION_LIST,
+                  reginbarVisiblePaths: [
+                    '/:regionId'
+                  ]
+                }}
+                resourceGroup={{
+                  enable: true,
+                  routeType: 'query'
+                }}
               />
             )}
           />
         </Switch>
       </Router>
-    </div>
+    </div>  
   );
 });

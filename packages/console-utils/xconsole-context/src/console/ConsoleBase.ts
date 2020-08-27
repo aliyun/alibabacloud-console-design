@@ -149,13 +149,7 @@ export const ConsoleSubscriber = {
    *
    * 原 @ali/console-base-sdk-toolkit messenger.subscribeActivated + subscribeDeactivated
    */
-  onToolkitItemActiveChange({
-    id,
-    fn,
-  }: {
-    id: string;
-    fn: (active: boolean) => void;
-  }): () => void {
+  onToolkitItemActiveChange(id: string, fn: (active: boolean) => void): () => void {
     return () => {};
   },
 

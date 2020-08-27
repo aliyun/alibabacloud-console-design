@@ -3,9 +3,16 @@ import './initializer'
 import App from './app'
 
 
+let dom = document.getElementById('<%= global.mountDomId || 'app' %>');
+if (!dom) {
+  dom = document.createElement('div');
+  document.body.append(dom)
+  dom.id = '--aliyun-xconsole-app'
+}
+
 export default mount(
   App,
-  document.getElementById('app'),
+  dom,
   '<%= global.appId %>'
 );
 

@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React from 'react';
 
 import useRegion from './region/useRegion';
 import consoleConfig from './console/index';
@@ -11,6 +11,9 @@ function withConsoleContext<P extends IConsoleContextProp, S = {}>(
   return (props: P) => {
     // 初始化 regionbar 逻辑
     const region = useRegion(props);
+
+     // 初始化 resourceGroup 逻辑
+    //  const resourceGroup = useResourceGroup(props);
 
     const context = { consoleConfig, region };
     return (

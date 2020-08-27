@@ -31,6 +31,10 @@ window.ALIYUN_CONSOLE_CONFIG = {
   NEW_VERSION: '',
 };
 
+window.CONSOLE_BASE_SETTINGS = {
+  RESOURCE_GROUP: true
+}
+
 const script = document.createElement('script');
 script.src = '//g.alicdn.com/aliyun/console-base-loader/index.js';
 document.body.appendChild(script)

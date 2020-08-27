@@ -15,9 +15,8 @@ export interface IProps {
   subTitle: string;
   subSwitcher: SelectProps;
   breadcrumbs: {
-    title: string;
     text: string;
-    to: string;
+    to?: string;
   }[];
   historyBack: string;
   history: History;
