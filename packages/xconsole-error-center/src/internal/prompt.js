@@ -44,7 +44,8 @@ export default ({
   code,
   errorConfig,
   getMessage,
-  disableExtraInfo
+  disableExtraInfo,
+  dialogType
 }) => {
   const {
     i18nMessages = {}
@@ -118,6 +119,7 @@ export default ({
 
     // 显示其他额外的信息
     ...defaultExtraInfo,
-    disableDetials: disableExtraInfo
+    disableDetials: disableExtraInfo,
+    disableCancelBtn: dialogType === 'alert'
   })(error);
 };

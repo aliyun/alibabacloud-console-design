@@ -135,7 +135,8 @@ export default function({
   getRequestExtra = _noop,
   onConfirm,
   onCancel,
-  disableDetials
+  disableDetials,
+  disableCancelBtn,
 } = {}) {
   const intl = intlSimple(locale, messages);
   const defaultTitle = intl('alert_error.title');
@@ -216,12 +217,18 @@ export default function({
     }, field => {
       const queueObject = queue[field.getValue(FIELD_NAME.INDEX)];
 
+      const buttons = [{
+        label: queueObject.confirm,
+        result: true
+      }];
+
+      if (!disableCancelBtn) {
+        buttons.push(queueObject.cancel)
+      }
+
       return {
         title: queueObject.title,
-        buttons: [{
-          label: queueObject.confirm,
-          result: true
-        }, queueObject.cancel]
+        buttons,
       };
     });
 

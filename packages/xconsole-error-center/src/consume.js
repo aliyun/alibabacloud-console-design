@@ -1,13 +1,13 @@
 import * as ErrorConsumers from './internal';
 import _get from 'lodash.get';
 
-const consume = (error, errorCodes, include, exclude, getMessage, disableExtraInfo) => {
+const consume = (error, errorCodes, include, exclude, getMessage, disableExtraInfo, defaultDialogType) => {
   const code = _get(error, 'response.data.code') || error.code;
   const errorConfig = errorCodes[code];
 
   if (typeof errorConfig === 'function') return errorConfig(error);
   
-  const { type = 'prompt', enable = true } = (errorConfig || {});
+  const { type = 'prompt', enable = true, dialogType } = (errorConfig || {});
 
   if (!enable) return;
 
@@ -24,9 +24,9 @@ const consume = (error, errorCodes, include, exclude, getMessage, disableExtraIn
   }
 
   if (ErrorConsumers[type]) {
-    ErrorConsumers[type]({ error, code, errorConfig, getMessage, disableExtraInfo });
+    ErrorConsumers[type]({ error, code, errorConfig, getMessage, disableExtraInfo, dialogType: dialogType || defaultDialogType });
   } else {
-    ErrorConsumers.prompt({ error, code, errorConfig, getMessage, disableExtraInfo });
+    ErrorConsumers.prompt({ error, code, errorConfig, getMessage, disableExtraInfo, dialogType: dialogType || defaultDialogType });
   }
 }
 
