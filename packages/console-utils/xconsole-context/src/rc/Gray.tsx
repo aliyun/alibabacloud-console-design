@@ -7,10 +7,10 @@ interface IProps {
 }
 
 const Gray: React.FunctionComponent<IProps> = (props: IProps) => {
-  const { id, children } = props;
-  if (typeof id === 'undefined') {
+  const { grayId, children } = props;
+  if (typeof grayId === 'undefined') {
     throw new Error(
-      '[Gray] id is required'
+      '[Gray] grayId is required'
     )
   }
 
