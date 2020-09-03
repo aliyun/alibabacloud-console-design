@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole",
-  "version": "2.0.0-alpha.10",
+  "version": "2.0.0-alpha.11",
   "repository": {
     "type": "git",
     "url": "https://github.com/aliyun/alibabacloud-console-design.git"
@@ -62,13 +62,13 @@
     "@alicloud/console-toolkit-preset-xconsole": "^2.0.0-alpha.9",
     "@alicloud/console-toolkit-shared-utils": "^1.0.1",
     "@alicloud/xconsole-console-base": "^1.0.0-beta.1",
-    "@alicloud/xconsole-context": "^2.0.0-alpha.9",
+    "@alicloud/xconsole-context": "^2.0.0-alpha.11",
     "@alicloud/xconsole-error-center": "^2.0.0-alpha.8",
     "@alicloud/xconsole-logger": "^2.0.0-alpha.7",
     "@alicloud/xconsole-model": "^2.0.0-alpha.7",
     "@alicloud/xconsole-mutation": "^2.0.0-alpha.7",
     "@alicloud/xconsole-query": "^2.0.0-alpha.7",
-    "@alicloud/xconsole-rc-app-layout": "^2.0.0-alpha.7",
+    "@alicloud/xconsole-rc-app-layout": "^2.0.0-alpha.11",
     "@alicloud/xconsole-rc-datetime": "^1.0.0-beta.1",
     "@alicloud/xconsole-rc-description": "^2.0.0-alpha.7",
     "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1",
@@ -83,7 +83,7 @@
     "@alicloud/xconsole-rc-result": "^2.0.0-alpha.7",
     "@alicloud/xconsole-rc-step": "^1.0.0-beta.1",
     "@alicloud/xconsole-region-context": "^1.0.0-beta.1",
-    "@alicloud/xconsole-service": "^2.0.0-alpha.7",
+    "@alicloud/xconsole-service": "^2.0.0-alpha.11",
     "@alife/alicloud-components": "*",
     "@types/react": "^16.8.24",
     "@types/webpack-env": "^1.14.0",
