@@ -1,7 +1,7 @@
 export enum ApiType {
-  plugin,
-  inner,
-  app,
-  open,
-  custom,
+  plugin = "plugin",
+  inner="inner",
+  app = "app",
+  open = "open",
+  custom = "custom",
 }

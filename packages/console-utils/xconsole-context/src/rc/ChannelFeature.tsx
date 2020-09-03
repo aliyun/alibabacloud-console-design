@@ -51,7 +51,7 @@ function checkBlackAndWhiteList(value, mixedList) {
 
 export interface IChannelFeatureProps {
   id: string;
-  region: string;
+  region?: string;
   children: React.ReactElement;
 }
 

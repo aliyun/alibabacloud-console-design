@@ -4,14 +4,59 @@ import { ConsoleContext } from '../context/Context'
 // @ts-ignore
 import Link from '@alicloud/xconsole-rc-base-link'
 import '@alicloud/xconsole-rc-base-link/dist/index.css';
+import { string } from 'prop-types';
 
 
 export interface IChannelLinkProps {
+  /**
+   * 
+   */
   linkId: string;
 
-  linkParams: Record<string, any>;
+  /**
+   * 
+   */
+  linkParams?: Record<string, any>;
 
-  pure: boolean;
+  /**
+   * 
+   */
+  pure?: boolean;
+
+  /**
+   * 
+   */
+  disabled?: boolean;
+
+  /**
+   * 
+   */
+  visible?: boolean;
+
+  /**
+   * 
+   */
+  shape?: 'text',
+
+  /**
+   * 
+   */
+  type?: 'normal',
+
+  /**
+   * 
+   */
+  size?: 'medium',
+
+  /**
+   * 
+   */
+  to?: string;
+
+  /**
+   * 
+   */
+  href?: string;
 }
 
 const ChannelLink: React.FC<IChannelLinkProps> = (props: IChannelLinkProps) => {

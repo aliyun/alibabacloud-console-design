@@ -10,7 +10,7 @@ export { default as StatusIndicator } from '@alicloud/console-components-status-
 export { default as SlidePanel, SlidePanelGroup, SlidePanelItem } from '@alicloud/console-components-slide-panel'
 
 // TODO: XConsole 组件需要被移动到 Console Component 的部分
-export { default as Link } from '@alicloud/xconsole-rc-link';
+export { ChannelLink as Link } from '@alicloud/xconsole-context';
 export { default as Result } from '@alicloud/xconsole-rc-result';
 export { default as DateTime } from '@alicloud/xconsole-rc-datetime';
 export { default as Description } from '@alicloud/xconsole-rc-description';

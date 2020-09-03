@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ConsoleContext } from '../context/Context';
 
 interface IProps {
-  id: string;
+  grayId: string;
   children: React.ReactElement<any, any> | null
 }
 
@@ -15,7 +15,7 @@ const Gray: React.FunctionComponent<IProps> = (props: IProps) => {
   }
 
   const { consoleConfig } = useContext(ConsoleContext);
-  const grayStatus = consoleConfig.getGrayStatus(props.id);
+  const grayStatus = consoleConfig.getGrayStatus(props.grayId);
 
   if (grayStatus === false) return null;
 
