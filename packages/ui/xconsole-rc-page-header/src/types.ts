@@ -6,7 +6,7 @@ export interface INavProps {
   shape: 'tab' | 'menu';
   defaultActiveKey?: string;
   activeKey?: string;
-  onChange?: () => void;
+  onChange?: (value: string) => void;
   items?: any;
 }
 

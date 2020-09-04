@@ -23,8 +23,8 @@ export interface IProps {
   dataSource?: {
     [key: string]: any;
   };
-  actions?: ReactNode;
-  extra?: ReactNode;
+  actions?: React.ReactChild;
+  extra?: React.ReactChild;
 }
 
 const XconsoleRcDescription = ({
