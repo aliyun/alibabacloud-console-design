@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-toolkit-plugin-xconsole",
-  "version": "2.0.0-alpha.7",
+  "version": "2.0.0-next.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/aliyun/alibabacloud-console-design.git"
