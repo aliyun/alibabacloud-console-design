@@ -42,6 +42,5 @@ export default ({
 export const ErrorConsume = consume;
 
 export const ErrorPrompt = (err, { errorConfig = {}, include, exclude, getMessage, disableExtraInfo, dialogType } = {}) => {
-  console.log('xxxxx',dialogType)
   consume(err, errorConfig, include, exclude, getMessage, disableExtraInfo, dialogType);
 };

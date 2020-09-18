@@ -21,7 +21,7 @@ const PageHeader = ({
   ...restProps
 }) => {
 
-  const breadcrumbItems = breadcrumbs.map(({title, text, to, ...restProps}) => (
+  const breadcrumbItems = (breadcrumbs || []).map(({title, text, to, ...restProps}) => (
     <Page.Breadcrumb.Item key="home">
       {
         to ? (

@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-error-prompt",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "elegant error prompt",
   "main": "lib/index.js",
   "license": "MIT",

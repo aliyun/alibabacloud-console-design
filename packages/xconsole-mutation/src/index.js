@@ -8,6 +8,25 @@ import debug from './_debug'
 
 const { isArray } = Array;
 
+const getQueries = (refetchQuery) => {
+  let queries = [refetchQuery];
+
+  if (isFunction(refetchQuery)) {
+    debug('refetchQuery 是函数');
+    queries = refetchQuery({});
+    if (!isArray(queries)) {
+      debug('refetchQuery 执行结果不是数组');
+      queries = [queries]
+    }
+  }
+
+  if (isArray(refetchQuery)) {
+    debug('refetchQuery 是数组');
+    queries = refetchQuery;
+  }
+
+  return queries;
+}
 const XConsoleMutation = ({
   mutation,
   variables,
@@ -29,21 +48,7 @@ const XConsoleMutation = ({
       return [];
     }
 
-    let queries = [refetchQuery];
-
-    if (isFunction(refetchQuery)) {
-      debug('refetchQuery 是函数');
-      queries = refetchQuery({});
-      if (!isArray(queries)) {
-        debug('refetchQuery 执行结果不是数组');
-        queries = [queries]
-      }
-    }
-
-    if (isArray(refetchQuery)) {
-      debug('refetchQuery 是数组');
-      queries = refetchQuery;
-    }
+    const queries = getQueries(refetchQuery)
 
     const models = queries.map((item) => {
       if (!item) {
@@ -85,9 +90,10 @@ const XConsoleMutation = ({
     debug(`Mutation ${mutation.namespace} 请求完成`);
     if (queryModels) {
       debug(`Mutation ${mutation.namespace} 请求完成, 执行 refetchQuery 动作`);
-      queryModels.forEach(queryModel => {
+      queryModels.forEach((queryModel, index) => {
+        const queries = getQueries(refetchQuery)
         if (queryModel !== null) {
-          dispatch(queryModel.action(queryModel.__variables))
+          dispatch(queryModel.action(queries[index].variables))
         }
       })
     }

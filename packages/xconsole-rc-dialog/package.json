@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-dialog",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "基于 fusion 的一个 Dialog",
   "main": "lib/index.js",
   "module": "es/index.js",

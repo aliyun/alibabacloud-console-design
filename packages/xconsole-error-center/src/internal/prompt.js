@@ -70,13 +70,13 @@ export default ({
 
       if (errorConfig) {
         if (typeof errorConfig.message === 'function') {
-          const result = message(responseMessage);
+          const result = errorConfig.message(responseMessage, err);
           return (typeof result === 'string' || typeof result === 'number') ? result : responseMessage
         }
         return intl2(errorConfig.message, responseMessage)
       }
       if ((!errorConfig || !errorConfig.message) && getMessage) {
-        return getMessage(code, _get(err, 'response.data.message'))
+        return getMessage(code, _get(err, 'response.data.message'), err)
       }
       return responseMessage
     },
@@ -120,6 +120,10 @@ export default ({
     // 显示其他额外的信息
     ...defaultExtraInfo,
     disableDetials: disableExtraInfo,
-    disableCancelBtn: dialogType === 'alert'
+    disableCancelBtn: (
+      dialogType === 'alert' 
+      && !(code === ConsoleNeedLogin || code === PostonlyOrTokenError) 
+      && !(errorConfig && (errorConfig.cancelHref || errorConfig.cancelLabel))
+    )
   })(error);
 };
