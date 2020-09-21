@@ -50,5 +50,6 @@
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.19",
     "lodash.get": "^4.4.2"
-  }
+  },
+  "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
 }

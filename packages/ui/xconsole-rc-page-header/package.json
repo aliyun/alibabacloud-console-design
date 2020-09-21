@@ -47,5 +47,6 @@
     "@alicloud/xconsole-rc-page": "^2.0.0-next.0",
     "lodash.map": "^4.6.0",
     "moment": "^2.24.0"
-  }
+  },
+  "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
 }

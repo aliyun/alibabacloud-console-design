@@ -53,5 +53,6 @@
     "lodash.delay": "^4.1.1",
     "reselect": "^3.0.0",
     "uuid": "^3.3.2"
-  }
+  },
+  "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
 }

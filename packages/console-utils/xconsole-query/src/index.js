@@ -35,10 +35,10 @@ const XConsoleQuery = ({
   }
 
   // refetch
-  const refetch = (nextVariables = {}) => {
+  const refetch = (nextVariables = {}, useNewVars) => {
     // 合并新旧参数
     const mergedVariables = {
-      ...savedVariables,
+      ...(useNewVars ? {} : savedVariables),
       ...nextVariables,
     }
     loadData(mergedVariables)

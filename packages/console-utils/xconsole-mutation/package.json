@@ -52,5 +52,6 @@
     "@types/webpack-env": "^1.14.0",
     "dva": "2.6.0-beta.20",
     "lodash.isfunction": "^3.0.9"
-  }
+  },
+  "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
 }

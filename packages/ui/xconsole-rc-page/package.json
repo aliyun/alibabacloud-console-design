@@ -53,5 +53,6 @@
     "@alife/alicloud-components-console-page": "^0.1.0",
     "dva": "2.6.0-beta.20",
     "styled-components": "^4.4.0"
-  }
+  },
+  "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
 }

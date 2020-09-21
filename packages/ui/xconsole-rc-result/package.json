@@ -54,5 +54,6 @@
   },
   "dependencies": {
     "moment": "^2.24.0"
-  }
+  },
+  "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
 }
