@@ -1,7 +1,8 @@
 {
   "name": "@alicloud/xconsole-console-base",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
@@ -30,9 +31,11 @@
     "react-dom": "^16.8.6"
   },
   "scripts": {
-    "prepublish": "npm run babel",
-    "build": "breezr build --engine rollup",
-    "babel": "breezr build --engine babel",
+    "prepublish": "rm -rf dist lib es && npm run babel && npm run build && npm run babel:esm",
+    "build:dev": "npm run babel && npm run build && npm run babel:esm",
+    "build": "breezr build --engine webpack",
+    "babel:esm": "breezr build --engine babel --es-module",
+    "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
     "storybook": "breezr start-storybook",
     "start": "npm run storybook",
     "test": "breezr test:unit"

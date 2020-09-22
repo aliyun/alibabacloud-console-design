@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib",
+    "jsx": "react",
+    "module": "esnext",
+    "target": "es5",
+    "esModuleInterop": true,
+    "lib": ["dom", "es2015", "scripthost"],
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "experimentalDecorators": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
