@@ -68,6 +68,7 @@ class VerifyForm extends Component<IProps, IState> {
     const reqData = {
       codeType,
       verifyType,
+      // eslint-disable-next-line @typescript-eslint/camelcase
       sec_token: getSecToken(),
       umid: getUmid(),
       collina: getCollina(),

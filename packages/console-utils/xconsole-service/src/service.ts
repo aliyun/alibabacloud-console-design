@@ -45,9 +45,9 @@ function createService<D = any, P = any>(
         data: opts.data
           ? opts.data
           : {
-              product,
-              actions,
-            },
+            product,
+            actions,
+          },
         // @ts-ignore
         apiType: opts.apiType,
         ignoreError: opts.ignoreError,
@@ -68,18 +68,18 @@ function createService<D = any, P = any>(
     if (opts.data) {
       data = overlap
         ? {
-            product,
-            action,
-            ...opts.data,
-            params: params || {
-              ...(opts.data.params || {}),
-              ...(params || {}),
-            },
-          }
+          product,
+          action,
+          ...opts.data,
+          params: params || {
+            ...(opts.data.params || {}),
+            ...(params || {}),
+          },
+        }
         : {
-            ...opts.data,
-            params,
-          };
+          ...opts.data,
+          params,
+        };
     }
     const res = await requestInstance.request<IResponseData<D>, never>({
       ...opts,

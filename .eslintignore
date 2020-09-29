@@ -3,3 +3,4 @@ node_modules
 lib
 dist
 es
+packages/build-tools/console-toolkit-plugin-xconsole/generator

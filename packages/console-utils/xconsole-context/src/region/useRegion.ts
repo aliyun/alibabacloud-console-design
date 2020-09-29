@@ -34,15 +34,15 @@ const reroute = (props: IConsoleContextProp<{regionId?: string}>, nextRegionId: 
 export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
   const { history, consoleBase, match, location, region: regionConfig = {} } = props;
   const { regionList, regionbarVisiblePaths = [] }  = regionConfig;
-  const region: Region = {
-    ...(consoleBase || ConsoleRegion),
-    getCurrentRegionId: (): string => currentRegionId,
-  };
-
   // 默认 Region = 路由的Region > Cookie 的 region > Region 列表中第一个 > 用户指定默认Region >'cn-hangzhou'
   const [currentRegionId, setCurrentRegionId] = useState<string>(
     determineRegionId(match.params.regionId, '', regionList)
   );
+
+  const region: Region = {
+    ...(consoleBase || ConsoleRegion),
+    getCurrentRegionId: (): string => currentRegionId,
+  };
 
   const regionContext = useContext(RegionContext);
 

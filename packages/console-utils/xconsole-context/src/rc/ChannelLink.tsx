@@ -4,7 +4,6 @@ import { ConsoleContext } from '../context/Context'
 // @ts-ignore
 import Link from '@alicloud/xconsole-rc-base-link'
 import '@alicloud/xconsole-rc-base-link/dist/index.css';
-import { string } from 'prop-types';
 
 
 export interface IChannelLinkProps {
@@ -36,17 +35,17 @@ export interface IChannelLinkProps {
   /**
    * 
    */
-  shape?: 'text',
+  shape?: 'text';
 
   /**
    * 
    */
-  type?: 'normal',
+  type?: 'normal';
 
   /**
    * 
    */
-  size?: 'medium',
+  size?: 'medium';
 
   /**
    * 

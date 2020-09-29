@@ -15,10 +15,10 @@ export const transNavToItems = (navs) => {
       items: isUndefined(nav.subNav)
         ? null
         : map(nav.subNav, (sub) => ({
-            ...sub,
-            label: sub.title,
-            visible: isUndefined(sub.hide) ? true : !sub.hide,
-          })),
+          ...sub,
+          label: sub.title,
+          visible: isUndefined(sub.hide) ? true : !sub.hide,
+        })),
     };
   });
 };

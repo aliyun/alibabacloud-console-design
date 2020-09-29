@@ -88,8 +88,8 @@ export default function useList<Result = any, Item = any>(
     );
   };
   const { data, isValidating: loading, mutate } = useSWR<
-    Item[] | undefined,
-    any
+  Item[] | undefined,
+  any
   >([page, pageSize, nextToken, maxResults, startTime], fetcher, {
     ...swrConfig,
   });

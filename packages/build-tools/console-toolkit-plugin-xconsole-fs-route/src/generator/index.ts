@@ -59,7 +59,7 @@ export class Generator {
     const routesMetas = [...app.globalRoutes, ...app.routes];
     const imports = routesMetas.map((route) => route.getComponents()).join('\n');
     const routes = routesMetas.map((route) => route.getRouteCode()).join(',\n');
-    const route_config =
+    const routeConfig =
 `
 ${imports}
 export default{
@@ -69,7 +69,7 @@ export default{
   ]
 };`;
 
-    writeFileSync(resolve(this.dir, 'route_config.js'), route_config, 'UTF-8');
+    writeFileSync(resolve(this.dir, 'route_config.js'), routeConfig, 'UTF-8');
   }
 
   private ensureDir() {

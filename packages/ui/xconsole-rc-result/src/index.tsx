@@ -30,7 +30,7 @@ const XconsoleRcResult = ({
         { description && <div className="xc_rc_result_description">{description}</div> }
         { extra && <div className="xc_rc_result_extra">{extra}</div> }
         { actions && <div className="xc_rc_result_actions">{actions}</div> }
-     </Message>
+      </Message>
     </div>
     <div className="xc_rc_result_children">
       {children}

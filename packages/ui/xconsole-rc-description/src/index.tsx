@@ -2,7 +2,7 @@ import React, {
   Fragment,
   ReactNode,
   ReactElement,
- } from 'react';
+} from 'react';
 import Info from '@alicloud/console-components-info';
 import DataFields from '@alicloud/console-components-data-fields';
 import './index.less';

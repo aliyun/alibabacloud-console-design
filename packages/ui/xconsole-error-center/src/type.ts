@@ -43,8 +43,8 @@ export interface ErrorCodeConfig {
 }
 
 export interface ErrorCodeConfigMap {
-  [key: string]: Partial<ErrorCodeConfig>
-};
+  [key: string]: Partial<ErrorCodeConfig>;
+}
 
 export interface BaseResponse<T> {
   code: string;
@@ -65,8 +65,8 @@ export interface ErrorPromptOption {
   errorConfig?: Partial<ErrorCodeConfig>;
   getMessage?: GetMessageCallback;
   disableExtraInfo?: boolean;
-  dialogType?: 'alert' | 'prompt'
-};
+  dialogType?: 'alert' | 'prompt';
+}
 
 export interface ErrorCenterOption {
   enable?: boolean;
@@ -75,5 +75,5 @@ export interface ErrorCenterOption {
   errorConfig?: ErrorCodeConfigCallback;
   getMessage?: GetMessageCallback;
   disableExtraInfo?: boolean;
-  dialogType?: 'alert' | 'prompt'
-};
+  dialogType?: 'alert' | 'prompt';
+}

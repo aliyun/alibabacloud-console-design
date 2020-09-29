@@ -47,7 +47,7 @@ export class RouteMeta {
     this.distDir = distDir;
     this.style = resolve(directory, SYTLE);
     this.component = resolve(directory, COMPONENT_ENTRY)
-    .replace(/\.(j|t)sx?/g, ext);
+      .replace(/\.(j|t)sx?/g, ext);
 
     this.config = this.existPath(resolve(directory, CONFIG));
     this.model = this.existPath(resolve(directory, MODEL));
@@ -95,7 +95,9 @@ export class RouteMeta {
     debug('fs-route', "Config is: %s",JSON.stringify(this.config));
   }
 
-  private getLayout() {}
+  private getLayout() {
+    // nothing
+  }
 
   getComponents() {
     const imports = [
@@ -116,7 +118,11 @@ export class RouteMeta {
     }`;
   }
 
-  private getLang() {}
+  private getLang() {
+    // nothing
+  }
 
-  private getHTML() {}
+  private getHTML() {
+    // nothing
+  }
 }

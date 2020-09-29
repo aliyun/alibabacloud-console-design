@@ -21,7 +21,6 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
     items,
     title,
     navs,
-    collapsedKeys,
     defaultOpenKeys,
     currentPath,
     menuParams,

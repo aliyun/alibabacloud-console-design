@@ -16,9 +16,9 @@ export interface RouteConfig {
     hasLayout: boolean;
     indexRoute: string;
     prefix?: string;
-    mode: 'browser' | 'hash',
-    appId: string,
+    mode: 'browser' | 'hash';
+    appId: string;
     redirect: string;
   };
   routes: RouteItem[];
-};
+}

@@ -10,6 +10,6 @@ interface IContextValue {
 
 export default React.createContext<IContextValue>({
   sidebar: {},
-  setTitle: (title: string) => {},
-  setNavs: (navs: INavConfig[]) => {},
+  setTitle: (title: string) => {/* nothing */},
+  setNavs: (navs: INavConfig[]) => {/* nothing */},
 });

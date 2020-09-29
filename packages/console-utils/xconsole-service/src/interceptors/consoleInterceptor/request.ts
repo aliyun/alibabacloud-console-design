@@ -72,6 +72,7 @@ function getRegion(data: any): string {
 
 // 必填缺省参数补全并格式化部分参数
 const utilsMap: { [key: string]: (data?: any) => any } = {
+  // eslint-disable-next-line @typescript-eslint/camelcase
   sec_token: getSecToken,
   collina: getCollina,
   umid: getUmid,
@@ -82,10 +83,10 @@ function processData(
   data: IOptions['data'] = {},
   keys: string[] = []
 ): {
-  [key: string]: any;
-  params?: string;
-  actions?: string;
-} {
+    [key: string]: any;
+    params?: string;
+    actions?: string;
+  } {
   const nextData = { ...data };
   keys.forEach((key) => {
     if (typeof nextData[key] === 'undefined') {

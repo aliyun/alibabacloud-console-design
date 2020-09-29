@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes, { string } from 'prop-types'
 import { ConsoleContext } from '../context/Context'
 import get from 'lodash/get'
 import './index.less'

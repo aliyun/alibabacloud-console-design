@@ -25,7 +25,7 @@ export default async (api: PluginAPI, options: PluginOptions) => {
       .clear()
       .add(`./${TMP_DIR}/index.js`)
       .end()
-    .resolve
+      .resolve
       .alias
       .merge({
         '~': resolve(api.getCwd(), 'src')

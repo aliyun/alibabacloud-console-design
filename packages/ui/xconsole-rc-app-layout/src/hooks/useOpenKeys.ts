@@ -36,7 +36,6 @@ const useOpenKeys = (
         }
       });
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navs, currentPath]);
 
   const onOpenKeys = (keys: string[]): void => {
