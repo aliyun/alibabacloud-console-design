@@ -1,3 +1,4 @@
+// @ts-ignore
 import Cookie from 'js-cookie';
 
 import isArray from 'lodash/isArray';

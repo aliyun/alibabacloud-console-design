@@ -18,7 +18,7 @@ export interface RegionConfig {
   defaultRegion?: string;
   
   // 路由匹配到 region 展示或者隐藏
-  reginbarVisiblePaths?: PathRule;
+  regionbarVisiblePaths?: PathRule;
 }
 
 export enum ResourceGroupType {

@@ -54,9 +54,10 @@ var XConsoleQuery = function XConsoleQuery(_ref) {
 
   var refetch = function refetch() {
     var nextVariables = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var useNewVars = arguments.length > 1 ? arguments[1] : undefined;
 
     // 合并新旧参数
-    var mergedVariables = _objectSpread(_objectSpread({}, savedVariables), nextVariables);
+    var mergedVariables = _objectSpread(_objectSpread({}, useNewVars ? {} : savedVariables), nextVariables);
 
     loadData(mergedVariables);
     setSavedVariables(mergedVariables);

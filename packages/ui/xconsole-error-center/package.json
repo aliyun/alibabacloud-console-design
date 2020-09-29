@@ -33,14 +33,13 @@
     "react-dom": "^16.8.6"
   },
   "scripts": {
-    "prepublish": "rm -rf dist lib es && npm run babel",
-    "build:dev": "npm run babel",
-    "build": "breezr build --engine webpack",
-    "babel": "breezr build --engine babel",
+    "prepublish": "npm run clean && npm run build && npm run babel && npm run babel:esm",
+    "build:dev": "npm run build && npm run babel && npm run babel:esm",
+    "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
     "babel:esm": "breezr build --engine babel --es-module",
+    "build": "breezr build --engine webpack",
     "storybook": "breezr start-storybook",
-    "start": "npm run storybook",
-    "test": "breezr test:unit"
+    "clean": "rm -rf es build lib yarn.lock"
   },
   "peerDependencies": {
     "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1",

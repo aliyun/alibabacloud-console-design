@@ -1,3 +1,4 @@
+// @ts-ignore
 import Cookie from 'js-cookie';
 
 // 默认标识

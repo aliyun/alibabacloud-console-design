@@ -27,7 +27,7 @@ const ErrorCenter = (errorCenterOption: ErrorCenterOption) => {
 
       innerErrorPrompt({
         error: err,
-        errorConfig: valideErrorCodes[err.response?.data?.code] || {},
+        errorConfig: valideErrorCodes[err.response?.data?.code] || errorCenterOption.errorConfig ||{},
         getMessage,
         disableExtraInfo,
         dialogType

@@ -21,7 +21,7 @@ export interface IErrorDetailedInfo extends IErrorDetails {
   message?: string | ReactElement;
 }
 
-export type ErrorCodeConfigCallback = (error: ResponseError) => ErrorCodeConfig;
+export type ErrorCodeConfigCallback = (error: ResponseError) => Partial<ErrorCodeConfig>;
 
 export interface ErrorCodeConfig {
   // 弹窗标题
@@ -64,12 +64,11 @@ export interface ErrorPromptOption {
   dialogType?: 'alert' | 'prompt'
 };
 
-export type ErrorCodesConfigCallback = (error: ResponseError) => ErrorCodeConfigMap;
-
 export interface ErrorCenterOption {
   enable?: boolean;
   errorCode?: ErrorCodeConfigMap;
-  errorCodes?: ErrorCodeConfigMap | ErrorCodesConfigCallback;
+  errorCodes?: ErrorCodeConfigMap;
+  errorConfig?: ErrorCodeConfigCallback;
   getMessage?: GetMessageCallback;
   disableExtraInfo?: boolean;
   dialogType?: 'alert'

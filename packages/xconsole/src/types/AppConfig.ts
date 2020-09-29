@@ -1,3 +1,4 @@
+import { ErrorCenterOption } from '@alicloud/xconsole-error-center'
 type PathRule = string[] | RegExp[];
 
 interface RegionConfig {
@@ -8,7 +9,7 @@ interface RegionConfig {
   // 默认 fallback 的 region
   defaultRegion?: string;
   // 路由匹配到 region 展示或者隐藏
-  reginbarVisiblePaths?: PathRule;
+  regionbarVisiblePaths?: PathRule;
 }
 
 interface ConsoleBaseConfig {
@@ -51,4 +52,8 @@ export interface AppConfig {
    * consoleMenu 相关配置
    */
   consoleMenu?: ConsoleMenuConfig;
+  /**
+   * 错误中心配置
+   */
+  errorCenter?: ErrorCenterOption; 
 }

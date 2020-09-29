@@ -10,7 +10,7 @@ config.region = {
     { id: 'cn-qingdao', name: '华北 2' },
   ],
   // regionbar 显示的路径
-  reginbarVisiblePaths: [
+  regionbarVisiblePaths: [
     '/:regionId/basic-list',
     '/overview'
   ]
@@ -26,5 +26,14 @@ config.consoleMenu = {
     '/fail-result',
   ]
 };
+
+config.errorCenter = {
+  enable: true,
+  errorConfig: (error) => {
+    return {
+      cancelHref: 'testsss'
+    }
+  }
+}
 
 export default config;

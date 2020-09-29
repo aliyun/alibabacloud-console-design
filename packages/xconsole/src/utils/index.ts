@@ -22,3 +22,8 @@ export {
   default as intl,
   withProvider
 } from '@alicloud/console-components-intl';
+
+export {
+  default as ErrorCenter,
+  ErrorPrompt
+} from '@alicloud/xconsole-error-center';

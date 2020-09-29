@@ -27,7 +27,7 @@
 
 对于 Region 化 云产品默认选择的地域。
 
-#### config.reginbarVisiblePaths
+#### config.regionbarVisiblePaths
 * Type: string
 * Default:  ```string[]```
 
@@ -35,7 +35,7 @@ regionBar 显示的路径
 
 例子：
 ```javascript
-reginbarVisiblePaths: [
+regionbarVisiblePaths: [
     '/:regionId/basic-list',
     '/overview'
   ]
@@ -84,7 +84,7 @@ interface RegionConfig {
   // 默认 fallback 的 region
   defaultRegion?: string;
   // 路由匹配到 region 展示或者隐藏
-  reginbarVisiblePaths?: PathRule;
+  regionbarVisiblePaths?: PathRule;
 }
 
 interface ConsoleBaseConfig {

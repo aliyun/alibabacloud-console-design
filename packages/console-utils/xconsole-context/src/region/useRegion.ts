@@ -33,7 +33,7 @@ const reroute = (props: IConsoleContextProp<{regionId?: string}>, nextRegionId: 
  */
 export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
   const { history, consoleBase, match, location, region: regionConfig = {} } = props;
-  const { regionList, reginbarVisiblePaths = [] }  = regionConfig;
+  const { regionList, regionbarVisiblePaths = [] }  = regionConfig;
   const region: Region = {
     ...(consoleBase || ConsoleRegion),
     getCurrentRegionId: (): string => currentRegionId,
@@ -94,7 +94,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
 
   useEffect(() => {
     consoleBase.toggleRegion(false)
-    reginbarVisiblePaths.forEach((showRegionPath) => {
+    regionbarVisiblePaths.forEach((showRegionPath) => {
       const matches = matchPath(location.pathname, {
         path: showRegionPath,
         exact: true,
@@ -104,7 +104,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
         consoleBase.toggleRegion(true)
       }
     });
-  }, [reginbarVisiblePaths, location.pathname])
+  }, [regionbarVisiblePaths, location.pathname])
 
   return region;
 };

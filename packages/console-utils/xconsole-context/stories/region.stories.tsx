@@ -32,7 +32,7 @@ storiesOf('Console Configuration', module).add('Region', () => {
                 consoleBase={forApp}
                 region={{
                   regionList: REGION_LIST,
-                  reginbarVisiblePaths: [
+                  regionbarVisiblePaths: [
                     '/:regionId'
                   ]
                 }}

@@ -5,7 +5,7 @@ import { Router } from 'dva/router'
 import createLoading from 'dva-loading'
 import { createBrowserHistory, createHashHistory } from 'history'
 
-import { withProvider } from '@alicloud/xconsole'
+import { withProvider, ErrorCenter } from '@alicloud/xconsole'
 
 <% if(global.hasUIConfig){ %>
 // 如果配置了自定义 UI 系统，则使用项目配置
@@ -58,9 +58,9 @@ const app = dva({ history: _history })
 //app.use(register(app))
 app.use(createLoading())
 
-//if (appConfig.errorCenter && appConfig.errorCenter.enable) {
-//  app.use(ErrorCenter(appConfig))
-//}
+if (appConfig.errorCenter && appConfig.errorCenter.enable) {
+  app.use(ErrorCenter(appConfig.errorCenter))
+}
 
 const Routes = getRoutes({
   history: _history
