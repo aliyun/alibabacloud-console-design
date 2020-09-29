@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-shared-utils",
-  "version": "2.0.0-next.1",
+  "version": "2.0.0-next.2",
   "description": "shared lib for xconsole packages",
   "main": "lib/index.js",
   "module": "es/index.js",
