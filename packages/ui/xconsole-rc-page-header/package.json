@@ -1,0 +1,52 @@
+{
+  "name": "@alicloud/xconsole-rc-page-header",
+  "version": "2.0.0-next.2",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "license": "MIT",
+  "homepage": "https://github.com/aliyun/alibabacloud-console-design",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
+  },
+  "author": {
+    "name": "",
+    "email": "",
+    "url": ""
+  },
+  "devDependencies": {
+    "@alicloud/console-components": "^1.0.20",
+    "@alicloud/console-toolkit-cli": "^1.0.0",
+    "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
+    "babel-loader": "^8.0.5",
+    "jest": "^24.2.0-alpha.0",
+    "less": "^3.0.0-alpha.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "scripts": {
+    "prepublish": "npm run babel",
+    "build": "breezr build --engine rollup",
+    "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
+    "storybook": "breezr start-storybook",
+    "start": "npm run storybook",
+    "test": "breezr test:unit"
+  },
+  "peerDependencies": {
+    "@alicloud/console-components": "^1.0.20",
+    "dva": "*",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "dependencies": {
+    "@alicloud/xconsole-rc-page": "^2.0.0-next.2",
+    "lodash.map": "^4.6.0",
+    "moment": "^2.24.0"
+  },
+  "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
+}

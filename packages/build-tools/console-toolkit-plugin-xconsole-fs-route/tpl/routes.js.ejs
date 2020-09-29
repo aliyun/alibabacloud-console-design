@@ -1,0 +1,25 @@
+import React from 'react';
+import XConsoleApp from '@alicloud/xconsole'
+import sidebar from '~/sidebar'
+<% if(global.hasLayout){ %>
+import AppLayout from '~/layout';
+<% } else { %>
+import { AppLayout } from '@alicloud/xconsole/ui'
+<% } %>
+<% if(global.hasAppConfig){ %>
+import appConfig from '~/appConfig';
+<% } %>
+import routeConfig from './route_config';
+
+<% if(!global.hasAppConfig){ %>
+const appConfig = {}
+<% } %>
+
+export default (config = {}) => () => (
+  <XConsoleApp {...{
+    sidebar,
+    routeConfig,
+    AppLayout,
+    appConfig,
+    ...config
+  }} />);

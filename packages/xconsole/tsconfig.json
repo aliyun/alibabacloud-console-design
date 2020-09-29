@@ -4,13 +4,18 @@
     "jsx": "react",
     "module": "esnext",
     "target": "es5",
-    "esModuleInterop": true,
     "lib": ["dom", "es2015", "scripthost"],
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
     "skipLibCheck": true,
     "experimentalDecorators": true
   },
+  "include": [
+    "./src/*",
+    "./src/*/*"
+  ],
   "exclude": [
     "node_modules"
   ]

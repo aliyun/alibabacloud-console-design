@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib",
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "target": "es5",
+    "esModuleInterop": true,
+    "lib": ["dom", "es2015", "scripthost"],
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "./src/*",
+  ],
+  "exclude": [
+    // "node_modules"
+  ]
+}

@@ -10,6 +10,7 @@
 node_modules/
 packages/*/node_modules/
 packages/*/lib/
+packages/**/*/lib/
 
 # generated
 *.tgz*

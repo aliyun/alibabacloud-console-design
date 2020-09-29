@@ -1,1 +1,1 @@
-export * from '@alicloud/console-components'
+export * from '../lib/ui/index'

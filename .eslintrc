@@ -1,0 +1,62 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "arrowFunctions": true,
+      "blockBindings": true,
+      "classes": true,
+      "defaultParams": true,
+      "destructuring": true,
+      "forOf": true,
+      "jsx": true,
+      "legacyDecorators": true,
+      "objectLiteralComputedProperties": true,
+      "objectLiteralShorthandMethods": true,
+      "objectLiteralShorthandProperties": true,
+      "spread": true,
+      "superInFunctions": true,
+      "templateStrings": true
+    }
+  },
+  "rules": {
+    "@typescript-eslint/interface-name-prefix": ["error", "always"],
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "import/extensions": [
+      2,
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "json": "never",
+        "js": "never"
+      }
+    ],
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-props-no-spreading": ["off"],
+    "@typescript-eslint/unbound-method": "off",
+    "no-plusplus": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ]
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "extends": [
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint",
+    "prettier/react",
+    "prettier"
+  ]
+}
