@@ -8,11 +8,10 @@ import Account from './Account';
 
 export default () => (
   <Page
-    style={{ background: '#fafafa', height: '100%' }}
     title={intl('title.overview')}
     breadcrumbs={[
       {
-        link: '/',
+        to: '/',
         text: intl('title.home'),
       },
       {

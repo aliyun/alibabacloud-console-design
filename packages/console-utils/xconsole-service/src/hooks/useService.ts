@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import createService from '../service';
 import { IOptions } from '../types';
 import useAsync from './useAsync';

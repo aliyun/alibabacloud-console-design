@@ -28,6 +28,7 @@ const InstanceDescription = () => {
           render: value => (<DateTime value={value} />),
         },
       ]}
+      // @ts-ignore
       operation={(
         <Button text type="primary">
           {intl('instance.update')}
