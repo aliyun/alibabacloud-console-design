@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-page-header",
-  "version": "2.0.0-next.0",
+  "version": "2.0.0-next.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "license": "MIT",
@@ -44,7 +44,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@alicloud/xconsole-rc-page": "^2.0.0-next.0",
+    "@alicloud/xconsole-rc-page": "^2.0.0-next.1",
     "lodash.map": "^4.6.0",
     "moment": "^2.24.0"
   },
