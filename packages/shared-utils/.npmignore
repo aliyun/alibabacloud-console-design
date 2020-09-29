@@ -1,8 +1,0 @@
-.gitignore
-node_module
-src
-tsconfig.json
-tslint.json
-tests
-stories
-config

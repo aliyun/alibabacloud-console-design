@@ -36,6 +36,10 @@ export interface ErrorCodeConfig {
   cancelLabel: string;
   // 点击取消跳转的链接
   cancelHref: string;
+  // 关闭详情
+  disableExtraInfo?: boolean;
+  // 只展示一个按钮
+  dialogType?: 'alert';
 }
 
 export interface ErrorCodeConfigMap {
@@ -71,5 +75,5 @@ export interface ErrorCenterOption {
   errorConfig?: ErrorCodeConfigCallback;
   getMessage?: GetMessageCallback;
   disableExtraInfo?: boolean;
-  dialogType?: 'alert'
+  dialogType?: 'alert' | 'prompt'
 };

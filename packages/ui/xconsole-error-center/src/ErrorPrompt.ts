@@ -53,6 +53,10 @@ const getErrorConfig = (
   };
 }
 
+// TODO: Error 按钮的隐藏
+// TODO: Icon 的展示
+// TODO: 新开窗口
+
 const showError = (option: ShowErrorOption) => {
   const { error, disableExtraInfo, dialogType, getMessage } = option;
 
