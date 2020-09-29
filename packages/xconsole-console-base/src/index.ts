@@ -50,16 +50,16 @@ const XconsoleConsoleBase = ({
   enableConsoleBaseNew,
   forApp,
   activeRegionId,
-  reginbarVisiblePaths
+  regionbarVisiblePaths
 }: any) => {
   React.useEffect(() => {
     // handle consolebase
     if (enableConsoleBaseNew && forApp) {
-      return handleConsoleBase(forApp, history, regionList, activeRegionId, reginbarVisiblePaths, location)
+      return handleConsoleBase(forApp, history, regionList, activeRegionId, regionbarVisiblePaths, location)
     }
 
     return handleLegacyRegion(regionList, history);
-  }, [regionList, history, activeRegionId, reginbarVisiblePaths, location.pathname])
+  }, [regionList, history, activeRegionId, regionbarVisiblePaths, location.pathname])
 
   // To tell topbar to rerender the region list for every route change
   React.useEffect(() => {
