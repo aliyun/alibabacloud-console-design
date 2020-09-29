@@ -5,6 +5,7 @@
 ``` javascript
 import { ErrorCenterOption } from '@ali/xconsole/types'
 
+// or 静态配置
 config.errorCenter: ErrorCenterOption = {
   enable: true, // 配置为 false 的话不会出现报错弹窗
   errorCodes: {
@@ -19,20 +20,18 @@ config.errorCenter: ErrorCenterOption = {
   }
 };
 
-// or
+// or 动态配置
 
 config.errorCenter: ErrorCenterOption = {
   enable: true, // 配置为 false 的话不会出现报错弹窗
-  errorCodes: (error: ResponseError) => {
-    return {
-      ConsoleNeedLogin: {
-        title: "Error Title", // 弹窗标题
-        message: "登录失效，请重新登录", // 弹窗信息，默认值为 error.message
-        confirmLabel: "重新登录", // 确定按钮文案
-        confirmHref: "https://aliyun.com", // 点击确定跳转的链接
-        cancelLabel: "留在页面", // 取消按钮文案
-        cancelHref: "https://aliyun.com" // 点击取消跳转的链接
-      }
+  errorConfig: (error: ResponseError) => {
+    return  {
+      title: "Error Title", // 弹窗标题
+      message: "登录失效，请重新登录", // 弹窗信息，默认值为 error.message
+      confirmLabel: "重新登录", // 确定按钮文案
+      confirmHref: "https://aliyun.com", // 点击确定跳转的链接
+      cancelLabel: "留在页面", // 取消按钮文案
+      cancelHref: "https://aliyun.com" // 点击取消跳转的链接
     }
   }
 };
@@ -52,7 +51,9 @@ interface ErrorCenterOption {
   // 是否开启全局接口报错
   enable?: boolean;
   // 接口对于每个接口错误码的配置项
-  errorCodes?: ErrorCodeConfigMap | ErrorCodesConfigCallback;
+  errorCodes?: ErrorCodeConfigMap | ErrorConfigCallback;
+  // 动态接口
+  errorConfig?: (error: ResponseError) => ErrorCodeConfig;
   // 全局处理 报错文案的地方
   getMessage?: (code: string, msg: string, error: ResponseError) => string;
 };
