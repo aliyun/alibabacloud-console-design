@@ -1,5 +1,14 @@
 # Console Design
 
+<p align="center">
+<a href=" https://www.alibabacloud.com"><img src="https://aliyunsdk-pages.alicdn.com/icons/AlibabaCloud.svg"></a>
+</p>
+
+[![NPM version][npm-image]][npm-url]
+
+[npm-image]: https://img.shields.io/npm/v/@alicloud/xconsole.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/@alicloud/xconsole
+
 Console Design 是为阿里云控制台业务研发提供的解决方案，除了包括开发框架外，默认会与控制台设计规范及交互规范有更紧密的结合。我们希望 Console Design 能帮助控制台开发更聚焦业务开发，不用额外的去考虑设计规范，控制台标准等方面，让开发变成一个更轻松的事情!
 
 ## 快速开始
