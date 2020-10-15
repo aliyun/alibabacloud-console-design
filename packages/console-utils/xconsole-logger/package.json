@@ -26,13 +26,12 @@
     "react-dom": "^16.8.6"
   },
   "scripts": {
-    "prepublish": "npm run babel",
-    "build": "breezr build --engine rollup",
-    "build:dev": "npm run babel",
-    "babel": "breezr build --engine babel && && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
+    "prepublish": "npm run clean && npm run build && npm run babel && npm run babel:esm",
+    "babel": "breezr build --engine babel",
+    "babel:esm": "breezr build --engine babel --es-module",
+    "build": "breezr build --engine webpack",
     "storybook": "breezr start-storybook",
-    "start": "npm run storybook",
-    "test": "breezr test:unit"
+    "clean": "rm -rf es build lib yarn.lock"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
