@@ -1,4 +1,4 @@
-export * from '@alife/alicloud-components';
+export * from '@alicloud/console-components';
 
 export { default as Page } from './rc-page/index';
 export { default as PageHeader, PageProps } from './rc-page/index';

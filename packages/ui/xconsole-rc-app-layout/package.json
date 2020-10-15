@@ -52,8 +52,8 @@
     "styled-components": "^4.2.1"
   },
   "dependencies": {
-    "@alife/alicloud-components-console-layout": "^0.1.1",
-    "@alife/alicloud-components-console-menu": "^0.1.1",
+    "@alicloud/console-components-app-layout": "alpha",
+    "@alicloud/console-components-console-menu": "alpha",
     "lodash.get": "^4.4.2",
     "lodash.isundefined": "^3.0.1",
     "lodash.map": "^4.6.0",

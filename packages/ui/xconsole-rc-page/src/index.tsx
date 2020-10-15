@@ -1,4 +1,4 @@
 import Page from './Page';
 
-export { Menu } from '@alife/alicloud-components-console-page';
+export { Menu } from '@alicloud/console-components-page';
 export default Page;

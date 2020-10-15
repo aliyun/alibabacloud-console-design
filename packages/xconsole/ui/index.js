@@ -1,3 +1,3 @@
-import '@alicloudfe/components/dist/xconsole.css';
+import '@alicloud/console-components/dist/wind.css';
 
 export * from '../lib/ui'

@@ -1,5 +1,5 @@
 import { RouteComponentProps } from 'dva/router';
-import { IRoutableItemDescriptor } from '@alife/alicloud-components-console-menu/lib/ItemDescriptor';
+import { IRoutableItemDescriptor } from '@alicloud/console-components-console-menu/lib/ItemDescriptor';
 
 export type PathRule = string[] | RegExp[];
 

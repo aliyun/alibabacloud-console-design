@@ -50,7 +50,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@alife/alicloud-components-console-page": "^0.1.0",
+    "@alicloud/console-components-page": "^1.0.0",
     "dva": "2.6.0-beta.20",
     "styled-components": "^4.4.0"
   },

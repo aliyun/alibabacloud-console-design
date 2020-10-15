@@ -93,7 +93,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
   }, [regionList, history]);
 
   useEffect(() => {
-    consoleBase.toggleRegion(false)
+    region.toggleRegion(false)
     regionbarVisiblePaths.forEach((showRegionPath) => {
       const matches = matchPath(location.pathname, {
         path: showRegionPath,
@@ -101,7 +101,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
         strict: true,
       });
       if (matches) {
-        consoleBase.toggleRegion(true)
+        region.toggleRegion(true)
       }
     });
   }, [regionbarVisiblePaths, location.pathname])
