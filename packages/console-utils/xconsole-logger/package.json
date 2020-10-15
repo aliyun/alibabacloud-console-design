@@ -29,7 +29,7 @@
     "prepublish": "npm run babel",
     "build": "breezr build --engine rollup",
     "build:dev": "npm run babel",
-    "babel": "breezr build --engine babel",
+    "babel": "breezr build --engine babel && && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
     "storybook": "breezr start-storybook",
     "start": "npm run storybook",
     "test": "breezr test:unit"

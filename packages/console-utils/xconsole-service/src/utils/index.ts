@@ -8,17 +8,17 @@ import {
   LOCALE,
 } from '../const/index';
 
-export const getGlobalVariable = (varibaleName?: string): any => {
-  if (typeof varibaleName === 'undefined') {
+export const getGlobalVariable = (variableName?: string): any => {
+  if (typeof variableName === 'undefined') {
     throw new Error('VariableName must be provided');
   }
-  if (typeof varibaleName !== 'string') {
+  if (typeof variableName !== 'string') {
     throw new TypeError(
-      `expect varibaleName to be a string,
-      but actually got: ${typeof varibaleName}`
+      `expect variableName to be a string,
+      but actually got: ${typeof variableName}`
     );
   }
-  return (window as { [key: string]: any })[varibaleName];
+  return (window as { [key: string]: any })[variableName];
 };
 
 export const getConsoleConfig = (key: string): any => {

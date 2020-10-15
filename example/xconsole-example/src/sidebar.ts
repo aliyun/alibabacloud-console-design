@@ -1,4 +1,4 @@
-import {intl} from '@alicloud/xconsole'
+import { intl } from '@alicloud/xconsole/utils'
 
 export default {
   title: 'XConsole',

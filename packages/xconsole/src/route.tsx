@@ -1,5 +1,4 @@
 import React, { createElement } from 'react';
-import { forApp } from '@ali/console-base-messenger';
 import { Route, RouteProps } from 'react-router-dom';
 import { withConsoleConfig } from '@alicloud/xconsole-context';
 import { XConsoleAppProps } from './types/XConsoleAppProps';
@@ -23,8 +22,7 @@ const getPageComponent = (
       return createElement(pageComponent, {
         ...props,
         // @ts-ignore
-        region: appConfig.region,
-        consoleBase: forApp,
+        region: appConfig.region
       });
     },
   };

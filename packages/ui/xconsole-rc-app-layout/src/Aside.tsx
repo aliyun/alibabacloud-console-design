@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import AppLayout from '@alife/alicloud-components-console-layout';
+
 import Nav from './Nav';
 import Context from './Context';
-import { IProp, PathRule } from './types/index';
 import { isPathMatch } from './utils/index';
+import { IProp, PathRule } from './types/index';
 import useCollapsed from './hooks/useCollapsed';
 
 const computeSidebarVisibleStatus = (

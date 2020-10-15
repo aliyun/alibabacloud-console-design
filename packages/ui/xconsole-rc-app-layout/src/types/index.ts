@@ -39,11 +39,20 @@ export interface ISidebarConfig {
   // 整个导航标题
   title: string;
 
-  // 侧边栏的
+  // 侧边栏的列目配置
   navs: INavConfig[];
 
+  /**
+   * @deprecated
+   */
   defaultOpenKeys?: string[];
+  /**
+   * @deprecated
+   */
   collapsedKeys?: string[];
+  /**
+   * @deprecated
+   */
   invisiblePaths?: string[];
 }
 
