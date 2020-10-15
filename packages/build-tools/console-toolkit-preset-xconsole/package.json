@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/console-toolkit-preset-xconsole",
-  "version": "2.0.0-next.2",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/aliyun/alibabacloud-console-design.git"
@@ -37,7 +37,7 @@
   "dependencies": {
     "@alicloud/console-toolkit-plugin-block": "^1.0.0-rc.7",
     "@alicloud/console-toolkit-plugin-os": "^0.2.10",
-    "@alicloud/console-toolkit-plugin-xconsole-fs-route": "^2.0.0-next.2",
+    "@alicloud/console-toolkit-plugin-xconsole-fs-route": "^2.0.0",
     "@alicloud/console-toolkit-preset-official": "^1.0.0",
     "rimraf": "^3.0.0"
   },
