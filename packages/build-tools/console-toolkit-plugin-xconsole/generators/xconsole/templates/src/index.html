@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Title</title>
+  <% if (__dev__) { %>
+    <!-- 以下只在开发环境生效，千万不要写出 这个 if 判断，线上具体配置以 Viper 上的配置为主-->
+    <script>
+      var ALIYUN_CONSOLE_CONFIG = {
+        LANG: 'zh',
+        LOCALE: 'zh_cn',
+        portalType: 'one',
+        SEC_TOKEN: 'mock-sec-token',
+        CHANNEL_FEATURE_STATUS: {},
+        CHANNEL_LINKS: {},
+        REGIONS: [],
+        FEATURE_STATUS: {}
+      };
+      var RISK_INFO = {
+        GETUA: function () {
+          return 'mock-collina-ua'
+        },
+        UMID: 'mock-umid'
+      };
+    </script>
+  <% } %>
+</head>
+<body>
+  <div id="app"></div>
+  <!-- 
+    <script>
+      // window.CONSOLE_BASE_SETTINGS = {}
+      // 详细配置参见： https://yuque.antfin-inc.com/console/console-base/conf-settings
+    </script>
+  -->
+
+</body>
+</html>

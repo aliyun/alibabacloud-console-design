@@ -1,0 +1,10 @@
+{
+  "type": "wind",
+  "scene": "project",
+  "assets": {
+    "type": "builder",
+    "builder": {
+      "name": "@ali/builder-breezr"
+    }
+  }
+}
