@@ -8,6 +8,7 @@
     "prepublish": "rm -rf ./lib && npm build && npm run babel && npm run babel:esm",
     "test": "jest --no-cache --env=jest-environment-jsdom-sixteen",
     "build": "breezr build --engine rollup",
+    "start": "breezr start-storybook",
     "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
     "babel:esm": "breezr build --engine babel --es-module"
   },
