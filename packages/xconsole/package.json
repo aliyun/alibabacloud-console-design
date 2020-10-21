@@ -40,6 +40,7 @@
     "webpack": "^4.0.0"
   },
   "dependencies": {
+    "@alicloud/console-toolkit-plugin-xconsole": "^2.0.3",
     "@alicloud/console-components": "alpha",
     "@alicloud/console-components-actions": "^1.0.5",
     "@alicloud/console-components-announcement": "^1.0.1",
