@@ -1,8 +1,8 @@
 import React from 'react';
-import { intl } from '@ali/xconsole';
-import { useOpenApi } from '@ali/xconsole/hooks';
+import { intl } from '@alicloud/xconsole';
+import { useOpenApi } from '@alicloud/xconsole/hooks';
 // @ts-ignore
-import { Button, DateTime, Description } from '@ali/xconsole/ui';
+import { Button, DateTime, Description } from '@alicloud/xconsole/ui';
 
 const InstanceDescription = () => {
   const { data, loading } = useOpenApi('wind-demo', 'DescribeInstance')

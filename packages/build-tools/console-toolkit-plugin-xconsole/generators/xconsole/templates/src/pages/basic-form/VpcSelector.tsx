@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Select } from '@ali/xconsole/ui';
-import { useOpenApi } from '@ali/xconsole/hooks';
+import { Select } from '@alicloud/xconsole/ui';
+import { useOpenApi } from '@alicloud/xconsole/hooks';
 
 const getDataSource = (list = []) => list.map(item => ({
   label: item.VpcName,

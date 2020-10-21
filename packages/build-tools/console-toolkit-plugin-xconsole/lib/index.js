@@ -4,9 +4,8 @@ var path_1 = require("path");
 var constants_1 = require("./constants");
 function default_1(api) {
     api.dispatchSync('registerGenerator', 'XConsole', {
-        path: path_1.resolve(__dirname, '../generator/index.js'),
+        path: path_1.resolve(__dirname, '../generators/xconsole/index.js'),
         namespace: 'XconsoleProject',
-        type: 'git',
         url: constants_1.GENERATOR_URL,
     });
 }

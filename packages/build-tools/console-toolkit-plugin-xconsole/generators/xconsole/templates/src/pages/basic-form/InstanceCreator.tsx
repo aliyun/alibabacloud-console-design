@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { intl } from '@ali/xconsole';
+import { intl } from '@alicloud/xconsole';
 import Form from '@alicloud/xconsole-rc-form';
 import '@alicloud/xconsole-rc-form/dist/index.css';
-import { useOpenApi } from '@ali/xconsole/hooks';
-import { Input, Select, Radio } from '@ali/xconsole/ui';
+import { useOpenApi } from '@alicloud/xconsole/hooks';
+import { Input, Select, Radio } from '@alicloud/xconsole/ui';
 
 import VpcSelector from './VpcSelector';
 import VSwitchSelector from './VSwitchSelector';

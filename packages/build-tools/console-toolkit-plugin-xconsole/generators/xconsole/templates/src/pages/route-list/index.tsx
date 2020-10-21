@@ -1,6 +1,6 @@
 import React from 'react';
-import { intl } from '@ali/xconsole';
-import { Page } from '@ali/xconsole/ui';
+import { intl } from '@alicloud/xconsole';
+import { Page } from '@alicloud/xconsole/ui';
 import InstanceList from './InstanceList';
 
 export default () => (

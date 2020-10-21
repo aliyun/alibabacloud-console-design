@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid } from '@ali/xconsole/ui'
+import { Grid } from '@alicloud/xconsole/ui'
 import { map } from 'lodash';
 
 const { Row, Col } = Grid;

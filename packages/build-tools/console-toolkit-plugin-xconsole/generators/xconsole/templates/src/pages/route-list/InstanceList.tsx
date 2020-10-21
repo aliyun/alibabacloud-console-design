@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'dva/router';
-import { intl } from '@ali/xconsole';
-import { useOpenApi } from '@ali/xconsole/hooks';
-import { DateTime, Table } from '@ali/xconsole/ui';
+import { intl } from '@alicloud/xconsole';
+import { useOpenApi } from '@alicloud/xconsole/hooks';
+import { DateTime, Table } from '@alicloud/xconsole/ui';
 
 export default () => {
   const { data, loading } = useOpenApi('wind-demo','DescribeInstances')

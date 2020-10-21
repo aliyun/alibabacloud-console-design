@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { intl } from '@ali/xconsole';
-import { Button, Description, DateTime } from '@ali/xconsole/ui';
-import { useOpenApi } from '@ali/xconsole/hooks';
+import { intl } from '@alicloud/xconsole';
+import { Button, Description, DateTime } from '@alicloud/xconsole/ui';
+import { useOpenApi } from '@alicloud/xconsole/hooks';
 
 
 const LogonInfo = ({ userId }) => {

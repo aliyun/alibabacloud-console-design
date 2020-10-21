@@ -1,8 +1,8 @@
 /* eslint react/prop-types: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { intl } from '@ali/xconsole';
-import { Page } from '@ali/xconsole/ui'
+import { intl } from '@alicloud/xconsole';
+import { Page } from '@alicloud/xconsole/ui'
 import InstanceDescription from './InstanceDescription';
 import GroupList from './GroupList';
 

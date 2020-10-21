@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { intl, ConsoleContext } from '@ali/xconsole';
-import { PageHeader, Button, Description, Card } from '@ali/xconsole/ui'
+import { intl, ConsoleContext } from '@alicloud/xconsole';
+import { PageHeader, Button, Description, Card } from '@alicloud/xconsole/ui'
 import styles from './index.scoped.less';
 
 const CardProps = {

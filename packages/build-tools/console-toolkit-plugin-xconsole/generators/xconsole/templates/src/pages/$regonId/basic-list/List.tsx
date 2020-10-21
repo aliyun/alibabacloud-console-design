@@ -1,8 +1,8 @@
 /* eslint react/prop-types: 0 */
 import React from 'react';
-import { intl } from '@ali/xconsole';
-import { useOpenApi } from '@ali/xconsole/hooks';
-import { Button, Icon, Dialog, Table, DateTime, Actions } from '@ali/xconsole/ui';
+import { intl } from '@alicloud/xconsole';
+import { useOpenApi } from '@alicloud/xconsole/hooks';
+import { Button, Icon, Dialog, Table, DateTime, Actions } from '@alicloud/xconsole/ui';
 
 const { LinkButton } = Actions;
 

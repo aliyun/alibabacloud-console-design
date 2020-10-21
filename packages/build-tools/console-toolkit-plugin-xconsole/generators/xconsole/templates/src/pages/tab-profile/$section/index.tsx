@@ -1,7 +1,7 @@
 /* eslint react/prop-types: 0 */
 import React, { Fragment } from 'react';
-import { intl } from '@ali/xconsole';
-import { Tab, Page } from '@ali/xconsole/ui';
+import { intl } from '@alicloud/xconsole';
+import { Tab, Page } from '@alicloud/xconsole/ui';
 import UserInfo from './UserInfo';
 import LogonInfo from './LogonInfo';
 import AKList from './AKList';

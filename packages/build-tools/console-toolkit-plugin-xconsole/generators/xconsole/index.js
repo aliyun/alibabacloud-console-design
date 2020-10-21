@@ -2,10 +2,8 @@
 
 const path = require("path");
 const mkdirp = require("mkdirp");
-const co = require('co');
 const chalk = require('chalk');
 const logSymbols = require('log-symbols')
-const Client = require('@ali/def-login-client');
 
 const Generator = require("yeoman-generator");
 
@@ -18,7 +16,6 @@ module.exports = class extends Generator {
   }
 
   prompting() {
-    const self = this;
     return this.prompt([
       {
         name: "name",

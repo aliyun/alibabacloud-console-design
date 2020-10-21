@@ -1,6 +1,6 @@
 import React from 'react';
-import { intl } from '@ali/xconsole';
-import { Page, PageProps } from '@ali/xconsole/ui';
+import { intl } from '@alicloud/xconsole';
+import { Page, PageProps } from '@alicloud/xconsole/ui';
 import List from './List';
 
 const ListPage = (props: PageProps) => {

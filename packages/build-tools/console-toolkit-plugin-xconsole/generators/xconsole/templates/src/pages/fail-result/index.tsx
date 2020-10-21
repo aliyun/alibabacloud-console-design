@@ -1,6 +1,6 @@
 import React from 'react';
-import { intl } from '@ali/xconsole';
-import { Button, PageHeader, Result, PageProps } from '@ali/xconsole/ui';
+import { intl } from '@alicloud/xconsole';
+import { Button, PageHeader, Result, PageProps } from '@alicloud/xconsole/ui';
 
 export default (props: PageProps) => (
   <PageHeader

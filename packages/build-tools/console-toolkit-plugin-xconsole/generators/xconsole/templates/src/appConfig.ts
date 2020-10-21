@@ -1,4 +1,4 @@
-import { AppConfig } from '@ali/xconsole';
+import { AppConfig } from '@alicloud/xconsole';
 
 const config: AppConfig = {}
 

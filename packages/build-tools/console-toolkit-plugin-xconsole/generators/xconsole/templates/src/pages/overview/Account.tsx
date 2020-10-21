@@ -1,6 +1,6 @@
 import React from 'react';
-import { intl } from '@ali/xconsole';
-import { Card, Button } from '@ali/xconsole/ui';
+import { intl } from '@alicloud/xconsole';
+import { Card, Button } from '@alicloud/xconsole/ui';
 
 const CardProps = {
   showTitleBullet: false,

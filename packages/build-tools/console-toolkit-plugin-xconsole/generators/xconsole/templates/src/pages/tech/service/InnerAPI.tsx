@@ -1,6 +1,6 @@
 import React from 'react'
-import { Description, Button, Icon } from '@ali/xconsole/ui'
-import { useInnerApi } from '@ali/xconsole/hooks'
+import { Description, Button, Icon } from '@alicloud/xconsole/ui'
+import { useInnerApi } from '@alicloud/xconsole/hooks'
 import ReactJson from 'react-json-view'
 
 export default () => {

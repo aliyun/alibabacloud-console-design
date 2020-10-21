@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Icon, Card } from '@ali/xconsole/ui';
+import { Grid, Icon, Card } from '@alicloud/xconsole/ui';
 import _ from 'lodash';
 import styles from './index.scoped.less';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@ali/xconsole/ui'
+import { Grid } from '@alicloud/xconsole/ui'
 import ChartCfg from './config';
 
 const { Row, Col } = Grid;

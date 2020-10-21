@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { intl, Query, DateTime } from '@ali/xconsole';
-import { Button, Icon, Table } from '@ali/xconsole/ui';
+import { intl, Query, DateTime } from '@alicloud/xconsole';
+import { Button, Icon, Table } from '@alicloud/xconsole/ui';
 
-import { useOpenApi } from '@ali/xconsole/hooks';
+import { useOpenApi } from '@alicloud/xconsole/hooks';
 
 const GroupList = ({ userId }) => {
   const { data, loading, run: refetch } = useOpenApi('wind-demo', 'ListGroups');

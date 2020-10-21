@@ -1,4 +1,4 @@
-import { model, createService } from '@ali/xconsole';
+import { model, createService } from '@alicloud/xconsole';
 
 export const GET_GROUPS = model({
   service: async (variables) => {

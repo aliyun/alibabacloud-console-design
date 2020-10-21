@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormContext } from '@alicloud/xconsole-rc-form';
-import { Select } from '@ali/xconsole/ui';
+import { Select } from '@alicloud/xconsole/ui';
 import _ from 'lodash';
-import { useOpenApi } from '@ali/xconsole/hooks';
+import { useOpenApi } from '@alicloud/xconsole/hooks';
 
 const getDataSource = (list = []) => _.map(list, item => ({
   label: item.VSwitchName,

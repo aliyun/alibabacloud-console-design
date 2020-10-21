@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import ReactJson from 'react-json-view'
 
-import { useOpenApi } from '@ali/xconsole/hooks'
-import { ConsoleContext } from '@ali/xconsole'
-import { Description, Button, Icon } from '@ali/xconsole/ui'
+import { useOpenApi } from '@alicloud/xconsole/hooks'
+import { ConsoleContext } from '@alicloud/xconsole'
+import { Description, Button, Icon } from '@alicloud/xconsole/ui'
 
 export default () => {
   const { region } = useContext(ConsoleContext)

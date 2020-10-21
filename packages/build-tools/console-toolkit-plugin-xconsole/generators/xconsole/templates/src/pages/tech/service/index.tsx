@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
-import { intl, ConsoleContext } from '@ali/xconsole'
-import { PageHeader, Description, Grid } from '@ali/xconsole/ui'
+import { intl, ConsoleContext } from '@alicloud/xconsole'
+import { PageHeader, Description, Grid } from '@alicloud/xconsole/ui'
 
 import OpenAPI from './OpenAPI';
 import InnerAPI from './InnerAPI';

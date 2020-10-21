@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
-import { Page, Description } from '@ali/xconsole/ui'
-import { intl, ConsoleContext } from '@ali/xconsole'
+import { Page, Description } from '@alicloud/xconsole/ui'
+import { intl, ConsoleContext } from '@alicloud/xconsole'
 
 export default () => {
   const { consoleConfig } = useContext(ConsoleContext);

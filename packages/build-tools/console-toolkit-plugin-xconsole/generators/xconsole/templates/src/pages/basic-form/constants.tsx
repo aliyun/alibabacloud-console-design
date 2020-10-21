@@ -1,4 +1,4 @@
-import { intl } from '@ali/xconsole';
+import { intl } from '@alicloud/xconsole';
 
 export const networkDataSource = [
   {

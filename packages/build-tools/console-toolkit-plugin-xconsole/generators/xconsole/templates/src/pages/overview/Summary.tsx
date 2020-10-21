@@ -1,7 +1,7 @@
 import React from 'react';
-import { intl } from '@ali/xconsole';
+import { intl } from '@alicloud/xconsole';
 import StatCard from './_components/StatCard';
-import { useOpenApi } from '@ali/xconsole/hooks';
+import { useOpenApi } from '@alicloud/xconsole/hooks';
 
 const LogonInfo = () => {
   const { data } = useOpenApi('wind-demo', 'GetAccountSummary');
