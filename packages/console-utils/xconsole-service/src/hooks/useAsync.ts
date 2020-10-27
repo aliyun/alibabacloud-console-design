@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/interface-name-prefix */
-/* eslint-disable @typescript-eslint/require-await */
-/* eslint-disable @typescript-eslint/no-misused-promises */
-/* eslint-disable react-hooks/exhaustive-deps */
 import {
   DependencyList,
   useCallback,
@@ -245,7 +241,6 @@ export default function useAsync<P = any, Result = any>(
         stop();
       };
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [options.manual, options.pollingInterval, run, intervalAsync]
   );
 

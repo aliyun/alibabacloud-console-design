@@ -3,6 +3,7 @@ import createService from '../service';
 import { IOptions } from '../types';
 import useAsync from './useAsync';
 import { ApiType } from '../const/index';
+import globalConfig from '../config/config'
 
 interface IParams {
   [key: string]: any;
@@ -33,7 +34,10 @@ export const useService = <R = any, P extends IParams = {}>(
     {
       manual: opt.manual,
       pollingInterval: opt.pollingInterval,
-      onError: opt.onError,
+      onError: (error) => {
+        globalConfig.onError(error);
+        opt.onError && opt.onError(error);
+      },
       onSuccess: opt.onSuccess,
     }
   );
