@@ -3,7 +3,7 @@ import createService from '../service';
 import { IOptions } from '../types';
 import useAsync from './useAsync';
 import { ApiType } from '../const/index';
-import globalConfig from '../config/config'
+import globalConfig from '../configuration/config'
 
 interface IParams {
   [key: string]: any;
