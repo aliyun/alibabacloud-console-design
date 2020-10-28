@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { matchPath } from 'react-router';
+import { matchPath, generatePath } from 'react-router';
 
 import ConsoleRegion from './index';
 import ConsoleBase from '../console/ConsoleBase';
@@ -16,9 +16,12 @@ const hasRegionId = (match) => {
 const reroute = (props: IConsoleContextProp<{regionId?: string}>, nextRegionId: string) => {
   const { history, match, location } = props;
   if (match && match.path && hasRegionId(match)) {
-    const { path } = match;
+    const { path, params } = match;
     history.push({
-      pathname: path.replace(':regionId', nextRegionId),
+      pathname: generatePath(path, {
+        ...(params || {}),
+        nextRegionId
+      }),
       search: location.search,
       hash: location.hash,
     });
