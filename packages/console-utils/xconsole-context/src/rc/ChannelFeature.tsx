@@ -1,7 +1,6 @@
 import React from 'react'
 import { ConsoleContext } from '../context/Context'
 import get from 'lodash/get'
-import './index.less'
 
 
 /**
@@ -48,6 +47,39 @@ function checkBlackAndWhiteList(value, mixedList) {
   return whiteList.length ? whiteList.some(v => checkAgainstConf(v)) : true;
 }
 
+export const useChannelFeature = (id: string, region?: string) => {
+  if (typeof id === 'undefined') {
+    throw new Error(
+      '[Feature] id is required'
+    )
+  }
+  const { consoleConfig } = React.useContext(ConsoleContext)
+
+  const feature = consoleConfig.getChannelFeature(id);
+  if (typeof feature === 'undefined') {
+    return true;
+  }
+  const status = get(feature, 'status')
+
+  if (status === false) {
+    return false;
+  }
+
+  const regions = get(feature, 'attribute.regions', []);
+  // 没有传递要检查的 region ，则认为开关可用，返回内容
+  if (!region || !regions || !regions.length) {
+    return true;
+  }
+
+  // 进行 region 的检查，校验不通过则返回 null
+  const regionEnableCheck = checkBlackAndWhiteList(region, regions);
+  if (regionEnableCheck === false) {
+    return false
+  }
+
+  return true;
+}
+
 export interface IChannelFeatureProps {
   id: string;
   region?: string;
@@ -59,37 +91,8 @@ const ChannelFeature: React.FC<IChannelFeatureProps> = ({
   region,
   children,
 }: IChannelFeatureProps) => {
-  if (typeof id === 'undefined') {
-    throw new Error(
-      '[Feature] id is required'
-    )
-  }
-  const { consoleConfig } = React.useContext(ConsoleContext)
-
-  const feature = consoleConfig.getChannelFeature(id);
-  if (typeof feature === 'undefined') {
-    return children
-  }
-  const status = get(feature, 'status')
-
-  if (status === false) {
-    return null
-  }
-
-  const regions = get(feature, 'attribute.regions', []);
-  // 没有传递要检查的 region ，则认为开关可用，返回内容
-  if (!region || !regions || !regions.length) {
-    return children;
-  }
-
-  // 进行 region 的检查，校验不通过则返回 null
-  const regionEnableCheck = checkBlackAndWhiteList(region, regions);
-  if (regionEnableCheck === false) {
-    return null
-  }
-
-
-  return children
+  const channelFeature = useChannelFeature(id, region);
+  return channelFeature ? children : null;
 }
 
 ChannelFeature.displayName = 'ChannelFeature'

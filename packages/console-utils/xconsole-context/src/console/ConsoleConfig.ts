@@ -111,7 +111,7 @@ class ConsoleConfig {
     ) {
       return this.consoleConfig.CHANNEL_LINKS[linkId];
     }
-    return '#';
+    return 'javascript:void(0)';
   };
 
   public getLabel = (): ILabel => {

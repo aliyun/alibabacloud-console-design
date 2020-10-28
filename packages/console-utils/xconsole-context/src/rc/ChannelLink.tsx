@@ -10,7 +10,7 @@ export interface IChannelLinkProps {
   /**
    * 
    */
-  linkId: string;
+  linkId?: string;
 
   /**
    * 
@@ -35,12 +35,12 @@ export interface IChannelLinkProps {
   /**
    * 
    */
-  shape?: 'text';
+  shape?: 'text' | 'button';
 
   /**
    * 
    */
-  type?: 'normal';
+  type?: 'normal' | 'primary';
 
   /**
    * 
@@ -56,25 +56,36 @@ export interface IChannelLinkProps {
    * 
    */
   href?: string;
+
+  text?: boolean;
+}
+
+export const useChannelLink = (linkId: string, linkParams: Record<string, any>) => {
+  if (typeof linkId === 'undefined') {
+    throw new Error(
+      '[ChannelLink] linkId is required'
+    )
+  }
+
+  const { consoleConfig } = React.useContext(ConsoleContext)
+  let channelLink = consoleConfig.getChannelLink(linkId)
+
+  if (linkParams) {
+    channelLink = template(channelLink)(linkParams)
+  }
+  return channelLink;
 }
 
 const ChannelLink: React.FC<IChannelLinkProps> = (props: IChannelLinkProps) => {
   const {linkId, linkParams, pure, ...restProps } = props;
 
-  if (linkId) {
-    const { consoleConfig } = React.useContext(ConsoleContext)
-    let channelLink = consoleConfig.getChannelLink(linkId)
-
-    if (linkParams) {
-      channelLink = template(channelLink)(linkParams)
-    }
-
-    if (pure) return <>channelLink</>;
-
-    return <Link href={channelLink} target="_blank" {...restProps} />
-  } else {
+  if (!linkId) {
     return <Link {...restProps} />
   }
+
+  const channelLink = useChannelLink(linkId, linkParams);
+  if (pure) return <>channelLink</>;
+  return <Link href={channelLink} target="_blank" {...restProps} />
 }
 
 ChannelLink.displayName = 'ChannelLink'

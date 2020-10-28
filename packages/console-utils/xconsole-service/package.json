@@ -5,7 +5,7 @@
   "module": "es/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "prepublish": "rm -rf ./lib && npm build && npm run babel && npm run babel:esm",
+    "prepublish": "rm -rf ./lib ./es ./dist && npm build && npm run babel && npm run babel:esm",
     "test": "jest --no-cache --env=jest-environment-jsdom-sixteen",
     "build": "breezr build --engine rollup",
     "start": "breezr start-storybook",
