@@ -11,6 +11,6 @@ export default {
   region,
 };
 
-export { default as Gray } from './rc/Gray';
-export { default as ChannelLink } from './rc/ChannelLink';
-export { default as ChannelFeature } from './rc/ChannelFeature';
+export { default as Gray, useGray } from './rc/Gray';
+export { default as ChannelLink, useChannelLink } from './rc/ChannelLink';
+export { default as ChannelFeature, useChannelFeature } from './rc/ChannelFeature';
