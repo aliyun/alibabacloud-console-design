@@ -20,7 +20,7 @@ const reroute = (props: IConsoleContextProp<{regionId?: string}>, nextRegionId: 
     history.push({
       pathname: generatePath(path, {
         ...(params || {}),
-        nextRegionId
+        regionId: nextRegionId
       }),
       search: location.search,
       hash: location.hash,
