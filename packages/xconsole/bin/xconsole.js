@@ -15,7 +15,7 @@ const checkPackageDependency = require('./checkPackageDependency');
 
 async function invokeService(cmd, args) {
   await checkPackageDependency();
-  await updatePackage();
+  //await updatePackage();
 
   const cwd = process.cwd();
   let windProConfig = {};
