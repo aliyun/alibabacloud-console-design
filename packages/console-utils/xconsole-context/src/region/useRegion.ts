@@ -53,8 +53,8 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
    * 处理路由
    */
   useEffect(() => {
+    region.setRegions(regionList);
     if (!hasRegionId(match)) {
-      region.setRegions(regionList);
       region.setRegionId(currentRegionId);
       regionContext.setActiveRegionId(currentRegionId);
       return;
