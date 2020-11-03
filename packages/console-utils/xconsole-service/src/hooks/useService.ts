@@ -116,7 +116,10 @@ export const useRoaApi = <R = any, P extends IParams = {}>(
     {
       manual: opt.manual,
       pollingInterval: opt.pollingInterval,
-      onError: opt.onError,
+      onError: (error) => {
+        globalConfig.onError(error);
+        opt.onError && opt.onError(error);
+      },
       onSuccess: opt.onSuccess,
     }
   );
