@@ -54,6 +54,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
    */
   useEffect(() => {
     if (!hasRegionId(match)) {
+      region.setRegions(regionList);
       region.setRegionId(currentRegionId);
       regionContext.setActiveRegionId(currentRegionId);
       return;
@@ -79,9 +80,11 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
 
     // update the history when region change on the reigonbar
     const unsubscribeRegionChange = region.onRegionChange((payload) => {
-      // 如果有路由 & 并且路由里面带着 regionId
-      reroute(props, payload.id);
-      setCurrentRegionId(payload.id);
+      const regionId = determineRegionId(payload.id, currentRegionId, regionList);
+      if (regionId !== currentRegionId) {
+        reroute(props, regionId);
+        setCurrentRegionId(regionId);
+      }
     });
 
     const unsubscribeReady = ConsoleBase.onReady(() => {
