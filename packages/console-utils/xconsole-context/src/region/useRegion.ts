@@ -38,9 +38,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
   const { history, consoleBase, match, location, region: regionConfig = {} } = props;
   const { regionList, regionbarVisiblePaths = [] }  = regionConfig;
   // 默认 Region = 路由的Region > Cookie 的 region > Region 列表中第一个 > 用户指定默认Region >'cn-hangzhou'
-  const [currentRegionId, setCurrentRegionId] = useState<string>(
-    determineRegionId(match.params.regionId, '', regionList)
-  );
+  const [currentRegionId, setCurrentRegionId] = useState<string>('');
 
   const region: Region = {
     ...(consoleBase || ConsoleRegion),
@@ -54,23 +52,17 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
    */
   useEffect(() => {
     region.setRegions(regionList);
-    if (!hasRegionId(match)) {
-      region.setRegionId(currentRegionId);
-      regionContext.setActiveRegionId(currentRegionId);
-      return;
-    }
-
+    // 如果 regionId 不在 region 列表重定向到 regionId 上
     const regionId = determineRegionId(match.params.regionId, currentRegionId, regionList);
 
-    // 如果 regionId 不在 region 列表重定向到 regionId 上
-    if (currentRegionId !== match.params.regionId) {
+    if (currentRegionId !== regionId) {
+      // @ts-ignore
+      window.__XCONSOLE_CURRENT_REGION_ID__ = regionId;
+      regionContext.setActiveRegionId(regionId);
+      region.setRegionId(regionId);
+      setCurrentRegionId(regionId);
       return reroute(props, regionId);
     }
-
-    // 如果 regionId 和 当前的 currentRegionId 更新全局的 regionID (regionbar & global)
-    region.setRegionId(currentRegionId);
-    regionContext.setActiveRegionId(currentRegionId)
-
   }, [match.params.regionId]);
 
   // 处理 ConsoleBase
@@ -83,7 +75,6 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
       const regionId = determineRegionId(payload.id, currentRegionId, regionList);
       if (regionId !== currentRegionId) {
         reroute(props, regionId);
-        setCurrentRegionId(regionId);
       }
     });
 
@@ -96,7 +87,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
       unsubscribeRegionChange()
       unsubscribeReady()
     }
-  }, [regionList, history]);
+  }, [regionList, history, currentRegionId]);
 
   useEffect(() => {
     region.toggleRegion(false)
