@@ -30,7 +30,7 @@ export const useService = <R = any, P extends IParams = {}>(
       const res = await service(runParams || params);
       return res;
     },
-    [JSON.stringify(params), JSON.stringify(opt), ...deps],
+    [JSON.stringify(params), JSON.stringify(opt), JSON.stringify(deps)],
     {
       manual: opt.manual,
       pollingInterval: opt.pollingInterval,
