@@ -17,11 +17,15 @@ const reroute = (props: IConsoleContextProp<{regionId?: string}>, nextRegionId: 
   const { history, match, location } = props;
   if (match && match.path && hasRegionId(match)) {
     const { path, params } = match;
+
+    const nextPath = generatePath(path, {
+      ...(params || {}),
+      regionId: nextRegionId
+    });
+    const suff = location.pathname.slice(match.url.length);
+
     history.push({
-      pathname: generatePath(path, {
-        ...(params || {}),
-        regionId: nextRegionId
-      }),
+      pathname: match.isExact ? nextPath : `${nextPath}/${suff}`,
       search: location.search,
       hash: location.hash,
     });
