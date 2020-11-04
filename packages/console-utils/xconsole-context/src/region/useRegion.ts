@@ -18,6 +18,10 @@ const reroute = (props: IConsoleContextProp<{regionId?: string}>, nextRegionId: 
   if (match && match.path && hasRegionId(match)) {
     const { path, params } = match;
 
+    if (nextRegionId === params.regionId) {
+      return;
+    }
+
     const nextPath = generatePath(path, {
       ...(params || {}),
       regionId: nextRegionId
