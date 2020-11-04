@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const Menu: React.FC<IProps> = ({
-  nav: { defaultActiveKey, activeKey, onChange, items },
+  nav: { defaultActiveKey, defaultOpenKeys, activeKey, onChange, items, ...reset },
 }: IProps) => {
   return (
     // @ts-ignore
@@ -17,11 +17,24 @@ const Menu: React.FC<IProps> = ({
       // @ts-ignore
       onItemClick={onChange}
       defaultSelectedKeys={defaultActiveKey}
+      defaultOpenKeys={defaultOpenKeys}
       selectedKeys={activeKey}
+      {...reset}
     >
-      {map(items, (item) => (
-        <Page.Menu.Item key={item.key}>{item.title}</Page.Menu.Item>
-      ))}
+      {map(items, (item) => {
+        if (item.items) {
+          return (
+            <Page.Menu.SubMenu key={item.key} label={item.title}>
+              {item.items.map(subItem => {
+                return <Page.Menu.Item key={subItem.key}>{subItem.title}</Page.Menu.Item>;
+              })}
+            </Page.Menu.SubMenu>
+          )
+        } else {
+          return <Page.Menu.Item key={item.key} title={item.title}>{item.title}</Page.Menu.Item>;
+        }
+      }
+      )}
     </Page.Menu>
   );
 };

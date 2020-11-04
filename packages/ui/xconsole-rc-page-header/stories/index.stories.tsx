@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Route, Router } from 'dva/router';
+import { Route, Router, Link } from 'dva/router';
 import { createBrowserHistory } from 'history';
 import { storiesOf } from '@storybook/react';
-import WindProRcPageHeader from '../src/index';
+import WindProRcPageHeader from '../src';
 import '@alicloud/console-components/dist/wind.css';
 
 const breadcrumbs = [
@@ -21,12 +21,17 @@ const breadcrumbs = [
 
 const nav = {
   shape: 'menu',
-  defaultActiveKey: 'user',
+  activeKey: 'user1',
+  defaultOpenKeys: ['user'],
   onChange: (value) => console.log(value),
   items: [
     {
       key: 'user',
       title: '用户',
+      items: [{
+        key: 'user1',
+        title: (<Link to="/">用户2</Link>),
+      }]
     },
     {
       key: 'role',

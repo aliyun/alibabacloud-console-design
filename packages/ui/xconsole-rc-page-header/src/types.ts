@@ -6,8 +6,10 @@ export interface INavProps {
   shape: 'tab' | 'menu';
   defaultActiveKey?: string;
   activeKey?: string;
+  defaultSelectKey?: string;
   onChange?: (value: string) => void;
   items?: any;
+  defaultOpenKeys?: string[];
 }
 
 export interface IProps {
