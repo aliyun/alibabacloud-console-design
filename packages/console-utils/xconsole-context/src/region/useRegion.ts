@@ -29,7 +29,7 @@ const reroute = (props: IConsoleContextProp<{regionId?: string}>, nextRegionId: 
     const suff = location.pathname.slice(match.url.length);
 
     history.push({
-      pathname: match.isExact ? nextPath : `${nextPath}/${suff}`,
+      pathname: match.isExact ? nextPath : `${nextPath}/${suff}`.replace('//', '/'),
       search: location.search,
       hash: location.hash,
     });
