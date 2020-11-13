@@ -54,13 +54,13 @@ program
   .option('-e, --engine [engine]', 'Build engine type')
   .option('-w, --watch', 'Need watching file changing?')
   .option('--publishType [publishType]', 'Build engine type')
-  .option('--publishType [publishType]', 'Build engine type')
+  .option('--output-public-path [outputPublicPath]', 'build public path for webpack')
   .description('build for wind')
   .action(cmd => {
     if (!process.env.NODE_ENV) {
       process.env.NODE_ENV = 'production'
     }
-    invokeService('build', minimist(process.argv.slice(2)));
+    invokeService('build', cleanArgs(cmd));
   });
 
 program
