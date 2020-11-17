@@ -4,7 +4,8 @@ import React from 'react'
 import { takeLatest } from '@alicloud/xconsole-effect-creator'
 import PropTypes from 'prop-types'
 import Model from './Provider'
-import _ from 'lodash'
+import reduce from 'lodash/reduce'
+import isFunction from 'lodash/isFunction'
 
 const defaultModel = {
   state: {
@@ -67,8 +68,8 @@ const ListModel = (props) => {
     }),
   }
 
-  const effects = _.reduce(props, (result, value, key) => {
-    if (key !== 'fetch' && _.isFunction(value)) {
+  const effects = reduce(props, (result, value, key) => {
+    if (key !== 'fetch' && isFunction(value)) {
       // eslint-disable-next-line no-param-reassign
       result[key] = function* ({ payload, meta = {} }, { call, put }) {
         try {

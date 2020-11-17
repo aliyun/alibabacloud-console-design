@@ -5,7 +5,7 @@ import WindProContext from './BaseContext'
 import createActions from '@alicloud/xconsole-action-creator'
 import { createSelector } from 'reselect'
 import { v1 as uuid } from 'uuid'
-import _ from 'lodash'
+import reduce from 'lodash/reduce'
 
 const createModel = (dva, model) => {
   const namespace = uuid()
@@ -18,7 +18,7 @@ const createModel = (dva, model) => {
   }
   dva.model(dvaModel)
   const actions = createActions(dvaModel)
-  const selectors = _.reduce(model.selectors, (res, value, key) => {
+  const selectors = reduce(model.selectors, (res, value, key) => {
     res[key] = createSelector(state => state[namespace], value)
     return res
   }, {})

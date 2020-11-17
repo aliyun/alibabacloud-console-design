@@ -1,6 +1,7 @@
 import { v1 as uuid } from 'uuid'
 import { takeLatest } from '@alicloud/xconsole-effect-creator'
-import _ from 'lodash'
+import isFunction from 'lodash/isFunction';
+import delay from 'lodash/delay';
 
 const defaultModel = {
   state: {
@@ -25,7 +26,7 @@ const defaultModel = {
 }
 
 export default ({ service, initialValue, namespace = uuid(), ...rest }) => {
-  if (_.isFunction(service)) {
+  if (isFunction(service)) {
     const dvaModel = {
       ...defaultModel,
       namespace,
@@ -44,7 +45,7 @@ export default ({ service, initialValue, namespace = uuid(), ...rest }) => {
               },
             })
             if (meta.onCompleted) {
-              _.delay(() => {
+              delay(() => {
                 meta.onCompleted(result)
               }, 200)
             }
@@ -55,7 +56,7 @@ export default ({ service, initialValue, namespace = uuid(), ...rest }) => {
               payload: { APIError: error },
             })
             if (meta.onError) {
-              _.delay(() => {
+              delay(() => {
                 meta.onError(error)
               }, 200)
             }

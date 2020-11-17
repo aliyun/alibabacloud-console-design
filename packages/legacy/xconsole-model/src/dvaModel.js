@@ -1,5 +1,6 @@
 import createActions from '@alicloud/xconsole-action-creator'
 import { createSelector } from 'reselect'
+import reduce from 'lodash/reduce';
 
 export const register = (app, model) => {
   const dvaModel = {
@@ -11,7 +12,7 @@ export const register = (app, model) => {
   }
   app.model(dvaModel)
   const actions = createActions(dvaModel)
-  const selectors = _.reduce(model.selectors, (res, value, key) => {
+  const selectors = reduce(model.selectors, (res, value, key) => {
     res[key] = createSelector(state => state[model.namespace], value)
     return res
   }, {})
