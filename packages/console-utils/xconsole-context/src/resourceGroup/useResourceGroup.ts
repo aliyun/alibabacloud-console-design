@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import qs from 'query-string'
 import { IConsoleContextProp, ResourceGroupType } from '../types/index';
 import ConsoleResourceGroup from '../resourceGroup/index';
 
@@ -17,8 +18,10 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
     resourceGroup.toggleResourceGroup(enable);
 
     // add presistents for resource group
+
     const unlisten = history.listen((location) => {
-      if (routeType === ResourceGroupType.query) {
+      const query = qs.parse(location.search)
+      if (enable && routeType === ResourceGroupType.query && query.resourceGroupId === undefined) {
         const url = new URL(window.location.href);
         url.searchParams.append('resourceGroupId', 'test1')
         history.push(url.toString())

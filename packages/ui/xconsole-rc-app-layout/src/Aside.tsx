@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import AppLayout from '@alicloud/console-components-app-layout';
-
+import { XConsoleTheme } from '@alicloud/console-components-console-menu';
 import Nav from './Nav';
 import Context from './Context';
 import { isPathMatch } from './utils/index';
@@ -62,14 +62,16 @@ const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = (
   );
 
   return (
-    <AppLayout
-      adjustHeight={50}
-      nav={sidebarVisible ? <Nav {...sidebar} currentPath={pathname} menuParams={menuParams}/> : null}
-      navCollapsed={collapsed}
-      onNavCollapseTriggerClick={onNavCollapseTriggerClick}
-    >
-      {children}
-    </AppLayout>
+    <XConsoleTheme>
+      <AppLayout
+        adjustHeight={50}
+        nav={sidebarVisible ? <Nav {...sidebar} currentPath={pathname} menuParams={menuParams}/> : null}
+        navCollapsed={collapsed}
+        onNavCollapseTriggerClick={onNavCollapseTriggerClick}
+      >
+        {children}
+      </AppLayout>
+    </XConsoleTheme>
   );
 };
 

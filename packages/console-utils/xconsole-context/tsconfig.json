@@ -8,7 +8,8 @@
     "lib": ["dom", "es2015", "scripthost"],
     "baseUrl": ".",
     "skipLibCheck": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "moduleResolution": "node"
   },
   "include": [
     "./src/*",

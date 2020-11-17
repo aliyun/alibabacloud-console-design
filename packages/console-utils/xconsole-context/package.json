@@ -41,6 +41,7 @@
   },
   "peerDependencies": {
     "@types/js-cookie": "^2.2.6",
+    "@types/query-string": "^6.3.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
@@ -49,7 +50,8 @@
     "@alicloud/xconsole-rc-base-link": "^1.0.0-beta.1",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.19",
-    "lodash.get": "^4.4.2"
+    "lodash.get": "^4.4.2",
+    "query-string": "^6.13.7"
   },
   "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
 }
