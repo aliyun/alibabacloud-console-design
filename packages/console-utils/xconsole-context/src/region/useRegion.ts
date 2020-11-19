@@ -55,6 +55,17 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
 
   const regionContext = useContext(RegionContext);
 
+  // 设置内存变量中的 Id， 也设置设置临时变量中的 ID
+  const setRegionIdWithMemo = (regionId: string) => {
+    // @ts-ignore
+    window.__XCONSOLE_CURRENT_REGION_ID__ = regionId;
+
+    // 兼容旧版本的应用
+    regionContext.setActiveRegionId(regionId);
+
+    setCurrentRegionId(regionId);
+  }
+
   /**
    * 处理路由
    */
@@ -64,11 +75,8 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
     const regionId = determineRegionId(match.params.regionId, currentRegionId, regionList);
 
     if (currentRegionId !== regionId) {
-      // @ts-ignore
-      window.__XCONSOLE_CURRENT_REGION_ID__ = regionId;
-      regionContext.setActiveRegionId(regionId);
       region.setRegionId(regionId);
-      setCurrentRegionId(regionId);
+      setRegionIdWithMemo(regionId)
       return reroute(props, regionId);
     }
   }, [match.params.regionId]);
@@ -91,13 +99,6 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
       region.setRegionId(currentRegionId);
     });
 
-    return () => {
-      unsubscribeRegionChange()
-      unsubscribeReady()
-    }
-  }, [regionList, history, currentRegionId]);
-
-  useEffect(() => {
     region.toggleRegion(false)
     regionbarVisiblePaths.forEach((showRegionPath) => {
       const matches = matchPath(location.pathname, {
@@ -109,7 +110,12 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
         region.toggleRegion(true)
       }
     });
-  }, [regionbarVisiblePaths, location.pathname])
+
+    return () => {
+      unsubscribeRegionChange()
+      unsubscribeReady()
+    }
+  }, [regionList, history, regionbarVisiblePaths, location.pathname]);
 
   return region;
 };
