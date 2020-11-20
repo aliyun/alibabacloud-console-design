@@ -3,5 +3,6 @@ export enum ApiType {
   inner="inner",
   app = "app",
   open = "open",
+  roa = "roa",
   custom = "custom",
 }

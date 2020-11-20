@@ -50,7 +50,7 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
   opt: IProps<R> = {},
   apiType: ApiType
 ) => {
-  const requestService = createService<P, R>(code, action, {
+  const requestService = createService<R, P>(code, action, {
     ...opt,
     apiType,
   });
@@ -100,29 +100,7 @@ export const useRoaApi = <R = any, P extends IParams = {}>(
   params?: P,
   opt: IProps<R> = {}
 ) => {
-  return useAsync<P, R>(
-    async (runParams: P) => {
-      const requestService = createService<P, R>(code, action, {
-        ...opt,
-        apiType: ApiType.open,
-        data: {
-          content: JSON.stringify(runParams || params)
-        }
-      });
-      const res = await requestService(runParams || params, true) as R;
-      return res;
-    },
-    [JSON.stringify(params), JSON.stringify(opt), code, action],
-    {
-      manual: opt.manual,
-      pollingInterval: opt.pollingInterval,
-      onError: (error) => {
-        globalConfig.onError(error);
-        opt.onError && opt.onError(error);
-      },
-      onSuccess: opt.onSuccess,
-    }
-  );
+  return useXconsoleService(code, action, params, opt, ApiType.roa);
 };
 
 export default useService;

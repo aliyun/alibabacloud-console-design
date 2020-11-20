@@ -65,7 +65,7 @@ export interface Options<T> {
 }
 
 type noop = (...args: any[]) => void;
-const noop: noop = () => {};
+const noop: noop = () => {/**/};
 
 type promiseReturn<P, T> = (arg0?: P, ...args: any[]) => Promise<T | undefined>;
 const promiseReturn: promiseReturn<any, any> = async () => null as any;
