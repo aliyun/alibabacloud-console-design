@@ -37,7 +37,9 @@ storiesOf('Console Configuration', module).add('Region', () => {
                   ]
                 }}
                 resourceGroup={{
-                  enable: true,
+                  resourceGroupVisiblePaths: [
+                    '/:regionId'
+                  ],
                   routeType: 'query'
                 }}
               />

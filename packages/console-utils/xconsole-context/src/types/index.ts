@@ -28,7 +28,7 @@ export enum ResourceGroupType {
 
 export interface ResourceGroupConfig {
   // 是否开启资源组
-  enable?: boolean;
+  resourceGroupVisiblePaths?: PathRule;
 
   // 资源组ID 被持久化 在哪个地方
   routeType?: 'path' | 'query';

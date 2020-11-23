@@ -1,6 +1,7 @@
 import React from 'react';
 
 import useRegion from './region/useRegion';
+import useResourceGroup from './resourceGroup/useResourceGroup';
 import consoleConfig from './console/index';
 import { IConsoleContextProp } from './types/index';
 import { ConsoleContext } from './context/Context';
@@ -13,9 +14,9 @@ function withConsoleContext<P extends IConsoleContextProp, S = {}>(
     const region = useRegion(props);
 
     // 初始化 resourceGroup 逻辑
-    //  const resourceGroup = useResourceGroup(props);
+    const resourceGroup = useResourceGroup(props);
 
-    const context = { consoleConfig, region };
+    const context = { consoleConfig, region, resourceGroup };
     return (
       <ConsoleContext.Provider value={context}>
         <Comp {...props} />

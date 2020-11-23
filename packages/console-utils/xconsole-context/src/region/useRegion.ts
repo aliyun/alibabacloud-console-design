@@ -10,6 +10,7 @@ import { RegionContext } from '../context/RegionContext';
 type Region = typeof ConsoleRegion;
 
 const hasRegionId = (match) => {
+  // eslint-disable-next-line no-prototype-builtins
   return match.params && match.params.hasOwnProperty('regionId');
 }
 
@@ -83,9 +84,6 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
 
   // 处理 ConsoleBase
   useEffect(() => {
-    // update the regionList when regionList change
-    region.setRegions(regionList);
-
     // update the history when region change on the reigonbar
     const unsubscribeRegionChange = region.onRegionChange((payload) => {
       const regionId = determineRegionId(payload.id, currentRegionId, regionList);
@@ -115,7 +113,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
       unsubscribeRegionChange()
       unsubscribeReady()
     }
-  }, [regionList, history, regionbarVisiblePaths, location.pathname]);
+  }, [regionList, history, regionbarVisiblePaths, location.pathname, currentRegionId]);
 
   return region;
 };

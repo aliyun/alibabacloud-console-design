@@ -5,7 +5,6 @@ import { ConsoleContext } from '../context/Context'
 import Link from '@alicloud/xconsole-rc-base-link'
 import '@alicloud/xconsole-rc-base-link/dist/index.css';
 
-
 export interface IChannelLinkProps {
   /**
    * 
