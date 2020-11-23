@@ -4,6 +4,7 @@ import { match } from 'react-router-dom';
 import region from "../region/index";
 import { IPayloadRegion } from "./ConsoleBase";
 import consoleConfig, { ConsoleBase } from '../console/index';
+import resourceGroup from '../resourceGroup';
 
 type PathRule = string[] | RegExp[];
 
@@ -37,6 +38,7 @@ export interface ResourceGroupConfig {
 export interface IConsoleContextValue {
   consoleConfig: typeof consoleConfig;
   region: typeof region;
+  resourceGroup: typeof resourceGroup;
 }
 
 export interface IConsoleContextProp<T = {}> {

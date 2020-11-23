@@ -16,8 +16,8 @@ const REGION_LIST = [
 
 // @ts-ignore
 const App = withConsoleConfig((props) => {
-  const { region } = useContext(ConsoleContext);
-  return <div>{region.getCurrentRegionId()}</div>;
+  const { region, resourceGroup } = useContext(ConsoleContext);
+  return <div>{region.getCurrentRegionId()} {resourceGroup.getCurrentResourceGroup()}</div>;
 });
 
 storiesOf('Console Configuration', module).add('Region', () => {

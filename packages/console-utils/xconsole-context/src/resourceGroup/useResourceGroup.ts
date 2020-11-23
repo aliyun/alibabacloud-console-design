@@ -16,6 +16,8 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
     getCurrentResourceGroup: () => currentRGId,
   };
 
+  console.log(currentRGId)
+
   useEffect(() => {
     // toggle the resource group show or hide by resourceGroup.enable
     let enable = false;
@@ -69,8 +71,5 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
     }
   }, [resourceGroupVisiblePaths, location.pathname])
 
-  return {
-    ...ConsoleResourceGroup,
-    ...props.consoleBase,
-  }
+  return resourceGroup;
 }
