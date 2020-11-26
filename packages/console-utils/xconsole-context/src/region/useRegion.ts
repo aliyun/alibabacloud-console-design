@@ -6,6 +6,7 @@ import ConsoleBase from '../console/ConsoleBase';
 import { IConsoleContextProp } from '../types/index';
 import { determineRegionId } from './determineRegionId';
 import { RegionContext } from '../context/RegionContext';
+import { getActiveId } from './cookies';
 
 type Region = typeof ConsoleRegion;
 
@@ -51,7 +52,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
 
   const region: Region = {
     ...(consoleBase || ConsoleRegion),
-    getCurrentRegionId: (): string => currentRegionId,
+    getCurrentRegionId: (): string => currentRegionId || determineRegionId(match.params.regionId, getActiveId(), regionList),
   };
 
   const regionContext = useContext(RegionContext);
