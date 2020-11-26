@@ -12,7 +12,6 @@ const useCollapsed = (pathname: string, collapsedPath: PathRule) => {
   });
 
   useEffect(() => {
-    console.log('useEffect', 'xxxxx')
     const collapse = collapsedPath.some((key) =>
       matchPath(pathname, { path: key, exact: true, strict: true })
     );
