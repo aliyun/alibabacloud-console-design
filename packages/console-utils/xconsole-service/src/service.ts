@@ -3,7 +3,7 @@ import createRequest from './request';
 import { DEFAULT_RISK_OPTION } from './const'
 import { IOptions, IResponseData, Service, Actions } from './types';
 
-const request = createRequest();
+export const request = createRequest();
 
 const createMultiService = <R, P>(requestInstance: AxiosInstance, product: string, opts: IOptions) => {
   return async (actions: Actions, overlap: boolean): Promise<R> => {

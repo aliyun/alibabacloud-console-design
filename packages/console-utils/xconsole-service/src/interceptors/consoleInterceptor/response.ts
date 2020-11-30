@@ -7,9 +7,11 @@ function consoleResponseInterceptor(
 ): IResponse<IResponseData> {
   const {
     data: apiResponseData,
-    config: { apiType, ignoreError },
+    config: { apiType, ignoreError, risk = {} },
   } = response;
+
   if (apiType === ApiType.custom) return response;
+
   if (
     // Single api succeeded -> code 200, withFailedRequest undefined
     // Multi api succeeded  -> code 200, withFailedRequest false
@@ -18,6 +20,13 @@ function consoleResponseInterceptor(
   ) {
     return response;
   }
+
+  // 对于风控直接返回请求对象
+  const { code = {} } = risk;
+  if (apiResponseData.code === code.doubleConfirm) {
+    return response;
+  }
+
   if (
     // Multi api with failed request
     apiResponseData.code === '200' &&
@@ -30,6 +39,7 @@ function consoleResponseInterceptor(
     }
     return response;
   }
+
   if (apiResponseData.message) {
     // Single api failed with an error message
     const error: IError = new Error(apiResponseData.message);
@@ -42,9 +52,11 @@ function consoleResponseInterceptor(
   // Single api failed without an error message
   const error: IError = new Error('OpenAPI failed without a message.');
   error.response = response;
+
   if (ignoreError !== true) {
     throw error;
   }
+
   return response;
 }
 
