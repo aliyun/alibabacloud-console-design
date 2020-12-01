@@ -13,7 +13,6 @@ type ConsoleRegion = typeof ConsoleRegion;
 
 interface Region extends ConsoleRegion {
   loading?: boolean;
-  regionList: IPayloadRegion[];
 }
 
 const hasRegionId = (match) => {
