@@ -99,14 +99,14 @@ class VerifyForm extends Component<IProps, IState> {
   }
 
   startCountdownTimer(): void {
-    const { countdown } = this.state;
     this.updateCountdown(60);
+    this.forceUpdate();
     this.timer = window.setInterval(() => {
-      if (countdown <= 0) {
+      if (this.state.countdown <= 0) {
         this.clearTimer();
         return;
       }
-      this.updateCountdown(countdown - 1);
+      this.updateCountdown(this.state.countdown - 1);
     }, 1000);
   }
 

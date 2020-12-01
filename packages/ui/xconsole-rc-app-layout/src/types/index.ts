@@ -1,4 +1,5 @@
 import { RouteComponentProps } from 'dva/router';
+import { Location } from 'history'
 import { IRoutableItemDescriptor } from '@alicloud/console-components-console-menu/lib/ItemDescriptor';
 
 export type PathRule = string[] | RegExp[];
@@ -56,8 +57,11 @@ export interface ISidebarConfig {
   invisiblePaths?: string[];
 }
 
+export type SidebarCallBack = (location: Location) => ISidebarConfig;
+
 export interface IProp extends RouteComponentProps {
-  sidebar: ISidebarConfig;
+  sidebar: ISidebarConfig | SidebarCallBack;
+  location?: Location;
   consoleMenu?: IConsoleMenuConfig;
   children?: React.ReactChildren;
   menuParams: Record<string, any>;

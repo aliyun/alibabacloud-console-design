@@ -39,7 +39,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@alicloud/console-components": "^1.0.20",
+    "@alicloud/console-components": "alpha",
     "lodash.get": "^4.4.2",
     "lodash.reduce": "^4.6.0"
   },

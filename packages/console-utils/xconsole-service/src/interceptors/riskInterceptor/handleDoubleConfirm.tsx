@@ -83,6 +83,7 @@ async function handleDoubleConfirm(
       newResponse = await axiosInstance({
         method: 'post',
         url: reqUrl,
+        baseURL: '/',
         data: reqData,
       });
     } catch (e) {

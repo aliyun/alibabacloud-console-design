@@ -19,7 +19,7 @@
     "url": ""
   },
   "devDependencies": {
-    "@alicloud/console-components": "^1.0.20",
+    "@alicloud/console-components": "alpha",
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "@types/jest": "^24.0.18",

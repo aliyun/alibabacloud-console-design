@@ -28,7 +28,7 @@
     "dev": "npm run babel && npm run babel:esm"
   },
   "devDependencies": {
-    "@alicloud/console-components": "^1.0.20",
+    "@alicloud/console-components": "alpha",
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "babel-loader": "^8.0.5",

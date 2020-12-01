@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
+import isFunction from 'lodash/isFunction';
 import { withRouter } from 'dva/router';
-import { IProp } from './types/index';
+import { IProp, ISidebarConfig } from './types/index';
 import Context from './Context';
 import Aside from './Aside';
 
 let noticeFlag = false;
 
 const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
-  const { sidebar, consoleMenu, location, children, menuParams } = props;
+  const { sidebar: rawSidebar, consoleMenu, location, children, menuParams } = props;
+
+  let sidebar: ISidebarConfig = null;
+
+  if (isFunction(rawSidebar)) {
+    sidebar = rawSidebar(location);
+  } else {
+    sidebar = rawSidebar;
+  }
 
   const [title, setTitle] = useState(sidebar.title || 'XConsole');
   const [navs, setNavs] = useState(sidebar.navs || []);
