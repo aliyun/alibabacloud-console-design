@@ -13,13 +13,18 @@ export interface RegionConfig {
   type?: 'center' | 'dcenter' | 'region';
 
   // region 列表
-  regionList?: IPayloadRegion[];
+  regionList?: IPayloadRegion[] | ((location: Location) => Promise<IPayloadRegion[]>);
 
   // 默认 fallback 的 region
   defaultRegion?: string;
   
   // 路由匹配到 region 展示或者隐藏
   regionbarVisiblePaths?: PathRule;
+}
+
+export interface IRegionConfigProps extends RegionConfig {
+  // region 列表
+  regionList?: IPayloadRegion[];
 }
 
 export enum ResourceGroupType {
@@ -48,6 +53,10 @@ export interface IConsoleContextProp<T = {}> {
   resourceGroup?: ResourceGroupConfig;
   location: Location;
   match: match<T>;
+}
+
+export interface IConsoleContextRegionProp<T = {}> extends IConsoleContextProp<T> {
+  region?: IRegionConfigProps;
 }
 
 export interface IRegionContextValue {

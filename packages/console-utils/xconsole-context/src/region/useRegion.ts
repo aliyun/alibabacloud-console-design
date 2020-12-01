@@ -3,19 +3,25 @@ import { matchPath, generatePath } from 'react-router';
 
 import ConsoleRegion from './index';
 import ConsoleBase from '../console/ConsoleBase';
-import { IConsoleContextProp } from '../types/index';
+import { IConsoleContextRegionProp } from '../types/index';
 import { determineRegionId } from './determineRegionId';
 import { RegionContext } from '../context/RegionContext';
 import { getActiveId } from './cookies';
+import { IPayloadRegion } from '../types/ConsoleBase';
 
-type Region = typeof ConsoleRegion;
+type ConsoleRegion = typeof ConsoleRegion;
+
+interface Region extends ConsoleRegion {
+  loading?: boolean;
+  regionList: IPayloadRegion[];
+}
 
 const hasRegionId = (match) => {
   // eslint-disable-next-line no-prototype-builtins
   return match.params && match.params.hasOwnProperty('regionId');
 }
 
-const reroute = (props: IConsoleContextProp<{regionId?: string}>, nextRegionId: string) => {
+const reroute = (props: IConsoleContextRegionProp<{regionId?: string}>, nextRegionId: string) => {
   const { history, match, location } = props;
   if (match && match.path && hasRegionId(match)) {
     const { path, params } = match;
@@ -44,7 +50,7 @@ const reroute = (props: IConsoleContextProp<{regionId?: string}>, nextRegionId: 
  *    - 接受 regionbar 的 region 变更，并且变动整个 app.
  *    - 获取与更新 regionID 相关信息
  */
-export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
+export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region => {
   const { history, consoleBase, match, location, region: regionConfig = {} } = props;
   const { regionList, regionbarVisiblePaths = [] }  = regionConfig;
   // 默认 Region = 路由的Region > Cookie 的 region > Region 列表中第一个 > 用户指定默认Region >'cn-hangzhou'
@@ -85,7 +91,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): Region => {
 
   // 处理 ConsoleBase
   useEffect(() => {
-    // update the history when region change on the reigonbar
+    // update the history when region change on the regionbar
     const unsubscribeRegionChange = region.onRegionChange((payload) => {
       const regionId = determineRegionId(payload.id, currentRegionId, regionList);
       if (regionId !== currentRegionId) {

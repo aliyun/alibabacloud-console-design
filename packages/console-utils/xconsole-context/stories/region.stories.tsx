@@ -20,33 +20,64 @@ const App = withConsoleConfig((props) => {
   return <div>{region.getCurrentRegionId()} {resourceGroup.getCurrentResourceGroup()}</div>;
 });
 
-storiesOf('Console Configuration', module).add('Region', () => {
-  return (
-    <div id="app-wrapper">
-      <Router>
-        <Switch>
-          <Route path="/:regionId?" 
-            render={(props) => (
-              <App
-                {...props}
-                consoleBase={forApp}
-                region={{
-                  regionList: REGION_LIST,
-                  regionbarVisiblePaths: [
-                    '/:regionId'
-                  ]
-                }}
-                resourceGroup={{
-                  resourceGroupVisiblePaths: [
-                    '/:regionId'
-                  ],
-                  routeType: 'query'
-                }}
-              />
-            )}
-          />
-        </Switch>
-      </Router>
-    </div>  
-  );
-});
+storiesOf('Console Configuration', module)
+  .add('Region', () => {
+    return (
+      <div id="app-wrapper">
+        <Router>
+          <Switch>
+            <Route path="/:regionId?" 
+              render={(props) => (
+                <App
+                  {...props}
+                  consoleBase={forApp}
+                  region={{
+                    regionList: REGION_LIST,
+                    regionbarVisiblePaths: [
+                      '/:regionId'
+                    ]
+                  }}
+                  resourceGroup={{
+                    resourceGroupVisiblePaths: [
+                      '/:regionId'
+                    ],
+                    routeType: 'query'
+                  }}
+                />
+              )}
+            />
+          </Switch>
+        </Router>
+      </div>  
+    );
+  })
+  .add('Dynamic Region', () => {
+    return (
+      <div id="app-wrapper">
+        <Router>
+          <Switch>
+            <Route path="/:regionId?" 
+              render={(props) => (
+                <App
+                  {...props}
+                  consoleBase={forApp}
+                  region={{
+                    regionList: () => {
+                      return new window.Promise((resolve) => {
+                        setTimeout(() => {
+                          resolve(REGION_LIST)
+                        }, 4000)
+                      });
+                    },
+                    regionbarVisiblePaths: [
+                      '/:regionId'
+                    ]
+                  }}
+                />
+              )}
+            />
+          </Switch>
+        </Router>
+      </div>  
+    );
+  });
