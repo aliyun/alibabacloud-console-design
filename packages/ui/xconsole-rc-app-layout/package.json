@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-app-layout",
-  "version": "2.2.9",
+  "version": "2.2.11",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
