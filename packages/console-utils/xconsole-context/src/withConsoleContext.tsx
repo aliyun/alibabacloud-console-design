@@ -13,7 +13,7 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
   Comp: new () => React.Component<P, S>
 ) {
   return (props: P) => {
-    const { region: { regionList: userRegionListConfig }, location } = props;
+    const { region: { regionList: userRegionListConfig } = {}, location } = props;
     const [loading, setLoading] = useState(isFunction(userRegionListConfig));
     const [regionList, setRegionList] = useState(isFunction(userRegionListConfig) ? [] : userRegionListConfig);
 

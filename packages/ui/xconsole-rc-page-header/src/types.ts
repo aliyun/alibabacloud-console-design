@@ -1,5 +1,5 @@
 import React from 'react';
-import { SelectProps } from '@alicloud/console-components/lib/select';
+import { SelectProps } from '@alifd/next/lib/select';
 import { History } from 'history';
 
 export interface INavProps {
