@@ -9,7 +9,7 @@ import {
 } from './constants'
 
 
-const logSpm = (spma, spmb) => {
+export const logSpm = (spma, spmb) => {
   try {
     const queue = get(window, 'goldlog_queue', [])
     const checksum = getChecksum(spma, spmb)
@@ -29,7 +29,7 @@ const logSpm = (spma, spmb) => {
   } catch (error) {}
 }
 
-const setArmsPage = function (path) {
+export const setArmsPage = function (path) {
   try {
     window.__bl && window.__bl.setPage && window.__bl.setPage(path, false)
   } catch (error) {}
