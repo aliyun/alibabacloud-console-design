@@ -24,6 +24,7 @@ const handleConsoleBase = (
   });
 
   forApp.toggleRegion(false);
+  forApp.setRegionId(currentRegionId);
 
   (reginbarVisiblePaths || []).forEach((showRegionPath: string) => {
     const matches = matchPath(location.pathname, {

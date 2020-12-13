@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-query",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
@@ -18,6 +18,8 @@
     "url" : ""
   },
   "devDependencies": {
+    "@types/react": "^16.8.24",
+    "@types/webpack-env": "^1.14.0",
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "babel-eslint": "^10.0.1",
@@ -46,9 +48,6 @@
   },
   "dependencies": {
     "@alicloud/xconsole-model":  "^1.0.0-beta.1",
-    "@types/react": "^16.8.24",
-    "@types/webpack-env": "^1.14.0",
-    "dva": "^2.4.1",
     "lodash.isequal": "^4.5.0",
     "lodash.isfunction": "^3.0.9"
   }

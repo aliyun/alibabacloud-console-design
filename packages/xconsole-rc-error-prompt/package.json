@@ -1,8 +1,9 @@
 {
   "name": "@alicloud/xconsole-rc-error-prompt",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.5",
   "description": "elegant error prompt",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
@@ -36,8 +37,6 @@
     "react-dom": "^16.x"
   },
   "dependencies": {
-    "@alicloud/console-toolkit-cli": "^1.0.3",
-    "@alicloud/console-toolkit-preset-wind-component": "^1.0.6",
     "@alicloud/xconsole-less": "^1.0.0-beta.1",
     "babel-runtime": "^6.26.0",
     "classnames": "^2.2.6",
@@ -45,6 +44,8 @@
     "qs": "^6.9.0"
   },
   "devDependencies": {
+    "@alicloud/console-toolkit-cli": "^1.0.3",
+    "@alicloud/console-toolkit-preset-wind-component": "^1.0.6",
     "@alicloud/console-components": "^1.0.20",
     "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1",
     "moment": "^2.24.0",
