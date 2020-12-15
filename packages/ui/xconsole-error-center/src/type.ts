@@ -40,6 +40,8 @@ export interface ErrorCodeConfig {
   disableExtraInfo?: boolean;
   // 只展示一个按钮
   dialogType?: 'alert';
+
+  ignore?: boolean;
 }
 
 export interface ErrorCodeConfigMap {
