@@ -5,6 +5,7 @@ import {
   IToolkitItem,
   IPayloadFastbuy,
   IPayloadResourceGroup,
+  IPayloadRegionOnChange,
 } from '../types/ConsoleBase';
 
 export const ConsoleBaseBroadcast = {
@@ -95,7 +96,7 @@ export const ConsoleSubscriber = {
   /**
    * 地域切换时的回调
    */
-  onRegionChange(fn: (payload: IPayloadRegion) => void): () => void {
+  onRegionChange(fn: (payload: IPayloadRegionOnChange) => void): () => void {
     return () => {/* void */};
   },
 

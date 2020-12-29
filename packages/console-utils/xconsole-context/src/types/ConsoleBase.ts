@@ -36,6 +36,9 @@ export interface IPayloadRegion {
   id: string;
   name: string;
 }
+export interface IPayloadRegionOnChange extends IPayloadRegion {
+  correctedFrom?: string;
+}
 
 export type TResourceCountMapping = Record<string, number>;
 
