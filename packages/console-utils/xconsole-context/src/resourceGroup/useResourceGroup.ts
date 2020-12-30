@@ -11,7 +11,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
   const { resourceGroupVisiblePaths = [] } = props.resourceGroup || {};
   const searchParam = qs.parse(location.search);
   const [currentRGId, setCurrentRGId] = useState<string>(
-    searchParam.resourceGroupId || getCurrentRGId()
+    searchParam.resourceGroupId || getCurrentRGId() || '-1'
   );
 
   const resourceGroup = {
