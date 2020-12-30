@@ -11,7 +11,7 @@ const DEFAULT_COOKIE_KEY = 'console_base_resource_group_id';
  * @param {String=} key
  */
 export const getCurrentRGId = () => {
-  return (Cookie.get(DEFAULT_COOKIE_KEY) || '-1');
+  return (Cookie.get(DEFAULT_COOKIE_KEY) || '');
 };
 
 
