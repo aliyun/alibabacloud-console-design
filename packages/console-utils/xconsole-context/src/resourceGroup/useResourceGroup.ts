@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import qs from 'query-string'
-import { IConsoleContextProp, ResourceGroupType } from '../types/index';
+import { IConsoleContextProp } from '../types/index';
 import ConsoleResourceGroup, { getCurrentRGId } from '../resourceGroup/index';
 import { matchPath } from 'react-router-dom';
 
@@ -8,13 +8,22 @@ type ResourceGroup = typeof ConsoleResourceGroup;
 
 export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup => {
   const { history, consoleBase, location } = props;
-  const { routeType = 'query', resourceGroupVisiblePaths = [] } = props.resourceGroup || {};
-  const [currentRGId, setCurrentRGId] = useState<string>(getCurrentRGId());
+  const { resourceGroupVisiblePaths = [] } = props.resourceGroup || {};
+  const searchParam = qs.parse(location.search);
+  const [currentRGId, setCurrentRGId] = useState<string>(
+    searchParam.resourceGroupId || getCurrentRGId()
+  );
 
   const resourceGroup = {
     ...(consoleBase || ConsoleResourceGroup),
     getCurrentResourceGroup: () => currentRGId,
   };
+
+  useEffect(() => {
+    if (currentRGId) {
+      resourceGroup.setResourceGroupId(currentRGId);
+    }
+  });
 
   useEffect(() => {
     // toggle the resource group show or hide by resourceGroup.enable
@@ -34,10 +43,10 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
 
     // add presistents for resource group
     const unlisten = history.listen((loc) => {
-      const query = qs.parse(loc.search)
-      if (enable && routeType === ResourceGroupType.query && query.resourceGroupId === undefined) {
+      const query = qs.parse(loc.search);
+      if (enable && query.resourceGroupId === undefined) {
         const url = new URL(window.location.href);
-        url.searchParams.append('resourceGroupId', currentRGId)
+        url.searchParams.append('resourceGroupId', currentRGId);
         history.replace({
           pathname: url.pathname,
           search: url.search,
@@ -46,28 +55,44 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
       }
     });
 
-    const unsubScriber = resourceGroup.onResourceGroupDataLoaded(() => {/* */})
+    const unSubscriber = resourceGroup.onResourceGroupDataLoaded(() => {
+      /* */
+    });
 
-    const unsubScriberChange =  resourceGroup.onResourceGroupChange((payload) => {
-      const url = new URL(window.location.href);
+    const unSubscriberChange = resourceGroup.onResourceGroupChange(
+      (payload) => {
+        const url = new URL(window.location.href);
 
-      setCurrentRGId(payload.id);
-      url.searchParams.delete('resourceGroupId');
-      url.searchParams.append('resourceGroupId', payload.id);
+        if (!payload) {
+          setCurrentRGId('-1');
+          url.searchParams.delete('resourceGroupId');
+          url.searchParams.append('resourceGroupId', '');
+        } else {
+          setCurrentRGId(payload.id);
+          url.searchParams.delete('resourceGroupId');
+          url.searchParams.append('resourceGroupId', payload.id);
+        }
 
-      history.push({
-        pathname: url.pathname,
-        search: url.search,
-        hash: url.hash,
-      });
-    })
+        history.push({
+          pathname: url.pathname,
+          search: url.search,
+          hash: url.hash,
+        });
+      }
+    );
 
     return () => {
-      unlisten()
-      unsubScriber()
-      unsubScriberChange()
-    }
-  }, [resourceGroupVisiblePaths, location.pathname])
+      unlisten();
+      unSubscriber();
+      unSubscriberChange();
+    };
+  }, [
+    resourceGroupVisiblePaths,
+    location.pathname,
+    resourceGroup,
+    history,
+    currentRGId,
+  ]);
 
   return resourceGroup;
-}
+};

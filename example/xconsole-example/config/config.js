@@ -33,9 +33,7 @@ module.exports = {
   },
   // mocks 配置
   mocks: {
-    host: 'http://mocks.alibaba-inc.com',
-    product: 'wind-pro',
-    projectUrl: 'http://mocks.alibaba-inc.com/project/wind-pro',
+    oneapi: true
   },
   // 开启低版本浏览器提示
   browserCompatibility: true,

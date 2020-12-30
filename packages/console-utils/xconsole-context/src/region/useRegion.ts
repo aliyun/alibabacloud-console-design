@@ -91,7 +91,7 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
   // 处理 ConsoleBase
   useEffect(() => {
     // update the history when region change on the regionbar
-    const unsubscribeRegionChange = region.onRegionChange((payload, ) => {
+    const unsubscribeRegionChange = region.onRegionChange((payload) => {
       if (payload.correctedFrom) {
         return;
       }
