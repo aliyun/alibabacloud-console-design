@@ -11,7 +11,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
   const { resourceGroupVisiblePaths = [] } = props.resourceGroup || {};
   const searchParam = qs.parse(location.search);
   const [currentRGId, setCurrentRGId] = useState<string>(
-    searchParam.resourceGroupId || getCurrentRGId() || '-1'
+    searchParam.resourceGroupId || getCurrentRGId()
   );
 
   const resourceGroup = {
@@ -64,7 +64,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
         const url = new URL(window.location.href);
 
         if (!payload) {
-          setCurrentRGId('-1');
+          setCurrentRGId('');
           url.searchParams.delete('resourceGroupId');
           url.searchParams.append('resourceGroupId', '');
         } else {
