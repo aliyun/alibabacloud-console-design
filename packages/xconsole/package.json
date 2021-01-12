@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole",
-  "version": "2.2.25",
+  "version": "2.2.26",
   "repository": {
     "type": "git",
     "url": "https://github.com/aliyun/alibabacloud-console-design.git"
