@@ -1,8 +1,14 @@
 import React from 'react';
 import { select, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import { useOpenApi, useRoaApi } from '../src'
+import { useOpenApi, useRoaApi, defaultAxiosRequest } from '../src'
 
+defaultAxiosRequest.interceptors.request.use((config) => {
+  config.transformRequest = [(data) => {
+    return config.data;
+  }]
+  return config;
+})
 
 storiesOf('XConsole Service', module)
   .addDecorator(withKnobs)

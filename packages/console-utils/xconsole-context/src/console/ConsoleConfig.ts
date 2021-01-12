@@ -52,8 +52,8 @@ class ConsoleConfig {
     return this.consoleConfig.SEC_TOKEN;
   };
 
-  public isCertified = (): string => {
-    return this.consoleConfig.IS_CERTIFIED;
+  public isCertified = (): boolean => {
+    return this.consoleConfig.IS_CERTIFIED === 'true';
   };
 
   public getAccountName = (): string => {
