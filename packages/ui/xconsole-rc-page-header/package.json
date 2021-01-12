@@ -29,7 +29,7 @@
     "react-dom": "^16.8.6"
   },
   "scripts": {
-    "prepublish": "npm run babel",
+    "prepublish": "rm -rf dist lib es && npm run babel && npm run build && npm run babel:esm",
     "build": "breezr build --engine webpack",
     "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
     "babel:esm": "breezr build --engine babel --es-module",
