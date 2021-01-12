@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@alicloud/console-components-app-layout": "2.0.0-alpha.3",
-    "@alicloud/console-components-console-menu": "^1.2.0-alpha.2",
+    "@alicloud/console-components-console-menu": "alpha",
     "lodash.get": "^4.4.2",
     "lodash.isundefined": "^3.0.1",
     "lodash.map": "^4.6.0",
