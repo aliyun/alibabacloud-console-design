@@ -32,6 +32,7 @@
     "clean": "rm -rf es build lib yarn.lock"
   },
   "peerDependencies": {
+    "@alicloud/console-components": "alpha",
     "@alicloud/xconsole-rc-dialog": "^1.0.0-beta.1",
     "@alicloud/xconsole-rc-error-prompt": "^1.0.0-beta.1",
     "prop-types": "^15.7.2",
@@ -39,7 +40,6 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@alicloud/console-components": "alpha",
     "lodash.get": "^4.4.2",
     "lodash.reduce": "^4.6.0"
   },

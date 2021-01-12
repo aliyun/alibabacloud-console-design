@@ -30,8 +30,9 @@
   },
   "scripts": {
     "prepublish": "npm run babel",
-    "build": "breezr build --engine rollup",
+    "build": "breezr build --engine webpack",
     "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
+    "babel:esm": "breezr build --engine babel --es-module",
     "storybook": "breezr start-storybook",
     "start": "npm run storybook",
     "test": "breezr test:unit"
