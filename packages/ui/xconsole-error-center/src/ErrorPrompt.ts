@@ -67,7 +67,7 @@ const showError = (option: ShowErrorOption) => {
   const errorPromptConfig = {
     locale: LOCALE,
     shouldIgnore: () => {
-      return errorConfig.ignore || code === 'FoundRiskAndDoubleConfirm'
+      return errorConfig?.ignore || code === 'FoundRiskAndDoubleConfirm'
     },
     getTitle() {
       if (errorConfig) {
