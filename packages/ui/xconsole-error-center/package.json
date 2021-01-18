@@ -41,7 +41,8 @@
   },
   "dependencies": {
     "lodash.get": "^4.4.2",
-    "lodash.reduce": "^4.6.0"
+    "lodash.reduce": "^4.6.0",
+    "react-copy-to-clipboard": "^5.0.3"
   },
   "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
 }

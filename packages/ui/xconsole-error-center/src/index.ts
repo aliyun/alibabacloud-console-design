@@ -5,7 +5,7 @@ import { ResponseError, ErrorCenterOption, ErrorPromptOption } from './type';
 const ErrorCenter = (errorCenterOption: ErrorCenterOption) => {
   const {
     enable = false, errorCode, errorCodes,
-    getMessage, disableExtraInfo, dialogType
+    getMessage, disableExtraInfo, dialogType, showCopy
   } = errorCenterOption;
 
   if (process.env.NODE_ENV === 'development' && errorCode) {
@@ -29,6 +29,7 @@ const ErrorCenter = (errorCenterOption: ErrorCenterOption) => {
         error: err,
         errorConfig: valideErrorCodes[err.response?.data?.code] || errorCenterOption.errorConfig ||{},
         getMessage,
+        showCopy,
         disableExtraInfo,
         dialogType
       })

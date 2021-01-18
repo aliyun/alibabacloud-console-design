@@ -78,4 +78,5 @@ export interface ErrorCenterOption {
   getMessage?: GetMessageCallback;
   disableExtraInfo?: boolean;
   dialogType?: 'alert' | 'prompt';
+  showCopy?: boolean;
 }

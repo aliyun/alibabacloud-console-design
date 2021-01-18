@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ErrorPrompt from '../../src/ErrorPrompt';
 
-const promptError = () => ErrorPrompt({ error: new Error('There is an error') });
+const promptError = () => ErrorPrompt({ showCopy: true, error: new Error('There is an error') });
 
 export default () => {
   return (

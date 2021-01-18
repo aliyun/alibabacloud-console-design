@@ -21,9 +21,10 @@ const getError = () => {
 }
 
 export default () => {
-  const enable = boolean('enable', false);
+  const enable = boolean('enable', true);
   const handler = ErrorCenter({
     enable,
+    showCopy: true,
     errorCodes: {
       No_Permission: {
         message: '没有权限'

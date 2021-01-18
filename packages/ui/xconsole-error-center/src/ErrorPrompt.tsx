@@ -1,4 +1,7 @@
-import isFuntion from 'lodash/isFunction';
+import React from 'react';
+import { Balloon, Icon, Message } from '@alicloud/console-components';
+import isFunction from 'lodash/isFunction';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import errorPrompt from '@alicloud/xconsole-rc-error-prompt';
 import pick from 'lodash/pick'
 import {
@@ -16,13 +19,14 @@ interface ShowErrorOption {
   getMessage?: GetMessageCallback;
   disableExtraInfo?: boolean;
   dialogType?: 'alert' | 'prompt';
+  showCopy?: boolean;
 }
 
 
 const getRealMessage = (error: ResponseError, errorConfig: Partial<ErrorCodeConfig>, getMessage?: GetMessageCallback) => {
 
   if (errorConfig.message) {
-    if (isFuntion(errorConfig.message)) {
+    if (isFunction(errorConfig.message)) {
       return errorConfig.message(error);
     }
     return errorConfig.message;
@@ -43,7 +47,7 @@ const getErrorConfig = (
   getMessage?: GetMessageCallback
 ) => {
 
-  if (isFuntion(errorConfig)) {
+  if (isFunction(errorConfig)) {
     return errorConfig(error)
   }
 
@@ -57,8 +61,22 @@ const getErrorConfig = (
 // TODO: Icon 的展示
 // TODO: 新开窗口
 
+const CopyIcon = ({data}: {data: string}) => {
+  return (
+    <Balloon align="r" trigger={
+      <CopyToClipboard
+        text={data}
+        onCopy={ () => Message.success('拷贝成功')}
+      >
+        <Icon type="copy" size="xs" style={{color: "#555", cursor: 'pointer'}}/>
+      </CopyToClipboard>
+    }>
+      点击拷贝详情错误详情
+    </Balloon>)
+}
+
 const showError = (option: ShowErrorOption) => {
-  const { error, disableExtraInfo, dialogType, getMessage } = option;
+  const { error, disableExtraInfo, dialogType, getMessage, showCopy } = option;
 
   const errorConfig = getErrorConfig(option.errorConfig, error, getMessage);
   
@@ -76,10 +94,10 @@ const showError = (option: ShowErrorOption) => {
       return intl(code, 'Error Notice')
     },
     getMessage() {
-      return errorConfig?.message;
+      return <div>{errorConfig?.message} { showCopy ? <CopyIcon data={JSON.stringify(error.response?.data)}/> : ''}</div>;
     },
     getRequestId() {
-      return error?.response?.data.requestId;
+      return error?.response?.data.requestId
     },
     getRequestUrl() {
       return error?.response?.config.url;
