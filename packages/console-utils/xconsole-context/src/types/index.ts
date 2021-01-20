@@ -33,6 +33,7 @@ export enum ResourceGroupType {
 }
 
 export interface ResourceGroupConfig {
+  enable?: boolean;
   // 是否开启资源组
   resourceGroupVisiblePaths?: PathRule;
 

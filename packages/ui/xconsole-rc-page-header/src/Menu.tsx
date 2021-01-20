@@ -22,10 +22,16 @@ const Menu: React.FC<IProps> = ({
       {...reset}
     >
       {map(items, (item) => {
+        if (item.visible === false) {
+          return null;
+        }
         if (item.items) {
           return (
             <Page.Menu.SubMenu key={item.key} label={item.title}>
               {item.items.map(subItem => {
+                if (subItem.visible === false) {
+                  return null;
+                }
                 return <Page.Menu.Item key={subItem.key}>{subItem.title}</Page.Menu.Item>;
               })}
             </Page.Menu.SubMenu>

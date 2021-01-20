@@ -30,12 +30,24 @@ const nav = {
       title: '用户',
       items: [{
         key: 'user1',
+        visible: false,
         title: (<Link to="/">用户2</Link>),
       }]
     },
     {
       key: 'role',
+      visible: false,
       title: '角色',
+    },
+    {
+      key: 'role3',
+      // visible: false,
+      title: '角色2',
+    },
+    {
+      key: 'role1',
+      // visible: false,
+      title: '角色3',
     },
   ],
 };
