@@ -1,6 +1,5 @@
 export {
   useService,
-  useList,
   useOpenApi,
   useInnerApi,
   usePluginApi,
