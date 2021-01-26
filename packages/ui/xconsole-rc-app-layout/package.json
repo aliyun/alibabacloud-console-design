@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-app-layout",
-  "version": "2.2.23",
+  "version": "2.3.0",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
@@ -54,8 +54,8 @@
   "dependencies": {
     "@alicloud/console-components-app-layout": "2.0.0-alpha.3",
     "@alicloud/console-components-console-menu": "alpha",
-    "lodash.isundefined": "^3.0.1",
     "lodash": "^4.17.4",
+    "lodash.isundefined": "^3.0.1",
     "moment": "^2.24.0"
   },
   "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
