@@ -12,6 +12,7 @@
     "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
     "babel:esm": "breezr build --engine babel --es-module"
   },
+  "sideEffects": false,
   "keywords": [
     "xconsole",
     "service",

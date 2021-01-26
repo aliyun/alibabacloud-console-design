@@ -5,6 +5,7 @@
   "module": "es/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
+  "sideEffects": false,
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
     "type": "git",
