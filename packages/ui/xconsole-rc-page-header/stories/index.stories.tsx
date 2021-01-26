@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Route, Router, Link } from 'dva/router';
+import { Button } from '@alicloud/console-components'
 import { createBrowserHistory } from 'history';
 import { storiesOf } from '@storybook/react';
 import WindProRcPageHeader from '../src';
@@ -69,8 +70,6 @@ const dataSource = [
 const App = () => (
   <WindProRcPageHeader
     title="title"
-    subTitle="asd"
-    subSwitcher={{ dataSource, onChange: (value) => console.log(value) }}
     historyBack="/users"
     breadcrumbs={breadcrumbs}
     nav={nav}

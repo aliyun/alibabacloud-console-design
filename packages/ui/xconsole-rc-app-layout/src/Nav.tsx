@@ -1,8 +1,8 @@
 import React from 'react';
 import { generatePath } from 'dva/router';
 import ConsoleMenu from '@alicloud/console-components-console-menu/RoutableMenu';
-import map from 'lodash.map';
-import get from 'lodash.get';
+import map from 'lodash/map';
+import get from 'lodash/get';
 import isUndefined from 'lodash.isundefined';
 import { IMenuProps, INavConfig } from './types/index';
 import useOpenKeys from './hooks/useOpenKeys';

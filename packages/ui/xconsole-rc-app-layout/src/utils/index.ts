@@ -1,7 +1,7 @@
 import { generatePath, matchPath } from 'dva/router';
 import isUndefined from 'lodash.isundefined';
-import get from 'lodash.get';
-import map from 'lodash.map';
+import get from 'lodash/get';
+import map from 'lodash/map';
 import { PathRule } from '../types/index';
 
 export const transTitleToHeader = (title: string) => title;

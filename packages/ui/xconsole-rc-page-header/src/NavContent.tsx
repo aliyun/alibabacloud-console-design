@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tab } from '@alicloud/console-components';
-import map from 'lodash.map';
+import map from 'lodash/map';
 import { INavProps } from './types';
 
 interface IProps {

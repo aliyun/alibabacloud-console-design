@@ -1,6 +1,6 @@
-import get from 'lodash.get'
-import map from 'lodash.map'
-import reduce from 'lodash.reduce'
+import get from 'lodash/get'
+import map from 'lodash/map'
+import reduce from 'lodash/reduce'
 import { getChecksum, matchPathRules } from './utils'
 import {
   SPMA,
