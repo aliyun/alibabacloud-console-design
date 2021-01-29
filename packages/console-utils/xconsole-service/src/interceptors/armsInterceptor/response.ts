@@ -33,7 +33,7 @@ function armsResponseInterceptor(
   // API
   const { url = '', data: dataStr } = config;
   const requestData = new URLSearchParams(dataStr);
-  const matches = /\/data\/(.+)\.json/.exec(url);
+  const matches = /data\/(.+)\.json/.exec(url);
   if (!matches) {
     return response;
   }
