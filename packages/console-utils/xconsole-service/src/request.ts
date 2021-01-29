@@ -36,9 +36,9 @@ export default function createRequest(
     instance.interceptors.request.use(rosRequestInterceptor);
     instance.interceptors.request.use(armsRequestInterceptor);
 
+    instance.interceptors.response.use(armsResponseInterceptor);
     instance.interceptors.response.use(consoleResponseInterceptor);
     instance.interceptors.response.use(consoleRiskInterceptor);
-    instance.interceptors.response.use(armsResponseInterceptor);
   }
 
   let requestInterceptor = requestInterceptors.shift();
