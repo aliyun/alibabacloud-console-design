@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import isFunction from 'lodash/isFunction';
 import { withRouter } from 'dva/router';
 import { IProp, ISidebarConfig } from './types/index';
@@ -33,12 +33,23 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
     );
   }
 
+  const onNavTriggerClick = useCallback((fn: () => void) => {
+    const cb = (e) => {
+      if (e.data.type === 'xconsole:on_nav_click') {
+        fn();
+      }
+    };
+    window.addEventListener('message', cb);
+    return () => window.removeEventListener('message', cb);
+  }, []);
+
   return (
     <Context.Provider
       value={{
         sidebar: { title, navs, collapsedKeys: [] },
         setTitle,
         setNavs,
+        onNavTriggerClick
       }}
     >
       <Aside consoleMenu={consoleMenu} location={location} menuParams={menuParams}>

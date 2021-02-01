@@ -22,7 +22,9 @@ const useCollapsed = (pathname: string, collapsedPath: PathRule) => {
     setCollapsed(
       typeof prevCollapsed === 'boolean' ? !prevCollapsed : !prevState.current
     );
+    window.postMessage({type: 'xconsole:on_nav_click'}, null);
   };
+
   return {
     collapsed,
     onNavCollapseTriggerClick,
