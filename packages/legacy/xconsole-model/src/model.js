@@ -50,7 +50,6 @@ export default ({ service, initialValue, namespace = uuid(), ...rest }) => {
               }, 200)
             }
           } catch (error) {
-            console.log('debugme try catch', error);
             yield put({
               type: 'save',
               payload: { APIError: error },

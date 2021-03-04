@@ -33,6 +33,8 @@ const ErrorCenter = (errorCenterOption: ErrorCenterOption) => {
         disableExtraInfo,
         dialogType
       })
+      // @ts-ignore
+      err.preventDefault && err.preventDefault()
     },
   }
 };
