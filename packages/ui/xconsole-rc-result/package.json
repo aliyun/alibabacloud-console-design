@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-result",
-  "version": "2.2.11",
+  "version": "2.3.5",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
     "@alicloud/xconsole-rc-description": "^2.0.0",
-    "@alicloud/xconsole-rc-page": "^2.2.11",
+    "@alicloud/xconsole-rc-page": "^2.3.5",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.5",
     "@types/react": "^16.8.10",
