@@ -38,7 +38,7 @@ const XconsoleRcPage: React.FC<IProps> = (props: IProps) => {
       <Page.Header
         title={title}
         subTitle={subTitle}
-        breadcrumb={<Breadcrumb items={breadcrumbs} />}
+        breadcrumb={breadcrumbs?.length ? <Breadcrumb items={breadcrumbs} /> : null}
         breadcrumbExtra={breadcrumbExtra}
         breadcrumbExtraAlign={breadcrumbExtraAlign}
         hasBackArrow={hasBackArrow}
