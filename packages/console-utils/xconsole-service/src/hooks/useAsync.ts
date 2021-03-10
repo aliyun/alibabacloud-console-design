@@ -121,7 +121,7 @@ export default function useAsync<P = any, Result = any>(
             options.onSuccess(data);
           }
           if (runCount === count.current) {
-            set((s) => ({ ...s, data, loading: false }));
+            set((s) => ({ ...s, error: undefined, data, loading: false }));
           }
         }
         return data;
