@@ -16,6 +16,7 @@ const API_URL: { [key: string]: string[] } = {
   [ApiType.app]: ['data/call.json', 'data/multiCall.json'],
   [ApiType.open]: ['data/api.json', 'data/multiApi.json'],
   [ApiType.roa]: ['data/api.json', 'data/multiApi.json'],
+  [ApiType.roaInner]: ['data/innerApi.json', 'data/multiInnerApi.json'],
 };
 
 // 检查是否是合法的 url

@@ -5,4 +5,5 @@ export enum ApiType {
   open = "open",
   roa = "roa",
   custom = "custom",
+  roaInner = 'roaInner'
 }

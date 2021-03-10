@@ -9,7 +9,7 @@ import { ApiType } from '../../const/index';
 function consoleRequestInterceptor(config: IOptions): IOptions {
   const { apiType } = config;
 
-  if (apiType !== ApiType.roa) {
+  if (apiType !== ApiType.roa && apiType !== ApiType.roaInner) {
     return config;
   }
 
