@@ -145,7 +145,7 @@ export default function useAsync<P = any, Result = any>(
     if (timer.current) {
       timer.current.stop();
     }
-    set((s) => ({ ...s, error: new Error('stopped'), loading: false }));
+    set((s) => ({ ...s, loading: false }));
   }, []);
 
   const pause = useCallback(() => {
@@ -154,7 +154,7 @@ export default function useAsync<P = any, Result = any>(
     if (timer.current) {
       timer.current.pause();
     }
-    set((s) => ({ ...s, error: new Error('paused'), loading: false }));
+    set((s) => ({ ...s, loading: false }));
   }, []);
 
   const resume = useCallback(
@@ -224,7 +224,7 @@ export default function useAsync<P = any, Result = any>(
   const cancel = useCallback(() => {
     count.current += 1;
     // throw an error
-    set((s) => ({ ...s, error: new Error('canceled'), loading: false }));
+    set((s) => ({ ...s, loading: false }));
   }, []);
 
   useEffect(
