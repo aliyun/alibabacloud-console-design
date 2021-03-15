@@ -20,7 +20,7 @@ const API_URL: { [key: string]: string[] } = {
 };
 
 // 检查是否是合法的 url
-function isValidURL(url: string, apiType: ApiType = ApiType.plugin): boolean {
+function isValidURL(url: string, apiType: ApiType = ApiType.open): boolean {
   const urls = API_URL[apiType];
   if (!urls) {
     console.error(`未在 API_URL 找到 ${apiType} 类型的接口定义`);
@@ -42,7 +42,7 @@ function isMulti(data: any): boolean {
 }
 
 // fecs 暂时不支持 url 后面跟 "?action" 标示，暂时去掉，如果后面支持再加回来
-function getURL(apiType: ApiType = ApiType.plugin, multi: boolean): string {
+function getURL(apiType: ApiType = ApiType.open, multi: boolean): string {
   const urls = API_URL[apiType];
   if (urls && urls.length > 0) {
     // 添加一个 url 参数方便调试

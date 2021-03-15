@@ -38,7 +38,7 @@ interface IGrayStatus {
   [key: string]: boolean;
 }
 
-export type ChannelEnum = 'CN' | 'INTL' | 'JP' | string;
+export type ChannelEnum = 'OFFICIAL' | 'SIN' | 'JP' | string;
 
 export type fEnv = 'daily' | 'pre';
 
