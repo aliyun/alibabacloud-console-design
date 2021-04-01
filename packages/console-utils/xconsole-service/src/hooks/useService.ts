@@ -11,6 +11,7 @@ interface IParams {
 
 interface IProps<T> extends Partial<IOptions> {
   code?: string;
+  disableErrorPrompt?: boolean;
   ignoreError?: boolean;
   manual?: boolean;
   service?: (p: IParams) => Promise<T>;
@@ -35,7 +36,7 @@ export const useService = <R = any, P extends IParams = {}>(
       manual: opt.manual,
       pollingInterval: opt.pollingInterval,
       onError: (error) => {
-        globalConfig.onError(error);
+        !opt.disableErrorPrompt && globalConfig.onError(error);
         opt.onError && opt.onError(error);
       },
       onSuccess: opt.onSuccess,
