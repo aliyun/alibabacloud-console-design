@@ -51,7 +51,7 @@ const reroute = (props: IConsoleContextRegionProp<{regionId?: string}>, nextRegi
  */
 export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region => {
   const { history, consoleBase, match, location, region: regionConfig = {} } = props;
-  const { regionList, regionbarVisiblePaths = [] }  = regionConfig;
+  const { regionList, regionbarVisiblePaths = [], globalVisiblePaths = [] }  = regionConfig;
   // 默认 Region = 路由的Region > Cookie 的 region > Region 列表中第一个 > 用户指定默认Region >'cn-hangzhou'
   const [currentRegionId, setCurrentRegionId] = useState<string>('');
 
@@ -106,6 +106,25 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
       region.setRegionId(currentRegionId);
     });
 
+    // 如果配置了显示全球的路径，直接展示全球
+    const showGlobal = globalVisiblePaths.some((globalPath) => {
+      const matches = matchPath(location.pathname, {
+        path: globalPath,
+        exact: true,
+        strict: true,
+      });
+      if (matches) {
+        region.toggleRegion(true)
+        region.toggleRegionGlobal(true)
+        return true;
+      }
+      return false;
+    })
+
+    if (showGlobal) {
+      return;
+    }
+
     region.toggleRegion(false)
     regionbarVisiblePaths.forEach((showRegionPath) => {
       const matches = matchPath(location.pathname, {
@@ -122,7 +141,7 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
       unsubscribeRegionChange()
       unsubscribeReady()
     }
-  }, [regionList, history, regionbarVisiblePaths, location.pathname, currentRegionId]);
+  }, [regionList, history, regionbarVisiblePaths, globalVisiblePaths, location.pathname, currentRegionId]);
 
   return region;
 };

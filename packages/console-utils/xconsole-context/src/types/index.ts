@@ -20,6 +20,9 @@ export interface RegionConfig {
   
   // 路由匹配到 region 展示或者隐藏
   regionbarVisiblePaths?: PathRule;
+  
+  // 路由匹配到 全球的 展示或者隐藏
+  globalVisiblePaths?: PathRule;
 }
 
 export interface IRegionConfigProps extends RegionConfig {

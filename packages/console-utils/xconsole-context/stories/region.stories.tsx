@@ -35,6 +35,9 @@ storiesOf('Console Configuration', module)
                     regionList: REGION_LIST,
                     regionbarVisiblePaths: [
                       '/:regionId'
+                    ],
+                    globalVisiblePaths: [
+                      '/:regionId'
                     ]
                   }}
                   resourceGroup={{
