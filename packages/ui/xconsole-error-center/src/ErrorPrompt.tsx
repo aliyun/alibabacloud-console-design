@@ -33,7 +33,7 @@ const getRealMessage = (error: ResponseError, errorConfig: Partial<ErrorCodeConf
   }
 
   const code = error?.response?.data?.code || 'UNKNOWN_ERROR';
-  const errorMessasge = error?.response?.data?.message || error.message;
+  const errorMessasge = error?.response?.data?.message || error.message || error?.response?.data?.code;
   if (getMessage) {
     return getMessage(code, errorMessasge, error)
   }

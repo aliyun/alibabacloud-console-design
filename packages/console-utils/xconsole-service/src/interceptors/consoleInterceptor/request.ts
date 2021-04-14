@@ -163,6 +163,11 @@ function consoleRequestInterceptor(config: IOptions): IOptions {
     'region',
   ]);
 
+  // 如果用户提供了自定义 region, 则覆盖默认region
+  if (config.region) {
+    nextData.region = config.region;
+  }
+
   // 如果传入了 url，且不在我们检查的 url 范围内，提前返回不作处理
   if (!isValidURL(url, apiType)) {
     return {
