@@ -22,6 +22,9 @@ function consoleMockInterceptor({
   data,
   ...restConfig
 }: IOptions): IOptions {
+  if (typeof window === 'undefined' || !window.location) {
+    return { url, baseURL, data, ...restConfig };
+  }
   const { hostname, protocol, host } = window.location;
   const useMocks = mock || ['localhost', '127.0.0.1'].includes(hostname);
   // Mocks does not support the "inner" and "call" apis,
