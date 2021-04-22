@@ -4,6 +4,7 @@ import { Button } from '@alicloud/console-components'
 import { createBrowserHistory } from 'history';
 import { storiesOf } from '@storybook/react';
 import WindProRcPageHeader from '../src';
+import  '../src/index.less';
 import '@alicloud/console-components/dist/wind.css';
 
 const breadcrumbs = [
@@ -31,7 +32,7 @@ const nav = {
       title: '用户',
       items: [{
         key: 'user1',
-        visible: false,
+        visible: true,
         title: (<Link to="/">用户2</Link>),
       }]
     },

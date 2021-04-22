@@ -1,8 +1,5 @@
 import { IOptions } from '../../types';
 
-const { hostname, protocol, host } = window.location;
-const useMocks = ['localhost', '127.0.0.1'].includes(hostname);
-
 function getURL(url: string): string {
   // If no one-console api
   const oneConsoleApiPattern = /^data\/(multi)?(inner)?(plugin)?(api|call)\.json/i;
@@ -20,11 +17,13 @@ function getURL(url: string): string {
 
 function consoleMockInterceptor({
   url = '',
-  mock = useMocks,
+  mock = false,
   baseURL = '/',
   data,
   ...restConfig
 }: IOptions): IOptions {
+  const { hostname, protocol, host } = window.location;
+  const useMocks = mock || ['localhost', '127.0.0.1'].includes(hostname);
   // Mocks does not support the "inner" and "call" apis,
   // so we map these apis to the very basic correspondings.
   // aka. "data/api.json" and "data/multiApi.json"
@@ -34,7 +33,7 @@ function consoleMockInterceptor({
     ...restConfig,
     // Strip "/" out of url
     // eg: "/data/api.json" -> "data/api.json"
-    url: mock ? getURL(url) : url && url.replace(/^\//, ''),
+    url: useMocks ? getURL(url) : url && url.replace(/^\//, ''),
     baseURL: mock ? `${protocol}//${host}` : baseURL,
     data,
   };

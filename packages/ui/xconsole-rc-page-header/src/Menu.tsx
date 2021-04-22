@@ -16,6 +16,7 @@ const Menu: React.FC<IProps> = ({
     <Page.Menu
       // @ts-ignore
       onItemClick={onChange}
+      className="xconsole-secondary-menu"
       defaultSelectedKeys={defaultActiveKey}
       defaultOpenKeys={defaultOpenKeys}
       selectedKeys={activeKey}
