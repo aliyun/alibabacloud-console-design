@@ -7,7 +7,6 @@ import { IConsoleContextRegionProp } from '../types/index';
 import { determineRegionId } from './determineRegionId';
 import { RegionContext } from '../context/RegionContext';
 import { getActiveId } from './cookies';
-import { IPayloadRegion } from '../types/ConsoleBase';
 
 type ConsoleRegion = typeof ConsoleRegion;
 
@@ -54,12 +53,6 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
   const { regionList, regionbarVisiblePaths = [], globalVisiblePaths = [] }  = regionConfig;
   // 默认 Region = 路由的Region > Cookie 的 region > Region 列表中第一个 > 用户指定默认Region >'cn-hangzhou'
   const [currentRegionId, setCurrentRegionId] = useState<string>('');
-
-  const region: Region = {
-    ...(consoleBase || ConsoleRegion),
-    getCurrentRegionId: (): string => currentRegionId || determineRegionId(match.params.regionId, getActiveId(), regionList),
-  };
-
   const regionContext = useContext(RegionContext);
 
   // 设置内存变量中的 Id， 也设置设置临时变量中的 ID
@@ -72,6 +65,13 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
 
     setCurrentRegionId(regionId);
   }
+
+  const region: Region = {
+    ...(consoleBase || ConsoleRegion),
+    getCurrentRegionId: (): string => currentRegionId || determineRegionId(match.params.regionId, getActiveId(), regionList),
+    setCurrentRegionId: setRegionIdWithMemo
+  };
+
 
   /**
    * 处理路由
