@@ -9,5 +9,5 @@ export default {
   setRegionResourceCount: ConsoleBase.setRegionResourceCount,
   toggleRegionGlobal: ConsoleBase.toggleRegionGlobal,
   getCurrentRegionId: (): string => getActiveId(),
-  setCurrentRegionId: () => ConsoleBase.setRegionId,
+  setCurrentRegionId: (regionId: string) => ConsoleBase.setRegionId(regionId),
 };
