@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-page-header",
-  "version": "2.3.13",
+  "version": "2.3.14",
   "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "lib/index.d.ts",
@@ -46,7 +46,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@alicloud/xconsole-rc-page": "^2.3.5",
+    "@alicloud/xconsole-rc-page": "^2.3.14",
     "lodash": "^4.6.0",
     "moment": "^2.24.0"
   },
