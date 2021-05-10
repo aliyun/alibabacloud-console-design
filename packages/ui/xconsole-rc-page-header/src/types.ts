@@ -11,14 +11,17 @@ export interface INavProps {
   defaultOpenKeys?: string[];
 }
 
+interface IBreadcrumbItem extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  text: string;
+  to?: string;
+}
+
+
 export interface IProps {
   title: string;
   subTitle?: string;
   subSwitcher?: SelectProps;
-  breadcrumbs?: {
-    text: string;
-    to?: string;
-  }[];
+  breadcrumbs?: IBreadcrumbItem[];
   historyBack?: string;
   history?: History;
   extra?: React.ReactNode;

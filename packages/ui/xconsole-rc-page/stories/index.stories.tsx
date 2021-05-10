@@ -11,7 +11,12 @@ const history = createBrowserHistory();
 const breadcrumb = [
   {
     text: '首页',
-    to: '/home',
+    href: 'https://baidu.com',
+    target: '_blank'
+  },
+  {
+    text: '一级页面',
+    to: 'xxx'
   },
   {
     text: '列表',
@@ -24,7 +29,7 @@ storiesOf('XconsoleRcPage', module).add('XconsoleRcPage', () => {
       <div id="app">
         <Router history={history}>
           <XconsoleRcPage
-            // breadcrumbs={null}
+            breadcrumbs={breadcrumb}
             // breadcrumbExtra={<Link to="/home">帮助</Link>}
             breadcrumbExtraAlign="right"
             title="标题"
