@@ -52,7 +52,7 @@
     "styled-components": "^4.2.1"
   },
   "dependencies": {
-    "@alicloud/console-components-app-layout": "2.0.0-alpha.3",
+    "@alicloud/console-components-app-layout": "2.0.0-alpha.4",
     "@alicloud/console-components-console-menu": "alpha",
     "lodash": "^4.17.4",
     "lodash.isundefined": "^3.0.1",
