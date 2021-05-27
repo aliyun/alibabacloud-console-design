@@ -35,15 +35,15 @@ export const determineRegionId = (
   // 只有在用户第一次访问控制台时, 该值可能为空
   const exactCurrentActiveId = currentActiveId || getRegionFromCookie();
 
-  // 过滤掉置灰的 region
-  const dataSource = dataSourceRaw.filter((d) => !d.disabled);
-
   // 对 dataSource 进行预处理, 如果不符合期望, 则直接返回当前的 activeId
   // 之所以没有返回用户声明的 id, 是因为用户的输入无法进行预测,
   // 返回当前 activeId 是最保险的做法
-  if (!isArray(dataSource) || !dataSource.length) {
+  if (!isArray(dataSourceRaw) || !dataSourceRaw.length) {
     return exactCurrentActiveId;
   }
+
+  // 过滤掉置灰的 region
+  const dataSource = dataSourceRaw.filter((d) => !d.disabled);
 
   // 如果用户未声明传入的id, 则使用当前的 activeId 进行填充并进行后续的比较过程
   const expectedActiveId = id || exactCurrentActiveId;
