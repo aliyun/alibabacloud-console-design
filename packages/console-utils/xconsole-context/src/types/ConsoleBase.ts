@@ -35,7 +35,9 @@ export interface IPayloadLaunchTutorial {
 export interface IPayloadRegion {
   id: string;
   name: string;
+  disabled?: boolean;
 }
+
 export interface IPayloadRegionOnChange extends IPayloadRegion {
   correctedFrom?: string;
 }

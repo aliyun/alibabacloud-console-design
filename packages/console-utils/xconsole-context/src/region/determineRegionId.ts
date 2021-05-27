@@ -26,7 +26,7 @@ const getIdFromItem = (item: IPayloadRegion): string => {
 export const determineRegionId = (
   id: string,
   currentActiveId: string,
-  dataSource: IPayloadRegion[]
+  dataSourceRaw: IPayloadRegion[]
 ): string => {
   // currentActiveId 一般情况下由调用者从 context 进行获取.
   // 一般情况下, 这个值与 getActiveId 函数返回的结果是一致的.
@@ -34,6 +34,9 @@ export const determineRegionId = (
   // 则使用 getActiveId 从 cookie 中取值进行兜底, 尽量让该值保持一个有效的状态.
   // 只有在用户第一次访问控制台时, 该值可能为空
   const exactCurrentActiveId = currentActiveId || getRegionFromCookie();
+
+  // 过滤掉置灰的 region
+  const dataSource = dataSourceRaw.filter((d) => !d.disabled);
 
   // 对 dataSource 进行预处理, 如果不符合期望, 则直接返回当前的 activeId
   // 之所以没有返回用户声明的 id, 是因为用户的输入无法进行预测,
