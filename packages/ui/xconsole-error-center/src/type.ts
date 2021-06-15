@@ -41,6 +41,8 @@ export interface ErrorCodeConfig {
   // 只展示一个按钮
   dialogType?: 'alert';
 
+  target?: '_blank' |  undefined;
+
   ignore?: boolean;
 }
 

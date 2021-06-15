@@ -132,7 +132,11 @@ const showError = (option: ShowErrorOption) => {
       // 如果错误码指定了重定向地址，则页面重定向到指定地址上
       if (errorConfig && errorConfig.confirmHref) {
         const redirectUrl = errorConfig.confirmHref
-        window.location.href = redirectUrl
+        if(errorConfig.target === '_blank') {
+          window.open(redirectUrl, '_blank')
+        } else {
+          window.location.href = redirectUrl
+        }
         return false
       }
 
@@ -146,7 +150,11 @@ const showError = (option: ShowErrorOption) => {
       // 重定向
       if (errorConfig && errorConfig.cancelHref) {
         const redirectUrl = errorConfig.cancelHref
-        window.location.href = redirectUrl
+        if(errorConfig.target === '_blank') {
+          window.open(redirectUrl, '_blank')
+        } else {
+          window.location.href = redirectUrl
+        }
         return false
       }
     },
