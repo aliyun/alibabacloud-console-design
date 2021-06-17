@@ -60,6 +60,7 @@ export default ({ service, initialValue, namespace = uuid(), ...rest }) => {
               }, 200)
             }
 
+            yield put({ type: '@@DVA_LOADING/HIDE', payload: { namespace, actionType: `${namespace}/action` } });
             throw error;
           }
         }),
