@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-query",
-  "version": "2.3.4",
+  "version": "2.3.21",
   "main": "lib/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
@@ -45,7 +45,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@alicloud/xconsole-model": "^2.3.4",
+    "@alicloud/xconsole-model": "^2.3.21",
     "@types/react": "^16.8.24",
     "@types/webpack-env": "^1.14.0",
     "lodash.isequal": "^4.5.0",
