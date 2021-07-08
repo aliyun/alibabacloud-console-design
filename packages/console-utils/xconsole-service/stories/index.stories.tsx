@@ -1,18 +1,14 @@
 import React, { useEffect } from 'react';
 import { select, withKnobs } from '@storybook/addon-knobs';
+import withAxiosDecorator from 'storybook-axios';
 import { storiesOf } from '@storybook/react';
 import { createService, useOpenApi, useRoaApi, defaultAxiosRequest } from '../src/index'
 import { ApiType } from '../src/const';
 
-defaultAxiosRequest.interceptors.request.use((config) => {
-  config.transformRequest = [(data) => {
-    return config.data;
-  }]
-  return config;
-})
-
 storiesOf('XConsole Service', module)
   .addDecorator(withKnobs)
+  // @ts-ignore
+  .addDecorator(withAxiosDecorator(defaultAxiosRequest))
   .add('AppCode', () => {
     const action = select('action', ['DescribeInstance', 'DescribeAPI'], 'DescribeInstance')
     const { data } = useOpenApi('ros', action, null, { ignoreError: true })
@@ -24,8 +20,8 @@ storiesOf('XConsole Service', module)
       'ros', 
       action, 
       {
-        params: {"test": 2},
-        content: {"test": 1}
+        params: { "test": 2 },
+        content: { "test": 1 }
       }
     )
     return <div>{JSON.stringify(data)}</div>

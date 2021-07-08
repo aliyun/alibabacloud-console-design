@@ -60,7 +60,7 @@ const createDefaultService = <R, P>(requestInstance: AxiosInstance, product: str
       risk: opts.risk,
     } as AxiosRequestConfig);
 
-    return res.data.data;
+    return opts?.rawResponseData ? res.data : res.data.data;
   };
 }
 

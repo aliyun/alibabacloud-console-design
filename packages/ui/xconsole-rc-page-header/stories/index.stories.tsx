@@ -23,8 +23,8 @@ const breadcrumbs = [
 
 const nav = {
   shape: 'menu',
-  activeKey: 'user1',
-  defaultOpenKeys: ['user'],
+  // activeKey: 'user1',
+  // defaultOpenKeys: ['user'],
   onChange: (value) => console.log(value),
   items: [
     {
@@ -39,7 +39,7 @@ const nav = {
     {
       key: 'role',
       visible: false,
-      title: '角色',
+      title: <div>'角色'</div>,
     },
     {
       key: 'role3',
