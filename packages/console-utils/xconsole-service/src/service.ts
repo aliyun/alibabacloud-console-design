@@ -82,6 +82,7 @@ const createService = <R = any, P = any>(
     return createMultiService<R, P>(requestInstance, product, options);
   }
 
+  // @ts-ignore
   return createDefaultService(requestInstance, product, action, opts)
 }
 
