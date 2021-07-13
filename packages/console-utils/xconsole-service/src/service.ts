@@ -1,27 +1,39 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import createRequest from './request';
+import chunk from 'lodash/chunk'
 import { DEFAULT_RISK_OPTION } from './const'
 import { IOptions, IResponseData, Service, Actions } from './types';
 
 export const request = createRequest();
 
-const createMultiService = <R, P>(requestInstance: AxiosInstance, product: string, opts: IOptions) => {
-  return async (actions: Actions, overlap: boolean): Promise<R> => {
-    const res = await requestInstance.request<IResponseData<R>, AxiosResponse<IResponseData<R>>>({
-      ...opts,
-      data: opts.data
-        ? opts.data
-        : {
-          product,
-          actions,
-        },
-      apiType: opts.apiType,
-      ignoreError: opts.ignoreError,
-      description: opts.description,
-      risk: opts.risk,
-    } as AxiosRequestConfig);
+const makeOption = (product: string, actions: Actions, opts: IOptions): AxiosRequestConfig => {
+  return {
+    ...opts,
+    data: opts.data
+      ? opts.data
+      : {
+        product,
+        actions,
+      },
+    apiType: opts.apiType,
+    ignoreError: opts.ignoreError,
+    description: opts.description,
+    risk: opts.risk,
+  } as AxiosRequestConfig;
+}
 
-    return res.data.data;
+const splitActions = (actions: Actions) => chunk(actions, 20)
+
+const createMultiService = <R, P>(requestInstance: AxiosInstance, product: string, opts: IOptions) => {
+  return async (actions: Actions): Promise<R> => {
+    /* eslint-disable no-undef */
+    return Promise.all(splitActions(actions).map((splitAction) => {
+      return requestInstance.request<IResponseData<R>, AxiosResponse<IResponseData<R>>>(
+        makeOption(product, splitAction, opts)
+      );
+    })).then((data) => {
+      return data.reduce((pre, d) => ({...pre, ...(d.data.data)}), {} as R)
+    });
   };
 }
 
