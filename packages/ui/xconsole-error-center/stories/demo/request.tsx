@@ -1,6 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
-import ErrorPrompt from '../../src/ErrorPrompt';
+import ErrorPrompt from '../../src/errorPrompt';
 
 const promptError = async () => {
   try {
@@ -16,7 +16,7 @@ const promptError = async () => {
         cancelLabel: "留在页面", // 取消按钮文案
         cancelHref: "https://aliyun.com" // 点击取消跳转的链接
       }
-  })
+    })
   }
 };
 

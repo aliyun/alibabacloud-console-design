@@ -6,12 +6,12 @@ import errorPrompt from '@alicloud/xconsole-rc-error-prompt';
 import pick from 'lodash/pick'
 import {
   ConsoleNeedLogin, PostonlyOrTokenError
-} from './constants'
-import { LOCALE, intl } from './utils';
+} from '../constants'
+import { LOCALE, intl } from '../utils';
 import {
   ResponseError, ErrorCodeConfig,
   GetMessageCallback, ErrorCodeConfigCallback
-} from './type';
+} from '../type';
 
 interface ShowErrorOption {
   error: ResponseError;

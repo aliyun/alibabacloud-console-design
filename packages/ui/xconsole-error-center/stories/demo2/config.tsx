@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { select, text, boolean } from '@storybook/addon-knobs'
-import errorPrompt from '../../src/ErrorPrompt2';
+import errorPrompt from '../../src/errorPrompt2/ErrorPrompt2';
 
 export default () => {
   const message = text('Message', '自定义 Error ❌ ');

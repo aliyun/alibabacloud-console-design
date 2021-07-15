@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ErrorPrompt from '../../src/ErrorPrompt2';
+import ErrorPrompt from '../../src/errorPrompt2/ErrorPrompt2';
 
 const promptError = () => ErrorPrompt({ error: new Error('There is an error') });
 

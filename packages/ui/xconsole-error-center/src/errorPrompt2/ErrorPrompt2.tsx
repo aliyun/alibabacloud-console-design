@@ -4,7 +4,7 @@ import errorPrompt from '@alicloud/console-base-error-prompt-proxy';
 import {
   ResponseError, ErrorCodeConfig,
   GetMessageCallback, ErrorCodeConfigCallback
-} from './type';
+} from '../type';
 
 interface ShowErrorOption {
   error: ResponseError;
@@ -13,7 +13,6 @@ interface ShowErrorOption {
 }
 
 const getRealMessage = (error: ResponseError, errorConfig: Partial<ErrorCodeConfig>, getMessage?: GetMessageCallback) => {
-
   if (errorConfig.message) {
     if (isFunction(errorConfig.message)) {
       return errorConfig.message(error);
@@ -63,7 +62,7 @@ const processError = (errorConfig: Partial<ErrorCodeConfig>, error: ResponseErro
   }
 }
 
-const showError = (option: ShowErrorOption) => {
+const errorPrompt2 = (option: ShowErrorOption) => {
   const { error, getMessage } = option;
   const code = error?.response?.data?.code;
   const errorConfig = getErrorConfig(option.errorConfig, error, getMessage);
@@ -76,7 +75,7 @@ const showError = (option: ShowErrorOption) => {
     return;
   }
 
-  errorPrompt(processError(errorConfig, error), {
+  return errorPrompt(processError(errorConfig, error), {
     title: errorConfig.title,
     button: errorConfig.confirmLabel && {
       href: errorConfig.confirmHref,
@@ -85,4 +84,4 @@ const showError = (option: ShowErrorOption) => {
   })
 }
 
-export default showError;
+export default errorPrompt2;
