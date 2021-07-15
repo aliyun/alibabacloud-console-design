@@ -7,3 +7,5 @@ export { default as ErrorCenter2 } from './errorPrompt2';
 // legacy api
 export { ErrorPrompt } from './errorPrompt';
 export default ErrorCenter;
+
+export * from './type'
