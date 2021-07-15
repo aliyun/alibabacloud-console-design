@@ -1,6 +1,6 @@
 {
   "name": "xconsole",
-  "version": "2.3.24",
+  "version": "2.3.25",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   ],
   "author": "",
   "dependencies": {
-    "@alicloud/xconsole": "^2.3.24",
+    "@alicloud/xconsole": "^2.3.25",
     "lodash": "^4.17.4",
     "moment": "^2.22.1",
     "prop-types": "^15.6.1",
