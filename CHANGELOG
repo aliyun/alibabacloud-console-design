@@ -1,2 +1,8 @@
+# 2.3.26
+🐞 Xconsole ErrorCenter： 修复了类型导出的错误
+
+# 2.3.25
+🌟 Xconsole ErrorCenter: 增加了新版的错误处理弹窗
+
 # 2.3.24
 🌟 Xconsole Service: 支持了对超过 20 个以上 action 的 multiApi 调用的拆分处理
