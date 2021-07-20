@@ -1,3 +1,6 @@
+# 2.3.27
+🐞 Xconsole Context: 修复了在路由变更时没有从内存获取当前 region 导致的在其他控制台切换region后的 region 错乱的问题
+
 # 2.3.26
 🐞 Xconsole ErrorCenter： 修复了类型导出的错误
 
