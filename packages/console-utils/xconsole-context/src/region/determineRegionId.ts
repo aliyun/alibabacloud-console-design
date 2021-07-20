@@ -1,23 +1,6 @@
-// @ts-ignore
-import Cookie from 'js-cookie';
-
 import isArray from 'lodash/isArray';
 import { IPayloadRegion } from 'src/types/ConsoleBase';
-
-// 默认标识
-const DEFAULT_COOKIE_KEY = 'activeRegionId';
-const CURRENT_DEFAULT_COOKIE_KEY = 'currentRegionId';
-
-const getRegionFromCookie = (key = ''): string => {
-  if (key === '') {
-    return (
-      Cookie.get(CURRENT_DEFAULT_COOKIE_KEY) ||
-      Cookie.get(DEFAULT_COOKIE_KEY) ||
-      'cn-hangzhou'
-    );
-  }
-  return Cookie.get(key);
-};
+import { getActiveId } from './cookies';
 
 const getIdFromItem = (item: IPayloadRegion): string => {
   return item.id
@@ -33,7 +16,7 @@ export const determineRegionId = (
   // 没有调用者从 context 中获取失败, 或调用者明确不为该参数赋值,
   // 则使用 getActiveId 从 cookie 中取值进行兜底, 尽量让该值保持一个有效的状态.
   // 只有在用户第一次访问控制台时, 该值可能为空
-  const exactCurrentActiveId = currentActiveId || getRegionFromCookie();
+  const exactCurrentActiveId = currentActiveId || getActiveId();
 
   // 对 dataSource 进行预处理, 如果不符合期望, 则直接返回当前的 activeId
   // 之所以没有返回用户声明的 id, 是因为用户的输入无法进行预测,
