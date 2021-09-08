@@ -4,7 +4,7 @@ import consoleMockInterceptor from './interceptors/mockInterceptor/index';
 import {
   consoleRequestInterceptor,
   consoleResponseInterceptor,
-  rosRequestInterceptor
+  roaRequestInterceptor
 } from './interceptors/consoleInterceptor/index';
 import consoleRiskInterceptor from './interceptors/riskInterceptor/index';
 import {
@@ -33,7 +33,7 @@ export default function createRequest(
     instance.interceptors.request.use(searchParamsInterceptor);
     instance.interceptors.request.use(consoleMockInterceptor);
     instance.interceptors.request.use(consoleRequestInterceptor);
-    instance.interceptors.request.use(rosRequestInterceptor);
+    instance.interceptors.request.use(roaRequestInterceptor);
     instance.interceptors.request.use(armsRequestInterceptor);
 
     instance.interceptors.response.use(armsResponseInterceptor);

@@ -155,7 +155,7 @@ class VerifyForm extends Component<IProps, IState> {
         >
           <Row>
             <Col>
-              <Input onChange={this.onInputChange} style={{ width: 80 }} />
+              <Input onChange={this.onInputChange} style={{ width: 80, marginRight: 8 }} />
             </Col>
             {verifyType !== 'ga' ? (
               <Col>

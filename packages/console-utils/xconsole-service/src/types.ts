@@ -45,6 +45,7 @@ export interface IOptions extends AxiosRequestConfig {
   mock?: boolean;
   region?: string;
   rawResponseData?: boolean;
+  throwDoubleConfirmError?: boolean;
 }
 
 export interface IResponseData<D = any> {

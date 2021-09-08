@@ -7,7 +7,7 @@ async function consoleRiskInterceptor(
 ): Promise<IResponse<IResponseData>> {
   const {
     data: responseData,
-    config: { apiType },
+    config: { apiType, throwDoubleConfirmError },
   } = response;
 
   if (apiType === ApiType.custom) return response;
@@ -26,7 +26,10 @@ async function consoleRiskInterceptor(
         const newResponse = await handleDoubleConfirm(response);
         return newResponse;
       } catch (e) {
-        console.error('[handleDoubleConfirm] failed: ', e.message);
+        if (throwDoubleConfirmError) {
+          e.response = response;
+          throw e;
+        }
         return response;
       }
     case code.forbidden:

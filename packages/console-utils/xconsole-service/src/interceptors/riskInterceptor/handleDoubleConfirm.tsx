@@ -68,7 +68,7 @@ async function handleDoubleConfirm(
       lastRequestId = requestId;
     } catch (e) {
       console.error('[getVerifyInformation] failed: ', e.message);
-      return response;
+      throw e;
     }
 
     try {
@@ -88,7 +88,7 @@ async function handleDoubleConfirm(
       });
     } catch (e) {
       console.error('[verify Request] failed: ', e.message);
-      return response;
+      throw e;
     }
   }
 
