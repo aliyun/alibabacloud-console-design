@@ -1,0 +1,33 @@
+{
+  "name": "@alicloud/console-fastlogin",
+  "version": "2.3.0",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/aliyun/alibabacloud-console-design",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliyun/alibabacloud-console-design.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
+  },
+  "devDependencies": {
+    "@alicloud/console-toolkit-cli": "^1.0.0",
+    "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "scripts": {
+    "prepublish": "npm run clean && npm run build && npm run babel && npm run babel:esm",
+    "babel": "breezr build --engine babel",
+    "babel:esm": "breezr build --engine babel --es-module",
+    "build": "breezr build --engine webpack",
+    "storybook": "breezr start-storybook",
+    "clean": "rm -rf es build lib yarn.lock"
+  },
+  "dependencies": {
+    "lodash": "^4.0.0"
+  }
+}
