@@ -67,7 +67,7 @@ function getRegion(data: any): string {
       ({ params }: { params: any }) => (params || {}).RegionId
     );
 
-    if (action && action.params.RegionId) return action.RegionId;
+    if (action && action.params.RegionId) return action.params.RegionId;
   }
   return getActiveRegionId();
 }
