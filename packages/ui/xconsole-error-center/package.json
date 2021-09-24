@@ -44,5 +44,6 @@
     "lodash": "^4.0.0",
     "react-copy-to-clipboard": "^5.0.3"
   },
+  "sideEffects": false,
   "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
 }
