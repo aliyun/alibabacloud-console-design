@@ -23,7 +23,13 @@ const XConsoleLogger = ({
         unlisten()
       }
     }
-  }, [logger, history])
+  }, [logger, history]);
+
+
+  // log initial path
+  useEffect(() => {
+    history && logger.log(history?.location?.pathname);
+  }, [])
 
   return null
 }
