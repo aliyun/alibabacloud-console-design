@@ -4,6 +4,7 @@ import { Button, Input, Grid, Form } from '@alicloud/console-components';
 import { getSecToken, getUmid, getCollina } from '../../utils/index';
 import searchParamsInterceptor from '../paramsInterceptor/index';
 import messages from './messages';
+import { RiskOption, RiskUrlOption } from './type';
 
 const { Col, Row } = Grid;
 const ItemLayout = {
@@ -14,17 +15,16 @@ const axiosInstance = axios.create();
 
 axiosInstance.interceptors.request.use(searchParamsInterceptor);
 
-interface IProps {
-  options?: {
-    codeType?: string;
-    verifyType?: string;
-    verifyDetail?: any;
-    isVerifyCodeValid?: any;
-  };
+export interface IProps {
+  codeType?: string;
+  verifyType?: string;
+  verifyDetail?: any;
+  isVerifyCodeValid?: boolean;
+  requestId?: string;
   setVerifyCode?: (value: string) => void;
   setRequestId?: (id: any) => void;
   onError?: (value: any) => void;
-  risk: any;
+  riskConfig: RiskOption;
 }
 
 interface IState {
@@ -35,7 +35,7 @@ interface IState {
 class VerifyForm extends Component<IProps, IState> {
   timer: number | null;
 
-  verifyUrl: { [key: string]: string };
+  verifyUrl: RiskUrlOption;
 
   constructor(props: IProps) {
     super(props);
@@ -44,7 +44,7 @@ class VerifyForm extends Component<IProps, IState> {
       isCountdownStarted: false,
       countdown: 0,
     };
-    this.verifyUrl = props.risk.url;
+    this.verifyUrl = props.riskConfig.url;
     this.onInputChange = this.onInputChange.bind(this);
     this.onGenerateVerifyCode = this.onGenerateVerifyCode.bind(this);
     this.startCountdownTimer = this.startCountdownTimer.bind(this);
@@ -64,7 +64,7 @@ class VerifyForm extends Component<IProps, IState> {
   async onGenerateVerifyCode(): Promise<void> {
     this.startCountdownTimer();
 
-    const { options: { codeType, verifyType } = {}, setRequestId } = this.props;
+    const { codeType, verifyType, setRequestId } = this.props;
     const reqData = {
       codeType,
       verifyType,
@@ -91,10 +91,7 @@ class VerifyForm extends Component<IProps, IState> {
 
       setRequestId?.(resData.requestId); // 保存发送验证码请求的 requestId
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.error('[onGenerateVerifyCode] failed: ', e.message);
-      // this.props.onError(e)
-      // setRequestId('Fake requestId')
     }
   }
 
@@ -123,7 +120,7 @@ class VerifyForm extends Component<IProps, IState> {
 
   render(): JSX.Element {
     const {
-      options: { verifyType = '', verifyDetail, isVerifyCodeValid } = {},
+      verifyType = '', verifyDetail, isVerifyCodeValid
     } = this.props;
 
     const verifyMessages = {
@@ -132,7 +129,6 @@ class VerifyForm extends Component<IProps, IState> {
     };
 
     const { isCountdownStarted, countdown } = this.state;
-
     return (
       <Form style={{ width: '400px' }}>
         <Form.Item label={verifyMessages.detailDescription} {...ItemLayout}>

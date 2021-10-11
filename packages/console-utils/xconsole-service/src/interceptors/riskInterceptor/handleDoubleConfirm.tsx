@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { URLSearchParams } from '../paramsInterceptor/index';
-import getVerifyInformation from './getVerifyInformation';
+import RiskDialog from './dialog';
 import {
   guideToVerificationMethodSetting,
   guideToVerificationDetailSetting,
@@ -58,11 +58,11 @@ async function handleDoubleConfirm(
       verifyType,
       verifyDetail,
       codeType,
-      lastRequestId,
-      risk,
+      requestId: lastRequestId,
+      riskConfig: risk,
     };
     try {
-      const { reqId, vCode } = await getVerifyInformation(options);
+      const { reqId, vCode } = await RiskDialog.show(options);
       requestId = reqId;
       verifyCode = vCode;
       lastRequestId = requestId;

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { select, withKnobs } from '@storybook/addon-knobs';
-// import withAxiosDecorator from 'storybook-axios';
 import { storiesOf } from '@storybook/react';
 import { createService, useOpenApi, useRoaApi, defaultAxiosRequest } from '../src/index'
 import { ApiType } from '../src/const';
 import '@alicloud/console-components/dist/wind.css'
+import RiskDialog from './demo/riskDialog';
 
 // @ts-ignore
 defaultAxiosRequest.interceptors.request.handlers.unshift({
@@ -17,8 +17,6 @@ defaultAxiosRequest.interceptors.request.handlers.unshift({
 
 storiesOf('XConsole Service', module)
   .addDecorator(withKnobs)
-  // @ts-ignore
-  // .addDecorator(withAxiosDecorator(defaultAxiosRequest))
   .add('AppCode', () => {
     const action = select('action', ['DescribeInstance', 'DescribeAPI'], 'DescribeInstance')
     const { data, error } = useOpenApi('consoledemo', action, null, { throwDoubleConfirmError: true })
@@ -45,3 +43,5 @@ storiesOf('XConsole Service', module)
 
     return <div></div>
   })
+
+  .add('riskDialog', RiskDialog)
