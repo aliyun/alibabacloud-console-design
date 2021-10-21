@@ -15,7 +15,7 @@ Console Design 是为阿里云控制台业务研发提供的解决方案，除�
 
 ```bash
 
-$ npx @alicloud/console-design init
+$ npx @alicloud/xconsole init
 
 $ cd Your-Project-Folder
 
