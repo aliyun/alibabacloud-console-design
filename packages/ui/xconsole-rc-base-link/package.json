@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-base-link",
-  "version": "2.3.5",
+  "version": "2.3.36",
   "description": "",
   "main": "lib/index.js",
   "license": "MIT",
