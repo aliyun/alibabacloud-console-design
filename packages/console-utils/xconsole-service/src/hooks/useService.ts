@@ -4,7 +4,7 @@ import { IOptions } from '../types';
 import useAsync from './useAsync';
 import { ApiType } from '../const/index';
 import globalConfig from '../configuration/config'
-import { genOssDownloadSignature, genOssUploadSignature } from '../oss';
+import { getOssDownloadUrl, genOssUploadSignature } from '../oss';
 import { DownloadSignatureParam, DownloadSignatureResponse, OssSignatureParam, OssSignatureResponse } from '../oss/types';
 
 interface IParams {
@@ -107,11 +107,11 @@ export const useRoaApi = <R = any, P extends IParams = {}>(
 };
 
 
-export const useOssDownloadSignature = (
+export const useOssDownloadUrl = (
   params: DownloadSignatureParam,
   opt: IProps<DownloadSignatureResponse> = {}
 ) => {
-  return useService<DownloadSignatureResponse, DownloadSignatureParam>(genOssDownloadSignature, params, opt);
+  return useService<DownloadSignatureResponse, DownloadSignatureParam>(getOssDownloadUrl, params, opt);
 };
 
 export const useOssUploadSignature = (

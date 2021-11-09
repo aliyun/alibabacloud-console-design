@@ -3,7 +3,7 @@ import { select, withKnobs } from '@storybook/addon-knobs';
 // import withAxiosDecorator from 'storybook-axios';
 import { storiesOf } from '@storybook/react';
 import { createService, useOpenApi, useRoaApi, defaultAxiosRequest } from '../src/index'
-import { genOssDownloadSignature, genOssUploadSignature } from '../src/oss/index'
+import { getOssDownloadUrl, genOssUploadSignature } from '../src/oss/index'
 import { ApiType } from '../src/const';
 import '@alicloud/console-components/dist/wind.css'
 
@@ -48,7 +48,7 @@ storiesOf('XConsole Service', module)
   })
   .add('oss', () => {
     useEffect(() => {
-      genOssDownloadSignature({bucketName: 'xxxx', objectName: 'xxxx'})
+      getOssDownloadUrl({bucketName: 'xxxx', objectName: 'xxxx'})
     });
 
     return <div></div>

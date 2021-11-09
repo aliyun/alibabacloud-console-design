@@ -23,7 +23,7 @@ export const genOssUploadSignature = async (params: OssSignatureParam, opt: IOpt
 /**
  * OneConsole oss 获取下载签名
  */
-export const genOssDownloadSignature = async (params: DownloadSignatureParam, opt: IOptions = {}) => {
+export const getOssDownloadUrl = async (params: DownloadSignatureParam, opt: IOptions = {}) => {
   const request = createRequest();
   const resp = await request.request<IResponseData<DownloadSignatureResponse>>({
     url: DOWNLOAD_SIGNATURE_API_URL,
