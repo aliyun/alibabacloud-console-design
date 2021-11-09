@@ -37,11 +37,4 @@ export interface DownloadSignatureParam {
   timeout?: number;
 }
 
-export interface DownloadSignatureResponse {
-  url: string;
-  bucketName: string;
-  key: string;
-  policy: string;
-  Signature: string;
-  OSSAccessKeyId: string;
-}
+export type DownloadSignatureResponse = string;
