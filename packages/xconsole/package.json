@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole",
-  "version": "2.3.39",
+  "version": "2.3.40",
   "repository": {
     "type": "git",
     "url": "https://github.com/aliyun/alibabacloud-console-design.git"
@@ -61,7 +61,7 @@
     "@alicloud/xconsole-error-center": "^2.3.34",
     "@alicloud/xconsole-logger": "^2.3.35",
     "@alicloud/xconsole-model": "^2.3.21",
-    "@alicloud/xconsole-mutation": "^2.3.21",
+    "@alicloud/xconsole-mutation": "^2.3.40",
     "@alicloud/xconsole-query": "^2.3.21",
     "@alicloud/xconsole-rc-app-layout": "^2.3.17",
     "@alicloud/xconsole-rc-datetime": "^1.0.0-beta.1",
