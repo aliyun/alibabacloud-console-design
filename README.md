@@ -27,6 +27,10 @@ $ npm start
 
 https://xconsole.cloud/cloudbench/develop/ziowbz
 
+## demo
+
+[demo 地址](https://xconsole.cloud/demo/overview)
+
 ## 已支持功能
 
 - 提供了 Topbar 及 侧边栏菜单 的接入;
