@@ -9,6 +9,7 @@ const XConsoleApp: React.FunctionComponent<XConsoleAppProps> = (
 ) => {
   const { appConfig, history, sidebar, AppLayout, routeConfig } = props;
   const [ activeRegionId, setActiveRegionId ] = useState(undefined);
+  const redirect = (routeConfig.global.redirect || '').replace(':regionId', activeRegionId);
   return (
     <Router history={history}>
       <RegionContext.Provider value={{activeRegionId, setActiveRegionId}}>
@@ -20,7 +21,7 @@ const XConsoleApp: React.FunctionComponent<XConsoleAppProps> = (
           <Switch>
             {getRouteFromConfig(props)}
             <Redirect
-              to={`${routeConfig.global.prefix}/${routeConfig.global.redirect}`}
+              to={`${routeConfig.global.prefix}/${redirect}`}
             />
           </Switch>
         </AppLayout>
