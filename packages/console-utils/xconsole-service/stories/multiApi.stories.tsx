@@ -15,7 +15,7 @@ storiesOf('XConsole Mulit Api', module)
   .add('createService', () => {
     useEffect(() => {
       try {
-        createService('slb')(actions)
+        createService('consoledemo')(actions)
       } catch(e) {
         console.log(e)
       }

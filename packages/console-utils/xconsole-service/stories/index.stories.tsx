@@ -3,7 +3,7 @@ import { select, withKnobs } from '@storybook/addon-knobs';
 // import withAxiosDecorator from 'storybook-axios';
 import { storiesOf } from '@storybook/react';
 import { createService, useOpenApi, useRoaApi, defaultAxiosRequest } from '../src/index'
-import { getOssDownloadUrl, genOssUploadSignature } from '../src/oss/index'
+import { getOssDownloadUrl } from '../src/oss/index'
 import { ApiType } from '../src/const';
 import '@alicloud/console-components/dist/wind.css'
 
@@ -12,6 +12,10 @@ defaultAxiosRequest.interceptors.request.handlers.unshift({
   fulfilled: (config) => {
     config.baseURL = 'https://oneapi.alibaba-inc.com/mock/oneconsole';
     config.method = 'GET'
+    if(config.url.indexOf('multiApi.json')) {
+      config.url = config.url.replace(/multiApi.json/, 'api.json')
+      config.url = config.url.replace(/action=undefined/, 'action=DescribeMultiApi')
+    }
     return config;
   }
 });
