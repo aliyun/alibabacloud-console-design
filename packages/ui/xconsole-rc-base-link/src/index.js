@@ -100,7 +100,7 @@ class Link extends Component {
 
     if (exactDisabled || !exactLinkTargetPath) {
       return (
-        <span className={exactClassName} {...restProps} />
+        <span className={`${exactClassName} wind-rc-link-text`} {...restProps} />
       )
     }
 

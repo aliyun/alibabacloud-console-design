@@ -10,10 +10,6 @@ config.region = {
     { id: 'cn-beijing', name: '华北2（北京）' },
     { id: 'cn-qingdao', name: '华北1（青岛）' },
     { id: 'cn-shanghai', name: '华东2（上海）' },
-  ],
-  reginbarVisiblePaths: [
-    '/:regionId/basic-list',
-    '/tech/:regionId'
   ]
 }
 

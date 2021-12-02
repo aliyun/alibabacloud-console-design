@@ -2,7 +2,7 @@
  * 整个应用构建, 编译配置
  *
  * 详细工程化相关配置 详情参见：
- * https://xconsole.aliyun-inc.com/develop/config 
+ * https://xconsole.cloud/cloudbench/develop/vcpzm0
  */
 
 module.exports = {

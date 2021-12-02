@@ -1,6 +1,20 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
 import { IError, IResponse, IResponseData } from '../../types';
 import { ApiType } from '../../const/index';
+import { AxiosResponse } from 'axios';
+
+
+const injectErrorPromptAdaptor = (error: IError, response: AxiosResponse) => {
+  error.response = response;
+  error.code = response.data?.code;
+  error.requestId = response.data?.requestId;
+  error.message = response.data?.message;
+  error.details = {
+    url: response?.config?.url,
+    body: response?.config?.data,
+    method: response?.config?.method
+  }
+};
 
 function consoleResponseInterceptor(
   response: IResponse<IResponseData>
@@ -33,7 +47,7 @@ function consoleResponseInterceptor(
     apiResponseData.withFailedRequest === true
   ) {
     const error: IError = new Error('Multi OpenAPI calls with failed request.');
-    error.response = response;
+    injectErrorPromptAdaptor(error, response);
     if (ignoreError !== true) {
       throw error;
     }
@@ -43,7 +57,7 @@ function consoleResponseInterceptor(
   if (apiResponseData.message) {
     // Single api failed with an error message
     const error: IError = new Error(apiResponseData.message);
-    error.response = response;
+    injectErrorPromptAdaptor(error, response);
     if (ignoreError !== true) {
       throw error;
     }
@@ -51,7 +65,7 @@ function consoleResponseInterceptor(
   }
   // Single api failed without an error message
   const error: IError = new Error('OpenAPI failed without a message.');
-  error.response = response;
+  injectErrorPromptAdaptor(error, response);
 
   if (ignoreError !== true) {
     throw error;

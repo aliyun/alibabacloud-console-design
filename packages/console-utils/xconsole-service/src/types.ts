@@ -64,7 +64,16 @@ export interface IResponse<D = any> extends AxiosResponse<D> {
 export interface IError {
   stack?: string;
   response?: any;
-  message: any;
+  message: string;
+  title?: string;
+  code?: string;
+  requestId?: string;
+  details?: {
+    url?: string;
+    params?: any;
+    method?: string;
+    body?: any;
+  };
 }
 
 export type Service<R, P> = (params?: P, overlap?: boolean) => Promise<R>;

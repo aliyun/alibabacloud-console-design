@@ -4,6 +4,8 @@ import { IOptions } from '../types';
 import useAsync from './useAsync';
 import { ApiType } from '../const/index';
 import globalConfig from '../configuration/config'
+import { getOssDownloadUrl, genOssUploadSignature } from '../oss';
+import { DownloadSignatureParam, DownloadSignatureResponse, OssSignatureParam, OssSignatureResponse } from '../oss/types';
 
 interface IParams {
   [key: string]: any;
@@ -102,6 +104,21 @@ export const useRoaApi = <R = any, P extends IParams = {}>(
   opt: IProps<R> = {}
 ) => {
   return useXconsoleService(code, action, params, opt, ApiType.roa);
+};
+
+
+export const useOssDownloadUrl = (
+  params: DownloadSignatureParam,
+  opt: IProps<DownloadSignatureResponse> = {}
+) => {
+  return useService<DownloadSignatureResponse, DownloadSignatureParam>(getOssDownloadUrl, params, opt);
+};
+
+export const useOssUploadSignature = (
+  params: OssSignatureParam,
+  opt: IProps<OssSignatureResponse> = {}
+) => {
+  return useService<OssSignatureResponse, OssSignatureParam>(genOssUploadSignature, params, opt);
 };
 
 export default useService;

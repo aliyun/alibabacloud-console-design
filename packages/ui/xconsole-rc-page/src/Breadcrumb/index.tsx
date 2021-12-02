@@ -5,6 +5,7 @@ import { Link } from 'dva/router';
 
 export interface IBreadcrumbItem extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   text: string;
+  link?: string;
   to?: string;
 }
 

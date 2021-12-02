@@ -13,6 +13,7 @@ export interface INavProps {
 
 interface IBreadcrumbItem extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   text: string;
+  link?: string;
   to?: string;
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-page",
-  "version": "2.3.14",
+  "version": "2.3.30",
   "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "lib/index.d.ts",
