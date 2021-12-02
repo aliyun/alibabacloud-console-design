@@ -1,13 +1,13 @@
 {
   "name": "@alicloud/xconsole-service",
-  "version": "2.3.42",
+  "version": "2.3.43",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "prepublish": "rm -rf ./lib ./es ./dist && npm build && npm run babel && npm run babel:esm",
+    "prepublish": "rm -rf ./lib ./es ./dist && npm run build && npm run babel && npm run babel:esm",
     "test": "jest --no-cache --env=jest-environment-jsdom-sixteen",
-    "build": "breezr build --engine rollup",
+    "build": "breezr build --engine webpack",
     "start": "breezr start-storybook",
     "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
     "babel:esm": "breezr build --engine babel --es-module"

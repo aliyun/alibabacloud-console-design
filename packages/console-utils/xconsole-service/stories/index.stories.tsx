@@ -45,7 +45,21 @@ storiesOf('XConsole Service', module)
   })
   .add('createService', () => {
     useEffect(() => {
-      createService('xxxx', 'test', {apiType: ApiType.open})({ xxxx:1 })
+      (async () => {
+        try {
+          const a = await createService('xxxx', 'test', {apiType: ApiType.open, disableThrowResponseError: true})({ xxxx:1 })
+          console.log('a', a)
+          const b = await createService('xxxx', 'test', {apiType: ApiType.open, ignoreError: true})({ xxxx:1 })
+          console.log('b', b)
+          const c = await createService('ecs', 'DescribeInstances', {apiType: ApiType.open, rawResponseData: true})({ xxxx:1 })
+          console.log('c', c)
+          const e = await createService('ecs', 'DescribeInstances', {apiType: ApiType.open})({ xxxx:1 })
+          console.log('e', e)
+          await createService('xxxx', 'test', {apiType: ApiType.open})({ xxxx:1 })
+        } catch (e) {
+          console.error('d', e)
+        }
+      })()
     });
 
     return <div></div>

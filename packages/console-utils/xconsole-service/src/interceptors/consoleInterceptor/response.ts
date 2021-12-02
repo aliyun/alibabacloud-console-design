@@ -3,7 +3,6 @@ import { IError, IResponse, IResponseData } from '../../types';
 import { ApiType } from '../../const/index';
 import { AxiosResponse } from 'axios';
 
-
 const injectErrorPromptAdaptor = (error: IError, response: AxiosResponse) => {
   error.response = response;
   error.code = response.data?.code;
@@ -21,17 +20,14 @@ function consoleResponseInterceptor(
 ): IResponse<IResponseData> {
   const {
     data: apiResponseData,
-    config: { apiType, ignoreError, risk = {} },
+    config: { apiType, ignoreError, disableThrowResponseError, risk = {} },
   } = response;
 
   if (apiType === ApiType.custom) return response;
 
-  if (
-    // Single api succeeded -> code 200, withFailedRequest undefined
-    // Multi api succeeded  -> code 200, withFailedRequest false
-    apiResponseData.code === '200' &&
-    apiResponseData.withFailedRequest !== true
-  ) {
+  // Single api succeeded -> code 200, withFailedRequest undefined
+  // Multi api succeeded  -> code 200, withFailedRequest false
+  if (apiResponseData.code === '200' && apiResponseData.withFailedRequest !== true ) {
     return response;
   }
 
@@ -41,35 +37,28 @@ function consoleResponseInterceptor(
     return response;
   }
 
-  if (
-    // Multi api with failed request
-    apiResponseData.code === '200' &&
-    apiResponseData.withFailedRequest === true
-  ) {
-    const error: IError = new Error('Multi OpenAPI calls with failed request.');
-    injectErrorPromptAdaptor(error, response);
-    if (ignoreError !== true) {
-      throw error;
-    }
-    return response;
+  let error: IError = new Error('OpenAPI failed without a message.');
+
+  // Multi api with failed request 
+  if (apiResponseData.code === '200' && apiResponseData.withFailedRequest === true ) {
+    error = new Error('Multi OpenAPI calls with failed request.');
   }
 
+  // Single api failed with an error message
   if (apiResponseData.message) {
-    // Single api failed with an error message
-    const error: IError = new Error(apiResponseData.message);
-    injectErrorPromptAdaptor(error, response);
-    if (ignoreError !== true) {
-      throw error;
-    }
-    return response;
+    error = new Error(apiResponseData.message);
   }
-  // Single api failed without an error message
-  const error: IError = new Error('OpenAPI failed without a message.');
+
+  // 适配 error-proxy
   injectErrorPromptAdaptor(error, response);
 
-  if (ignoreError !== true) {
+  // 历史有个 ignoreError 的配置 已经被 deprecate 掉了，为了兼容历史逻辑。本身是 widget 里面给弹窗使用的
+  // 新的参数都是 disableThrowResponseError, 在设置了 disableThrowResponseError 会不 throw error
+  if (!disableThrowResponseError && ignoreError !== true) {
     throw error;
   }
+
+  response.config.rawResponseData = disableThrowResponseError;
 
   return response;
 }
