@@ -1,5 +1,6 @@
 export interface IFastLoginOptions {
   env?: 'prod' | 'prepub';
+  target?: HTMLElement;
 }
 
 export interface ILoginCallbackProps {
@@ -15,6 +16,6 @@ export interface IFastLoginProps {
 
 declare global {
   interface Window {
-    FastLogin: (method: 'render' | 'show', [props]: [IFastLoginProps]) => void;
+    FastLogin: (method: 'render' | 'show' | 'unmountDialog', [props]: [IFastLoginProps]) => void;
   }
 }

@@ -1,7 +1,5 @@
-import { IFastLoginOptions } from './type';
+import { IFastLoginOptions, ILoginCallbackProps } from './type';
 import { ENV } from './env';
-
-let fastLoginClient: typeof window.FastLogin = null;
 
 const loadFastLoginScripts = (options: IFastLoginOptions): Promise<typeof window.FastLogin> => {
   const env = options.env || 'prod';
@@ -9,21 +7,19 @@ const loadFastLoginScripts = (options: IFastLoginOptions): Promise<typeof window
 
   /* eslint-disable no-undef */
   return new Promise((resolve, reject) => {
-    if (fastLoginClient) {
-      resolve(fastLoginClient);
+    if (window.FastLogin) {
+      resolve(window.FastLogin);
       return;
     }
 
     const script = document.createElement('script');
 
     script.onload = () => {
-      fastLoginClient = window.FastLogin;
-      // 必填
       // @ts-ignore
       window.FastLoginContext = {
         tenantName: "console" 
       };
-      resolve(fastLoginClient)
+      resolve(window.FastLogin)
     }
 
     script.onerror = () => {
@@ -40,10 +36,14 @@ const loadFastLoginScripts = (options: IFastLoginOptions): Promise<typeof window
 const open = async (options: IFastLoginOptions) => {
   const fastLogin = await loadFastLoginScripts(options);
 
-  return new Promise<void>((resolve) => {
+  return new Promise<ILoginCallbackProps>((resolve, reject) => {
     fastLogin('show', [{
-      loginCallback: () => {
-        resolve();
+      loginCallback: (result) => {
+        if (result.success) {
+          resolve(result);
+        } else {
+          reject(result)
+        }
       }
     }])
   })
@@ -51,11 +51,29 @@ const open = async (options: IFastLoginOptions) => {
 
 const render = async (options: IFastLoginOptions) => {
   const fastLogin = await loadFastLoginScripts(options);
-  fastLogin('render', [{}])
+  return new Promise<ILoginCallbackProps>((resolve, reject) => {
+    fastLogin('render', [{
+      // @ts-ignore
+      type: "one_login", // one_login, password, qr
+      loginCallback: (result) => {
+        if (result.success) {
+          resolve(result);
+        } else {
+          reject(result)
+        }
+      }
+    }])
+  })
+}
+
+const unmount = async (options: IFastLoginOptions) => {
+  const fastLogin = await loadFastLoginScripts(options);
+  fastLogin('unmountDialog', [{}])
 }
 
 
 export {
   open,
   render,
+  unmount,
 }

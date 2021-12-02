@@ -26,7 +26,8 @@
     "react-dom": "^16.11.0"
   },
   "devDependencies": {
-    "@alicloud/console-components": "alpha",
+    "@alicloud/console-components": "^1.0.0",
+    "@alicloud/console-fastlogin": "^2.0.0",
     "@alicloud/console-toolkit-cli": "^1.0.3",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.6",
     "@testing-library/react": "^10.4.7",
