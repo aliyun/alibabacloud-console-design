@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-service",
-  "version": "2.3.42",
+  "version": "2.3.43",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
