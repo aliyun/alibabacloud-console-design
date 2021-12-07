@@ -11,11 +11,12 @@ import '@alicloud/console-components/dist/wind.css'
 defaultAxiosRequest.interceptors.request.handlers.unshift({
   fulfilled: (config) => {
     config.baseURL = 'https://oneapi.alibaba-inc.com/mock/oneconsole';
-    config.method = 'GET'
+    // config.method = 'GET'
     if(config.url.indexOf('multiApi.json')) {
       config.url = config.url.replace(/multiApi.json/, 'api.json')
       config.url = config.url.replace(/action=undefined/, 'action=DescribeMultiApi')
     }
+
     return config;
   }
 });
@@ -26,7 +27,7 @@ storiesOf('XConsole Service', module)
   // .addDecorator(withAxiosDecorator(defaultAxiosRequest))
   .add('AppCode', () => {
     const action = select('action', ['DescribeInstance', 'DescribeAPI'], 'DescribeInstance')
-    const { data, error } = useOpenApi('consoledemo', action, null, { throwDoubleConfirmError: true })
+    const { data, error } = useOpenApi('consoledemo', action, {'xxxx': 'xxxx2'}, { throwDoubleConfirmError: true })
     // @ts-ignore
     console.log(error?.response)
     return <div>{JSON.stringify(data)}{JSON.stringify(error)}</div>
