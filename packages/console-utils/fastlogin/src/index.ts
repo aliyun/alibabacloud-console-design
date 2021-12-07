@@ -51,8 +51,10 @@ const open = async (options: IFastLoginOptions) => {
 
 const render = async (options: IFastLoginOptions) => {
   const fastLogin = await loadFastLoginScripts(options);
+  const { height = 700, width = 500 } = options
   return new Promise<ILoginCallbackProps>((resolve, reject) => {
     fastLogin('render', [{
+      target: options.target,
       // @ts-ignore
       type: "one_login", // one_login, password, qr
       loginCallback: (result) => {
@@ -62,7 +64,7 @@ const render = async (options: IFastLoginOptions) => {
           reject(result)
         }
       }
-    }])
+    }, { height, width }])
   })
 }
 

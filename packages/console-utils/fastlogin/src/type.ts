@@ -1,6 +1,8 @@
 export interface IFastLoginOptions {
   env?: 'prod' | 'prepub';
   target?: HTMLElement;
+  height?:  number;
+  width?:  number;
 }
 
 export interface ILoginCallbackProps {
@@ -11,6 +13,7 @@ export interface ILoginCallbackProps {
 
 export interface IFastLoginProps {
   targetId?: string;
+  target?: HTMLElement;
   loginCallback?: (data: ILoginCallbackProps) => void;
 }
 
