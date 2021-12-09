@@ -1,11 +1,12 @@
 import axios, { AxiosResponse } from 'axios';
-import { URLSearchParams } from '../paramsInterceptor/index';
+import qs from 'qs';
 import getVerifyInformation from './getVerifyInformation';
 import {
   guideToVerificationMethodSetting,
   guideToVerificationDetailSetting,
 } from './helpers';
 import { IResponse, IResponseData, Risk } from '../../types';
+import paramsInterceptor from '../paramsInterceptor/index'
 
 export interface IVerifyOptions {
   isVerifyCodeValid: boolean;
@@ -17,6 +18,7 @@ export interface IVerifyOptions {
 }
 
 const axiosInstance = axios.create();
+axiosInstance.interceptors.request.use(paramsInterceptor)
 
 function isVerifyCodeValid(
   res: AxiosResponse | null,
@@ -75,10 +77,10 @@ async function handleDoubleConfirm(
       const {
         config: { data: reqDataString, url: reqUrl },
       } = response;
-      const reqData = new URLSearchParams(reqDataString);
-      reqData.append('verifyType', verifyType);
-      if (verifyCode) reqData.append('verifyCode', verifyCode);
-      if (requestId) reqData.append('requestId', requestId);
+      const reqData = qs.parse(reqDataString)
+      reqData['verifyType'] = verifyType;
+      if (verifyCode) reqData['verifyCode'] = verifyCode;
+      if (requestId) reqData['requestId'] = requestId;
 
       newResponse = await axiosInstance({
         method: 'post',

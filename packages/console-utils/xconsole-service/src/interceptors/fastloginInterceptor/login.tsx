@@ -17,22 +17,16 @@ export const refreshToken = async () => {
     collina: getCollina(),
   };
 
-  try {
-    const res = await axiosInstance({
-      method: 'get',
-      url: '/tool/user/info.json',
-      // url: 'https://oneapi.alibaba-inc.com/mock/oneconsole/data/api.json?product=consoledemo&action=DescribeUserInfo',
-      data: reqData,
-      timeout: 15000,
-    });
+  const res = await axiosInstance({
+    method: 'get',
+    url: '/tool/user/info.json',
+    data: reqData,
+    timeout: 15000,
+  });
 
-    const { data: { data: resData } } = res;
-    // @ts-ignore
-    window.ALIYUN_CONSOLE_CONFIG && (window.ALIYUN_CONSOLE_CONFIG.SEC_TOKEN = resData?.secToken);
-  } catch (e) {
-    console.log('xxxxxxx',e)
-    // TODO
-  }
+  const { data: { data: resData } } = res;
+  // @ts-ignore
+  window.ALIYUN_CONSOLE_CONFIG && (window.ALIYUN_CONSOLE_CONFIG.SEC_TOKEN = resData?.secToken);
 }
 
 export const LoginContent: React.FC<any> = (props) => {
@@ -49,7 +43,6 @@ export const LoginContent: React.FC<any> = (props) => {
             }
             props.onSuccess()
           } catch(e) {
-            console.log(e)
             props.onError(e);
           }
         })()
@@ -71,8 +64,26 @@ export const LoginContent: React.FC<any> = (props) => {
   )
 }
 
-export const login = (response: AxiosResponse) => {
-  return new window.Promise<AxiosResponse>((resolve, reject) => {
+const requestAgain = async (response: AxiosResponse) =>  {
+  const reqData = new URLSearchParams(response.config.data);
+  reqData.set('sec_token', getSecToken())
+  const newResponse = await axios.request({
+    method: 'post',
+    url: response.config.url,
+    baseURL: '/',
+    data: reqData.toString()
+  });
+  return newResponse;
+}
+
+let loginPromise: Promise<void> = null;
+
+const fastLoginWithDialog = () => {
+  if (loginPromise) {
+    return loginPromise;
+  }
+
+  loginPromise = new window.Promise<void>((resolve, reject) => {
     const div = document.createElement('div');
     document.body.appendChild(div);
     ReactDOM.render(
@@ -80,15 +91,7 @@ export const login = (response: AxiosResponse) => {
         onSuccess={async () => {
           try {
             setTimeout(async() => {
-              const reqData = new URLSearchParams(response.config.data);
-              reqData.set('sec_token', getSecToken())
-              const newResponse = await axios.request({
-                method: 'post',
-                url: response.config.url,
-                baseURL: '/',
-                data: reqData.toString()
-              })
-              resolve(newResponse);
+              resolve()
               ReactDOM.unmountComponentAtNode(div);
             }, 200)
           } catch (e) {
@@ -97,8 +100,23 @@ export const login = (response: AxiosResponse) => {
         }}
         onError={() => {
           ReactDOM.unmountComponentAtNode(div);
-          reject(response);
+          reject();
         }}
       />, div);
   })
+
+  loginPromise.finally(() => {
+    loginPromise = null;
+  });
+
+  return loginPromise;
+}
+
+export const login = async (response: AxiosResponse) => {
+  try {
+    await fastLoginWithDialog();
+    return await requestAgain(response)
+  } catch (e) {
+    return response;
+  }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-service",
-  "version": "2.4.0-alpha.11",
+  "version": "2.4.0-alpha.13",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
@@ -46,6 +46,7 @@
     "@ungap/url-search-params": "^0.2.2",
     "axios": "^0.19.2",
     "js-cookie": "^2.2.1",
+    "qs": "^6.10.2",
     "swr": "^0.2.3",
     "tslib": "^2.0.0"
   },

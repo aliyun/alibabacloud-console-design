@@ -18,6 +18,7 @@ defaultAxiosRequest.interceptors.request.handlers.unshift({
       console.log(config.url, config.url.replace(/\/tool\/user\/info\.json/, '/data/api.json?action=DescribeUserInfo'))
       config.url = config.url.replace(/\/tool\/user\/info\.json/, 'data/api.json?action=DescribeUserInfo')
     }
+
     return config;
   }
 });
@@ -28,7 +29,7 @@ storiesOf('XConsole Service', module)
   // .addDecorator(withAxiosDecorator(defaultAxiosRequest))
   .add('AppCode', () => {
     const action = select('action', ['DescribeInstance', 'DescribeAPI'], 'DescribeInstance')
-    const { data, error } = useOpenApi('consoledemo', action, null, { throwDoubleConfirmError: true })
+    const { data, error } = useOpenApi('consoledemo', action, {'xxxx': 'xxxx2'}, { throwDoubleConfirmError: true })
     // @ts-ignore
     console.log(error?.response)
     return <div>{JSON.stringify(data)}{JSON.stringify(error)}</div>
