@@ -17,6 +17,7 @@ function searchParamsInterceptor(config: IOptions): IOptions {
   return {
     ...config,
     headers: {
+      ...(config.headers || {}),
       'content-type': 'application/x-www-form-urlencoded'
     },
     params: paramsSearchParams,
