@@ -25,7 +25,7 @@ storiesOf('XConsoleAppLayout', module).add('XConsoleAppLayout', () => {
     <div id="app-wrapper">
       <div id="app">
         <Router history={createBrowserHistory()}>
-          <WindProRcAppLayout sidebar={sidebar}>
+          <WindProRcAppLayout sidebar={sidebar} consoleMenu={{collapsedPath: ['/basic-profile']}}>
             <Test/>
           </WindProRcAppLayout>
         </Router>

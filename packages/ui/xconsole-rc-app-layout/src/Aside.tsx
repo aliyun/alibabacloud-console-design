@@ -35,6 +35,8 @@ const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = (
     location: { pathname },
     children,
     menuParams,
+    collapsed,
+    onNavCollapseTriggerClick
   } = props;
 
   const { sidebar } = useContext(Context);
@@ -42,7 +44,6 @@ const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = (
   const {
     displayPath,
     notDisplayPath,
-    collapsedPath = [],
     defaultOpen = [],
   } = consoleMenu;
 
@@ -55,11 +56,6 @@ const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = (
 
   // 合并 sidebar 的 defaultOpenKeys
   sidebar.defaultOpenKeys = defaultOpen;
-
-  const { collapsed, onNavCollapseTriggerClick } = useCollapsed(
-    pathname,
-    collapsedPath
-  );
 
   return (
     <XConsoleTheme>

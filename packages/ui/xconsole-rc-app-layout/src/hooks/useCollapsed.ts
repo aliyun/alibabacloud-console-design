@@ -27,6 +27,7 @@ const useCollapsed = (pathname: string, collapsedPath: PathRule) => {
 
   return {
     collapsed,
+    setCollapsed,
     onNavCollapseTriggerClick,
   };
 };
