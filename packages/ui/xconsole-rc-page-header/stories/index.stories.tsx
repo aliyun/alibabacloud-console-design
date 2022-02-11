@@ -74,6 +74,7 @@ const App = () => (
     historyBack="/users"
     breadcrumbs={breadcrumbs}
     nav={nav}
+    titleExtra={<div>xxxxx</div>}
   />
 );
 
