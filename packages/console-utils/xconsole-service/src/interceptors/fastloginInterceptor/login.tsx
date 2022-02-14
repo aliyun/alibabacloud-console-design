@@ -36,8 +36,7 @@ export const LoginContent: React.FC<any> = (props) => {
       if (ref.current || document.querySelector('#loginContent')) {
         (async () => {
           try {
-            const result = await render({ env: 'prepub', target: ref.current || document.querySelector('#loginContent'), height: 560 });
-            console.log(result)
+            const result = await render({ env: 'prepub', target: ref.current || document.querySelector('#loginContent'), height: 560, width: 501 });
             if (result.success) {
               await refreshToken();
             }
@@ -52,12 +51,12 @@ export const LoginContent: React.FC<any> = (props) => {
 
   return (
     <Dialog visible footer={<div/>} onClose={() => {props.onError()}}>
-      <div style={{height: 660, width: 500, paddingTop: 20}}>
+      <div style={{height: 630, width: 500, paddingTop: 20}}>
         <div ref={ref} id="loginContent" ></div>
         <div style={{textAlign: 'center', width: 500, paddingTop: 20, fontSize: 13}}>
-          <span style={{verticalAlign: 'text-top'}}>快速登录有问题？直接去</span>
-          <Button text type="primary">登录页</Button>
-          <span style={{verticalAlign: 'text-top'}}>登录</span>
+          <span >快速登录有问题？直接去</span>
+          <a href="#" onClick={() => { window.location.reload()}}>登录页</a>
+          <span >登录</span>
         </div>
       </div>
     </Dialog>

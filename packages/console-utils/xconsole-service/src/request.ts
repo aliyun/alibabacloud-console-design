@@ -39,8 +39,8 @@ export default function createRequest(
 
     instance.interceptors.response.use(armsResponseInterceptor);
     instance.interceptors.response.use(fastLoginInterceptor);
-    instance.interceptors.response.use(consoleResponseInterceptor);
     instance.interceptors.response.use(consoleRiskInterceptor);
+    instance.interceptors.response.use(consoleResponseInterceptor);
   }
 
   let requestInterceptor = requestInterceptors.shift();

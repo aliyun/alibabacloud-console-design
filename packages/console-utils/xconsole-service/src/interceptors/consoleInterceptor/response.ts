@@ -1,16 +1,23 @@
 /* eslint-disable @typescript-eslint/no-throw-literal */
+import qs from 'qs';
 import { IError, IResponse, IResponseData } from '../../types';
 import { ApiType } from '../../const/index';
 import { AxiosResponse } from 'axios';
 
 const injectErrorPromptAdaptor = (error: IError, response: AxiosResponse) => {
+  let body = {};
+  try {
+    body = qs.parse(response?.config?.data)
+  } catch (e){
+    //  nothing
+  }
   error.response = response;
   error.code = response.data?.code;
   error.requestId = response.data?.requestId;
   error.message = response.data?.message;
   error.details = {
     url: response?.config?.url,
-    body: response?.config?.data,
+    body: body,
     method: response?.config?.method
   }
 };

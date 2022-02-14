@@ -3,6 +3,7 @@ const defaultOption = {
     // Empty
   },
   ignoreError: false,
+  fastLogin: false,
 }
 
 export default defaultOption;

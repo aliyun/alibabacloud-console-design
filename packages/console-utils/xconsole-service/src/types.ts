@@ -31,6 +31,7 @@ export type Risk = {
 
 export interface IOptions extends AxiosRequestConfig {
   apiType?: ApiType;
+  fastLogin?: boolean;
   ignoreError?: boolean;
   description?: any;
   useCors?: boolean;

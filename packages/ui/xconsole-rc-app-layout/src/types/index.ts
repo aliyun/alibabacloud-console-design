@@ -64,6 +64,8 @@ export interface IProp extends RouteComponentProps {
   consoleMenu?: IConsoleMenuConfig;
   children?: React.ReactChildren;
   menuParams: Record<string, any>;
+  collapsed?: boolean;
+  onNavCollapseTriggerClick?: any;
 }
 
 export interface IMenuProps {

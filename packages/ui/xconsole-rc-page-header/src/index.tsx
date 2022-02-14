@@ -17,6 +17,8 @@ export const PageHeader: React.FC<IProps> = (props: IProps) => {
     breadcrumbs,
     extra,
     historyBack,
+    titleExtra,
+    titleExtraAlign,
     nav,
     children,
     onBackArrowClick,
@@ -28,6 +30,8 @@ export const PageHeader: React.FC<IProps> = (props: IProps) => {
     <XConsoleRcPage
       breadcrumbs={breadcrumbs}
       breadcrumbExtra={extra}
+      titleExtra={titleExtra}
+      titleExtraAlign={titleExtraAlign}
       pageProps={restProps}
       title={title}
       subTitle={

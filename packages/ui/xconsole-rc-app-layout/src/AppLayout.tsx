@@ -4,11 +4,13 @@ import { withRouter } from 'dva/router';
 import { IProp, ISidebarConfig } from './types/index';
 import Context from './Context';
 import Aside from './Aside';
+import useCollapsed from './hooks/useCollapsed';
 
 let noticeFlag = false;
 
 const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
-  const { sidebar: rawSidebar, consoleMenu, location, children, menuParams } = props;
+  const { sidebar: rawSidebar, consoleMenu, location, children, menuParams  } = props;
+  const { pathname } = location;
 
   let sidebar: ISidebarConfig = null;
 
@@ -53,16 +55,28 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
     return () => window.removeEventListener('message', cb);
   }, []);
 
+  const { collapsed, setCollapsed, onNavCollapseTriggerClick } = useCollapsed(
+    pathname,
+    consoleMenu?.collapsedPath || []
+  );
+
   return (
     <Context.Provider
       value={{
         sidebar: { title, navs, collapsedKeys: [] },
         setTitle,
         setNavs,
+        setCollapsed,
         onNavTriggerClick
       }}
     >
-      <Aside consoleMenu={consoleMenu} location={location} menuParams={menuParams}>
+      <Aside
+        collapsed={collapsed}
+        onNavCollapseTriggerClick={onNavCollapseTriggerClick}
+        consoleMenu={consoleMenu}
+        location={location}
+        menuParams={menuParams}
+      >
         {children}
       </Aside>
     </Context.Provider>

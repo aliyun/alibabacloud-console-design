@@ -57,6 +57,9 @@ const render = async (options: IFastLoginOptions) => {
       target: options.target,
       // @ts-ignore
       type: "one_login", // one_login, password, qr
+      custom: {
+        footerComs: ['third-party']
+      },
       loginCallback: (result) => {
         if (result.success) {
           resolve(result);

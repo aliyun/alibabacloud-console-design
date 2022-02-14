@@ -56,6 +56,7 @@ const processError = (errorConfig: Partial<ErrorCodeConfig>, error: ResponseErro
       url: error?.response?.config.url,
       method: error?.response?.config?.method,
       params: error?.response?.config?.params,
+      ...(error?.details || {})
     },
     code: error?.response?.data?.code,
     stack: error.stack,
