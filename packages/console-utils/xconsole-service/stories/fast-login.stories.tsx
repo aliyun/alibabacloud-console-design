@@ -10,6 +10,11 @@ import { createService } from '../src/index'
 
 import '@alicloud/console-components/dist/xconsole.css'
 
+// @ts-ignore
+window.ALIYUN_CONSOLE_CONFIG = {
+  CHANNEL: "OFFICIAL"
+}
+
 window.React = React;
 window.ReactDOM = ReactDOM
 storiesOf('XConsole FastLogin', module)
@@ -17,7 +22,7 @@ storiesOf('XConsole FastLogin', module)
   .add('FastLogin', () => {
     React.useEffect(() => {
       (async () => {
-        await createService('consoledemo', 'ConsoleNeedLogin')({ xxxx:1 })
+        await createService('consoledemo', 'ConsoleNeedLogin', { fastLogin: true})({ xxxx:1 })
       })()
     })
     return <div/>

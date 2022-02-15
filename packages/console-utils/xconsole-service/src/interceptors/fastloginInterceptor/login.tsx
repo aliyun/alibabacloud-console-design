@@ -2,8 +2,9 @@ import axios, { AxiosResponse } from 'axios';
 import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom'
 import { render } from '@alicloud/console-fastlogin';
-import { Button, Dialog } from '@alicloud/console-components'
+import { Dialog } from '@alicloud/console-components';
 
+import messages from './messages';
 import searchParamsInterceptor from '../paramsInterceptor/index';
 import { getSecToken, getUmid, getCollina } from '../../utils/index';
 
@@ -51,12 +52,12 @@ export const LoginContent: React.FC<any> = (props) => {
 
   return (
     <Dialog visible footer={<div/>} onClose={() => {props.onError()}}>
-      <div style={{height: 630, width: 500, paddingTop: 20}}>
+      <div style={{height: 630, width: 500, paddingTop: 20, overflow: 'hidden'}}>
         <div ref={ref} id="loginContent" ></div>
         <div style={{textAlign: 'center', width: 500, paddingTop: 20, fontSize: 13}}>
-          <span >快速登录有问题？直接去</span>
-          <a href="#" onClick={() => { window.location.reload()}}>登录页</a>
-          <span >登录</span>
+          <span >{messages['login_prefix']}</span>
+          <a href="#" onClick={() => { window.location.reload()}}>{messages['login_action']}</a>
+          <span >{messages['login_suffix']}</span>
         </div>
       </div>
     </Dialog>
