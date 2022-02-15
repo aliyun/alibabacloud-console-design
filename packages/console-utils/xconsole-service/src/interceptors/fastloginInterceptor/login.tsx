@@ -37,7 +37,7 @@ export const LoginContent: React.FC<any> = (props) => {
       if (ref.current || document.querySelector('#loginContent')) {
         (async () => {
           try {
-            const result = await render({ env: 'prepub', target: ref.current || document.querySelector('#loginContent'), height: 560, width: 501 });
+            const result = await render({ target: ref.current || document.querySelector('#loginContent'), height: 560, width: 501 });
             if (result.success) {
               await refreshToken();
             }
