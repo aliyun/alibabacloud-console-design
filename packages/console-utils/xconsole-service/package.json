@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-service",
-  "version": "2.4.0-alpha.13",
+  "version": "2.4.0",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@alicloud/console-components": "^1.0.0",
-    "@alicloud/console-fastlogin": "^2.0.0",
+    "@alicloud/console-fastlogin": "^2.4.0",
     "@alicloud/console-toolkit-cli": "^1.0.3",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.6",
     "@testing-library/react": "^10.4.7",
