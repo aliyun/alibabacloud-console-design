@@ -22,7 +22,7 @@ storiesOf('XConsole FastLogin', module)
   .add('FastLogin', () => {
     React.useEffect(() => {
       (async () => {
-        await createService('consoledemo', 'ConsoleNeedLogin', { fastLogin: true})({ xxxx:1 })
+        await createService('consoledemo', 'ConsoleNeedLogin', { fastLogin: true })({ xxxx:1 })
       })()
     })
     return <div/>

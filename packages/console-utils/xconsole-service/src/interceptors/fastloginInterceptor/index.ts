@@ -10,7 +10,8 @@ async function fastLoginInterceptor(response: IResponse<IResponseData> ): Promis
 
   // 只在开启了 fastLogin 的站点才显示
   // @ts-ignore
-  if((!fastLogin && !defaultConfig.fastLogin) || window?.ALIYUN_CONSOLE_CONFIG?.CHANNEL !== 'OFFICIAL') {
+  const fastLoginEnbled = (fastLogin || defaultConfig.fastLogin) && window?.ALIYUN_CONSOLE_CONFIG?.CHANNEL === 'OFFICIAL'
+  if(!fastLoginEnbled) {
     return response;
   }
 
