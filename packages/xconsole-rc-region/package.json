@@ -1,8 +1,9 @@
 {
   "name": "@alicloud/xconsole-rc-region",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.12",
   "description": "Make your app regionable",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {

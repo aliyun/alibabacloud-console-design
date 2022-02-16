@@ -20,6 +20,9 @@ export {
 // export reqeust
 export { default as request } from './request';
 
+// 和 2.x 一样的导出
+export { default as defaultAxiosRequest } from './request';
+
 // export interceptors
 export { default as consoleRequestInterceptor } from './interceptors/consoleRequestInterceptor';
 export { default as searchParamsInterceptor } from './interceptors/searchParamsInterceptor';

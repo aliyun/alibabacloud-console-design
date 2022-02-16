@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-dialog",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.5",
   "description": "基于 fusion 的一个 Dialog",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -31,13 +31,12 @@
     "react-dom": "^16.x"
   },
   "dependencies": {
-    "@alicloud/console-toolkit-cli": "^1.0.3",
-    "@alicloud/console-toolkit-preset-wind-component": "^1.0.6",
     "@alicloud/xconsole-less": "^1.0.0-beta.1",
-    "babel-runtime": "^6.26.0",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
+    "@alicloud/console-toolkit-cli": "^1.0.3",
+    "@alicloud/console-toolkit-preset-wind-component": "^1.0.6",
     "@alicloud/console-components": "^1.0.20",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",

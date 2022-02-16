@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import warning from '@alicloud/xconsole-dev-utils/lib/warning'
 import Context from './Context'
 import determinActiveId from './determineActiveId'
 import renderProps from './renderProps'
@@ -155,13 +154,6 @@ class Provider extends Component {
     )
 
     if (nextActiveId !== exactNextActiveId) {
-      // 如果 nextActiveId 显式地进行了声明并且不符合预期, 则在 dev 环境下提示
-      warning(
-        typeof nextActiveId === 'undefined',
-        `Next active id (${nextActiveId}) is unexpected. ` +
-        'You can define a interceptor (props.changeInterceptor)' +
-        'to correct the next active id before change.'
-      )
       return
     }
 
@@ -201,7 +193,8 @@ class Provider extends Component {
 
     // 在数据变化时, 销毁子组件并重新进行渲染
     // 可以通过设置 `props.keepAlive = true` 阻止子组件的销毁
-    if (!keepAlive && nextActiveId && nextActiveId !== activeId) {
+    // 如果是 ssr 忽略这个逻辑
+    if (!keepAlive && nextActiveId && nextActiveId !== activeId && typeof document !== 'undefined') {
       return null
     }
 

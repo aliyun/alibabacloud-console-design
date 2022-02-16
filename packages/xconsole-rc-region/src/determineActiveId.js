@@ -30,7 +30,9 @@ const determinActiveId = (id, currentActiveId, dataSource) => {
   // 没有调用者从 model 中获取失败, 或调用者明确不为该参数赋值,
   // 则使用 getActiveId 从 cookie 中取值进行兜底, 尽量让该值保持一个有效的状态.
   // 只有在用户第一次访问控制台时, 该值可能为空
-  const exactCurrentActiveId = currentActiveId || getActiveId()
+  // 如果是 ssr 的情况直接返回 当前的 ID 作为初始值，而不是从 cookies 中获取
+  const exactCurrentActiveId =
+    typeof document === 'undefined' ? id : currentActiveId || getActiveId();
 
   // 对 dataSource 进行预处理, 如果不符合期望, 则直接返回当前的 activeId
   // 之所以没有返回用户声明的 id, 是因为用户的输入无法进行预测,

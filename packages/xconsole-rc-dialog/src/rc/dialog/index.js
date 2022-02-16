@@ -142,17 +142,19 @@ function hasFusionOverlayOpened() {
   return _some(fusionOverlaysOpened, v => !v.querySelector('.next-message')); // 忽略 toast message
 }
 
-eventsOn(document, 'keydown', e => {
-  if (e.keyCode !== 9) { // TAB
-    return;
-  }
-
-  const taken = takeoverFocus(e.shiftKey ? -1 : 1);
-
-  if (taken !== false) {
-    e.preventDefault();
-  }
-});
+if (typeof document !== 'undefined') {
+  eventsOn(document, 'keydown', e => {
+    if (e.keyCode !== 9) { // TAB
+      return;
+    }
+  
+    const taken = takeoverFocus(e.shiftKey ? -1 : 1);
+  
+    if (taken !== false) {
+      e.preventDefault();
+    }
+  });
+}
 
 export default class extends React.Component {
   static displayName = 'Dialog';

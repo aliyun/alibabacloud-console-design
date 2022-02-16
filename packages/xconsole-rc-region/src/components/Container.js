@@ -9,7 +9,7 @@ const Container = ({
   children,
 }) => (
   <div
-    className={classNames('xconsole-rc-region', className, shape)}
+    className={classNames('wind-rc-region', className, shape)}
     style={style}
   >
     {children}

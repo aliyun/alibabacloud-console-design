@@ -21,5 +21,5 @@ request.interceptors.request.use(consoleRequestInterceptor)
 request.interceptors.response.use(armsResponseInterceptor)
 request.interceptors.response.use(consoleRiskInterceptor)
 request.interceptors.response.use(consoleResponseInterceptor)
-console.log('debugme xconsole service')
+
 export default request

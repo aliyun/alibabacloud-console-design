@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-error-center",
-  "version": "1.0.0-beta.12",
+  "version": "1.0.0-beta.16",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
@@ -33,10 +33,10 @@
     "react-dom": "^16.8.6"
   },
   "scripts": {
-    "prepublish": "rm -rf dist lib es && npm run babel && npm run babel:esm",
+    "prepublish": "rm -rf dist lib es && npm run build && npm run babel && npm run babel:esm",
     "build:dev": "npm run babel",
     "build": "breezr build --engine webpack",
-    "babel": "breezr build --engine babel",
+    "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
     "babel:esm": "breezr build --engine babel --es-module",
     "storybook": "breezr start-storybook",
     "start": "npm run storybook",
