@@ -62,6 +62,13 @@ const createDefaultService = <R, P>(requestInstance: AxiosInstance, product: str
         };
     }
 
+    if (opts.extraData) {
+      data = {
+        ...data,
+        ...opts.extraData
+      }
+    }
+
     const res = await requestInstance.request<IResponseData<R>, AxiosResponse<IResponseData<R>>>({
       ...opts,
       data,

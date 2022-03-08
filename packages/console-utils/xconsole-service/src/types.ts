@@ -46,6 +46,7 @@ export interface IOptions extends AxiosRequestConfig {
   mock?: boolean;
   region?: string;
   rawResponseData?: boolean;
+  extraData?: any;
   /**
    * 在请求失败的时候不 throw Error 而是直接返回请求对象
    */
