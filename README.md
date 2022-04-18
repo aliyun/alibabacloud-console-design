@@ -47,3 +47,7 @@ https://xconsole.cloud/cloudbench/develop/ziowbz
 ## 用户指南
 
 请阅读 [官方文档](https://aliyun.github.io/alibabacloud-console-design/doc/quick-start)
+
+钉钉交流群：
+
+<img src="./docs/image/dingtalk-group.jpg" width=300 />
