@@ -67,12 +67,8 @@ export const useChannelLink = (linkId: string, linkParams: Record<string, any>) 
   }
 
   const { consoleConfig } = React.useContext(ConsoleContext)
-  let channelLink = consoleConfig.getChannelLink(linkId)
 
-  if (linkParams) {
-    channelLink = template(channelLink)(linkParams)
-  }
-  return channelLink;
+  return consoleConfig.getChannelLink(linkId, linkParams)
 }
 
 const ChannelLink: React.FC<IChannelLinkProps> = (props: IChannelLinkProps) => {

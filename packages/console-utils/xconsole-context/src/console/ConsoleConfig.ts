@@ -1,3 +1,4 @@
+import template from 'lodash/template'
 import {
   ChannelEnum,
   IAliyunConsoleConfig,
@@ -104,14 +105,20 @@ class ConsoleConfig {
     return { status: false };
   };
 
-  public getChannelLink = (linkId: string): string => {
+  public getChannelLink = (linkId: string, linkParams?: any): string => {
+    let channelLink = 'javascript:void(0)';
     if (
       this.consoleConfig.CHANNEL_LINKS &&
       this.consoleConfig.CHANNEL_LINKS[linkId]
     ) {
-      return this.consoleConfig.CHANNEL_LINKS[linkId];
+      channelLink = this.consoleConfig.CHANNEL_LINKS[linkId];
     }
-    return 'javascript:void(0)';
+
+    if (linkParams) {
+      channelLink = template(channelLink)(linkParams)
+    }
+
+    return channelLink;
   };
 
   public getLabel = (): ILabel => {
