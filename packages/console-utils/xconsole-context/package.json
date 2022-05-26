@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-context",
-  "version": "2.4.3",
+  "version": "2.4.11",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
@@ -20,7 +20,7 @@
     "url": "https://github.com/Boelroy"
   },
   "scripts": {
-    "prepublish": "npm run clean && npm run babel && npm run babel:esm",
+    "prepare": "npm run clean && npm run babel && npm run babel:esm",
     "babel": "breezr build --engine babel && tsc --emitDeclarationOnly -d true --declarationDir ./lib",
     "babel:esm": "breezr build --engine babel --es-module",
     "build": "breezr build --engine webpack",
@@ -48,6 +48,8 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
+    "@alicloud/console-base-rc-messenger-region": "^1.1.2",
+    "@alicloud/console-base-rc-messenger-resource-group": "^1.0.3",
     "@alicloud/xconsole-rc-base-link": "^1.0.0-beta.1",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.19",

@@ -6,7 +6,7 @@ import {
 import { forApp } from '@ali/console-base-messenger';
 // @ts-ignore
 import { storiesOf } from '@storybook/react';
-import { withConsoleConfig, ConsoleContext } from '../src/index';
+import { withConsoleConfig, ConsoleContext, withRcBaseMessenger } from '../src/index';
 import './config';
 
 const REGION_LIST = [
@@ -14,11 +14,17 @@ const REGION_LIST = [
   { id: 'cn-hangzhou', name: '杭州' }
 ]
 
-// @ts-ignore
-const App = withConsoleConfig((props) => {
-  const { region, resourceGroup } = useContext(ConsoleContext);
-  return <div>{region.getCurrentRegionId()} {resourceGroup.getCurrentResourceGroup()}</div>;
-});
+const App = 
+withRcBaseMessenger(
+  // @ts-ignore
+  withConsoleConfig((props) => {
+    const { region, resourceGroup } = useContext(ConsoleContext);
+    return <div>
+      {region.getCurrentRegionId()}
+      {resourceGroup.getCurrentResourceGroup()}
+    </div>;
+  })
+);
 
 storiesOf('Console Configuration', module)
   .add('Region', () => {

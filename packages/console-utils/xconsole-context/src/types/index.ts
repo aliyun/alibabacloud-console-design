@@ -23,6 +23,8 @@ export interface RegionConfig {
   
   // 路由匹配到 全球的 展示或者隐藏
   globalVisiblePaths?: PathRule;
+
+  historyAction?: 'push' | 'replace';
 }
 
 export interface IRegionConfigProps extends RegionConfig {

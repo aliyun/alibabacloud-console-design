@@ -32,7 +32,7 @@ window.ALIYUN_CONSOLE_CONFIG = {
 };
 
 window.CONSOLE_BASE_SETTINGS = {
-  RESOURCE_GROUP: true
+  // RESOURCE_GROUP: true
 }
 
 const script = document.createElement('script');

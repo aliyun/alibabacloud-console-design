@@ -14,13 +14,6 @@ export const ConsoleBaseBroadcast = {
    */
   toggleTopNav(payload: boolean): void {/* void */},
 
-  /**
-   * 打开教程
-   */
-  launchTutorial(payload: IPayloadLaunchTutorial): Promise<void> {
-    return Promise.resolve();
-  },
-
   // ------- region ------- //
 
   /**

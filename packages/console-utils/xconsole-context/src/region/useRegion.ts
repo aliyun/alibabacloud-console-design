@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { matchPath, generatePath } from 'react-router';
 
 import ConsoleRegion from './index';
+import { reroute } from './useRcRegionProps';
 import ConsoleBase from '../console/ConsoleBase';
 import { IConsoleContextRegionProp } from '../types/index';
 import { determineRegionId } from './determineRegionId';
@@ -12,34 +13,6 @@ type ConsoleRegion = typeof ConsoleRegion;
 
 interface Region extends ConsoleRegion {
   loading?: boolean;
-}
-
-const hasRegionId = (match) => {
-  // eslint-disable-next-line no-prototype-builtins
-  return match.params && match.params.hasOwnProperty('regionId');
-}
-
-const reroute = (props: IConsoleContextRegionProp<{regionId?: string}>, nextRegionId: string) => {
-  const { history, match, location } = props;
-  if (match && match.path && hasRegionId(match)) {
-    const { path, params } = match;
-
-    if (nextRegionId === params.regionId) {
-      return;
-    }
-
-    const nextPath = generatePath(path, {
-      ...(params || {}),
-      regionId: nextRegionId
-    });
-    const suff = location.pathname.slice(match.url.length);
-
-    history.push({
-      pathname: match.isExact ? nextPath : `${nextPath}/${suff}`.replace('//', '/'),
-      search: location.search,
-      hash: location.hash,
-    });
-  }
 }
 
 /**
