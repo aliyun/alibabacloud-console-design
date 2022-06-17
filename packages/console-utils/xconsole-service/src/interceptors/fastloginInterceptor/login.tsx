@@ -37,7 +37,7 @@ export const LoginContent: React.FC<any> = (props) => {
       if (ref.current || document.querySelector('#loginContent')) {
         (async () => {
           try {
-            const result = await render({ target: ref.current || document.querySelector('#loginContent'), height: 560, width: 501 });
+            const result = await render({ target: ref.current || document.querySelector('#loginContent'), height: 518, width: 782 });
             if (result.success) {
               await refreshToken();
             }
@@ -51,10 +51,10 @@ export const LoginContent: React.FC<any> = (props) => {
   }, [ref.current]);
 
   return (
-    <Dialog visible footer={<div/>} onClose={() => {props.onError()}}>
-      <div style={{height: 630, width: 500, paddingTop: 20, overflow: 'hidden'}}>
+    <Dialog visible footer={false} onClose={() => {props.onError()}}>
+      <div style={{height: 578, width: 782, paddingTop: 20, overflow: 'hidden'}}>
         <div ref={ref} id="loginContent" ></div>
-        <div style={{textAlign: 'center', width: 500, paddingTop: 20, fontSize: 13}}>
+        <div style={{textAlign: 'center', width: 782, fontSize: 13}}>
           <span >{messages['login_prefix']}</span>
           <a href="#" onClick={() => { window.location.reload()}}>{messages['login_action']}</a>
           <span >{messages['login_suffix']}</span>
