@@ -24,6 +24,7 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
     defaultOpenKeys,
     currentPath,
     menuParams,
+    onItemClick,
     ...restProps
   } = props;
 
@@ -97,6 +98,7 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
       items={items || getMenuItems()}
       openKeys={openKeys}
       onOpen={onOpenKeys}
+      onItemClick={onItemClick}
       {...restProps}
     />
   );

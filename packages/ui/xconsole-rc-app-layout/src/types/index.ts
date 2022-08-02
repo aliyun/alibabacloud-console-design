@@ -43,6 +43,9 @@ export interface ISidebarConfig {
   // 侧边栏的列目配置
   navs: INavConfig[];
 
+  // 菜单项点击事件
+  onItemClick: (key: string, itemInfo: any, e: MouseEvent) => void;
+
   /**
    * @deprecated
    */
@@ -77,4 +80,5 @@ export interface IMenuProps {
   menuParams?: Record<string, any>;
   defaultOpenKeys?: string[];
   collapsedKeys?: PathRule;
+  onItemClick?: (key: string, itemInfo: any, e: MouseEvent) => void;
 }
