@@ -63,7 +63,7 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
   return (
     <Context.Provider
       value={{
-        sidebar: { title, navs, collapsedKeys: [] },
+        sidebar: { title, navs, collapsedKeys: [], onItemClick: sidebar.onItemClick },
         setTitle,
         setNavs,
         setCollapsed,
