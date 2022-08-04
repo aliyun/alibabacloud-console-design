@@ -44,7 +44,7 @@ export interface ISidebarConfig {
   navs: INavConfig[];
 
   // 菜单项点击事件
-  onItemClick: (key: string, itemInfo: any, e: MouseEvent) => void;
+  onItemClick?: (key: string, itemInfo: any, e: MouseEvent) => void;
 
   /**
    * @deprecated
