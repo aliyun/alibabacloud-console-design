@@ -1,4 +1,6 @@
-import { DependencyList } from 'react'
+import { DependencyList } from 'react';
+import { createFetcher, FetcherError } from '@alicloud/console-fetcher';
+
 import createService from '../service';
 import { IOptions } from '../types';
 import useAsync from './useAsync';
@@ -6,6 +8,7 @@ import { ApiType } from '../const/index';
 import globalConfig from '../configuration/config'
 import { getOssDownloadUrl, genOssUploadSignature } from '../oss';
 import { DownloadSignatureParam, DownloadSignatureResponse, OssSignatureParam, OssSignatureResponse } from '../oss/types';
+import createError from '../utils/createError';
 
 interface IParams {
   [key: string]: any;
@@ -20,6 +23,7 @@ interface IProps<T> extends Partial<IOptions> {
   pollingInterval?: number;
   onSuccess?: (d: T) => void;
   onError?: (e: Error) => void;
+  useNewRisk?: boolean; // 使用 fetcher 新版风控
 }
 
 export const useService = <R = any, P extends IParams = {}>(
@@ -51,8 +55,35 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
   action: string,
   params: P,
   opt: IProps<R> = {},
-  apiType: ApiType
+  apiType = ApiType.open,
+  useFetcher = false,
 ) => {
+  if (useFetcher) {
+    const { region, useNewRisk, ignoreError, disableThrowResponseError } = opt || {};
+    const fetcher = createFetcher({}, {}, useNewRisk);
+
+    const handleError = (e: FetcherError) => {
+      if (ignoreError !== true && !disableThrowResponseError) {
+        throw createError(e);
+      }
+    };
+
+    const requestInstance = (params: P) => {
+      switch (apiType) {
+        case ApiType.open:
+          return fetcher.callOpenApi<R, P>(code, action, params, { region }).catch(handleError);
+        case ApiType.inner:
+          return fetcher.callInnerApi<R, P>(code, action, params, { region }).catch(handleError);
+        case ApiType.roa:
+          return fetcher.callOpenApi<R, P>(code, action, params, { region, roa: params.content }).catch(handleError);
+        case ApiType.app:
+          return fetcher.callContainerApi<R, P>(code, action, params).catch(handleError);
+      }
+    }
+
+    return useService<R | void, P>(requestInstance, params, opt, [code, action]);
+  }
+
   const requestService = createService<R, P>(code, action, {
     ...opt,
     apiType,
@@ -64,25 +95,27 @@ export const useOpenApi = <R = any, P extends IParams = {}>(
   code: string,
   action: string,
   params?: P,
-  opt: IProps<R> = {}
+  opt: IProps<R> = {},
+  useFetcher = false,
 ) => {
-  return useXconsoleService(code, action, params, opt, ApiType.open);
+  return useXconsoleService(code, action, params, opt, ApiType.open, useFetcher);
 };
 
 export const useInnerApi = <R = any, P extends IParams = {}>(
   code: string,
   action: string,
   params?: P,
-  opt: IProps<R> = {}
+  opt: IProps<R> = {},
+  useFetcher = false,
 ) => {
-  return useXconsoleService(code, action, params, opt, ApiType.inner);
+  return useXconsoleService(code, action, params, opt, ApiType.inner, useFetcher);
 };
 
 export const usePluginApi = <R = any, P extends IParams = {}>(
   code: string,
   action: string,
   params?: P,
-  opt: IProps<R> = {}
+  opt: IProps<R> = {},
 ) => {
   return useXconsoleService(code, action, params, opt, ApiType.plugin);
 };
@@ -91,9 +124,10 @@ export const useAppApi = <R = any, P extends IParams = {}>(
   code: string,
   action: string,
   params?: P,
-  opt: IProps<R> = {}
+  opt: IProps<R> = {},
+  useFetcher = false,
 ) => {
-  return useXconsoleService(code, action, params, opt, ApiType.app);
+  return useXconsoleService(code, action, params, opt, ApiType.app, useFetcher);
 };
 
 
@@ -101,9 +135,10 @@ export const useRoaApi = <R = any, P extends IParams = {}>(
   code: string,
   action: string,
   params?: P,
-  opt: IProps<R> = {}
+  opt: IProps<R> = {},
+  useFetcher = false,
 ) => {
-  return useXconsoleService(code, action, params, opt, ApiType.roa);
+  return useXconsoleService(code, action, params, opt, ApiType.roa, useFetcher);
 };
 
 

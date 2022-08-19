@@ -6,11 +6,13 @@ import { AxiosResponse } from 'axios';
 
 const injectErrorPromptAdaptor = (error: IError, response: AxiosResponse) => {
   let body = {};
+
   try {
     body = qs.parse(response?.config?.data)
   } catch (e){
     //  nothing
   }
+
   error.response = response;
   error.code = response.data?.code;
   error.requestId = response.data?.requestId;
@@ -19,6 +21,30 @@ const injectErrorPromptAdaptor = (error: IError, response: AxiosResponse) => {
     url: response?.config?.url,
     body: body,
     method: response?.config?.method
+  };
+
+  const accessDeniedDetail = response.data?.accessDeniedDetail;
+
+  if (accessDeniedDetail) {
+    const {
+      AuthAction: action,
+      AuthResource: resource,
+      AuthPrincipalType: userType,
+      AuthPrincipalOwnerId: userId,
+      AuthPrincipalDisplayName: userName,
+      PolicyType: policyType,
+      NoPermissionType: type,
+    } = accessDeniedDetail;
+
+    error.detailsAuth = {
+      action,
+      resource,
+      userType,
+      userName,
+      userId,
+      policyType,
+      type,
+    };
   }
 };
 

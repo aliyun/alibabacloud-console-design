@@ -80,6 +80,7 @@ export interface IError {
     method?: string;
     body?: any;
   };
+  detailsAuth?: Record<string, string>;
 }
 
 export type Service<R, P> = (params?: P, overlap?: boolean) => Promise<R>;

@@ -29,3 +29,13 @@ export const DEFAULT_RISK_OPTION = {
     },
   },
 };
+
+// One-console 各类接口 url 映射表
+export const API_URL: { [key: string]: string[] } = {
+  [ApiType.plugin]: ['data/plugin.json', 'data/multiPluginApi.json'],
+  [ApiType.inner]: ['data/innerApi.json', 'data/multiInnerApi.json'],
+  [ApiType.app]: ['data/call.json', 'data/multiCall.json'],
+  [ApiType.open]: ['data/api.json', 'data/multiApi.json'],
+  [ApiType.roa]: ['data/api.json', 'data/multiApi.json'],
+  [ApiType.roaInner]: ['data/innerApi.json', 'data/multiInnerApi.json'],
+};

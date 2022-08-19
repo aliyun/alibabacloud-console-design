@@ -6,18 +6,10 @@ import {
 } from '../../utils/index';
 import { IOptions, IOptionsData } from '../../types';
 import { ApiType } from '../../const/index';
+import { API_URL } from '../../const';
 
 // 默认请求路径
 const BASE_URL = '/';
-// One-console 各类接口 url 映射表
-const API_URL: { [key: string]: string[] } = {
-  [ApiType.plugin]: ['data/plugin.json', 'data/multiPluginApi.json'],
-  [ApiType.inner]: ['data/innerApi.json', 'data/multiInnerApi.json'],
-  [ApiType.app]: ['data/call.json', 'data/multiCall.json'],
-  [ApiType.open]: ['data/api.json', 'data/multiApi.json'],
-  [ApiType.roa]: ['data/api.json', 'data/multiApi.json'],
-  [ApiType.roaInner]: ['data/innerApi.json', 'data/multiInnerApi.json'],
-};
 
 // 检查是否是合法的 url
 function isValidURL(url: string, apiType: ApiType = ApiType.open): boolean {
