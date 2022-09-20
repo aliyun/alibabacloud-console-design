@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { History } from 'history'
 import qs from 'query-string'
 import { IConsoleContextProp } from '../types/index';
 import ConsoleResourceGroup, { getCurrentRGId } from '../resourceGroup/index';
 import { matchPath } from 'react-router-dom';
 
-const reroute = (history: History, currentRGId: string) => {
+const reroute = (history: History, currentRGId?: string) => {
   const url = new URL(window.location.href);
   url.searchParams.delete('resourceGroupId');
   if (currentRGId) url.searchParams.append('resourceGroupId', currentRGId);
@@ -24,14 +24,13 @@ export default (props: IConsoleContextProp<{regionId?: string}>) => {
     searchParam.resourceGroupId || getCurrentRGId()
   );
 
-  const enable = resourceGroupVisiblePaths.some((showRegionPath) => {
-    const matches = matchPath(location.pathname, {
+  const isEnable = useCallback((pathname: string) => resourceGroupVisiblePaths.some((showRegionPath) => {
+    return !!matchPath(pathname, {
       path: showRegionPath,
       exact: true,
       strict: true,
     });
-    return !!matches
-  });
+  }), [resourceGroupVisiblePaths]);
 
   const onChange = (id: string) => {
     const url = new URL(window.location.href);
@@ -55,16 +54,16 @@ export default (props: IConsoleContextProp<{regionId?: string}>) => {
 
   useEffect(() => {
     // 初次进入页面
-    if (currentRGId) reroute(history, currentRGId)
-  }, []);
+    if (currentRGId && isEnable(location.pathname)) reroute(history, currentRGId)
+  }, [isEnable]);
 
   useEffect(() => {
     // add presistents for resource group
     const unlisten = history.listen((loc) => {
       const query = qs.parse(loc.search);
-      if (enable && query.resourceGroupId === undefined) {
+      if (isEnable(loc.pathname) && query.resourceGroupId === undefined) {
         reroute(history, currentRGId);
-      } else if (!enable && query.resourceGroupId !== undefined) {
+      } else if (!isEnable(loc.pathname) && query.resourceGroupId !== undefined) {
         reroute(history, undefined);
       }
     });
@@ -73,14 +72,14 @@ export default (props: IConsoleContextProp<{regionId?: string}>) => {
       unlisten();
     };
   }, [
-    enable,
+    isEnable,
     history,
     currentRGId,
   ]);
 
   return {
     onChange,
-    visible: enable,
+    visible: isEnable(location.pathname),
     resourceGroupId: currentRGId,
     resourceGroup: {
       ...(consoleBase || ConsoleResourceGroup),
