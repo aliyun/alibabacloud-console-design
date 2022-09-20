@@ -8,7 +8,7 @@ import { matchPath } from 'react-router-dom';
 const reroute = (history: History, currentRGId: string) => {
   const url = new URL(window.location.href);
   url.searchParams.delete('resourceGroupId');
-  url.searchParams.append('resourceGroupId', currentRGId);
+  if (currentRGId) url.searchParams.append('resourceGroupId', currentRGId);
   history.replace({
     pathname: url.pathname,
     search: url.search,
@@ -54,9 +54,8 @@ export default (props: IConsoleContextProp<{regionId?: string}>) => {
   }
 
   useEffect(() => {
-    if (currentRGId) {
-      reroute(history, currentRGId);
-    }
+    // 初次进入页面
+    if (currentRGId) reroute(currentRGId, currentRGId)
   }, []);
 
   useEffect(() => {
@@ -65,6 +64,8 @@ export default (props: IConsoleContextProp<{regionId?: string}>) => {
       const query = qs.parse(loc.search);
       if (enable && query.resourceGroupId === undefined) {
         reroute(history, currentRGId);
+      } else if (!enable && query.resourceGroupId !== undefined) {
+        reroute(history, undefined);
       }
     });
 
