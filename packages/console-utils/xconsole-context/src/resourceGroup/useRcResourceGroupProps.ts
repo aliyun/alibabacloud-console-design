@@ -55,11 +55,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>) => {
 
   useEffect(() => {
     // 初次进入页面
-<<<<<<< HEAD
-    if (currentRGId) reroute(currentRGId, currentRGId)
-=======
     if (currentRGId) reroute(history, currentRGId)
->>>>>>> master
   }, []);
 
   useEffect(() => {
