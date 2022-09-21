@@ -7,13 +7,18 @@ import { matchPath } from 'react-router-dom';
 
 const reroute = (history: History, currentRGId?: string) => {
   const url = new URL(window.location.href);
+  const { location } = history;
+
   url.searchParams.delete('resourceGroupId');
   if (currentRGId) url.searchParams.append('resourceGroupId', currentRGId);
-  history.replace({
-    pathname: url.pathname,
-    search: url.search,
-    hash: url.hash,
-  });
+  
+  if (url.pathname !== location.pathname || url.search !== location.search || url.hash !== location.hash) {
+    history.replace({
+      pathname: url.pathname,
+      search: url.search,
+      hash: url.hash,
+    });
+  }
 }
 
 export default (props: IConsoleContextProp<{regionId?: string}>) => {
