@@ -44,6 +44,8 @@ export interface ResourceGroupConfig {
 
   // 资源组ID 被持久化 在哪个地方
   routeType?: 'path' | 'query';
+
+  historyAction?: 'push' | 'replace';
 }
 
 export interface IConsoleContextValue {

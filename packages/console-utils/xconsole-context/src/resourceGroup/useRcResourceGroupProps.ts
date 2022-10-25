@@ -23,7 +23,7 @@ const reroute = (history: History, currentRGId?: string) => {
 
 export default (props: IConsoleContextProp<{regionId?: string}>) => {
   const { history, consoleBase, location } = props;
-  const { resourceGroupVisiblePaths = [] } = props.resourceGroup || {};
+  const { resourceGroupVisiblePaths = [], historyAction } = props.resourceGroup || {};
   const searchParam = qs.parse(location.search);
   const [currentRGId, setCurrentRGId] = useState<string>(
     searchParam.resourceGroupId || getCurrentRGId()
@@ -50,7 +50,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>) => {
       url.searchParams.append('resourceGroupId', id);
     }
 
-    history.push({
+    history[historyAction || 'push']({
       pathname: url.pathname,
       search: url.search,
       hash: url.hash,
