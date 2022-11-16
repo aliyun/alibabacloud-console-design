@@ -51,7 +51,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
           pathname: url.pathname,
           search: url.search,
           hash: url.hash,
-        });
+        }, history.location.state);
       }
     });
 
@@ -77,7 +77,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
           pathname: url.pathname,
           search: url.search,
           hash: url.hash,
-        });
+        }, history.location.state);
       }
     );
 
