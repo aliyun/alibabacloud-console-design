@@ -1,5 +1,6 @@
 import { DependencyList } from 'react';
 import { createFetcher, FetcherError } from '@alicloud/console-fetcher';
+import { createFetcher as createFetcherProxy } from '@alicloud/console-fetcher-proxy';
 
 import createService from '../service';
 import { IOptions } from '../types';
@@ -24,6 +25,7 @@ interface IProps<T> extends Partial<IOptions> {
   onSuccess?: (d: T) => void;
   onError?: (e: Error) => void;
   useNewRisk?: boolean; // 使用 fetcher 新版风控
+  useFetcherProxy?: boolean; // 使用 fetcherProxy
 }
 
 export const useService = <R = any, P extends IParams = {}>(
@@ -59,8 +61,8 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
   useFetcher = false,
 ) => {
   if (useFetcher) {
-    const { region, useNewRisk, ignoreError, disableThrowResponseError } = opt || {};
-    const fetcher = createFetcher({}, {}, useNewRisk);
+    const { region, useNewRisk, useFetcherProxy, ignoreError, disableThrowResponseError } = opt || {};
+    const fetcher = useFetcherProxy ? createFetcherProxy({}, {}, useNewRisk) : createFetcher({}, {}, useNewRisk);
 
     const handleError = (e: FetcherError) => {
       if (ignoreError !== true && !disableThrowResponseError) {

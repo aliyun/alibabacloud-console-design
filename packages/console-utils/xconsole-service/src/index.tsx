@@ -1,3 +1,5 @@
+export * from '@alicloud/console-fetcher';
+
 export type { ApiType, IOptions as ServiceOptions } from './types';
 
 export * from './hooks/useService';

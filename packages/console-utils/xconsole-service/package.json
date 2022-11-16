@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-service",
-  "version": "2.5.0-alpha.0",
+  "version": "2.5.0-alpha.3",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
@@ -50,6 +50,7 @@
     "@alicloud/console-fetcher-interceptor-res-biz": "^1.4.0",
     "@alicloud/console-fetcher-interceptor-res-error-message": "^1.4.0",
     "@alicloud/console-fetcher-interceptor-sls": "^1.4.0",
+    "@alicloud/console-fetcher-proxy": "^1.9.6",
     "@alicloud/fetcher": "^1.7.0",
     "@alicloud/fetcher-interceptor-cache-local": "^1.4.0",
     "@alicloud/fetcher-interceptor-merger": "^1.4.0",
