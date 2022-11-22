@@ -7,6 +7,7 @@ import { getActiveId } from './cookies';
 import { determineRegionId } from './determineRegionId';
 import { RegionContext } from '../context/RegionContext';
 import { IConsoleContextRegionProp } from '../types/index';
+import { IPayloadRegion } from 'src/types/ConsoleBase';
 
 
 const hasRegionId = (match) => {
@@ -49,7 +50,8 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
   const [currentRegionId, setCurrentRegionId] = useState<string>('');
   const regionContext = useContext(RegionContext);
   // 兼容 regionList 的异步逻辑
-  const regionList = isFunction(regionListConfig) ? [] : regionListConfig;
+  const [loading, setLoading] = useState(isFunction(regionListConfig));
+  const [regionList, setRegionList] = useState(isFunction(regionListConfig) ? [] : regionListConfig);
 
   // 设置内存变量中的 Id， 也设置设置临时变量中的 ID
   const setRegionIdWithMemo = (regionId: string) => {
@@ -62,10 +64,22 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
     setCurrentRegionId(regionId);
   }
 
+  useEffect(() => {
+    (async () => {
+      if (isFunction(regionListConfig)) {
+        setLoading(true);
+        const regionList = await regionListConfig(location);
+        setRegionList(regionList);
+        setLoading(false);
+      }
+    })();
+  }, [location.pathname]);
+
   /**
    * 处理路由
    */
   useEffect(() => {
+    if (loading) return;
     // 如果 regionId 不在 region 列表重定向到 regionId 上
     const regionId = determineRegionId(match.params.regionId, currentRegionId, regionList);
 
@@ -73,7 +87,7 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
       setRegionIdWithMemo(regionId)
       return reroute(props, regionId);
     }
-  }, [match.params.regionId]);
+  }, [match.params.regionId, loading]);
 
   const showGlobal = globalVisiblePaths.some((globalPath) => {
     const matches = matchPath(location.pathname, {
@@ -89,7 +103,7 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
 
 
   const onRegionChange = (id: string, regionName: string, correctedFrom?: string) => {
-    if (correctedFrom) {
+    if (correctedFrom || loading) {
       return;
     }
     const regionId = determineRegionId(id, currentRegionId, regionList);
@@ -108,6 +122,7 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
   });
 
   return {
+    loading,
     global: showGlobal,
     regions: regionList,
     visible: regionsVisible,

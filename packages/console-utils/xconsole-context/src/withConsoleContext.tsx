@@ -22,6 +22,8 @@ export function withRcBaseMessenger<P extends IConsoleContextProp, S = {}>(
   return (props: P) => {
     const regionProps = useRcRegionProps(props as any);
     const resourceGroupProps = useRcResourceGroupProps(props);
+
+    if (regionProps.loading) return null;
     
     return (
       <>
