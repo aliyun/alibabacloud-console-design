@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { matchPath, generatePath } from 'react-router';
+import isFunction from 'lodash/isFunction';
 
 import ConsoleRegion from './index';
 import { getActiveId } from './cookies';
@@ -43,10 +44,12 @@ export const reroute = (props: IConsoleContextRegionProp<{regionId?: string}>, n
  */
 const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>) => {
   const { consoleBase, match, location, region: regionConfig = {} } = props;
-  const { regionList, regionbarVisiblePaths = [], globalVisiblePaths = [] }  = regionConfig;
+  const { regionList : regionListConfig, regionbarVisiblePaths = [], globalVisiblePaths = [] }  = regionConfig;
   // 默认 Region = 路由的Region > Cookie 的 region > Region 列表中第一个 > 用户指定默认Region >'cn-hangzhou'
   const [currentRegionId, setCurrentRegionId] = useState<string>('');
   const regionContext = useContext(RegionContext);
+  // 兼容 regionList 的异步逻辑
+  const regionList = isFunction(regionListConfig) ? [] : regionListConfig;
 
   // 设置内存变量中的 Id， 也设置设置临时变量中的 ID
   const setRegionIdWithMemo = (regionId: string) => {

@@ -25,7 +25,7 @@ export function withRcBaseMessenger<P extends IConsoleContextProp, S = {}>(
     
     return (
       <>
-        <ConsoleBaseMessengerRegion {...regionProps}/>
+        <ConsoleBaseMessengerRegion {...regionProps} />
         <ConsoleBaseMessengerResourceGroup {...resourceGroupProps} />
         <Comp 
           {...props}
