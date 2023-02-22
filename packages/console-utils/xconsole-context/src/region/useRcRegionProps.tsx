@@ -45,7 +45,7 @@ export const reroute = (props: IConsoleContextRegionProp<{regionId?: string}>, n
  */
 const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>) => {
   const { consoleBase, match, location, region: regionConfig = {} } = props;
-  const { regionList : regionListConfig, regionbarVisiblePaths = [], globalVisiblePaths = [] }  = regionConfig;
+  const { regionList : regionListConfig, regionbarVisiblePaths = [], globalVisiblePaths = [], defaultRegion }  = regionConfig;
   // 默认 Region = 路由的Region > Cookie 的 region > Region 列表中第一个 > 用户指定默认Region >'cn-hangzhou'
   const [currentRegionId, setCurrentRegionId] = useState<string>('');
   const regionContext = useContext(RegionContext);
@@ -81,7 +81,7 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
   useEffect(() => {
     if (loading) return;
     // 如果 regionId 不在 region 列表重定向到 regionId 上
-    const regionId = determineRegionId(match.params.regionId, currentRegionId, regionList);
+    const regionId = determineRegionId(match.params.regionId, currentRegionId, regionList, defaultRegion);
 
     if (currentRegionId !== regionId) {
       setRegionIdWithMemo(regionId)
@@ -106,7 +106,7 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
     if (correctedFrom || loading) {
       return;
     }
-    const regionId = determineRegionId(id, currentRegionId, regionList);
+    const regionId = determineRegionId(id, currentRegionId, regionList, defaultRegion);
     if (regionId !== currentRegionId) {
       reroute(props, regionId);
     }
@@ -131,7 +131,7 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
     // 为了兼容老版版本提供出去的 region context 的 value
     region: {
       ...(consoleBase || ConsoleRegion),
-      getCurrentRegionId: (): string => currentRegionId || determineRegionId(match.params.regionId, getActiveId(), regionList),
+      getCurrentRegionId: (): string => currentRegionId || determineRegionId(match.params.regionId, getActiveId(), regionList, defaultRegion),
       setCurrentRegionId: setRegionIdWithMemo
     }
   }

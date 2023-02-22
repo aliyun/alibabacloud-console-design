@@ -23,7 +23,7 @@ interface Region extends ConsoleRegion {
  */
 export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region => {
   const { history, consoleBase, match, location, region: regionConfig = {} } = props;
-  const { regionList, regionbarVisiblePaths = [], globalVisiblePaths = [] }  = regionConfig;
+  const { regionList, regionbarVisiblePaths = [], globalVisiblePaths = [], defaultRegion }  = regionConfig;
   // 默认 Region = 路由的Region > Cookie 的 region > Region 列表中第一个 > 用户指定默认Region >'cn-hangzhou'
   const [currentRegionId, setCurrentRegionId] = useState<string>('');
   const regionContext = useContext(RegionContext);
@@ -41,7 +41,7 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
 
   const region: Region = {
     ...(consoleBase || ConsoleRegion),
-    getCurrentRegionId: (): string => currentRegionId || determineRegionId(match.params.regionId, getActiveId(), regionList),
+    getCurrentRegionId: (): string => currentRegionId || determineRegionId(match.params.regionId, getActiveId(), regionList, defaultRegion),
     setCurrentRegionId: setRegionIdWithMemo
   };
 
@@ -52,14 +52,14 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
   useEffect(() => {
     region.setRegions(regionList);
     // 如果 regionId 不在 region 列表重定向到 regionId 上
-    const regionId = determineRegionId(match.params.regionId, currentRegionId, regionList);
+    const regionId = determineRegionId(match.params.regionId, currentRegionId, regionList, defaultRegion);
 
     if (currentRegionId !== regionId) {
       region.setRegionId(regionId);
       setRegionIdWithMemo(regionId)
       return reroute(props, regionId);
     }
-  }, [match.params.regionId]);
+  }, [match.params.regionId, currentRegionId, regionList, defaultRegion]);
 
   // 处理 ConsoleBase
   useEffect(() => {
@@ -68,7 +68,7 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
       if (payload.correctedFrom) {
         return;
       }
-      const regionId = determineRegionId(payload.id, currentRegionId, regionList);
+      const regionId = determineRegionId(payload.id, currentRegionId, regionList, defaultRegion);
       if (regionId !== currentRegionId) {
         reroute(props, regionId);
       }
@@ -114,7 +114,7 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
       unsubscribeRegionChange()
       unsubscribeReady()
     }
-  }, [regionList, history, regionbarVisiblePaths, globalVisiblePaths, location.pathname, currentRegionId]);
+  }, [regionList, history, regionbarVisiblePaths, globalVisiblePaths, location.pathname, currentRegionId, defaultRegion]);
 
   return region;
 };

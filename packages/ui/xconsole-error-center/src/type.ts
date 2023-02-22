@@ -62,6 +62,7 @@ export interface BaseResponse<T> {
 export interface ResponseError<T = any> extends Error {
   response?: AxiosResponse<BaseResponse<T>>;
   details?: any;
+  detailsAuth?: any;
 }
 
 export type GetMessageCallback = (code: string, msg: string, error: ResponseError) => string;

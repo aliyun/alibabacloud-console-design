@@ -48,10 +48,12 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
           // @ts-ignore
           to: (routeProps, item) => {
             const params = get(routeProps, 'match.params');
-            return tryGeneratePath(item.key, {
+            const nextPath = tryGeneratePath(item.key, {
               ...params,
               ...param,
             });
+            // @ts-ignore
+            return nav?.to(routeProps, item, nextPath) || nextPath;
           },
         };
       }
@@ -71,10 +73,12 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
                 // @ts-ignore
                 to: (routeProps, item) => {
                   const params = get(routeProps, 'match.params');
-                  return tryGeneratePath(item.key, {
+                  const nextPath = tryGeneratePath(item.key, {
                     ...params,
                     ...param,
                   });
+                  //@ts-ignore
+                  return nav?.to(routeProps, item, nextPath) || nextPath;
                 },
               };
             }

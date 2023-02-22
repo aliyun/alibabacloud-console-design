@@ -9,7 +9,8 @@ const getIdFromItem = (item: IPayloadRegion): string => {
 export const determineRegionId = (
   id: string,
   currentActiveId: string,
-  dataSourceRaw: IPayloadRegion[]
+  dataSourceRaw: IPayloadRegion[],
+  defaultRegionId?: string,
 ): string => {
   // currentActiveId 一般情况下由调用者从 context 进行获取.
   // 一般情况下, 这个值与 getActiveId 函数返回的结果是一致的.
@@ -28,8 +29,8 @@ export const determineRegionId = (
   // 过滤掉置灰的 region
   const dataSource = dataSourceRaw.filter((d) => !d.disabled);
 
-  // 如果用户未声明传入的id, 则使用当前的 activeId 进行填充并进行后续的比较过程
-  const expectedActiveId = id || exactCurrentActiveId;
+  // 如果用户未声明传入的id, 则使用当前的 defaultRegionId 和 activeId 进行填充并进行后续的比较过程
+  const expectedActiveId = id || defaultRegionId || exactCurrentActiveId;
 
   // 如果上面的执行过程仍未获取到任何有效符合期望的结果,
   // 则使用 dataSource 中的第一个数据项中的 id 作为结果返回
@@ -37,6 +38,7 @@ export const determineRegionId = (
     return getIdFromItem(dataSource[0]);
   }
 
+  let isValidDefaultRegionId = false;
   let isValidCurrentActiveId = false;
 
   // eslint-disable-next-line no-restricted-syntax
@@ -49,10 +51,21 @@ export const determineRegionId = (
       return expectedActiveId;
     }
 
+    // 判定当前的 defaultRegionId 是否在给定的集合内
+    if (defaultRegionId === itemId) {
+      isValidDefaultRegionId = true;
+    }
+
     // 判定当前的 activeId 是否在给定的集合内
     if (exactCurrentActiveId === itemId) {
       isValidCurrentActiveId = true;
     }
+  }
+
+  // 没有命中任何匹配, 但是当前的 defaultRegionId 在集合内,
+  // 则直接使用当前的 defaultRegionId 作为返回值
+  if (isValidDefaultRegionId) {
+    return defaultRegionId;
   }
 
   // 没有命中任何匹配, 但是当前的 activeId 在集合内,
@@ -61,7 +74,7 @@ export const determineRegionId = (
     return exactCurrentActiveId;
   }
 
-  // 既没有命中任何匹配, 且当前的 activeId 也不再集合内,
+  // 既没有命中任何匹配, 且当前的 defaultRegionId activeId 也不再集合内,
   // 则将集合中的第一个数据项的 id 作为返回值
   return getIdFromItem(dataSource[0]);
 };

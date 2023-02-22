@@ -58,6 +58,7 @@ const processError = (errorConfig: Partial<ErrorCodeConfig>, error: ResponseErro
       params: error?.response?.config?.params,
       ...(error?.details || {})
     },
+    detailsAuth: error?.detailsAuth,
     code: error?.response?.data?.code,
     stack: error.stack,
   }
