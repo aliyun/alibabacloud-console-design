@@ -34,6 +34,7 @@ const injectErrorPromptAdaptor = (error: IError, response: AxiosResponse) => {
       AuthPrincipalDisplayName: userName,
       PolicyType: policyType,
       NoPermissionType: type,
+      EncodedDiagnosticMessage: diagnosisInfo,
     } = accessDeniedDetail;
 
     error.detailsAuth = {
@@ -44,6 +45,7 @@ const injectErrorPromptAdaptor = (error: IError, response: AxiosResponse) => {
       userId,
       policyType,
       type,
+      diagnosisInfo
     };
   }
 };
