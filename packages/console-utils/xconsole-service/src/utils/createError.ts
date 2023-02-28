@@ -31,6 +31,7 @@ const createError = (_error: FetcherError) => {
       AuthPrincipalDisplayName: userName,
       PolicyType: policyType,
       NoPermissionType: type,
+      EncodedDiagnosticMessage: diagnosisInfo,
     } = accessDeniedDetail;
 
     error.detailsAuth = {
@@ -41,6 +42,7 @@ const createError = (_error: FetcherError) => {
       userId,
       policyType,
       type,
+      diagnosisInfo
     };
   }
 

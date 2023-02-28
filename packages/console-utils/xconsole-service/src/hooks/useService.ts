@@ -68,6 +68,8 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
       if (ignoreError !== true && !disableThrowResponseError) {
         throw createError(e);
       }
+
+      return e as unknown as R;
     };
 
     const requestInstance = (params: P) => {
@@ -81,9 +83,11 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
         case ApiType.app:
           return fetcher.callContainerApi<R, P>(code, action, params).catch(handleError);
       }
+
+      return fetcher.callOpenApi<R, P>(code, action, params, { region }).catch(handleError);
     }
 
-    return useService<R | void, P>(requestInstance, params, opt, [code, action]);
+    return useService<R, P>(requestInstance, params, opt, [code, action]);
   }
 
   const requestService = createService<R, P>(code, action, {
