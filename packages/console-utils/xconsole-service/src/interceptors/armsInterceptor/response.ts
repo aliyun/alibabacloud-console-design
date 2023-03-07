@@ -33,7 +33,8 @@ const logArmsForMultiApi = ({targetUrl, traceId, startTime, duration, success, c
     const responseData = (data?.data || {});
     Object.keys(responseData).forEach((key) => {
       const respForSingleApi = responseData[key];
-      if (respForSingleApi.Code && respForSingleApi.Code !== '200') {
+      const { Code } = respForSingleApi;
+      if (Code && Code === '200' && Code !== 200) {
         const apiWithIdentifier = `${api}&identifier=${key}&requestId=${respForSingleApi.RequestId}`;
         console.log({
           api: apiWithIdentifier, success: false, duration, code: respForSingleApi.Code,
