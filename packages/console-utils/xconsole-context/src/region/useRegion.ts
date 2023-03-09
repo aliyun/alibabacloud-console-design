@@ -23,7 +23,7 @@ interface Region extends ConsoleRegion {
  */
 export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region => {
   const { history, consoleBase, match, location, region: regionConfig = {} } = props;
-  const { regionList, regionbarVisiblePaths = [], globalVisiblePaths = [], defaultRegion }  = regionConfig;
+  const { regionList, regionbarVisiblePaths = [], globalVisiblePaths = [], defaultRegion, disable = false }  = regionConfig;
   // 默认 Region = 路由的Region > Cookie 的 region > Region 列表中第一个 > 用户指定默认Region >'cn-hangzhou'
   const [currentRegionId, setCurrentRegionId] = useState<string>('');
   const regionContext = useContext(RegionContext);
@@ -50,6 +50,9 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
    * 处理路由
    */
   useEffect(() => {
+    // 不处理
+    if (disable) return;
+
     region.setRegions(regionList);
     // 如果 regionId 不在 region 列表重定向到 regionId 上
     const regionId = determineRegionId(match.params.regionId, currentRegionId, regionList, defaultRegion);
@@ -63,6 +66,9 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
 
   // 处理 ConsoleBase
   useEffect(() => {
+    // 不处理
+    if (disable) return;
+
     // update the history when region change on the regionbar
     const unsubscribeRegionChange = region.onRegionChange((payload) => {
       if (payload.correctedFrom) {

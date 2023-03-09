@@ -30,6 +30,9 @@ export interface RegionConfig {
 export interface IRegionConfigProps extends RegionConfig {
   // region 列表
   regionList?: IPayloadRegion[];
+
+  // disable 关闭路由同步功能
+  disable?: boolean;
 }
 
 export enum ResourceGroupType {
