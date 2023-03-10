@@ -8,7 +8,7 @@ type ResourceGroup = typeof ConsoleResourceGroup;
 
 export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup => {
   const { history, consoleBase, location } = props;
-  const { resourceGroupVisiblePaths = [] } = props.resourceGroup || {};
+  const { resourceGroupVisiblePaths = [], disable = false } = props.resourceGroup || {};
   const searchParam = qs.parse(location.search);
   const [currentRGId, setCurrentRGId] = useState<string>(
     searchParam.resourceGroupId || getCurrentRGId()
@@ -20,12 +20,13 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
   };
 
   useEffect(() => {
-    if (currentRGId) {
+    if (currentRGId && !disable) {
       resourceGroup.setResourceGroupId(currentRGId);
     }
   });
 
   useEffect(() => {
+    if (disable) return;
     // toggle the resource group show or hide by resourceGroup.enable
     let enable = false;
     resourceGroup.toggleResourceGroup(enable);
