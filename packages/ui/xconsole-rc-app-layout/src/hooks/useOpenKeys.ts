@@ -18,11 +18,27 @@ const useOpenKeys = (
     if (!navs) {
       return;
     }
+    
+    const set = new Set<string>(openKeys);
 
     navs.forEach((nav) => {
-      if (!nav.subNav) {
+      let isOpen = false;
+
+      if (nav.activePathPatterns) {
+        const match = nav.activePathPatterns.find((pattern) => matchPath(currentPath, {
+          path: pattern,
+        }))
+
+        if (match) {
+          set.add(nav.key);
+          isOpen = true;
+        }
+      }
+
+      if (!nav.subNav || isOpen) {
         return;
       }
+
       nav.subNav.forEach((subNavItem) => {
         if (
           matchPath(currentPath, {
@@ -31,11 +47,12 @@ const useOpenKeys = (
             strict: true,
           })
         ) {
-          const set = new Set<string>(openKeys);
-          setOpenKeys([...set.values(), nav.key]);
+          set.add(nav.key);
         }
       });
     });
+
+    setOpenKeys([...set]);
   }, [navs, currentPath]);
 
   const onOpenKeys = (keys: string[]): void => {
