@@ -72,13 +72,16 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
                 ...navItem,
                 // @ts-ignore
                 to: (routeProps, item) => {
+                  // 仅覆盖 to 为 string 的场景
                   const params = get(routeProps, 'match.params');
                   const nextPath = tryGeneratePath(item.key, {
                     ...params,
                     ...param,
                   });
-                  //@ts-ignore
-                  return nav?.to(routeProps, item, nextPath) || nextPath;
+
+                  if (typeof nav.to === 'function') return nav.to(routeProps, item);
+
+                  return nextPath;
                 },
               };
             }
