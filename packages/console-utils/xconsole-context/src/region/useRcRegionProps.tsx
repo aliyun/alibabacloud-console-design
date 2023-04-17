@@ -28,7 +28,8 @@ export const reroute = (props: IConsoleContextRegionProp<{regionId?: string}>, n
       ...(params || {}),
       regionId: nextRegionId
     });
-    const suff = location.pathname.slice(match.url.length);
+    // 可能通过 window.history.pushState 改变路由导致 react-router location 对象没有更新
+    const suff = window.location.pathname.slice(match.url.length);
 
     history[props.region?.historyAction || 'push']({
       pathname: match.isExact ? nextPath : `${nextPath}/${suff}`.replace('//', '/'),
