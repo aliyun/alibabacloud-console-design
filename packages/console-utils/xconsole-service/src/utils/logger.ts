@@ -29,7 +29,8 @@ const apiLog = (info: any): void => {
     window.__bl.pipe.push(apiInfo);
   } else {
     window.__bl = window.__bl || {};
-    window.__bl.pipe = [apiInfo];
+    // window.__bl maybe is proxy
+    if (window.__bl) window.__bl.pipe = [apiInfo];
   }
 };
 
