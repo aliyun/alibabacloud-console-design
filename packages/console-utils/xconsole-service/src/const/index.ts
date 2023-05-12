@@ -38,4 +38,5 @@ export const API_URL: { [key: string]: string[] } = {
   [ApiType.open]: ['data/api.json', 'data/multiApi.json'],
   [ApiType.roa]: ['data/api.json', 'data/multiApi.json'],
   [ApiType.roaInner]: ['data/innerApi.json', 'data/multiInnerApi.json'],
+  [ApiType.http]: ['data/httpApi.json', 'data/multiHttpApi.json']
 };

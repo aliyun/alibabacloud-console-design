@@ -136,7 +136,6 @@ export const useAppApi = <R = any, P extends IParams = {}>(
   return useXconsoleService(code, action, params, opt, ApiType.app, useFetcher);
 };
 
-
 export const useRoaApi = <R = any, P extends IParams = {}>(
   code: string,
   action: string,
@@ -147,6 +146,15 @@ export const useRoaApi = <R = any, P extends IParams = {}>(
   return useXconsoleService(code, action, params, opt, ApiType.roa, useFetcher);
 };
 
+export const useHttpApi = <R = any, P extends IParams = {}>(
+  code: string,
+  action: string,
+  params?: P,
+  opt: IProps<R> = {},
+  useFetcher = false,
+) => {
+  return useXconsoleService(code, action, params, opt, ApiType.http, useFetcher);
+};
 
 export const useOssDownloadUrl = (
   params: DownloadSignatureParam,
