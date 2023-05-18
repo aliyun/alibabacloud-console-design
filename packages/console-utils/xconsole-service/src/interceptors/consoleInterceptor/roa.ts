@@ -9,7 +9,8 @@ import { ApiType } from '../../const/index';
 function consoleRequestInterceptor(config: IOptions): IOptions {
   const { apiType } = config;
 
-  if (apiType !== ApiType.roa && apiType !== ApiType.roaInner) {
+  // httpApi 与 roaApi 的使用方式一致
+  if (apiType !== ApiType.roa && apiType !== ApiType.roaInner && apiType !== ApiType.http) {
     return config;
   }
 
