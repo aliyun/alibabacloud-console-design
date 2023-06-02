@@ -66,7 +66,7 @@ const processError = (errorConfig: Partial<ErrorCodeConfig>, error: ResponseErro
 
 const errorPrompt2 = (option: ShowErrorOption) => {
   const { error, getMessage } = option;
-  const code = error?.response?.data?.code;
+  const code = error?.response?.data?.code || (error as unknown as { code: string }).code ;
   const errorConfig = getErrorConfig(option.errorConfig, error, getMessage);
 
   if(process.env.NODE_ENV === 'development' && (errorConfig.cancelLabel || errorConfig.cancelHref)) {

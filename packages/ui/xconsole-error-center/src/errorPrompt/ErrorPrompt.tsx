@@ -76,7 +76,10 @@ const showError = (option: ShowErrorOption) => {
 
   const errorConfig = getErrorConfig(option.errorConfig, error, getMessage);
   
-  const code = error?.response?.data?.code;
+  // error maybe:
+  // { code: 'xxx', message: 'xxx' }
+  // { response: { ... } }
+  const code = error?.response?.data?.code || (error as unknown as { code: string })?.code; 
 
   const errorPromptConfig = {
     locale: LOCALE,
