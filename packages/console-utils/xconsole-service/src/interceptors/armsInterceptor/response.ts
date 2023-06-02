@@ -34,17 +34,13 @@ const logArmsForMultiApi = ({targetUrl, traceId, startTime, duration, success, c
     Object.keys(responseData).forEach((key) => {
       const respForSingleApi = responseData[key];
       const { Code } = respForSingleApi;
-      if (Code && Code === '200' && Code !== 200) {
-        const apiWithIdentifier = `${api}&identifier=${key}&requestId=${respForSingleApi.RequestId}`;
-        console.log({
-          api: apiWithIdentifier, success: false, duration, code: respForSingleApi.Code,
-          msg: respForSingleApi?.Message, startTime, traceId
-        })
-        logger({ 
-          api: apiWithIdentifier, success: false, duration, code: respForSingleApi.Code,
-          msg: respForSingleApi?.Message, startTime, traceId
-        });
-      }
+      const apiWithIdentifier = `${api}&identifier=${key}&requestId=${respForSingleApi.RequestId}`;
+      const isSuccess = Code && (Code === '200' || Code === 200);
+
+      logger({ 
+        api: apiWithIdentifier, success: isSuccess, duration, code: respForSingleApi.Code,
+        msg: respForSingleApi?.Message, startTime, traceId
+      });
     })
   }
 }
