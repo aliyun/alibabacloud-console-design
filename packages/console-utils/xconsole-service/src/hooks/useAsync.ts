@@ -75,7 +75,11 @@ export interface ReturnValue<P, T> {
   error?: Error;
   data?: T;
   cancel: noop;
+  /**当次执行的 service 的参数数组*/
+  params?: any[];
   run: promiseReturn<P, T | undefined>;
+  /**使用上一次的 params，重新调用 run */
+  refresh: () => void;
   timer: {
     stop: noop;
     resume: noop;
@@ -92,6 +96,8 @@ export default function useAsync<P = any, Result = any>(
     loading: false,
     cancel: noop,
     run: promiseReturn,
+    params: [],
+    refresh:noop,
     timer: {
       stop: noop,
       resume: promiseReturn,
@@ -113,7 +119,7 @@ export default function useAsync<P = any, Result = any>(
   const run = useCallback((...args: any[]): Promise<Result | undefined> => {
     // 确保不会返回被取消的结果
     const runCount = count.current;
-    set((s) => ({ ...s, loading: true }));
+    set((s) => ({ ...s, loading: true,params:args }));
     return fn(...args)
       .then((data) => {
         if (runCount === count.current) {
@@ -138,6 +144,11 @@ export default function useAsync<P = any, Result = any>(
         return error;
       });
   }, deps);
+
+
+  const refresh = useCallback(() => {
+    run(state.params||[]);
+  }, []);
 
   const stop = useCallback(() => {
     count.current += 1;
@@ -248,7 +259,9 @@ export default function useAsync<P = any, Result = any>(
     loading: state.loading,
     error: state.error,
     data: state.data,
+    params:state.params,
     cancel,
+    refresh,
     run: options.manual && options.pollingInterval ? start : reload,
     timer: {
       stop,
