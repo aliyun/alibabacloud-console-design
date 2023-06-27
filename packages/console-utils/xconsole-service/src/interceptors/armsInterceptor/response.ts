@@ -35,7 +35,8 @@ const logArmsForMultiApi = ({targetUrl, traceId, startTime, duration, success, c
       const respForSingleApi = responseData[key];
       const { Code } = respForSingleApi;
       const apiWithIdentifier = `${api}&identifier=${key}&requestId=${respForSingleApi.RequestId}`;
-      const isSuccess = Code && (Code === '200' || Code === 200);
+      // 成功不一定有 code，失败一定有 code 且 code 不等于 200
+      const isSuccess = !(Code && Code !== '200' && Code !== 200);
 
       logger({ 
         api: apiWithIdentifier, success: isSuccess, duration, code: respForSingleApi.Code,
