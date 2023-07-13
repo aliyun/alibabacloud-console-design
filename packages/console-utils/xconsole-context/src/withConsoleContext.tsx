@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import isFunction from 'lodash/isFunction'
+import { matchPath } from 'react-router-dom';
+
 import useRegion from './region/useRegion';
 import ConsoleBaseMessengerRegion from '@alicloud/console-base-rc-messenger-region';
 import ConsoleBaseMessengerResourceGroup from '@alicloud/console-base-rc-messenger-resource-group';
@@ -41,6 +43,27 @@ export function withRcBaseMessenger<P extends IConsoleContextProp, S = {}>(
   }
 }
 
+interface IWin {
+  APLUS_CONFIG: {
+    spmbPrefix?: string;
+  };
+}
+
+/**
+ * 生成 spm 上报的 hash code
+ */
+function hashCode(str) {
+  return str.split('').reduce((prevHash, currVal) =>
+    (((prevHash << 5) - prevHash) + currVal.charCodeAt(0))|0, 0);
+}
+
+function matchCustomPath(patterns?: string[], path?: string) {
+  return patterns?.find((pattern) => matchPath(path, {
+    path: pattern,
+    exact: false,
+    strict: false,
+  }));
+}
 
 /**
  * 为了实现异步的逻辑
@@ -49,9 +72,12 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
   Comp: new () => React.Component<P, S>
 ) {
   return (props: P) => {
-    const { region: { regionList: userRegionListConfig } = {}, location } = props;
+    const { region: { regionList: userRegionListConfig } = {}, location, match, history, appConfig } = props;
     const [loading, setLoading] = useState(isFunction(userRegionListConfig));
     const [regionList, setRegionList] = useState(isFunction(userRegionListConfig) ? [] : userRegionListConfig);
+    const lastMatchUrl = useRef('');
+
+    const { customPaths = [] } = appConfig.aplus || {};
 
     useEffect(() => {
       (async () => {
@@ -63,6 +89,39 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
         }
       })();
     }, [location.pathname]);
+
+    // 自动上报 spmB
+    useEffect(() => {
+      const aplusConfig = (window as unknown as IWin).APLUS_CONFIG || {};
+
+      if (lastMatchUrl.current === history.location.pathname) return;
+      lastMatchUrl.current = history.location.pathname;
+
+      const { spmbPrefix } = aplusConfig;
+
+      const matchPath = match.isExact ? match.path : matchCustomPath(customPaths, history.location.pathname) || match.path;
+
+      if (spmbPrefix) {
+        // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        const q = (window.aplus_queue || (window.aplus_queue = []));
+        // 设置页面的spmab
+        q.push({
+          'action':'aplus.setPageSPM',
+          'arguments':['5176',`${spmbPrefix}_${hashCode(matchPath)}`]
+        });
+        // 发送PV
+        q.push({
+          'action':'aplus.sendPV',
+          'arguments':[{
+            // eslint-disable-next-line @typescript-eslint/camelcase
+            is_auto: false // 写死即可
+          }, {
+            c1: matchPath
+          }]
+        });
+      }
+    }, [match, history]);
 
     return loading ? null : (
       <Comp 

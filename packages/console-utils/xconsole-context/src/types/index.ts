@@ -65,6 +65,11 @@ export interface IConsoleContextProp<T = {}> {
   resourceGroup?: ResourceGroupConfig;
   location: Location;
   match: match<T>;
+  appConfig: {
+    aplus?: {
+      customPaths?: string[];
+    };
+  };
 }
 
 export interface IConsoleContextRegionProp<T = {}> extends IConsoleContextProp<T> {

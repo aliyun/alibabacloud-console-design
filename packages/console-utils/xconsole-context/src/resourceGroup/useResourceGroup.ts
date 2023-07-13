@@ -67,7 +67,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
         if (!payload) {
           setCurrentRGId('');
           url.searchParams.delete('resourceGroupId');
-          url.searchParams.append('resourceGroupId', '');
+          // url.searchParams.append('resourceGroupId', '');
         } else {
           setCurrentRGId(payload.id);
           url.searchParams.delete('resourceGroupId');
