@@ -62,11 +62,9 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
   useFetcher = false,
 ) => {
   if (useFetcher) {
-    const { RegionId } = params;
     const { region: userRegion, useNewRisk, useFetcherProxy, ignoreError, disableThrowResponseError } = opt || {};
     const fetcher = useFetcherProxy ? createFetcherProxy({}, {}, useNewRisk) : createFetcher({}, {}, useNewRisk);
     // 获取 region 值，调用 oneConsole 时用于区别 endpoint
-    const region = userRegion || RegionId || getActiveRegionId();
 
     const handleError = (e: FetcherError) => {
       if (ignoreError !== true && !disableThrowResponseError) {
@@ -77,6 +75,9 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
     };
 
     const requestInstance = (params: P) => {
+      const { RegionId } = params;
+      const region = userRegion || RegionId || getActiveRegionId();
+
       switch (apiType) {
         case ApiType.open:
           return fetcher.callOpenApi<R, P>(code, action, params, { region }).catch(handleError);
