@@ -10,6 +10,7 @@ import globalConfig from '../configuration/config'
 import { getOssDownloadUrl, genOssUploadSignature } from '../oss';
 import { DownloadSignatureParam, DownloadSignatureResponse, OssSignatureParam, OssSignatureResponse } from '../oss/types';
 import createError from '../utils/createError';
+import { getActiveRegionId } from '../utils/index';
 
 interface IParams {
   [key: string]: any;
@@ -61,8 +62,11 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
   useFetcher = false,
 ) => {
   if (useFetcher) {
-    const { region, useNewRisk, useFetcherProxy, ignoreError, disableThrowResponseError } = opt || {};
+    const { RegionId } = params;
+    const { region: userRegion, useNewRisk, useFetcherProxy, ignoreError, disableThrowResponseError } = opt || {};
     const fetcher = useFetcherProxy ? createFetcherProxy({}, {}, useNewRisk) : createFetcher({}, {}, useNewRisk);
+    // 获取 region 值，调用 oneConsole 时用于区别 endpoint
+    const region = userRegion || RegionId || getActiveRegionId();
 
     const handleError = (e: FetcherError) => {
       if (ignoreError !== true && !disableThrowResponseError) {
