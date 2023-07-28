@@ -106,20 +106,29 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
         // eslint-disable-next-line @typescript-eslint/camelcase
         const q = (window.aplus_queue || (window.aplus_queue = []));
         // 设置页面的spmab
-        q.push({
-          'action':'aplus.setPageSPM',
-          'arguments':['5176',`${spmbPrefix}_${hashCode(matchPath)}`]
-        });
-        // 发送PV
-        q.push({
-          'action':'aplus.sendPV',
-          'arguments':[{
-            // eslint-disable-next-line @typescript-eslint/camelcase
-            is_auto: false // 写死即可
-          }, {
-            c1: matchPath
-          }]
-        });
+        // 由于 aplus 不是实时发送，存在时延，故需要特殊处理重定向场景
+        ((url) => {
+          setTimeout(() => {
+            // url 不等，说明发生了重定向或者用户快速的跳转
+            if (url === window.location.href) {
+              // 延迟发送
+              q.push({
+                'action':'aplus.setPageSPM',
+                'arguments':['5176',`${spmbPrefix}_${hashCode(matchPath)}`]
+              });
+
+              q.push({
+                'action':'aplus.sendPV',
+                'arguments':[{
+                  // eslint-disable-next-line @typescript-eslint/camelcase
+                  is_auto: false
+                }, {
+                  c1: matchPath
+                }]
+              });
+            }
+          }, 0);
+        })(window.location.href);
       }
     }, [match, history]);
 
