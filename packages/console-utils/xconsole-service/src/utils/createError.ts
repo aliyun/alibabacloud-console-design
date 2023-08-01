@@ -7,20 +7,25 @@ import { FetcherError } from '@alicloud/console-fetcher';
  */
 const createError = (_error: FetcherError) => {
   const error: Record<string, any> = { ..._error };
-  const { responseData } = error;
+  const { responseData, config } = error;
   if (!responseData) return error;
 
-  error.response = responseData;
-  error.code = responseData.data?.code;
-  error.requestId = responseData.data?.requestId;
-  error.message = responseData.data?.message;
+  // 转换成 axiosError 格式
+  error.response = {
+    ...responseData,
+    data: responseData,
+    config,
+  };
+  error.code = responseData?.code;
+  error.requestId = responseData?.requestId;
+  error.message = responseData?.message;
   error.details = {
-    url: error.config.url,
+    url: config.url,
     body: responseData,
-    method: error.config.method
+    method: config.method
   };
 
-  const accessDeniedDetail = responseData.data?.accessDeniedDetail;
+  const accessDeniedDetail = responseData?.accessDeniedDetail;
 
   if (accessDeniedDetail) {
     const {

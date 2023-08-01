@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-error-center",
-  "version": "2.3.49",
+  "version": "2.3.50",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",

@@ -45,15 +45,15 @@ const getErrorConfig = (
   };
 }
 
-
+// 把 service Error 转换为 errorPrompt 标准 Error 格式
 const processError = (errorConfig: Partial<ErrorCodeConfig>, error: ResponseError) => {
   return {
     name: error.name,
     message: errorConfig.message,
     title: errorConfig.title,
-    requestId: error?.response?.data.requestId,
+    requestId: error?.response?.data?.requestId,
     details: {
-      url: error?.response?.config.url,
+      url: error?.response?.config?.url,
       method: error?.response?.config?.method,
       params: error?.response?.config?.params,
       ...(error?.details || {})
