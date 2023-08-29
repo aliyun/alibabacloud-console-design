@@ -1,0 +1,4 @@
+packages:
+  - "packages/build-tools/**/*"
+  - "packages/console-utils/**/*"
+  - "packages/ui/**/*"

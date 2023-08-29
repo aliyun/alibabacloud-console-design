@@ -1,14 +1,6 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "packages/build-tools/*",
-    "packages/console-utils/*",
-    "packages/ui/*",
-    "packages/legacy/*",
-    "example/*"
-  ],
   "scripts": {
     "start": "cd packages/xconsole-example && tnpm i && tnpm start",
     "create-cloud-console": "cd packages/xconsole && node bin/xconsole.js",

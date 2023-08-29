@@ -15,8 +15,8 @@
     "watch": "tsc -watch -d true -p ./",
     "test": "jest",
     "cov": "jest  --coverage",
-    "prepare": "npm run compile",
-    "prepublish": "npm run compile"
+    "prepublishOnly": "npm run compile",
+    "prepublishOnly": "npm run compile"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",

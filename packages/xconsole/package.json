@@ -8,14 +8,14 @@
   "scripts": {
     "ci": "tnpm run lint && tnpm run compile && tnpm run cov",
     "lint": "tslint --project .",
-    "prepublish": "rm -rf ./lib && tsc -d true -p ./",
+    "prepublishOnly": "rm -rf ./lib && tsc -d true -p ./",
     "compile": "rm -rf ./lib && tsc -d true -p ./",
     "build:dev": "tsc -d true -p ./",
     "version": "rm -f ./xconsole.json && node ./scripts/xconsoleInfo.js",
     "watch": "tsc -watch -d true -p ./",
     "test": "jest",
     "cov": "jest  --coverage",
-    "prepare": "npm run compile"
+    "prepublishOnly": "npm run compile"
   },
   "bin": {
     "xconsole": "./bin/xconsole.js"

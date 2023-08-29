@@ -22,7 +22,7 @@
     "test": "test"
   },
   "scripts": {
-    "prepublish": "npm run clean && npm run babel && npm run babel:esm",
+    "prepublishOnly": "npm run clean && npm run babel && npm run babel:esm",
     "build:dev": "npm run babel && npm run babel:esm",
     "babel": "breezr build --engine babel",
     "babel:esm": "breezr build --engine babel --es-module",

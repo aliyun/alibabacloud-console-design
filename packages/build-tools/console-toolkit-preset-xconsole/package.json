@@ -16,8 +16,8 @@
     "watch": "tsc -watch -d true -p ./",
     "test": "jest",
     "cov": "jest  --coverage",
-    "prepare": "npm run compile",
-    "prepublish": "npm run compile"
+    "prepublishOnly": "npm run compile",
+    "prepublishOnly": "npm run compile"
   },
   "devDependencies": {
     "@alicloud/console-toolkit-shared-utils": "^1.0.1",

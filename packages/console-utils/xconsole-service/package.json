@@ -1,11 +1,11 @@
 {
   "name": "@alicloud/xconsole-service",
-  "version": "2.5.10",
+  "version": "2.6.0-alpha.1",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "prepublish": "rm -rf ./lib ./es ./dist && npm run build && npm run babel && npm run babel:esm",
+    "prepublishOnly": "rm -rf ./lib ./es ./dist && npm run build && npm run babel && npm run babel:esm",
     "test": "jest --no-cache --env=jest-environment-jsdom-sixteen",
     "build": "breezr build --engine webpack",
     "start": "breezr start-storybook",
@@ -39,7 +39,7 @@
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "ts-jest": "^26.1.3"
+    "typescript": "^4.0.0"
   },
   "dependencies": {
     "@alicloud/console-fastlogin": "^2.4.4",
