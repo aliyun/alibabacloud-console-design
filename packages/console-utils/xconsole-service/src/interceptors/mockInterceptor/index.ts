@@ -16,16 +16,19 @@ function getURL(url: string): string {
 }
 
 function consoleMockInterceptor({
-  url = '',
+  url: _url = '',
   mock = false,
+  // oneapi tag
+  mockTag = '',
   baseURL = '/',
   data,
   ...restConfig
 }: IOptions): IOptions {
   if (typeof window === 'undefined' || !window.location) {
-    return { url, baseURL, data, ...restConfig };
+    return { url: _url, baseURL, data, ...restConfig };
   }
   const { hostname, protocol, host } = window.location;
+  const url = _url.includes('?') ? `${_url}&_tag=${mockTag}` : `${_url}?_tag=${mockTag}`;
   const useMocks = mock || ['localhost', '127.0.0.1'].includes(hostname);
   // Mocks does not support the "inner" and "call" apis,
   // so we map these apis to the very basic correspondings.

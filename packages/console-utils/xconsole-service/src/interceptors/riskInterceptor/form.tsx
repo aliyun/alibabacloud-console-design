@@ -32,6 +32,21 @@ interface IState {
   countdown: number;
 }
 
+/** 是否是虚商 */
+function is4Service () {
+  // @ts-ignore
+  const { CHANNEL } = window.ALIYUN_CONSOLE_CONFIG;
+  if (CHANNEL) {
+    // 非国内站或国际站都是虚商
+    return CHANNEL !== 'OFFICIAL' && CHANNEL !== 'SIN';
+  }
+    
+  // 域名为 *4service.*.com 格式也可能是虚商
+  if (/4service\./.test(location.host)) return true;
+
+  return false;
+}
+
 class VerifyForm extends Component<IProps, IState> {
   timer: number | null;
 
@@ -138,13 +153,16 @@ class VerifyForm extends Component<IProps, IState> {
         <Form.Item label={verifyMessages.detailDescription} {...ItemLayout}>
           <div className="next-form-text-align">
             <span>{verifyDetail} </span>
-            <a
-              href={this.verifyUrl.changeVerificationMethod}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {verifyMessages.changeDescription}
-            </a>
+            {/* 虚商环境不展示，需要去虚商控制台更换邮箱 */}
+            {
+              is4Service() ? null : <a
+                href={this.verifyUrl.changeVerificationMethod}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {verifyMessages.changeDescription}
+              </a>
+            }
           </div>
         </Form.Item>
         <Form.Item

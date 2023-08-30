@@ -74,22 +74,29 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
       return e as unknown as R;
     };
 
+    const getData = (json: any) => {
+      if (opt.rawResponseData) return json;
+
+      return json.data;
+    };
+
     const requestInstance = (params: P) => {
       const { RegionId } = params;
       const region = userRegion || RegionId || getActiveRegionId();
 
+
       switch (apiType) {
         case ApiType.open:
-          return fetcher.callOpenApi<R, P>(code, action, params, { region }).catch(handleError);
+          return fetcher.callOpenApi<R, P>(code, action, params, { region, getData }).catch(handleError);
         case ApiType.inner:
-          return fetcher.callInnerApi<R, P>(code, action, params, { region }).catch(handleError);
+          return fetcher.callInnerApi<R, P>(code, action, params, { region, getData }).catch(handleError);
         case ApiType.roa:
-          return fetcher.callOpenApi<R, P>(code, action, params, { region, roa: params.content }).catch(handleError);
+          return fetcher.callOpenApi<R, P>(code, action, params, { region, roa: params.content, getData }).catch(handleError);
         case ApiType.app:
-          return fetcher.callContainerApi<R, P>(code, action, params).catch(handleError);
+          return fetcher.callContainerApi<R, P>(code, action, params, { getData }).catch(handleError);
       }
 
-      return fetcher.callOpenApi<R, P>(code, action, params, { region }).catch(handleError);
+      return fetcher.callOpenApi<R, P>(code, action, params, { region, getData }).catch(handleError);
     }
 
     return useService<R, P>(requestInstance, params, opt, [code, action]);

@@ -43,7 +43,6 @@ export interface IOptions extends AxiosRequestConfig {
   requestStartTime?: number;
   originParams?: any;
   originData?: any;
-  mock?: boolean;
   region?: string;
   rawResponseData?: boolean;
   extraData?: any;
@@ -52,6 +51,10 @@ export interface IOptions extends AxiosRequestConfig {
    */
   disableThrowResponseError?: boolean;
   throwDoubleConfirmError?: boolean;
+  // mock 配置
+  mock?: boolean;
+  // oneapi _tag
+  mockTag?: string;
 }
 
 export interface IResponseData<D = any> {
