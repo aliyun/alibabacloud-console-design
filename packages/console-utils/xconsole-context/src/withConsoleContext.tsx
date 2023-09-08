@@ -78,7 +78,7 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
     const [regionList, setRegionList] = useState(isFunction(userRegionListConfig) ? [] : userRegionListConfig as IPayloadRegion[]);
     const lastMatchUrl = useRef('');
 
-    const { customPaths = [] } = appConfig.aplus || {};
+    const { customPaths = [] } = appConfig?.aplus || {};
 
     useEffect(() => {
       (async () => {
