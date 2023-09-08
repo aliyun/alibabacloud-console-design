@@ -37,14 +37,25 @@ export interface IConsoleMenuConfig {
 }
 
 export interface ISidebarConfig {
-  // 整个导航标题
+  /**
+   * 整个导航标题
+   */
   title: string;
 
-  // 侧边栏的列目配置
+  /**
+   * 侧边栏的列目配置
+   */ 
   navs: INavConfig[];
 
-  // 菜单项点击事件
+  /**
+   * 菜单项点击事件
+   */
   onItemClick?: (key: string, itemInfo: any, e: MouseEvent) => void;
+
+  /**
+   * 打开或关闭子菜单触发的回调函数
+   */
+  onOpen: (key: string[], extra: { key: string; open: boolean }) => void;
 
   /**
    * @deprecated

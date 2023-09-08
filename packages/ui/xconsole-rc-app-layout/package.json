@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-app-layout",
-  "version": "2.4.10",
+  "version": "2.4.11",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
@@ -25,8 +25,11 @@
     "@types/lodash.get": "^4.4.6",
     "@types/lodash.isundefined": "^3.0.6",
     "@types/lodash.map": "^4.6.13",
+    "@types/react": "^16.0.0",
+    "@types/react-dom": "^16.0.0",
+    "@types/react-router": "^5.0.0",
     "babel-loader": "^8.0.5",
-    "dva": "^2.6.0-beta.20",
+    "dva": "2.6.0-beta.20",
     "history": "^4.9.0",
     "jest": "^24.2.0-alpha.0",
     "js-cookie": "^2.2.0",
@@ -34,7 +37,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "styled-components": "^4.2.1"
+    "styled-components": "^4.2.1",
+    "typescript": "^4.0.0"
   },
   "scripts": {
     "prepublishOnly": "npm run clean && npm run build && npm run babel && npm run babel:esm",
@@ -56,7 +60,8 @@
     "@alicloud/console-components-console-menu": "alpha",
     "lodash": "^4.17.4",
     "lodash.isundefined": "^3.0.1",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "tslib": "^2.0.0"
   },
   "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
 }

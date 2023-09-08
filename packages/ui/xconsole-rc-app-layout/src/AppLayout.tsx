@@ -15,9 +15,9 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
   let sidebar: ISidebarConfig = null;
 
   if (isFunction(rawSidebar)) {
-    sidebar = rawSidebar(location);
+    sidebar = (rawSidebar as Function)(location);
   } else {
-    sidebar = rawSidebar;
+    sidebar = rawSidebar as ISidebarConfig;
   }
 
   const [title, setTitle] = useState(sidebar.title || 'XConsole');
@@ -63,7 +63,13 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
   return (
     <Context.Provider
       value={{
-        sidebar: { title, navs, collapsedKeys: [], onItemClick: sidebar.onItemClick },
+        sidebar: {
+          title,
+          navs,
+          collapsedKeys: [],
+          onItemClick: sidebar.onItemClick,
+          onOpen: sidebar.onOpen,
+        },
         setTitle,
         setNavs,
         setCollapsed,
@@ -83,4 +89,6 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
   );
 };
 
-export default withRouter(XConsoleAppLayout);
+const AppLayout = withRouter(XConsoleAppLayout);
+
+export default AppLayout;
