@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-context",
-  "version": "2.4.23-alpha.7",
+  "version": "2.4.23",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
@@ -39,7 +39,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "typescript": "^4.0.0"
   },
   "peerDependencies": {
     "@types/js-cookie": "^2.2.6",

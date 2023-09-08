@@ -26,7 +26,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>) => {
   const { resourceGroupVisiblePaths = [], historyAction } = props.resourceGroup || {};
   const searchParam = qs.parse(location.search);
   const [currentRGId, setCurrentRGId] = useState<string>(
-    searchParam.resourceGroupId || getCurrentRGId()
+    searchParam.resourceGroupId as string || getCurrentRGId()
   );
 
   const isEnable = useCallback((pathname: string) => resourceGroupVisiblePaths.some((showRegionPath) => {

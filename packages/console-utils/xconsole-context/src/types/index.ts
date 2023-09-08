@@ -58,7 +58,7 @@ export interface IConsoleContextValue {
   resourceGroup: typeof resourceGroup;
 }
 
-export interface IConsoleContextProp<T = {}> {
+export interface IConsoleContextProp<T extends {} = {}> {
   consoleBase?: typeof ConsoleBase;
   history: History;
   region?: RegionConfig;

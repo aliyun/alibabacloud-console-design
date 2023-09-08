@@ -11,6 +11,7 @@ import useResourceGroup from './resourceGroup/useResourceGroup';
 import consoleConfig from './console/index';
 import { IConsoleContextProp } from './types/index';
 import { ConsoleContext } from './context/Context';
+import { IPayloadRegion } from './types/ConsoleBase';
 
 /**
  * 为了实现组件式阿里云吊顶交互的逻辑兼容, 目前 mobile 在使用
@@ -74,7 +75,7 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
   return (props: P) => {
     const { region: { regionList: userRegionListConfig } = {}, location, match, history, appConfig } = props;
     const [loading, setLoading] = useState(isFunction(userRegionListConfig));
-    const [regionList, setRegionList] = useState(isFunction(userRegionListConfig) ? [] : userRegionListConfig);
+    const [regionList, setRegionList] = useState(isFunction(userRegionListConfig) ? [] : userRegionListConfig as IPayloadRegion[]);
     const lastMatchUrl = useRef('');
 
     const { customPaths = [] } = appConfig.aplus || {};
@@ -83,7 +84,7 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
       (async () => {
         if (isFunction(userRegionListConfig)) {
           setLoading(true);
-          const regionList = await userRegionListConfig(props.location);
+          const regionList = await (userRegionListConfig as (location: Location) => Promise<IPayloadRegion[]>)(props.location);
           setRegionList(regionList);
           setLoading(false);
         }

@@ -9,6 +9,7 @@ import { RegionContext } from '../context/RegionContext';
 import { IConsoleContextRegionProp } from '../types/index';
 import { IPayloadRegion } from 'src/types/ConsoleBase';
 
+type regionFn = (location: any) => IPayloadRegion[];
 
 const hasRegionId = (match) => {
   // eslint-disable-next-line no-prototype-builtins
@@ -69,7 +70,7 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
     (async () => {
       if (isFunction(regionListConfig)) {
         setLoading(true);
-        const regionList = await regionListConfig(location);
+        const regionList = await (regionListConfig as unknown as regionFn)(location);
         setRegionList(regionList);
         setLoading(false);
       }
