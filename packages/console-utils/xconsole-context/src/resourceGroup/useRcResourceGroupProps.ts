@@ -43,7 +43,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>) => {
     if (!id) {
       setCurrentRGId('');
       url.searchParams.delete('resourceGroupId');
-      url.searchParams.append('resourceGroupId', '');
+      // url.searchParams.append('resourceGroupId', '');
     } else {
       setCurrentRGId(id);
       url.searchParams.delete('resourceGroupId');
