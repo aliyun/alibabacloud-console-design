@@ -92,4 +92,5 @@ export interface IMenuProps {
   defaultOpenKeys?: string[];
   collapsedKeys?: PathRule;
   onItemClick?: (key: string, itemInfo: any, e: MouseEvent) => void;
+  onOpen?: (key: string[], extra: { key: string; open: boolean }) => void;
 }

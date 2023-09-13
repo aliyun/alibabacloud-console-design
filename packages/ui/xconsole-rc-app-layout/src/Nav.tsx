@@ -1,7 +1,6 @@
 import React from 'react';
 import { generatePath } from 'dva/router';
 import ConsoleMenu from '@alicloud/console-components-console-menu/RoutableMenu';
-import map from 'lodash/map';
 import get from 'lodash/get';
 import isUndefined from 'lodash.isundefined';
 import { IMenuProps, INavConfig } from './types/index';
@@ -25,6 +24,7 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
     currentPath,
     menuParams,
     onItemClick,
+    onOpen,
     ...restProps
   } = props;
 
@@ -36,7 +36,7 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
       return [];
     }
 
-    return map(navs, (nav) => {
+    return navs.filter(Boolean).map((nav) => {
       let determinedNav = {
         ...nav,
         label: nav.title,
@@ -65,7 +65,7 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
           ...determinedNav,
           label: nav.title,
           // @ts-ignore
-          items: map(determinedNav.subNav, (subNavItem) => {
+          items: determinedNav.subNav.map((subNavItem) => {
             let navItem = {
               ...subNavItem,
               label: subNavItem.title,
@@ -107,7 +107,10 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
       header={header || title}
       items={items || getMenuItems()}
       openKeys={openKeys}
-      onOpen={onOpenKeys}
+      onOpen={(key, extra) => {
+        onOpen(key, extra);
+        onOpenKeys(key);
+      }}
       onItemClick={onItemClick}
       {...restProps}
     />
