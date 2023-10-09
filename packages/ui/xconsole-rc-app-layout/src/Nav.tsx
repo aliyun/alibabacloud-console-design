@@ -108,7 +108,7 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
       items={items || getMenuItems()}
       openKeys={openKeys}
       onOpen={(key, extra) => {
-        onOpen(key, extra);
+        if (typeof onOpen === 'function') onOpen(key, extra);
         onOpenKeys(key);
       }}
       onItemClick={onItemClick}
