@@ -45,7 +45,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
     // add presistents for resource group
     const unlisten = history.listen((loc) => {
       const query = qs.parse(loc.search);
-      if (enable && query.resourceGroupId === undefined) {
+      if (enable && query.resourceGroupId === undefined && currentRGId) {
         const url = new URL(window.location.href);
         url.searchParams.append('resourceGroupId', currentRGId);
         history.replace({
