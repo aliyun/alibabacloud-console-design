@@ -22,6 +22,7 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
 
   const [title, setTitle] = useState(sidebar.title || 'XConsole');
   const [navs, setNavs] = useState(sidebar.navs || []);
+  const [navVisible, setNavVisible] = useState(consoleMenu.visible ?? true);
 
   if (
     noticeFlag === false &&
@@ -60,9 +61,20 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
     consoleMenu?.collapsedPath || []
   );
 
+  const hideNav = useCallback(() => {
+    setNavVisible(false);
+  }, []);
+
+  const showNav = useCallback(() => {
+    setNavVisible(true);
+  }, []);
+
   return (
     <Context.Provider
       value={{
+        collapsed,
+        hideNav,
+        showNav,
         sidebar: {
           title,
           navs,
@@ -82,6 +94,7 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
         consoleMenu={consoleMenu}
         location={location}
         menuParams={menuParams}
+        visible={navVisible}
       >
         {children}
       </Aside>

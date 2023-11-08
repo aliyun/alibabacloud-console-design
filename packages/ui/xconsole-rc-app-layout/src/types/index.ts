@@ -16,13 +16,22 @@ export interface INavConfig extends IRoutableItemDescriptor {
 }
 
 export interface IConsoleMenuConfig {
-  // 展示侧边栏的路径设置
-  // 当 displayPath 设置时，不论是否列表为空，侧边栏默认对所有页面都会隐藏
-  // 此时 notDisplayPath 的设置将不生效
-  // 即设置了 displayPath 时, notDisplayPath 就不起作用了
+  /**
+   * 是否展示侧边栏，优先级高于 displayPath 和 notDisplayPath
+   * 一般用于手动控制侧边栏状态
+   */
+  visible?: boolean;
 
+  /**
+   * 展示侧边栏的路径设置，优先级高于 notDisplayPath
+   * 当 displayPath 设置时，不论是否列表为空，侧边栏默认对所有页面都会隐藏
+   * 此时 notDisplayPath 的设置将不生效
+   */
   displayPath?: string[];
 
+  /**
+   * 不展示侧边栏的路径设置，优先级低于 displayPath
+   */
   notDisplayPath?: PathRule;
 
   /**
@@ -80,6 +89,10 @@ export interface IProp extends RouteComponentProps {
   menuParams: Record<string, any>;
   collapsed?: boolean;
   onNavCollapseTriggerClick?: any;
+}
+
+export interface IAsideProp extends IProp {
+  visible?: boolean;
 }
 
 export interface IMenuProps {

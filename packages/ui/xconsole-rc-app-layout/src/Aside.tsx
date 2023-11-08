@@ -4,8 +4,10 @@ import { XConsoleTheme } from '@alicloud/console-components-console-menu';
 import Nav from './Nav';
 import Context from './Context';
 import { isPathMatch } from './utils/index';
-import { IProp, PathRule } from './types/index';
-import useCollapsed from './hooks/useCollapsed';
+import { IAsideProp, PathRule } from './types/index';
+// import useCollapsed from './hooks/useCollapsed';
+
+export let XConsoleAppLayoutHook: any;
 
 const computeSidebarVisibleStatus = (
   pathname: string,
@@ -27,8 +29,8 @@ const computeSidebarVisibleStatus = (
   return sidebarVisible;
 };
 
-const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = (
-  props: Partial<IProp>
+const XConsoleAppLayoutAside: React.FC<Partial<IAsideProp>> = (
+  props
 ) => {
   const {
     consoleMenu = {},
@@ -36,7 +38,8 @@ const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = (
     children,
     menuParams,
     collapsed,
-    onNavCollapseTriggerClick
+    onNavCollapseTriggerClick,
+    visible
   } = props;
 
   const { sidebar } = useContext(Context);
@@ -47,7 +50,7 @@ const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = (
     defaultOpen = [],
   } = consoleMenu;
 
-  const sidebarVisible = computeSidebarVisibleStatus(
+  const shouldVisibleInCurrentPath = computeSidebarVisibleStatus(
     pathname,
     displayPath,
     notDisplayPath,
@@ -61,7 +64,7 @@ const XConsoleAppLayoutAside: React.FC<Partial<IProp>> = (
     <XConsoleTheme>
       <AppLayout
         adjustHeight={50}
-        nav={sidebarVisible ? <Nav {...sidebar} currentPath={pathname} menuParams={menuParams}/> : null}
+        nav={shouldVisibleInCurrentPath && visible ? <Nav {...sidebar} currentPath={pathname} menuParams={menuParams}/> : null}
         navCollapsed={collapsed}
         onNavCollapseTriggerClick={onNavCollapseTriggerClick}
       >
