@@ -22,7 +22,7 @@ const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
 
   const [title, setTitle] = useState(sidebar.title || 'XConsole');
   const [navs, setNavs] = useState(sidebar.navs || []);
-  const [navVisible, setNavVisible] = useState(consoleMenu.visible ?? true);
+  const [navVisible, setNavVisible] = useState(consoleMenu?.visible ?? true);
 
   if (
     noticeFlag === false &&
