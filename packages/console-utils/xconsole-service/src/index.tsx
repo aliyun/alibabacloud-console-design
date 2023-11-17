@@ -9,3 +9,4 @@ export { default as createService, request as defaultAxiosRequest } from './serv
 export { setGetRegionIdFn } from './utils/index';
 export { default as createError } from './utils/createError';
 export { default as globalConfig } from './configuration/config';
+export { default as createRequest } from './request'
