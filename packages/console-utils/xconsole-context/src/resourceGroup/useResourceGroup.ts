@@ -6,9 +6,13 @@ import { matchPath } from 'react-router-dom';
 
 type ResourceGroup = typeof ConsoleResourceGroup;
 
+/**
+ * 为了兼容 hashRouter 和 historyRouter，不要直接使用 window.location
+ */
 export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup => {
   const { history, consoleBase, location } = props;
   const { resourceGroupVisiblePaths = [], disable = false } = props.resourceGroup || {};
+  // hashRouter 中，无法通过 window.location.search 获取到 query，必须通过 history.location.search 获取
   const searchParam = qs.parse(location.search);
   const [currentRGId, setCurrentRGId] = useState<string>(
     searchParam.resourceGroupId as string || getCurrentRGId()
@@ -26,28 +30,42 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
   });
 
   useEffect(() => {
-    if (disable) return;
-    // toggle the resource group show or hide by resourceGroup.enable
-    let enable = false;
-    resourceGroup.toggleResourceGroup(enable);
-    resourceGroupVisiblePaths.forEach((showRegionPath) => {
-      const matches = matchPath(location.pathname, {
-        path: showRegionPath,
-        exact: true,
-        strict: true,
+    if (disable) {
+      resourceGroup.toggleResourceGroup(false);
+      return;
+    }
+
+    // 根据实时的 location.pathname 判断是否资源组是否开启
+    const isEnable = () => {
+      let enable = false;
+
+      resourceGroupVisiblePaths.forEach((path) => {
+        // history is always latest
+        const matches = matchPath(history.location.pathname, {
+          path,
+          exact: true,
+          strict: true,
+        });
+  
+        if (matches) {
+          enable = true;
+        }
       });
-      if (matches) {
-        resourceGroup.toggleResourceGroup(true);
-        enable = true;
-      }
-    });
+
+      return enable;
+    }
+
+    resourceGroup.toggleResourceGroup(isEnable());
 
     // add presistents for resource group
     const unlisten = history.listen((loc) => {
-      const query = qs.parse(loc.search);
-      if (enable && query.resourceGroupId === undefined && currentRGId) {
-        const url = new URL(window.location.href);
+      if (!isEnable()) return;
+
+      const url = new URL(loc.pathname + loc.search + loc.hash, window.location.origin);
+      if (!url.searchParams.get('resourceGroupId') && currentRGId) {
+        url.searchParams.delete('resourceGroupId');
         url.searchParams.append('resourceGroupId', currentRGId);
+        
         history.replace({
           pathname: url.pathname,
           search: url.search,
@@ -62,16 +80,17 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
 
     const unSubscriberChange = resourceGroup.onResourceGroupChange(
       (payload) => {
-        const url = new URL(window.location.href);
+        if (!isEnable()) return;
 
-        if (!payload) {
-          setCurrentRGId('');
-          url.searchParams.delete('resourceGroupId');
-          // url.searchParams.append('resourceGroupId', '');
-        } else {
+        const url = new URL(location.pathname + location.search + location.hash, window.location.origin);
+
+        if (payload?.id) {
           setCurrentRGId(payload.id);
           url.searchParams.delete('resourceGroupId');
-          if (payload.id) url.searchParams.append('resourceGroupId', payload.id);
+          url.searchParams.append('resourceGroupId', payload.id);
+        } else {
+          setCurrentRGId('');
+          url.searchParams.delete('resourceGroupId');
         }
 
         history.push({

@@ -7,7 +7,7 @@ import Cookie from 'js-cookie';
 const DEFAULT_COOKIE_KEY = 'console_base_resource_group_id';
 
 /**
- * 从 cookie 中获取当前的 region id
+ * 从 cookie 中获取当前的 resourceGroupId
  * @param {String=} key
  */
 export const getCurrentRGId = () => {

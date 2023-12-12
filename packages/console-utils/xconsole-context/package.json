@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-context",
-  "version": "2.4.27",
+  "version": "2.4.31",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
@@ -33,6 +33,7 @@
     "@alicloud/console-toolkit-cli": "^1.0.0",
     "@alicloud/console-toolkit-preset-component": "^1.2.61",
     "@alicloud/console-toolkit-preset-wind-component": "^1.0.0",
+    "@types/history": "^4",
     "babel-loader": "^8.0.5",
     "jest": "^24.2.0-alpha.0",
     "less": "^3.0.0-alpha.3",

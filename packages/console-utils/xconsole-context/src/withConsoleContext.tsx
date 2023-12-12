@@ -84,7 +84,7 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
       (async () => {
         if (isFunction(userRegionListConfig)) {
           setLoading(true);
-          const regionList = await (userRegionListConfig as (location: Location) => Promise<IPayloadRegion[]>)(props.location);
+          const regionList = await (userRegionListConfig as (location) => Promise<IPayloadRegion[]>)(props.location);
           setRegionList(regionList);
           setLoading(false);
         }
