@@ -418,6 +418,9 @@ importers:
       '@alicloud/console-toolkit-preset-wind-component':
         specifier: ^1.0.0
         version: 1.0.6(@babel/core@7.22.10)(@storybook/channels@7.2.2)(@storybook/components@7.2.2)(@storybook/core-events@7.2.2)(@storybook/source-loader@7.2.2)(@storybook/theming@7.2.2)(@types/react@16.14.45)(babel-loader@8.3.0)(eslint@6.8.0)(react-dom@16.14.0)(react-refresh@0.14.0)(react@16.14.0)(regenerator-runtime@0.14.0)(rollup@2.79.1)(tslib@2.6.1)(typescript@4.9.5)(webpack@4.46.0)
+      '@types/history':
+        specifier: ^4
+        version: 4.7.11
       babel-loader:
         specifier: ^8.0.5
         version: 8.3.0(@babel/core@7.22.10)(webpack@4.46.0)
@@ -624,7 +627,7 @@ importers:
         version: 2.0.0-alpha.4(@alicloud/console-components@1.6.2-alpha.2)(prop-types@15.8.1)(react-dom@16.14.0)(react@16.14.0)(styled-components@4.4.1)
       '@alicloud/console-components-console-menu':
         specifier: alpha
-        version: 1.2.2(@alicloud/console-components@1.6.2-alpha.2)(dva@2.6.0-beta.20)(prop-types@15.8.1)(react-dom@16.14.0)(react@16.14.0)(styled-components@4.4.1)
+        version: 1.3.0-alpha.0(@alicloud/console-components@1.6.2-alpha.2)(dva@2.6.0-beta.20)(prop-types@15.8.1)(react-dom@16.14.0)(react@16.14.0)(styled-components@4.4.1)
       lodash:
         specifier: ^4.17.4
         version: 4.17.21
@@ -1783,8 +1786,8 @@ packages:
       styled-components: 4.4.1(@babel/core@7.22.10)(react-dom@16.14.0)(react@16.14.0)
     dev: false
 
-  /@alicloud/console-components-console-menu@1.2.2(@alicloud/console-components@1.6.2-alpha.2)(dva@2.6.0-beta.20)(prop-types@15.8.1)(react-dom@16.14.0)(react@16.14.0)(styled-components@4.4.1):
-    resolution: {integrity: sha512-9UHTXQQZH+0kHZW4qBTSB80SH7QGOQwnz+UDuzQ3bmgKbya9VII3LC4aWoyReOmPppeT/OqLM0Jn2WifAUMmFQ==}
+  /@alicloud/console-components-console-menu@1.3.0-alpha.0(@alicloud/console-components@1.6.2-alpha.2)(dva@2.6.0-beta.20)(prop-types@15.8.1)(react-dom@16.14.0)(react@16.14.0)(styled-components@4.4.1):
+    resolution: {integrity: sha512-WlKMCNSC4oec4VHdA1arMi4M+gXRZ5larYD3zSmek+DM9+/T291RdMEtXZHWVEpxZBz0/QcbLWntICL/gy+Qjw==}
     engines: {node: '>=7.6.0'}
     peerDependencies:
       '@alicloud/console-components': ^1.0.0
@@ -1796,7 +1799,7 @@ packages:
     dependencies:
       '@alicloud/console-components': 1.6.2-alpha.2(@alifd/meet-react@2.9.0)(moment@2.29.4)(prop-types@15.8.1)(react-dom@16.14.0)(react@16.14.0)
       '@alicloud/css-var-utils': 0.1.0
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.2
       classnames: 2.3.2
       dva: 2.6.0-beta.20(react-dom@16.14.0)(react-router@5.3.4)(react@16.14.0)
       prop-types: 15.8.1
@@ -4219,7 +4222,7 @@ packages:
       styled-components: ^4.2.1
     dependencies:
       '@alicloud/console-components-app-layout': 2.0.0-alpha.4(@alicloud/console-components@1.6.2-alpha.2)(prop-types@15.8.1)(react-dom@16.14.0)(react@16.14.0)(styled-components@4.4.1)
-      '@alicloud/console-components-console-menu': 1.2.2(@alicloud/console-components@1.6.2-alpha.2)(dva@2.6.0-beta.20)(prop-types@15.8.1)(react-dom@16.14.0)(react@16.14.0)(styled-components@4.4.1)
+      '@alicloud/console-components-console-menu': 1.3.0-alpha.0(@alicloud/console-components@1.6.2-alpha.2)(dva@2.6.0-beta.20)(prop-types@15.8.1)(react-dom@16.14.0)(react@16.14.0)(styled-components@4.4.1)
       dva: 2.6.0-beta.20(react-dom@16.14.0)(react-router@5.3.4)(react@16.14.0)
       lodash: 4.17.21
       lodash.isundefined: 3.0.1
@@ -6601,6 +6604,13 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
+
+  /@babel/runtime@7.23.2:
+    resolution: {integrity: sha512-mM8eg4yl5D6i3lu2QKPuPH4FArvJ8KhTofbE7jwMUv9KX5mBvwPAqnV3MlyBNqdp9RyRKP6Yck8TrfYrPvX3bg==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.14.0
+    dev: false
 
   /@babel/standalone@7.22.10:
     resolution: {integrity: sha512-VmK2sWxUTfDDh9mPfCtFJPIehZToteqK+Zpwq8oJUjJ+WeeKIFTTQIrDzH7jEdom+cAaaguU7FI/FBsBWFkIeQ==}
