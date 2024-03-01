@@ -45,7 +45,6 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
     setCurrentRegionId: setRegionIdWithMemo
   };
 
-
   /**
    * 处理路由
    */

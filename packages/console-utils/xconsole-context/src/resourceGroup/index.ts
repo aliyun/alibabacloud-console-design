@@ -14,7 +14,6 @@ export const getCurrentRGId = () => {
   return (Cookie.get(DEFAULT_COOKIE_KEY) || '');
 };
 
-
 export default {
   onResourceGroupChange: ConsoleBase.onResourceGroupChange,
   onResourceGroupDataLoaded: ConsoleBase.onResourceGroupDataLoaded,
@@ -22,4 +21,5 @@ export default {
   setResourceGroupId: ConsoleBase.setResourceGroupId,
   setResourceGroupResourceCount: ConsoleBase.setResourceGroupResourceCount,
   getCurrentResourceGroup: (): string => getCurrentRGId(),
+  setResourceTypes: ConsoleBase.setResourceTypes,
 };

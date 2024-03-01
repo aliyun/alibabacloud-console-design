@@ -58,6 +58,14 @@ export const ConsoleBaseBroadcast = {
    */
   setResourceGroupResourceCount(payload: TResourceCountMapping): void {/* void */},
 
+  /**
+   * 设置资源组资源类型，用于鉴权
+   */
+  setResourceTypes(payload: {
+    service: string;
+    resourceTypeCode: string;
+  }[]): void {/* void */},
+
   // ------- toolkit ------- //
   /**
    * Toolkit 添加或修改一个工具
