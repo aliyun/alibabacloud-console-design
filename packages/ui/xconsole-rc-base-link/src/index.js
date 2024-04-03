@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link as RouteLink } from 'dva/router'
+import { Link as RouteLink } from 'react-router-dom'
 import isFunction from 'lodash/isFunction'
 import isBoolean from 'lodash/isBoolean'
 import classNames from 'classnames'

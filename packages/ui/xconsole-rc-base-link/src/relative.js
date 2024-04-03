@@ -3,7 +3,7 @@ import compose from 'recompose/compose'
 import branch from 'recompose/branch'
 import withProps from 'recompose/withProps'
 import mapProps from 'recompose/mapProps'
-import { withRouter } from 'dva/router'
+import { withRouter } from 'react-router-dom'
 
 const transRelativeUrl = withProps((props) => {
   const { to, location } = props
