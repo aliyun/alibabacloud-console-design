@@ -1,6 +1,7 @@
 import isArray from 'lodash/isArray';
-import { IPayloadRegion } from 'src/types/ConsoleBase';
+
 import { getActiveId } from './cookies';
+import type { IPayloadRegion } from '../types/ConsoleBase';
 
 const getIdFromItem = (item: IPayloadRegion): string => {
   return item.id

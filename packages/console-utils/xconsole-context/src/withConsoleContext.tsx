@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 import isFunction from 'lodash/isFunction'
 import { matchPath } from 'react-router-dom';
-
-import useRegion from './region/useRegion';
 import ConsoleBaseMessengerRegion from '@alicloud/console-base-rc-messenger-region';
 import ConsoleBaseMessengerResourceGroup from '@alicloud/console-base-rc-messenger-resource-group';
+
+import useRegion from './region/useRegion';
 import useRcRegionProps from './region/useRcRegionProps';
 import useRcResourceGroupProps from './resourceGroup/useRcResourceGroupProps';
 import useResourceGroup from './resourceGroup/useResourceGroup';
 import consoleConfig from './console/index';
-import { IConsoleContextProp } from './types/index';
 import { ConsoleContext } from './context/Context';
-import { IPayloadRegion } from './types/ConsoleBase';
+import type { IConsoleContextProp } from './types/index';
+import type { IPayloadRegion } from './types/ConsoleBase';
 
 /**
  * 为了实现组件式阿里云吊顶交互的逻辑兼容, 目前 mobile 在使用

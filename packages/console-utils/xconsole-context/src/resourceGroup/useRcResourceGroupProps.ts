@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { History } from 'history'
 import qs from 'query-string'
-import { IConsoleContextProp } from '../types/index';
-import ConsoleResourceGroup, { getCurrentRGId } from '../resourceGroup/index';
 import { matchPath } from 'react-router-dom';
+
+import ConsoleResourceGroup, { getCurrentRGId } from '../resourceGroup/index';
+import type { IConsoleContextProp } from '../types/index';
 
 const reroute = (history: History, currentRGId?: string) => {
   const url = new URL(window.location.href);

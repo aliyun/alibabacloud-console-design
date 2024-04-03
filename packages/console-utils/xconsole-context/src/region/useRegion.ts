@@ -1,13 +1,13 @@
 import { useEffect, useState, useContext } from 'react';
-import { matchPath, generatePath } from 'react-router';
+import { matchPath } from 'react-router-dom';
 
 import ConsoleRegion from './index';
 import { reroute } from './useRcRegionProps';
 import ConsoleBase from '../console/ConsoleBase';
-import { IConsoleContextRegionProp } from '../types/index';
 import { determineRegionId } from './determineRegionId';
 import { RegionContext } from '../context/RegionContext';
 import { getActiveId } from './cookies';
+import type { IConsoleContextRegionProp } from '../types/index';
 
 type ConsoleRegion = typeof ConsoleRegion;
 

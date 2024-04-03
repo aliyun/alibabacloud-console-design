@@ -1,5 +1,6 @@
 import template from 'lodash/template'
-import {
+
+import type {
   ChannelEnum,
   IAliyunConsoleConfig,
   fEnv,

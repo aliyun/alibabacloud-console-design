@@ -1,13 +1,13 @@
 import { useEffect, useState, useContext } from 'react';
-import { matchPath, generatePath } from 'react-router';
+import { matchPath, generatePath } from 'react-router-dom';
 import isFunction from 'lodash/isFunction';
 
 import ConsoleRegion from './index';
 import { getActiveId } from './cookies';
 import { determineRegionId } from './determineRegionId';
 import { RegionContext } from '../context/RegionContext';
-import { IConsoleContextRegionProp } from '../types/index';
-import { IPayloadRegion } from 'src/types/ConsoleBase';
+import type { IConsoleContextRegionProp } from '../types/index';
+import type { IPayloadRegion } from '../types/ConsoleBase';
 
 type regionFn = (location: any) => IPayloadRegion[];
 

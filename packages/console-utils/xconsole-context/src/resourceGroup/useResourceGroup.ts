@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import qs from 'query-string'
-import { IConsoleContextProp } from '../types/index';
-import ConsoleResourceGroup, { getCurrentRGId } from '../resourceGroup/index';
 import { matchPath } from 'react-router-dom';
+import qs from 'query-string';
+
+import ConsoleResourceGroup, { getCurrentRGId } from '../resourceGroup/index';
+import type { IConsoleContextProp } from '../types/index';
 
 type ResourceGroup = typeof ConsoleResourceGroup;
 
