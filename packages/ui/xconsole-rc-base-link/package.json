@@ -1,8 +1,9 @@
 {
   "name": "@alicloud/xconsole-rc-base-link",
-  "version": "2.4.6",
+  "version": "2.4.7",
   "description": "",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "license": "MIT",
   "homepage": "https://github.com/aliyun/alibabacloud-console-design",
   "repository": {
@@ -12,6 +13,11 @@
   "bugs": {
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
   },
+  "files": [
+    "lib",
+    "es",
+    "dist"
+  ],
   "author": {
     "name": "",
     "email": "",
@@ -53,6 +59,5 @@
     "classnames": "^2.2.5",
     "recompose": "^0.27.1",
     "resolve-pathname": "^2.2.0"
-  },
-  "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
+  }
 }

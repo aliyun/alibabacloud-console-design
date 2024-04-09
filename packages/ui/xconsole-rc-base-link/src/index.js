@@ -80,6 +80,7 @@ class Link extends Component {
       shape = 'text',
       type = 'normal',
       size = 'medium',
+      className = '',
       ...restProps
     } = this.props
 
@@ -94,13 +95,14 @@ class Link extends Component {
     }
 
     const exactClassName = classNames(
+      className,
       baseClassName,
       getExactClassName(shape, type, size, exactDisabled)
     )
 
     if (exactDisabled || !exactLinkTargetPath) {
       return (
-        <span className={`${exactClassName} wind-rc-link-text`} {...restProps} />
+        <span className={exactClassName} {...restProps} />
       )
     }
 
