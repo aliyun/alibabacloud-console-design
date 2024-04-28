@@ -25,7 +25,7 @@ interface IProps<T> extends Partial<IOptions> {
   pollingInterval?: number;
   onSuccess?: (d: T) => void;
   onError?: (e: Error) => void;
-  useNewRisk?: boolean; // 使用 fetcher 新版风控
+  useNewRisk?: boolean | { riskVersion: '3.0' }; // 使用 fetcher 新版风控
   useFetcherProxy?: boolean; // 使用 fetcherProxy
 }
 
