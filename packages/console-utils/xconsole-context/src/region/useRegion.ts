@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { matchPath } from 'react-router-dom';
 
 import ConsoleRegion from './index';
-import { reroute } from './useRcRegionProps';
+import { reroute } from './reroute';
 import ConsoleBase from '../console/ConsoleBase';
 import { determineRegionId } from './determineRegionId';
 import { RegionContext } from '../context/RegionContext';
@@ -46,10 +46,9 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
   };
 
   /**
-   * 处理路由
+   * 将路由状态同步到应用全局 region 状态
    */
   useEffect(() => {
-    // 不处理
     if (disable) return;
 
     region.setRegions(regionList);
@@ -57,24 +56,30 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
     const regionId = determineRegionId(match.params.regionId, currentRegionId, regionList, defaultRegion);
 
     if (currentRegionId !== regionId) {
+      // 通知 consoleBase 更新 regionId
       region.setRegionId(regionId);
-      setRegionIdWithMemo(regionId)
-      return reroute(props, regionId);
+      // 更新全局 regionId
+      setRegionIdWithMemo(regionId);
+      reroute(props, regionId);
     }
   }, [match.params.regionId, currentRegionId, regionList, defaultRegion]);
 
-  // 处理 ConsoleBase
+  /**
+   * 将 consoleBase 地域选择器状态变化同步到应用全局 region 状态
+   */
   useEffect(() => {
-    // 不处理
     if (disable) return;
 
-    // update the history when region change on the regionbar
+    // 监听 consoleBase 地域选择器更新并同步
     const unsubscribeRegionChange = region.onRegionChange((payload) => {
       if (payload.correctedFrom) {
         return;
       }
+
       const regionId = determineRegionId(payload.id, currentRegionId, regionList, defaultRegion);
+
       if (regionId !== currentRegionId) {
+        setRegionIdWithMemo(regionId);
         reroute(props, regionId);
       }
     });
@@ -91,33 +96,34 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
         exact: true,
         strict: true,
       });
+
       if (matches) {
-        region.toggleRegion(true)
-        region.toggleRegionGlobal(true)
+        region.toggleRegion(true);
+        region.toggleRegionGlobal(true);
         return true;
       }
       return false;
     })
 
-    if (showGlobal) {
-      return;
+    if (!showGlobal) {
+      region.toggleRegion(false);
+
+      regionbarVisiblePaths.forEach((showRegionPath) => {
+        const matches = matchPath(location.pathname, {
+          path: showRegionPath,
+          exact: true,
+          strict: true,
+        });
+
+        if (matches) {
+          region.toggleRegion(true);
+        }
+      });
     }
 
-    region.toggleRegion(false)
-    regionbarVisiblePaths.forEach((showRegionPath) => {
-      const matches = matchPath(location.pathname, {
-        path: showRegionPath,
-        exact: true,
-        strict: true,
-      });
-      if (matches) {
-        region.toggleRegion(true)
-      }
-    });
-
     return () => {
-      unsubscribeRegionChange()
-      unsubscribeReady()
+      unsubscribeRegionChange();
+      unsubscribeReady();
     }
   }, [regionList, history, regionbarVisiblePaths, globalVisiblePaths, location.pathname, currentRegionId, defaultRegion]);
 

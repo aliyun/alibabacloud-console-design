@@ -1,44 +1,16 @@
 import { useEffect, useState, useContext } from 'react';
-import { matchPath, generatePath } from 'react-router-dom';
+import { matchPath } from 'react-router-dom';
 import isFunction from 'lodash/isFunction';
 
 import ConsoleRegion from './index';
 import { getActiveId } from './cookies';
+import { reroute } from './reroute';
 import { determineRegionId } from './determineRegionId';
 import { RegionContext } from '../context/RegionContext';
 import type { IConsoleContextRegionProp } from '../types/index';
 import type { IPayloadRegion } from '../types/ConsoleBase';
 
 type regionFn = (location: any) => IPayloadRegion[];
-
-const hasRegionId = (match) => {
-  // eslint-disable-next-line no-prototype-builtins
-  return match.params && match.params.hasOwnProperty('regionId');
-}
-
-export const reroute = (props: IConsoleContextRegionProp<{regionId?: string}>, nextRegionId: string) => {
-  const { history, match, location } = props;
-  if (match && match.path && hasRegionId(match)) {
-    const { path, params } = match;
-
-    if (nextRegionId === params.regionId) {
-      return;
-    }
-
-    const nextPath = generatePath(path, {
-      ...(params || {}),
-      regionId: nextRegionId
-    });
-    // 可能通过 window.history.pushState 改变路由导致 react-router location 对象没有更新
-    const suff = window.location.pathname.slice(match.url.length);
-
-    history[props.region?.historyAction || 'push']({
-      pathname: match.isExact ? nextPath : `${nextPath}/${suff}`.replace('//', '/'),
-      search: location.search,
-      hash: location.hash,
-    });
-  }
-}
 
 /**
  * 为了适配新版本的 region, 但是由于

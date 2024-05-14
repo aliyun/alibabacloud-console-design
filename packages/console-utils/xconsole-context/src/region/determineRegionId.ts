@@ -7,6 +7,14 @@ const getIdFromItem = (item: IPayloadRegion): string => {
   return item.id
 };
 
+/**
+ * 计算准确的 regionId
+ * @param id 期望 regionId
+ * @param currentActiveId 当前 regionId
+ * @param dataSourceRaw 有效 region 列表
+ * @param defaultRegionId 默认兜底 regionId
+ * @returns 
+ */
 export const determineRegionId = (
   id: string,
   currentActiveId: string,
