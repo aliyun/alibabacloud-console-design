@@ -76,7 +76,7 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
     const { region: { regionList: userRegionListConfig } = {}, location, match, history, appConfig } = props;
     const [loading, setLoading] = useState(isFunction(userRegionListConfig));
     const [regionList, setRegionList] = useState(isFunction(userRegionListConfig) ? [] : userRegionListConfig as IPayloadRegion[]);
-    const lastMatchUrl = useRef('');
+    const lastPathname = useRef('');
 
     const { customPaths = [] } = appConfig?.aplus || {};
 
@@ -95,12 +95,10 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
     useEffect(() => {
       const aplusConfig = (window as unknown as IWin).APLUS_CONFIG || {};
 
-      if (lastMatchUrl.current === history.location.pathname) return;
-      lastMatchUrl.current = history.location.pathname;
+      if (lastPathname.current === history.location.pathname) return;
+      lastPathname.current = history.location.pathname;
 
       const { spmbPrefix } = aplusConfig;
-
-      const matchPath = match.isExact ? match.path : matchCustomPath(customPaths, history.location.pathname) || match.path;
 
       if (spmbPrefix) {
         // @ts-ignore
@@ -110,6 +108,7 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
         // 由于 aplus 不是实时发送，存在时延，故需要特殊处理重定向场景
         ((url) => {
           setTimeout(() => {
+            const matchPath = matchCustomPath(customPaths, history.location.pathname) || match.path;
             // url 不等，说明发生了重定向或者用户快速的跳转
             if (url === window.location.href) {
               // 延迟发送
