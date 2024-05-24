@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-page",
-  "version": "2.3.30",
+  "version": "2.4.0",
   "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "lib/index.d.ts",
@@ -27,13 +27,10 @@
     "@types/react": "^16.8.10",
     "@types/react-dom": "^16.8.3",
     "jest": "^24.2.0-alpha.0",
-    "less": "^3.0.0-alpha.3",
-    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "ts-jest": "^23.10.5",
-    "tslint": "^5.8.0",
-    "typescript": "^3.0.3"
+    "react-router-dom": "^5.2.0",
+    "typescript": "^4.9.0"
   },
   "scripts": {
     "prepublishOnly": "rm -rf dist lib es && npm run babel && npm run build && npm run babel:esm",
@@ -47,11 +44,12 @@
   "peerDependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.2.0"
   },
   "dependencies": {
     "@alicloud/console-components-page": "^1.0.0",
+    "@alicloud/xconsole-rc-base-link": "workspace:^2.4.5",
     "styled-components": "^4.4.0"
-  },
-  "gitHead": "a4fa53aa90b996e0a144c4fa010590763436de34"
+  }
 }
