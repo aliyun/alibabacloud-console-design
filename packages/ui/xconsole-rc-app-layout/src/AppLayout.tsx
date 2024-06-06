@@ -1,107 +1,92 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import isFunction from 'lodash/isFunction';
-import { withRouter } from 'dva/router';
-import { IProp, ISidebarConfig } from './types/index';
+import React, { useContext } from 'react';
+import AppLayout from '@alicloud/console-components-app-layout';
+import { XConsoleTheme } from '@alicloud/console-components-console-menu';
+
+import Nav from './Nav';
 import Context from './Context';
-import Aside from './Aside';
-import useCollapsed from './hooks/useCollapsed';
+import { isPathMatch } from './utils/index';
+import type { IAsideProps, PathRule } from './types/index';
 
-let noticeFlag = false;
+export let XConsoleAppLayoutHook: any;
 
-const XConsoleAppLayout: React.FunctionComponent<IProp> = (props: IProp) => {
-  const { sidebar: rawSidebar, consoleMenu, location, children, menuParams  } = props;
-  const { pathname } = location;
-
-  let sidebar: ISidebarConfig = null;
-
-  if (isFunction(rawSidebar)) {
-    sidebar = (rawSidebar as Function)(location);
+/**
+ * 计算侧边栏展示状态
+ * @param pathname
+ * @param displayPath
+ * @param notDisplayPath
+ * @param invisiblePaths
+ * @returns
+ */
+const computeSidebarVisibleStatus = (
+  pathname: string,
+  displayPath?: PathRule,
+  notDisplayPath?: PathRule,
+  invisiblePaths?: PathRule,
+): boolean => {
+  let sidebarVisible = true;
+  if (typeof displayPath !== 'undefined') {
+    sidebarVisible = isPathMatch(pathname, displayPath);
   } else {
-    sidebar = rawSidebar as ISidebarConfig;
-  }
-
-  const [title, setTitle] = useState(sidebar.title || 'XConsole');
-  const [navs, setNavs] = useState(sidebar.navs || []);
-  const [navVisible, setNavVisible] = useState(consoleMenu?.visible ?? true);
-
-  if (
-    noticeFlag === false &&
-    (typeof sidebar.defaultOpenKeys !== 'undefined' ||
-      typeof sidebar.collapsedKeys !== 'undefined' ||
-      typeof sidebar.invisiblePaths !== 'undefined')
-  ) {
-    noticeFlag = true;
-    console.warn(
-      '[xconsole rc-app-layout] sidebar.js 中关于 defaultOpenKeys collapsedKeys invisiblePaths 的配置不再推荐使用，请在 appConfig.js 中配置 consoleMenu， 具体配置信息及字段说明请前往官网查看 【开发指南】 文档。'
+    sidebarVisible = !isPathMatch(
+      pathname,
+      notDisplayPath || invisiblePaths || [],
     );
   }
+  return sidebarVisible;
+};
 
-  useEffect(() => {
-    if (sidebar.title !== title) {
-      setTitle(sidebar.title);
-    }
-    if (JSON.stringify(sidebar.navs) !== JSON.stringify(navs)) {
-      setTitle(sidebar.title);
-    }
-    setNavs(sidebar.navs);
-  }, [JSON.stringify(sidebar)])
+const XConsoleAppLayoutAside: React.FC<Partial<IAsideProps>> = (
+  props,
+) => {
+  const {
+    consoleMenu = {},
+    location,
+    children,
+    menuParams,
+    collapsed,
+    onNavCollapseTriggerClick,
+    visible,
+    adjustHeight,
+    style,
+  } = props;
+  const { pathname = '' } = location || {};
 
-  const onNavTriggerClick = useCallback((fn: () => void) => {
-    const cb = (e) => {
-      if (e.data.type === 'xconsole:on_nav_click') {
-        fn();
-      }
-    };
-    window.addEventListener('message', cb);
-    return () => window.removeEventListener('message', cb);
-  }, []);
+  const { sidebar } = useContext(Context);
 
-  const { collapsed, setCollapsed, onNavCollapseTriggerClick } = useCollapsed(
+  const {
+    displayPath,
+    notDisplayPath,
+    defaultOpen = [],
+  } = consoleMenu;
+
+  const shouldVisibleInCurrentPath = computeSidebarVisibleStatus(
     pathname,
-    consoleMenu?.collapsedPath || []
+    displayPath,
+    notDisplayPath,
+    sidebar.invisiblePaths,
   );
 
-  const hideNav = useCallback(() => {
-    setNavVisible(false);
-  }, []);
-
-  const showNav = useCallback(() => {
-    setNavVisible(true);
-  }, []);
+  // 合并 sidebar 的 defaultOpenKeys
+  sidebar.defaultOpenKeys = defaultOpen;
 
   return (
-    <Context.Provider
-      value={{
-        collapsed,
-        hideNav,
-        showNav,
-        sidebar: {
-          title,
-          navs,
-          collapsedKeys: [],
-          onItemClick: sidebar.onItemClick,
-          onOpen: sidebar.onOpen,
-        },
-        setTitle,
-        setNavs,
-        setCollapsed,
-        onNavTriggerClick
-      }}
-    >
-      <Aside
-        collapsed={collapsed}
+    <XConsoleTheme>
+      <AppLayout
+        adjustHeight={adjustHeight || 50}
+        nav={
+          shouldVisibleInCurrentPath && visible ?
+            <Nav {...sidebar} currentPath={pathname} menuParams={menuParams} />
+            :
+            null
+        }
+        navCollapsed={collapsed}
         onNavCollapseTriggerClick={onNavCollapseTriggerClick}
-        consoleMenu={consoleMenu}
-        location={location}
-        menuParams={menuParams}
-        visible={navVisible}
+        style={style}
       >
         {children}
-      </Aside>
-    </Context.Provider>
+      </AppLayout>
+    </XConsoleTheme>
   );
 };
 
-const AppLayout = withRouter(XConsoleAppLayout);
-
-export default AppLayout;
+export default XConsoleAppLayoutAside;

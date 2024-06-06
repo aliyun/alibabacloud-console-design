@@ -17,16 +17,16 @@ const Test: React.FC<{}> = (props) => {
   //   })
   // })
 
-  return <div />
-}
+  return <div />;
+};
 
 storiesOf('XConsoleAppLayout', module).add('XConsoleAppLayout', () => {
   return (
     <div id="app-wrapper">
       <div id="app">
         <Router history={createBrowserHistory()}>
-          <WindProRcAppLayout sidebar={sidebar} consoleMenu={{collapsedPath: ['/basic-profile']}}>
-            <Test/>
+          <WindProRcAppLayout sidebar={sidebar} consoleMenu={{ collapsedPath: ['/basic-profile'] }}>
+            <Test />
           </WindProRcAppLayout>
         </Router>
       </div>

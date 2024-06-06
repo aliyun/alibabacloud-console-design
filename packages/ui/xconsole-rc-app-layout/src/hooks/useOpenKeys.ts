@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { matchPath } from 'dva/router';
-import { INavConfig } from '../types/index';
+import { matchPath } from 'react-router-dom';
+
+import type { INavConfig } from '../types/index';
 
 interface IOpenKeysType {
   openKeys: string[];
@@ -10,7 +11,7 @@ interface IOpenKeysType {
 const useOpenKeys = (
   defaultOpenKeys: string[],
   navs: INavConfig[],
-  currentPath: string
+  currentPath: string,
 ): IOpenKeysType => {
   const [openKeys, setOpenKeys] = useState([...defaultOpenKeys]);
 
@@ -18,7 +19,7 @@ const useOpenKeys = (
     if (!navs) {
       return;
     }
-    
+
     const set = new Set<string>(openKeys);
 
     navs.forEach((nav) => {
@@ -27,7 +28,7 @@ const useOpenKeys = (
       if (nav.activePathPatterns) {
         const match = nav.activePathPatterns.find((pattern) => matchPath(currentPath, {
           path: pattern,
-        }))
+        }));
 
         if (match) {
           set.add(nav.key);

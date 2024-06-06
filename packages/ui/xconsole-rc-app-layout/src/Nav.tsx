@@ -1,8 +1,8 @@
 import React from 'react';
-import { generatePath } from 'dva/router';
+import { generatePath } from 'react-router-dom';
 import ConsoleMenu from '@alicloud/console-components-console-menu/RoutableMenu';
-import get from 'lodash/get';
-import isUndefined from 'lodash.isundefined';
+import { get, isUndefined } from 'lodash-es';
+
 import { IMenuProps, INavConfig } from './types/index';
 import useOpenKeys from './hooks/useOpenKeys';
 
@@ -19,9 +19,9 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
     header,
     items,
     title,
-    navs,
-    defaultOpenKeys,
-    currentPath,
+    navs = [],
+    defaultOpenKeys = [],
+    currentPath = '',
     menuParams,
     onItemClick,
     onOpen,
@@ -99,7 +99,7 @@ const Nav: React.FC<IMenuProps> = (props: IMenuProps) => {
   const { openKeys, onOpenKeys } = useOpenKeys(
     defaultOpenKeys,
     navs,
-    currentPath
+    currentPath,
   );
 
   return (

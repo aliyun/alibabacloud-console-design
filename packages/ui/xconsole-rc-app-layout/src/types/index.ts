@@ -1,6 +1,6 @@
-import { RouteComponentProps } from 'dva/router';
-import { Location } from 'history'
-import { IRoutableItemDescriptor } from '@alicloud/console-components-console-menu/lib/ItemDescriptor';
+import type { RouteComponentProps } from 'react-router-dom';
+import type { Location } from 'history';
+import type { IRoutableItemDescriptor } from '@alicloud/console-components-console-menu/lib/ItemDescriptor';
 
 export type PathRule = string[] | RegExp[];
 
@@ -53,7 +53,7 @@ export interface ISidebarConfig {
 
   /**
    * 侧边栏的列目配置
-   */ 
+   */
   navs: INavConfig[];
 
   /**
@@ -64,7 +64,7 @@ export interface ISidebarConfig {
   /**
    * 打开或关闭子菜单触发的回调函数
    */
-  onOpen: (key: string[], extra: { key: string; open: boolean }) => void;
+  onOpen?: (key: string[], extra: { key: string; open: boolean }) => void;
 
   /**
    * @deprecated
@@ -82,17 +82,23 @@ export interface ISidebarConfig {
 
 export type SidebarCallBack = (location: Location) => ISidebarConfig;
 
-export interface IProp extends RouteComponentProps {
+export interface IProps extends RouteComponentProps {
   sidebar: ISidebarConfig | SidebarCallBack;
   consoleMenu?: IConsoleMenuConfig;
   children?: React.ReactChildren;
-  menuParams: Record<string, any>;
+  menuParams?: Record<string, any>;
   collapsed?: boolean;
   onNavCollapseTriggerClick?: any;
+  style?: Record<string, any>;
 }
 
-export interface IAsideProp extends IProp {
+export interface IAsideProps extends IProps {
   visible?: boolean;
+  /**
+     * 调整AppLayout的高度。AppLayout高度计算公式：`calc(100vh - adjustHeight px)`。详见文档的【adjustHeight: 布局高度的调整】小节
+     * @defaultValue 50
+     */
+  adjustHeight?: string | number | (() => number);
 }
 
 export interface IMenuProps {

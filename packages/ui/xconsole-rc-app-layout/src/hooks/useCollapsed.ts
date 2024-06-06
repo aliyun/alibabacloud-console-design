@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { matchPath } from 'dva/router';
-import { PathRule } from '../types/index';
+import { matchPath } from 'react-router-dom';
 
-const useCollapsed = (pathname: string, collapsedPath: PathRule) => {
+const useCollapsed = (pathname: string, collapsedPath: string[]) => {
   const [collapsed, setCollapsed] = useState(false);
   // save prev collapsed
   const prevState = useRef<boolean>();
@@ -13,16 +12,15 @@ const useCollapsed = (pathname: string, collapsedPath: PathRule) => {
 
   useEffect(() => {
     const collapse = collapsedPath.some((key) =>
-      matchPath(pathname, { path: key, exact: true, strict: true })
-    );
+      matchPath(pathname, { path: key, exact: true, strict: true }));
     setCollapsed(collapse);
-  }, [pathname]);
+  }, [pathname, collapsedPath]);
 
   const onNavCollapseTriggerClick = (prevCollapsed: boolean): void => {
     setCollapsed(
-      typeof prevCollapsed === 'boolean' ? !prevCollapsed : !prevState.current
+      typeof prevCollapsed === 'boolean' ? !prevCollapsed : !prevState.current,
     );
-    window.postMessage({type: 'xconsole:on_nav_click'}, null);
+    window.postMessage({ type: 'xconsole:on_nav_click' });
   };
 
   return {

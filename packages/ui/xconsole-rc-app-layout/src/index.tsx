@@ -1,4 +1,4 @@
-import AppLayout from './AppLayout';
+import AppLayout from './AppLayoutWithRouter';
 
 import { ISidebarConfig, IConsoleMenuConfig } from './types/index';
 
