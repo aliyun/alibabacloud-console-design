@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-  IPayloadLaunchTutorial,
   IPayloadRegion,
   TResourceCountMapping,
   IToolkitItem,
@@ -12,59 +12,74 @@ export const ConsoleBaseBroadcast = {
   /**
    * 展示或隐藏顶部导航
    */
-  toggleTopNav(payload: boolean): void {/* void */},
+  toggleTopNav(payload: boolean): void { /* void */ },
 
   // ------- region ------- //
 
   /**
    * 展示或隐藏区域选择器
    */
-  toggleRegion(payload = true): void {/* void */},
+  toggleRegion(payload = true): void { /* void */ },
 
   /**
    * 设置展示成「全球」或取消此设置（payload = false 的时候）
    */
-  toggleRegionGlobal(payload = true): void {/* void */},
+  toggleRegionGlobal(payload = true): void { /* void */ },
 
   /**
    * 修改当前选中的 region id
    */
-  setRegionId(payload: string): void {/* void */},
+  setRegionId(payload: string): void { /* void */ },
 
   /**
    * 动态修改可用区域
    */
-  setRegions(payload: IPayloadRegion[]): void {/* void */},
+  setRegions(payload: IPayloadRegion[]): void { /* void */ },
+
+  /**
+   * 更新 regionBar props
+   */
+  setRegionProps(props: any): void { /* void */ },
+
+  /**
+   * merge regionBar props
+   */
+  mergeRegionProps(props: any): void { /* void */ },
+
+  /**
+   * 更新资源组 Bar props
+   */
+  setResourceGroupProps(props: any): void { /* void */ },
 
   /**
    * 动态设置各个 region 下的资源数
    */
-  setRegionResourceCount(payload: TResourceCountMapping): void {/* void */},
+  setRegionResourceCount(payload: TResourceCountMapping): void { /* void */ },
 
   // ------- resource group ------- //
 
   /**
    * 控制台应用：通知组件展示或隐藏
    */
-  toggleResourceGroup(payload = true): void {/* void */},
+  toggleResourceGroup(payload = true): void { /* void */ },
 
   /**
    * 控制台应用：通知组件修改当前选择的资源组
    */
-  setResourceGroupId(payload: string): void {/* void */},
+  setResourceGroupId(payload: string): void { /* void */ },
 
   /**
    * 动态设置各资源组下的资源数
    */
-  setResourceGroupResourceCount(payload: TResourceCountMapping): void {/* void */},
+  setResourceGroupResourceCount(payload: TResourceCountMapping): void { /* void */ },
 
   /**
    * 设置资源组资源类型，用于鉴权
    */
-  setResourceTypes(payload: {
+  setResourceTypes(payload: Array<{
     service: string;
     resourceTypeCode: string;
-  }[]): void {/* void */},
+  }>): void { /* void */ },
 
   // ------- toolkit ------- //
   /**
@@ -72,16 +87,16 @@ export const ConsoleBaseBroadcast = {
    *
    * 原 @ali/console-base-sdk-toolkit messenger.putTool
    */
-  putToolkitItem(tool: IToolkitItem): void {/* void */},
+  putToolkitItem(tool: IToolkitItem): void { /* void */ },
 
   /**
    * 外部调用：移除工具
    */
-  removeToolkitItem(id: string): void {/* void */},
+  removeToolkitItem(id: string): void { /* void */ },
 };
 
 function onToolkitItemClick(id: string, fn: () => void): () => void {
-  return () => {/* void */};
+  return () => { /* void */ };
 }
 
 // subscriber
@@ -91,32 +106,32 @@ export const ConsoleSubscriber = {
    * 可以保证在 ready 之前就可以跟 console-base 进行交互
    */
   onReady(fn: () => void): () => void {
-    return () => {/* void */};
+    return () => { /* void */ };
   },
 
   /**
    * 地域切换时的回调
    */
   onRegionChange(fn: (payload: IPayloadRegionOnChange) => void): () => void {
-    return () => {/* void */};
+    return () => { /* void */ };
   },
 
   /**
    * 资源组数据加载完成时的回调
    */
   onResourceGroupDataLoaded(
-    fn: (payload: IPayloadResourceGroup[]) => void
+    fn: (payload: IPayloadResourceGroup[]) => void,
   ): () => void {
-    return () => {/* void */};
+    return () => { /* void */ };
   },
 
   /**
    * 资源组切换时的回调
    */
   onResourceGroupChange(
-    fn: (payload: IPayloadResourceGroup | null) => void
+    fn: (payload: IPayloadResourceGroup | null) => void,
   ): () => void {
-    return () => {/* void */};
+    return () => { /* void */ };
   },
 
   // ------- toolkit ------- //
@@ -127,7 +142,7 @@ export const ConsoleSubscriber = {
    * 原 @ali/console-base-sdk-toolkit messenger.subscribeClickedVersionNew
    */
   onToolkitVersionNewClick(fn: () => void): () => void {
-    return () => {/* void */};
+    return () => { /* void */ };
   },
 
   /**
@@ -136,7 +151,7 @@ export const ConsoleSubscriber = {
    * 原 @ali/console-base-sdk-toolkit messenger.subscribeClickedVersionOld
    */
   onToolkitVersionOldClick(fn: () => void): () => void {
-    return () => {/* void */};
+    return () => { /* void */ };
   },
 
   /**
@@ -152,24 +167,24 @@ export const ConsoleSubscriber = {
    * 原 @ali/console-base-sdk-toolkit messenger.subscribeActivated + subscribeDeactivated
    */
   onToolkitItemActiveChange(id: string, fn: (active: boolean) => void): () => void {
-    return () => {/* void */};
+    return () => { /* void */ };
   },
 
   // ------- fastbuy ------- //
   onFastbuyClose(fn: (payload: IPayloadFastbuy) => void): () => void {
-    return () => {/* void */};
+    return () => { /* void */ };
   },
 
   onFastbuyBuy(fn: (payload: IPayloadFastbuy) => void): () => void {
-    return () => {/* void */};
+    return () => { /* void */ };
   },
 
   onFastbuySubmitPayment(fn: (payload: IPayloadFastbuy) => void): () => void {
-    return () => {/* void */};
+    return () => { /* void */ };
   },
 
   onFastbuyOrderFinish(fn: (payload: IPayloadFastbuy) => void): () => void {
-    return () => {/* void */};
+    return () => { /* void */ };
   },
 };
 
@@ -181,4 +196,4 @@ export default {
 
 export const updateConsoleBase = () => {
   /* void */
-}
+};

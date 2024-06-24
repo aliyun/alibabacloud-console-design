@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import isFunction from 'lodash/isFunction'
+import isFunction from 'lodash/isFunction';
 import { matchPath } from 'react-router-dom';
 import ConsoleBaseMessengerRegion from '@alicloud/console-base-rc-messenger-region';
 import ConsoleBaseMessengerResourceGroup from '@alicloud/console-base-rc-messenger-resource-group';
@@ -10,29 +10,30 @@ import useRcResourceGroupProps from './resourceGroup/useRcResourceGroupProps';
 import useResourceGroup from './resourceGroup/useResourceGroup';
 import consoleConfig from './console/index';
 import { ConsoleContext } from './context/Context';
-import type { IConsoleContextProp } from './types/index';
+import type { IConsoleContextProp, IConsoleContextRegionProp } from './types/index';
 import type { IPayloadRegion } from './types/ConsoleBase';
+import type { Region } from './region/useRegion';
+import type { ResourceGroup } from './resourceGroup/useResourceGroup';
 
 /**
  * 为了实现组件式阿里云吊顶交互的逻辑兼容, 目前 mobile 在使用
- * @param Comp 
- * @returns 
+ * @param Comp
+ * @returns
  */
 export function withRcBaseMessenger<P extends IConsoleContextProp, S = {}>(
-  Comp: new () => React.Component<P, S>
+  Comp: new () => React.Component<P, S>,
 ) {
-
   return (props: P) => {
     const regionProps = useRcRegionProps(props as any);
     const resourceGroupProps = useRcResourceGroupProps(props);
 
     if (regionProps.loading) return null;
-    
+
     return (
       <>
         <ConsoleBaseMessengerRegion {...regionProps} />
         <ConsoleBaseMessengerResourceGroup {...resourceGroupProps} />
-        <Comp 
+        <Comp
           {...props}
           // 这里是为了覆盖 useRegion 中返回的 region, 取代 useRegion 中 ConsoleBase Messenger 的逻辑
           // 没办法 sb boshi 做的升级徒增工作量
@@ -41,13 +42,14 @@ export function withRcBaseMessenger<P extends IConsoleContextProp, S = {}>(
         />
       </>
     );
-  }
+  };
 }
 
 interface IWin {
   APLUS_CONFIG: {
     spmbPrefix?: string;
   };
+  aplus_queue: any[];
 }
 
 /**
@@ -55,7 +57,7 @@ interface IWin {
  */
 function hashCode(str) {
   return str.split('').reduce((prevHash, currVal) =>
-    (((prevHash << 5) - prevHash) + currVal.charCodeAt(0))|0, 0);
+    (((prevHash << 5) - prevHash) + currVal.charCodeAt(0)) | 0, 0);
 }
 
 function matchCustomPath(patterns?: string[], path?: string) {
@@ -69,11 +71,19 @@ function matchCustomPath(patterns?: string[], path?: string) {
 /**
  * 为了实现异步的逻辑
  */
-function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
-  Comp: new () => React.Component<P, S>
+function withAsyncRegionList<P extends IConsoleContextProp>(
+  Comp: React.FC<IConsoleContextRegionProp & {
+    _injectRegionContextValue?: Region;
+    _injectResourceGroupContextValue?: ResourceGroup;
+    comp?: React.FC;
+    regionId?: string;
+  }>,
 ) {
   return (props: P) => {
-    const { region: { regionList: userRegionListConfig } = {}, location, match, history, appConfig } = props;
+    const {
+      region: { regionList: userRegionListConfig } = {},
+      location, match, history, appConfig,
+    } = props;
     const [loading, setLoading] = useState(isFunction(userRegionListConfig));
     const [regionList, setRegionList] = useState(isFunction(userRegionListConfig) ? [] : userRegionListConfig as IPayloadRegion[]);
     const lastPathname = useRef('');
@@ -84,12 +94,12 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
       (async () => {
         if (isFunction(userRegionListConfig)) {
           setLoading(true);
-          const regionList = await (userRegionListConfig as (location) => Promise<IPayloadRegion[]>)(props.location);
-          setRegionList(regionList);
+          const regions = await (userRegionListConfig as (location) => Promise<IPayloadRegion[]>)(props.location);
+          setRegionList(regions);
           setLoading(false);
         }
       })();
-    }, [location.pathname]);
+    }, [location.pathname, props.location, userRegionListConfig]);
 
     // 自动上报 spmB
     useEffect(() => {
@@ -101,73 +111,68 @@ function withAsyncRegionList<P extends IConsoleContextProp, S = {}>(
       const { spmbPrefix } = aplusConfig;
 
       if (spmbPrefix) {
-        // @ts-ignore
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        const q = (window.aplus_queue || (window.aplus_queue = []));
+        const q = ((window as unknown as IWin).aplus_queue || ((window as unknown as IWin).aplus_queue = []));
         // 设置页面的spmab
         // 由于 aplus 不是实时发送，存在时延，故需要特殊处理重定向场景
         ((url) => {
           setTimeout(() => {
-            const matchPath = matchCustomPath(customPaths, history.location.pathname) || match.path;
+            const path = matchCustomPath(customPaths, history.location.pathname) || match.path;
             // url 不等，说明发生了重定向或者用户快速的跳转
             if (url === window.location.href) {
               // 延迟发送
               q.push({
-                'action':'aplus.setPageSPM',
-                'arguments':['5176',`${spmbPrefix}_${hashCode(matchPath)}`]
+                action: 'aplus.setPageSPM',
+                arguments: ['5176', `${spmbPrefix}_${hashCode(path)}`],
               });
 
               q.push({
-                'action':'aplus.sendPV',
-                'arguments':[{
-                  // eslint-disable-next-line @typescript-eslint/camelcase
-                  is_auto: false
+                action: 'aplus.sendPV',
+                arguments: [{
+                  is_auto: false,
                 }, {
-                  c1: matchPath
-                }]
+                  c1: path,
+                }],
               });
             }
           }, 0);
         })(window.location.href);
       }
-    }, [match, history]);
+    }, [match, history, customPaths]);
 
     return loading ? null : (
-      <Comp 
-        {...props} 
+      <Comp
+        {...props}
         region={{
           ...props.region,
           regionList,
         }}
       />);
-  }
+  };
 }
 
 const ConsoleContextComponent = withAsyncRegionList(
-  // @ts-ignore
-  (props: P) => {
+  (props) => {
+    const { comp: Comp, _injectRegionContextValue, _injectResourceGroupContextValue } = props;
+
     // 初始化 regionbar 逻辑
-    const region = props._injectRegionContextValue ? props._injectRegionContextValue : useRegion(props)
+    const region = _injectRegionContextValue || useRegion(props as IConsoleContextRegionProp);
     // 初始化 resourceGroup 逻辑
-    const resourceGroup = props._injectResourceGroupContextValue ? props._injectResourceGroupContextValue : useResourceGroup(props);
+    const resourceGroup = _injectResourceGroupContextValue || useResourceGroup(props);
 
     const context = { consoleConfig, region, resourceGroup };
-
-    const Comp = props.comp;
 
     return (
       <ConsoleContext.Provider value={context}>
         <Comp {...props} />
       </ConsoleContext.Provider>
     );
-  }
+  },
 );
 
 function withConsoleContext<P extends IConsoleContextProp, S = {}>(
-  Comp: new () => React.Component<P, S>
+  Comp: new () => React.Component<P, S>,
 ) {
-  // @ts-ignore
-  return (props) => <ConsoleContextComponent {...props} comp={Comp} />
+  return (props) => <ConsoleContextComponent {...props} comp={Comp} />;
 }
 
 export default withConsoleContext;

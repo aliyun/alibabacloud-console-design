@@ -14,12 +14,12 @@ type regionFn = (location: any) => IPayloadRegion[];
 
 /**
  * 为了适配新版本的 region, 但是由于
- * @param props 
- * @returns 
+ * @param props
+ * @returns
  */
-const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>) => {
+const useRcRegionProps = (props: IConsoleContextRegionProp<{regionId?: string}>) => {
   const { consoleBase, match, location, region: regionConfig = {} } = props;
-  const { regionList : regionListConfig, regionbarVisiblePaths = [], globalVisiblePaths = [], defaultRegion }  = regionConfig;
+  const { regionList: regionListConfig, regionbarVisiblePaths = [], globalVisiblePaths = [], defaultRegion } = regionConfig;
   // 默认 Region = 路由的Region > Cookie 的 region > Region 列表中第一个 > 用户指定默认Region >'cn-hangzhou'
   const [currentRegionId, setCurrentRegionId] = useState<string>('');
   const regionContext = useContext(RegionContext);
@@ -36,14 +36,14 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
     regionContext.setActiveRegionId(regionId);
 
     setCurrentRegionId(regionId);
-  }
+  };
 
   useEffect(() => {
     (async () => {
       if (isFunction(regionListConfig)) {
         setLoading(true);
-        const regionList = await (regionListConfig as unknown as regionFn)(location);
-        setRegionList(regionList);
+        const regions = await (regionListConfig as unknown as regionFn)(location);
+        setRegionList(regions);
         setLoading(false);
       }
     })();
@@ -58,8 +58,8 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
     const regionId = determineRegionId(match.params.regionId, currentRegionId, regionList, defaultRegion);
 
     if (currentRegionId !== regionId) {
-      setRegionIdWithMemo(regionId)
-      return reroute(props, regionId);
+      setRegionIdWithMemo(regionId);
+      return reroute(props, regionId, props.region?.historyAction);
     }
   }, [match.params.regionId, loading]);
 
@@ -73,7 +73,7 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
       return true;
     }
     return false;
-  })
+  });
 
 
   const onRegionChange = (id: string, regionName: string, correctedFrom?: string) => {
@@ -82,9 +82,9 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
     }
     const regionId = determineRegionId(id, currentRegionId, regionList, defaultRegion);
     if (regionId !== currentRegionId) {
-      reroute(props, regionId);
+      reroute(props, regionId, props.region?.historyAction);
     }
-  }
+  };
 
   const regionsVisible = regionbarVisiblePaths.some((showRegionPath) => {
     const matches = matchPath(location.pathname, {
@@ -106,9 +106,9 @@ const useRcRegionProps = (props:  IConsoleContextRegionProp<{regionId?: string}>
     region: {
       ...(consoleBase || ConsoleRegion),
       getCurrentRegionId: (): string => currentRegionId || determineRegionId(match.params.regionId, getActiveId(), regionList, defaultRegion),
-      setCurrentRegionId: setRegionIdWithMemo
-    }
-  }
-}
+      setCurrentRegionId: setRegionIdWithMemo,
+    },
+  };
+};
 
 export default useRcRegionProps;

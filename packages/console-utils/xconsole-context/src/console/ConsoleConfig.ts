@@ -1,4 +1,4 @@
-import template from 'lodash/template'
+import template from 'lodash/template';
 
 import type {
   ChannelEnum,
@@ -13,7 +13,6 @@ import type {
 } from '../types/AliyunConsoleConfig';
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/interface-name-prefix
   interface Window {
     ALIYUN_CONSOLE_CONFIG: IAliyunConsoleConfig;
   }
@@ -26,55 +25,55 @@ class ConsoleConfig {
     this.consoleConfig = window.ALIYUN_CONSOLE_CONFIG || {};
   }
 
-  public getChannel = (): ChannelEnum => {
+  getChannel = (): ChannelEnum => {
     return this.consoleConfig.CHANNEL;
   };
 
-  public getfEnv = (): fEnv => {
+  getfEnv = (): fEnv => {
     return this.consoleConfig.fEnv;
   };
 
-  public getPortalId = (): string => {
+  getPortalId = (): string => {
     return this.consoleConfig.PORTAL_Id;
   };
 
-  public getLang = (): LangEnum => {
+  getLang = (): LangEnum => {
     return this.consoleConfig.LANG;
   };
 
-  public getLocale = (): string => {
+  getLocale = (): string => {
     return this.consoleConfig.LOCALE;
   };
 
-  public getAccoutLoginLink = (): string => {
+  getAccoutLoginLink = (): string => {
     return this.consoleConfig.ACCOUNT_LOGIN_LINK;
   };
 
-  public getSecToken = (): string => {
+  getSecToken = (): string => {
     return this.consoleConfig.SEC_TOKEN;
   };
 
-  public isCertified = (): boolean => {
+  isCertified = (): boolean => {
     return this.consoleConfig.IS_CERTIFIED === 'true';
   };
 
-  public getAccountName = (): string => {
+  getAccountName = (): string => {
     return this.consoleConfig.ACCOUNT_NAME;
   };
 
-  public getMainAccountPK = (): string => {
+  getMainAccountPK = (): string => {
     return this.consoleConfig.MAIN_ACCOUNT_PK;
   };
 
-  public getCurrentPK = (): string => {
+  getCurrentPK = (): string => {
     return this.consoleConfig.CURRENT_PK;
   };
 
-  public getAccountType = (): AccountType => {
+  getAccountType = (): AccountType => {
     return this.consoleConfig.ACCOUNT_TYPE;
   };
 
-  public getOpenStatus = (productId: string): IOpenStatus => {
+  getOpenStatus = (productId: string): IOpenStatus => {
     if (
       this.consoleConfig.OPEN_STATUS &&
       this.consoleConfig.OPEN_STATUS[productId]
@@ -86,7 +85,7 @@ class ConsoleConfig {
     };
   };
 
-  public getGrayStatus = (featureId: string): boolean => {
+  getGrayStatus = (featureId: string): boolean => {
     if (
       this.consoleConfig.FEATURE_STATUS &&
       this.consoleConfig.FEATURE_STATUS[featureId]
@@ -96,7 +95,7 @@ class ConsoleConfig {
     return false;
   };
 
-  public getChannelFeature = (featureId: string): IChannelStatus => {
+  getChannelFeature = (featureId: string): IChannelStatus => {
     if (
       this.consoleConfig.CHANNEL_FEATURE_STATUS &&
       this.consoleConfig.CHANNEL_FEATURE_STATUS[featureId]
@@ -106,7 +105,8 @@ class ConsoleConfig {
     return { status: false };
   };
 
-  public getChannelLink = (linkId: string, linkParams?: any): string => {
+  getChannelLink = (linkId: string, linkParams?: any): string => {
+    // eslint-disable-next-line no-script-url
     let channelLink = 'javascript:void(0)';
     if (
       this.consoleConfig.CHANNEL_LINKS &&
@@ -116,21 +116,21 @@ class ConsoleConfig {
     }
 
     if (linkParams) {
-      channelLink = template(channelLink)(linkParams)
+      channelLink = template(channelLink)(linkParams);
     }
 
     return channelLink;
   };
 
-  public getLabel = (): ILabel => {
+  getLabel = (): ILabel => {
     return this.consoleConfig.LABELS;
   };
 
-  public getUserPreference = (): ILabel => {
+  getUserPreference = (): ILabel => {
     return this.consoleConfig.USER_PREFERENCE;
   };
 
-  public getRuleConfig = (ruleId: string): string | undefined => {
+  getRuleConfig = (ruleId: string): string | undefined => {
     if (
       this.consoleConfig.RULE_CONFIG &&
       this.consoleConfig.RULE_CONFIG[ruleId]
@@ -140,11 +140,11 @@ class ConsoleConfig {
     return undefined;
   };
 
-  public getRegions = (): IRegion[] => {
+  getRegions = (): IRegion[] => {
     return this.consoleConfig.REGIONS;
   };
 
-  public getStaticAPI = <T = any>(field: string): T | undefined => {
+  getStaticAPI = <T = any>(field: string): T | undefined => {
     if (this.consoleConfig.STATIC_API && this.consoleConfig.STATIC_API[field]) {
       return this.consoleConfig.STATIC_API[field] as T;
     }

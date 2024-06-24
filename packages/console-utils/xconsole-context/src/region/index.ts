@@ -8,6 +8,9 @@ export default {
   setRegions: ConsoleBase.setRegions,
   setRegionResourceCount: ConsoleBase.setRegionResourceCount,
   toggleRegionGlobal: ConsoleBase.toggleRegionGlobal,
+  setRegionProps: ConsoleBase.setRegionProps,
+  mergeRegionProps: ConsoleBase.mergeRegionProps,
   getCurrentRegionId: (): string => getActiveId(),
   setCurrentRegionId: (regionId: string) => ConsoleBase.setRegionId(regionId),
+  setRegionDisabled: () => () => undefined,
 };

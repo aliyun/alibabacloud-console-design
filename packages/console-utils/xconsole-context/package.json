@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-context",
-  "version": "2.4.36",
+  "version": "2.5.0",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
@@ -13,11 +13,6 @@
   },
   "bugs": {
     "url": "https://github.com/aliyun/alibabacloud-console-design/issues"
-  },
-  "author": {
-    "name": "Boelroy",
-    "email": "boelroy@live.com",
-    "url": "https://github.com/Boelroy"
   },
   "scripts": {
     "prepublishOnly": "npm run clean && npm run babel && npm run babel:esm",

@@ -5,7 +5,7 @@ import qs from 'query-string';
 import ConsoleResourceGroup, { getCurrentRGId } from '../resourceGroup/index';
 import type { IConsoleContextProp } from '../types/index';
 
-type ResourceGroup = typeof ConsoleResourceGroup;
+export type ResourceGroup = typeof ConsoleResourceGroup;
 
 /**
  * 为了兼容 hashRouter 和 historyRouter，不要直接使用 window.location
@@ -16,7 +16,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
   // hashRouter 中，无法通过 window.location.search 获取到 query，必须通过 history.location.search 获取
   const searchParam = qs.parse(location.search);
   const [currentRGId, setCurrentRGId] = useState<string>(
-    searchParam.resourceGroupId as string || getCurrentRGId()
+    searchParam.resourceGroupId as string || getCurrentRGId(),
   );
 
   const resourceGroup = {
@@ -47,14 +47,14 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
           exact: true,
           strict: true,
         });
-  
+
         if (matches) {
           enable = true;
         }
       });
 
       return enable;
-    }
+    };
 
     resourceGroup.toggleResourceGroup(isEnable());
 
@@ -66,7 +66,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
       if (!url.searchParams.get('resourceGroupId') && currentRGId) {
         url.searchParams.delete('resourceGroupId');
         url.searchParams.append('resourceGroupId', currentRGId);
-        
+
         history.replace({
           pathname: url.pathname,
           search: url.search,
@@ -99,7 +99,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
           search: url.search,
           hash: url.hash,
         }, history.location.state);
-      }
+      },
     );
 
     return () => {
@@ -107,13 +107,7 @@ export default (props: IConsoleContextProp<{regionId?: string}>): ResourceGroup 
       unSubscriber();
       unSubscriberChange();
     };
-  }, [
-    resourceGroupVisiblePaths,
-    location.pathname,
-    resourceGroup,
-    history,
-    currentRGId,
-  ]);
+  }, [resourceGroupVisiblePaths, location.pathname, resourceGroup, history, currentRGId, disable, location.search, location.hash]);
 
   return resourceGroup;
 };

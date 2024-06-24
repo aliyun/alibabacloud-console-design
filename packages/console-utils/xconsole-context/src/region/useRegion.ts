@@ -1,93 +1,132 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useLayoutEffect, useState, useContext, useCallback, useMemo } from 'react';
 import { matchPath } from 'react-router-dom';
 
+import ConsoleBaseFallback from '../console/ConsoleBase';
 import ConsoleRegion from './index';
 import { reroute } from './reroute';
-import ConsoleBase from '../console/ConsoleBase';
 import { determineRegionId } from './determineRegionId';
 import { RegionContext } from '../context/RegionContext';
 import { getActiveId } from './cookies';
 import type { IConsoleContextRegionProp } from '../types/index';
 
-type ConsoleRegion = typeof ConsoleRegion;
+export type TConsoleRegion = typeof ConsoleRegion;
 
-interface Region extends ConsoleRegion {
+export interface Region extends TConsoleRegion {
   loading?: boolean;
 }
 
 /**
- * regionbar 相关的交互
- *    - 发送 region 列表给 regionbar
- *    - 接受 regionbar 的 region 变更，并且变动整个 app.
- *    - 获取与更新 regionID 相关信息
+ * regionBar 相关的交互
+ * - 发送 regionId 和 regionList 给 regionBar
+ * - 监听 regionList 变化，计算更新 regionId
+ * - 监听 regionBar 变化，计算更新 regionId
+ * - 监听路由变更，计算更新 regionId
+ * - 获取与更新 regionID 相关信息
  */
 export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region => {
-  const { history, consoleBase, match, location, region: regionConfig = {} } = props;
-  const { regionList, regionbarVisiblePaths = [], globalVisiblePaths = [], defaultRegion, disable = false }  = regionConfig;
+  const {
+    history, consoleBase: passInConsoleBase,
+    match, location, region: regionConfig = {},
+  } = props;
+  const {
+    regionList, regionbarVisiblePaths = [], globalVisiblePaths = [],
+    defaultRegion, disable = false, historyAction,
+  } = regionConfig;
   // 默认 Region = 路由的Region > Cookie 的 region > Region 列表中第一个 > 用户指定默认Region >'cn-hangzhou'
-  const [currentRegionId, setCurrentRegionId] = useState<string>('');
+  const [currentRegionId, setCurrentRegionId] = useState<string>(
+    // 第一次加载时计算初始 regionId
+    determineRegionId(match.params.regionId, getActiveId(), regionList, defaultRegion),
+  );
   const regionContext = useContext(RegionContext);
+  const consoleBase = useMemo(() => passInConsoleBase || ConsoleBaseFallback, [passInConsoleBase]);
 
-  // 设置内存变量中的 Id， 也设置设置临时变量中的 ID
-  const setRegionIdWithMemo = (regionId: string) => {
-    // @ts-ignore
-    window.__XCONSOLE_CURRENT_REGION_ID__ = regionId;
+  /**
+   * 计算更新 regionId 状态，也设置临时变量中的 ID
+   */
+  const setRegionIdWithMemo = useCallback((wantedRegionId: string) => {
+    (window as {
+      __XCONSOLE_CURRENT_REGION_ID__?: string;
+    }).__XCONSOLE_CURRENT_REGION_ID__ = wantedRegionId;
 
+    setCurrentRegionId((curRegionId) => {
+      return determineRegionId(wantedRegionId, curRegionId, regionList, defaultRegion);
+    });
+  }, [
+    regionList,
+    defaultRegion,
+  ]);
+
+  /**
+   * 如果是 region 路由，且 regionId 变化时重定向
+   */
+  const rerouteIfNeed = useCallback((regionId: string) => {
+    reroute({ history, match, location }, regionId, historyAction);
+  }, [
+    history,
+    match,
+    location,
+    historyAction,
+  ]);
+
+  /**
+   * 设置 regionBar 不可点击态
+   */
+  const setRegionDisabled = useCallback(() => {
+    consoleBase.mergeRegionProps({
+      disabled: true,
+    });
+
+    return () => {
+      consoleBase.mergeRegionProps({
+        disabled: false,
+      });
+    };
+  }, [consoleBase]);
+
+  /**
+   * 根据 regionId 状态更新路由和 regionBar
+   */
+  useLayoutEffect(() => {
+    if (disable) return;
+
+    rerouteIfNeed(currentRegionId);
+    // 通知 consoleBase 更新 regionId
+    consoleBase.setRegionId(currentRegionId);
+    consoleBase.setRegions(regionList);
+  }, [
+    disable,
+    consoleBase,
+    regionList,
+    currentRegionId,
+    rerouteIfNeed,
+  ]);
+
+  useEffect(() => {
     // 兼容旧版本的应用
-    regionContext.setActiveRegionId(regionId);
-
-    setCurrentRegionId(regionId);
-  }
-
-  const region: Region = {
-    ...(consoleBase || ConsoleRegion),
-    getCurrentRegionId: (): string => currentRegionId || determineRegionId(match.params.regionId, getActiveId(), regionList, defaultRegion),
-    setCurrentRegionId: setRegionIdWithMemo
-  };
+    regionContext.setActiveRegionId(currentRegionId);
+  }, [
+    regionContext,
+    currentRegionId,
+  ]);
 
   /**
-   * 将路由状态同步到应用全局 region 状态
+   * 根据路由变化更新 regionId
    */
   useEffect(() => {
     if (disable) return;
 
-    region.setRegions(regionList);
-    // 如果 regionId 不在 region 列表重定向到 regionId 上
-    const regionId = determineRegionId(match.params.regionId, currentRegionId, regionList, defaultRegion);
-
-    if (currentRegionId !== regionId) {
-      // 通知 consoleBase 更新 regionId
-      region.setRegionId(regionId);
-      // 更新全局 regionId
-      setRegionIdWithMemo(regionId);
-      reroute(props, regionId);
-    }
-  }, [match.params.regionId, currentRegionId, regionList, defaultRegion]);
+    setRegionIdWithMemo(match.params.regionId);
+  }, [
+    disable,
+    match.params.regionId,
+    setRegionIdWithMemo,
+  ]);
 
   /**
-   * 将 consoleBase 地域选择器状态变化同步到应用全局 region 状态
+   * 根据路由变化更新 regionBar 展示状态
    */
   useEffect(() => {
     if (disable) return;
-
-    // 监听 consoleBase 地域选择器更新并同步
-    const unsubscribeRegionChange = region.onRegionChange((payload) => {
-      if (payload.correctedFrom) {
-        return;
-      }
-
-      const regionId = determineRegionId(payload.id, currentRegionId, regionList, defaultRegion);
-
-      if (regionId !== currentRegionId) {
-        setRegionIdWithMemo(regionId);
-        reroute(props, regionId);
-      }
-    });
-
-    const unsubscribeReady = ConsoleBase.onReady(() => {
-      region.setRegions(regionList);
-      region.setRegionId(currentRegionId);
-    });
 
     // 如果配置了显示全球的路径，直接展示全球
     const showGlobal = globalVisiblePaths.some((globalPath) => {
@@ -98,34 +137,62 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
       });
 
       if (matches) {
-        region.toggleRegion(true);
-        region.toggleRegionGlobal(true);
+        consoleBase.toggleRegion(true);
+        consoleBase.toggleRegionGlobal(true);
         return true;
       }
       return false;
-    })
+    });
 
     if (!showGlobal) {
-      region.toggleRegion(false);
+      consoleBase.toggleRegion(false);
 
-      regionbarVisiblePaths.forEach((showRegionPath) => {
+      regionbarVisiblePaths.forEach((path) => {
         const matches = matchPath(location.pathname, {
-          path: showRegionPath,
+          path,
           exact: true,
           strict: true,
         });
 
         if (matches) {
-          region.toggleRegion(true);
+          consoleBase.toggleRegion(true);
         }
       });
     }
+  }, [
+    disable,
+    consoleBase,
+    globalVisiblePaths,
+    regionbarVisiblePaths,
+    location.pathname,
+  ]);
 
-    return () => {
-      unsubscribeRegionChange();
-      unsubscribeReady();
-    }
-  }, [regionList, history, regionbarVisiblePaths, globalVisiblePaths, location.pathname, currentRegionId, defaultRegion]);
+  /**
+   * 根据 regionBar 变化更新 regionId
+   */
+  useEffect(() => {
+    if (disable) return;
 
-  return region;
+    const unsubscribeRegionChange = consoleBase.onRegionChange((payload) => {
+      // correctedFrom 是 consoleBase 内部更新发出的，忽略掉
+      if (payload.correctedFrom) {
+        return;
+      }
+
+      setRegionIdWithMemo(payload.id);
+    });
+
+    return unsubscribeRegionChange;
+  }, [
+    disable,
+    consoleBase,
+    setRegionIdWithMemo,
+  ]);
+
+  return {
+    ...(consoleBase || ConsoleRegion),
+    setRegionDisabled,
+    getCurrentRegionId: (): string => currentRegionId,
+    setCurrentRegionId: setRegionIdWithMemo,
+  };
 };

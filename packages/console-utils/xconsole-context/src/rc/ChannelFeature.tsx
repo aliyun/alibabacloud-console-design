@@ -1,6 +1,6 @@
-import React from 'react'
-import { ConsoleContext } from '../context/Context'
-import get from 'lodash/get'
+import React from 'react';
+import { ConsoleContext } from '../context/Context';
+import get from 'lodash/get';
 
 
 /**
@@ -19,7 +19,7 @@ function checkBlackAndWhiteList(value, mixedList) {
   const blackList = [];
 
   // 将黑白混合名单转化成「黑」和「白」两个数组
-  mixedList.filter(v => !!v).forEach(v => {
+  mixedList.filter((v) => !!v).forEach((v) => {
     const cleanV = v.trim();
 
     if (/^!/.test(cleanV)) {
@@ -39,27 +39,27 @@ function checkBlackAndWhiteList(value, mixedList) {
   }
 
   // 黑名单的优先级大于白名单，如果有任何一个不通过，不通过
-  if (blackList.some(v => checkAgainstConf(v))) {
+  if (blackList.some((v) => checkAgainstConf(v))) {
     return false;
   }
 
   // 没有白名单、或匹配任何一个普通名单，通过
-  return whiteList.length ? whiteList.some(v => checkAgainstConf(v)) : true;
+  return whiteList.length ? whiteList.some((v) => checkAgainstConf(v)) : true;
 }
 
 export const useChannelFeature = (id: string, region?: string) => {
   if (typeof id === 'undefined') {
     throw new Error(
-      '[Feature] id is required'
-    )
+      '[Feature] id is required',
+    );
   }
-  const { consoleConfig } = React.useContext(ConsoleContext)
+  const { consoleConfig } = React.useContext(ConsoleContext);
 
   const feature = consoleConfig.getChannelFeature(id);
   if (typeof feature === 'undefined') {
     return true;
   }
-  const status = get(feature, 'status')
+  const status = get(feature, 'status');
 
   if (status === false) {
     return false;
@@ -74,11 +74,11 @@ export const useChannelFeature = (id: string, region?: string) => {
   // 进行 region 的检查，校验不通过则返回 null
   const regionEnableCheck = checkBlackAndWhiteList(region, regions);
   if (regionEnableCheck === false) {
-    return false
+    return false;
   }
 
   return true;
-}
+};
 
 export interface IChannelFeatureProps {
   id: string;
@@ -93,8 +93,8 @@ const ChannelFeature: React.FC<IChannelFeatureProps> = ({
 }: IChannelFeatureProps) => {
   const channelFeature = useChannelFeature(id, region);
   return channelFeature ? children : null;
-}
+};
 
-ChannelFeature.displayName = 'ChannelFeature'
+ChannelFeature.displayName = 'ChannelFeature';
 
-export default ChannelFeature
+export default ChannelFeature;

@@ -1,8 +1,8 @@
 import { History, Location } from 'history';
 import { match } from 'react-router-dom';
 
-import region from "../region/index";
-import { IPayloadRegion } from "./ConsoleBase";
+import region from '../region/index';
+import { IPayloadRegion } from './ConsoleBase';
 import consoleConfig, { ConsoleBase } from '../console/index';
 import resourceGroup from '../resourceGroup';
 
@@ -17,10 +17,10 @@ export interface RegionConfig {
 
   // 默认 fallback 的 region
   defaultRegion?: string;
-  
+
   // 路由匹配到 region 展示或者隐藏
   regionbarVisiblePaths?: PathRule;
-  
+
   // 路由匹配到 全球的 展示或者隐藏
   globalVisiblePaths?: PathRule;
 

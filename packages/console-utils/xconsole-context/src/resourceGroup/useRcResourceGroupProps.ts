@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { History } from 'history'
-import qs from 'query-string'
+import { History } from 'history';
+import qs from 'query-string';
 import { matchPath } from 'react-router-dom';
 
 import ConsoleResourceGroup, { getCurrentRGId } from '../resourceGroup/index';
@@ -12,7 +12,7 @@ const reroute = (history: History, currentRGId?: string) => {
 
   url.searchParams.delete('resourceGroupId');
   if (currentRGId) url.searchParams.append('resourceGroupId', currentRGId);
-  
+
   if (url.pathname !== location.pathname || url.search !== location.search || url.hash !== location.hash) {
     history.replace({
       pathname: url.pathname,
@@ -20,14 +20,14 @@ const reroute = (history: History, currentRGId?: string) => {
       hash: url.hash,
     });
   }
-}
+};
 
 export default (props: IConsoleContextProp<{regionId?: string}>) => {
   const { history, consoleBase, location } = props;
   const { resourceGroupVisiblePaths = [], historyAction } = props.resourceGroup || {};
   const searchParam = qs.parse(location.search);
   const [currentRGId, setCurrentRGId] = useState<string>(
-    searchParam.resourceGroupId as string || getCurrentRGId()
+    searchParam.resourceGroupId as string || getCurrentRGId(),
   );
 
   const isEnable = useCallback((pathname: string) => resourceGroupVisiblePaths.some((showRegionPath) => {
@@ -56,11 +56,11 @@ export default (props: IConsoleContextProp<{regionId?: string}>) => {
       search: url.search,
       hash: url.hash,
     });
-  }
+  };
 
   useEffect(() => {
     // 初次进入页面
-    if (currentRGId && isEnable(location.pathname)) reroute(history, currentRGId)
+    if (currentRGId && isEnable(location.pathname)) reroute(history, currentRGId);
   }, [isEnable]);
 
   useEffect(() => {
@@ -90,6 +90,6 @@ export default (props: IConsoleContextProp<{regionId?: string}>) => {
     resourceGroup: {
       ...(consoleBase || ConsoleResourceGroup),
       getCurrentResourceGroup: () => currentRGId,
-    }
+    },
   };
 };
