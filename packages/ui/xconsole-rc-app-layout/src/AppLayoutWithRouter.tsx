@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { isFunction } from 'lodash-es';
 import { withRouter } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ import useCollapsed from './hooks/useCollapsed';
 let noticeFlag = false;
 
 const XConsoleAppLayout = (props: IProps) => {
-  const { sidebar: rawSidebar, consoleMenu, location, children, menuParams, style } = props;
+  const { sidebar: rawSidebar, consoleMenu = {}, location, children, menuParams, style } = props;
   const { pathname } = location;
 
   let sidebar: ISidebarConfig;
@@ -58,9 +58,13 @@ const XConsoleAppLayout = (props: IProps) => {
     return () => window.removeEventListener('message', cb);
   }, []);
 
+  const collapsedPath = useMemo(() => {
+    return consoleMenu?.collapsedPath || [];
+  }, [consoleMenu.collapsedPath]);
+
   const { collapsed, setCollapsed, onNavCollapseTriggerClick } = useCollapsed(
     pathname,
-    consoleMenu?.collapsedPath || [],
+    collapsedPath,
   );
 
   const hideNav = useCallback(() => {

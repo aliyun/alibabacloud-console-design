@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-rc-app-layout",
-  "version": "2.5.3",
+  "version": "2.5.5",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
@@ -53,7 +53,7 @@
     "styled-components": ">=4.2.1"
   },
   "dependencies": {
-    "@alicloud/console-components-app-layout": "^1.1.4",
+    "@alicloud/console-components-app-layout": "2.0.0-alpha.4",
     "@alicloud/console-components-console-menu": "^1.2.12",
     "lodash-es": "^4.17.21",
     "moment": "^2.24.0",
