@@ -1,7 +1,8 @@
-import React from 'react';
-import { ConsoleContext } from '../context/Context';
+import React, { useContext } from 'react';
 import Link from '@alicloud/xconsole-rc-base-link';
 import '@alicloud/xconsole-rc-base-link/dist/index.css';
+
+import { ConsoleContext } from '../context/Context';
 
 export interface IChannelLinkProps {
   /**
@@ -58,13 +59,7 @@ export interface IChannelLinkProps {
 }
 
 export const useChannelLink = (linkId: string, linkParams: Record<string, any>) => {
-  if (typeof linkId === 'undefined') {
-    throw new Error(
-      '[ChannelLink] linkId is required',
-    );
-  }
-
-  const { consoleConfig } = React.useContext(ConsoleContext);
+  const { consoleConfig } = useContext(ConsoleContext);
 
   return consoleConfig.getChannelLink(linkId, linkParams);
 };
