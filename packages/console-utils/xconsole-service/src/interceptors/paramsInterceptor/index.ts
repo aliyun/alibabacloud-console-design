@@ -18,10 +18,9 @@ function searchParamsInterceptor(config: IOptions): IOptions {
     ...config,
     headers: {
       ...(config.headers || {}),
-      'content-type': 'application/x-www-form-urlencoded'
+      'content-type': 'application/x-www-form-urlencoded',
     },
     params: paramsSearchParams,
-    //@ts-ignore
     data: dataSearchParams,
     originParams: params,
     originData: data,

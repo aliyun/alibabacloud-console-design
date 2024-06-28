@@ -55,6 +55,8 @@ export interface IOptions extends AxiosRequestConfig {
   mock?: boolean;
   // oneapi _tag
   mockTag?: string;
+  // 关闭 oneConsole 风控
+  noRisk?: boolean;
 }
 
 export interface IResponseData<D = any> {

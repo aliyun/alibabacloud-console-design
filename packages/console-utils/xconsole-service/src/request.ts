@@ -1,18 +1,19 @@
 import axios, { AxiosInstance } from 'axios';
+
 import searchParamsInterceptor from './interceptors/paramsInterceptor/index';
 import consoleMockInterceptor from './interceptors/mockInterceptor/index';
 import fastLoginInterceptor from './interceptors/fastloginInterceptor';
 import {
   consoleRequestInterceptor,
   consoleResponseInterceptor,
-  roaRequestInterceptor
+  roaRequestInterceptor,
 } from './interceptors/consoleInterceptor/index';
 import consoleRiskInterceptor from './interceptors/riskInterceptor/index';
 import {
   armsRequestInterceptor,
   armsResponseInterceptor,
 } from './interceptors/armsInterceptor/index';
-import { RequestInterceptor, ResponseInterceptor } from './types';
+import type { RequestInterceptor, ResponseInterceptor } from './types';
 
 interface IInterceptors {
   request?: RequestInterceptor[];
@@ -21,7 +22,7 @@ interface IInterceptors {
 
 export default function createRequest(
   interceptors: IInterceptors = {},
-  override?: boolean
+  override?: boolean,
 ): AxiosInstance {
   const instance = axios.create();
   const {

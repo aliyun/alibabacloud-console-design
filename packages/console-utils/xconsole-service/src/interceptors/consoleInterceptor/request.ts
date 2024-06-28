@@ -5,8 +5,7 @@ import {
   getActiveRegionId,
 } from '../../utils/index';
 import { IOptions, IOptionsData } from '../../types';
-import { ApiType } from '../../const/index';
-import { API_URL } from '../../const';
+import { ApiType, API_URL } from '../../const/index';
 
 // 默认请求路径
 const BASE_URL = '/';
@@ -56,7 +55,7 @@ function getRegion(data: any): string {
   } else {
     const { actions } = data;
     const action = actions.find(
-      ({ params }: { params: any }) => (params || {}).RegionId
+      ({ params }: { params: any }) => (params || {}).RegionId,
     );
 
     if (action && action.params.RegionId) return action.params.RegionId;
@@ -66,7 +65,6 @@ function getRegion(data: any): string {
 
 // 必填缺省参数补全并格式化部分参数
 const utilsMap: { [key: string]: (data?: any) => any } = {
-  // eslint-disable-next-line @typescript-eslint/camelcase
   sec_token: getSecToken,
   collina: getCollina,
   umid: getUmid,
@@ -75,7 +73,7 @@ const utilsMap: { [key: string]: (data?: any) => any } = {
 
 function processData(
   data: IOptions['data'] = {},
-  keys: string[] = []
+  keys: string[] = [],
 ): {
     [key: string]: any;
     params?: string;
@@ -124,7 +122,7 @@ function checkArgumentsForMultiApi({ product, actions }: IOptionsData): void {
       throw new Error(
         `You must specify which api you want to call.
         If you see this log, it's likely that you've forgot to specify an action
-        property in your actions argument. Go for a double check.`
+        property in your actions argument. Go for a double check.`,
       );
     }
   });
@@ -145,7 +143,7 @@ function checkArguments(data: IOptionsData, multi: boolean): void {
  * @param {*} config
  */
 function consoleRequestInterceptor(config: IOptions): IOptions {
-  const { url = '', apiType, data = {}, useCors } = config;
+  const { url = '', apiType, noRisk, data = {}, useCors } = config;
   // 补全缺省必填参数并修正参数格式
   // params 与 actions 需要 JSON.stringify
   const nextData = processData(data, [
@@ -172,13 +170,27 @@ function consoleRequestInterceptor(config: IOptions): IOptions {
   // 检查参数格式是否正确
   checkArguments(data, multi);
 
+  const qs = [];
+
+  if (nextData.action) {
+    qs.push(`action=${nextData.action}`);
+  }
+
+  if (nextData.product) {
+    qs.push(`product=${nextData.product}`);
+  }
+
+  if (noRisk) {
+    qs.push('noRisk=true');
+  }
+
+  const search = qs.length > 0 ? `?${qs.join('&')}` : '';
+
   // 返回新的 config 对象
   return {
     ...config,
     method: 'post',
-    url: `${getURL(apiType, multi)}?action=${nextData.action}&product=${
-      nextData.product
-    }`, // 获取请求 URL
+    url: `${getURL(apiType, multi)}${search}`,
     baseURL: BASE_URL,
     withCredentials: !!useCors,
     data: nextData,

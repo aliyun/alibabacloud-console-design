@@ -1,6 +1,6 @@
 {
   "name": "@alicloud/xconsole-service",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
@@ -59,8 +59,5 @@
     "qs": "^6.10.2",
     "swr": "^0.2.3",
     "tslib": "^2.0.0"
-  },
-  "resolutions": {
-    "jest-environment-jsdom": "^26.0.1"
   }
 }

@@ -8,8 +8,8 @@ const injectErrorPromptAdaptor = (error: IError, response: AxiosResponse) => {
   let body = {};
 
   try {
-    body = qs.parse(response?.config?.data)
-  } catch (e){
+    body = qs.parse(response?.config?.data);
+  } catch (e) {
     //  nothing
   }
 
@@ -19,8 +19,8 @@ const injectErrorPromptAdaptor = (error: IError, response: AxiosResponse) => {
   error.message = response.data?.message;
   error.details = {
     url: response?.config?.url,
-    body: body,
-    method: response?.config?.method
+    body,
+    method: response?.config?.method,
   };
 
   const accessDeniedDetail = response.data?.accessDeniedDetail;
@@ -45,13 +45,13 @@ const injectErrorPromptAdaptor = (error: IError, response: AxiosResponse) => {
       userId,
       policyType,
       type,
-      diagnosisInfo
+      diagnosisInfo,
     };
   }
 };
 
 function consoleResponseInterceptor(
-  response: IResponse<IResponseData>
+  response: IResponse<IResponseData>,
 ): IResponse<IResponseData> {
   const {
     data: apiResponseData,
@@ -62,7 +62,7 @@ function consoleResponseInterceptor(
 
   // Single api succeeded -> code 200, withFailedRequest undefined
   // Multi api succeeded  -> code 200, withFailedRequest false
-  if (apiResponseData.code === '200' && apiResponseData.withFailedRequest !== true ) {
+  if (apiResponseData.code === '200' && apiResponseData.withFailedRequest !== true) {
     return response;
   }
 
@@ -74,8 +74,8 @@ function consoleResponseInterceptor(
 
   let error: IError = new Error('OpenAPI failed without a message.');
 
-  // Multi api with failed request 
-  if (apiResponseData.code === '200' && apiResponseData.withFailedRequest === true ) {
+  // Multi api with failed request
+  if (apiResponseData.code === '200' && apiResponseData.withFailedRequest === true) {
     error = new Error('Multi OpenAPI calls with failed request.');
   }
 
