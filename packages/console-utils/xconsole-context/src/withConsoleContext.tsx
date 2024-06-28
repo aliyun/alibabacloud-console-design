@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useState, useRef } from 'react';
 import isFunction from 'lodash/isFunction';
 import { matchPath } from 'react-router-dom';
 import ConsoleBaseMessengerRegion from '@alicloud/console-base-rc-messenger-region';
@@ -90,12 +90,22 @@ function withAsyncRegionList<P extends IConsoleContextProp>(
 
     const { customPaths = [] } = appConfig?.aplus || {};
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       (async () => {
         if (isFunction(userRegionListConfig)) {
-          setLoading(true);
           const regions = await (userRegionListConfig as (location) => Promise<IPayloadRegion[]>)(props.location);
-          setRegionList(regions);
+          setRegionList((curRegions) => {
+            // diff regions
+            try {
+              if (JSON.stringify(curRegions) !== JSON.stringify(regions)) {
+                return regions;
+              }
+            } catch (e) {
+              console.error('The regionList from is not valid.');
+            }
+
+            return curRegions;
+          });
           setLoading(false);
         }
       })();
