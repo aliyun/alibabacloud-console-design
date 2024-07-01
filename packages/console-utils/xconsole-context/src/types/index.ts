@@ -34,7 +34,7 @@ export interface IRegionConfigProps extends RegionConfig {
   regionList?: IPayloadRegion[];
 
   /**
-   * disable 关闭路由同步功能
+   * 是否关闭路由同步功能和 regionId 校验逻辑
    */
   disable?: boolean;
 }

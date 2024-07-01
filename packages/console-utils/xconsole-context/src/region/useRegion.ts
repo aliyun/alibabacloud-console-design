@@ -44,14 +44,17 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
    * 计算更新 regionId 状态，也设置临时变量中的 ID
    */
   const setRegionIdWithMemo = useCallback((wantedRegionId: string) => {
-    (window as {
-      __XCONSOLE_CURRENT_REGION_ID__?: string;
-    }).__XCONSOLE_CURRENT_REGION_ID__ = wantedRegionId;
-
     setCurrentRegionId((curRegionId) => {
-      return determineRegionId(wantedRegionId, curRegionId, regionList, defaultRegion);
+      const nextRegionId = disable ? wantedRegionId : determineRegionId(wantedRegionId, curRegionId, regionList, defaultRegion);
+
+      (window as {
+        __XCONSOLE_CURRENT_REGION_ID__?: string;
+      }).__XCONSOLE_CURRENT_REGION_ID__ = nextRegionId;
+
+      return nextRegionId;
     });
   }, [
+    disable,
     regionList,
     defaultRegion,
   ]);
