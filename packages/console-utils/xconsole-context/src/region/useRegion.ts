@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState, useContext, useCallback, useMemo } from 'react';
+import { useEffect, useLayoutEffect, useState, useContext, useCallback, useMemo, useRef } from 'react';
 import { matchPath } from 'react-router-dom';
 
 import ConsoleBaseFallback from '../console/ConsoleBase';
@@ -39,6 +39,11 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
   );
   const regionContext = useContext(RegionContext);
   const consoleBase = useMemo(() => passInConsoleBase || ConsoleBaseFallback, [passInConsoleBase]);
+  const matchRef = useRef(match);
+  const locationRef = useRef(location);
+
+  matchRef.current = match;
+  locationRef.current = location;
 
   /**
    * 计算更新 regionId 状态，也设置临时变量中的 ID
@@ -63,11 +68,13 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
    * 如果是 region 路由，且 regionId 变化时重定向
    */
   const rerouteIfNeed = useCallback((regionId: string) => {
-    reroute({ history, match, location }, regionId, historyAction);
+    reroute({
+      history,
+      match: matchRef.current,
+      location: locationRef.current,
+    }, regionId, historyAction);
   }, [
     history,
-    match,
-    location,
     historyAction,
   ]);
 

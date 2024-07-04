@@ -7,7 +7,7 @@ import type { IConsoleContextRegionProp } from '../types/index';
  * @param match
  * @returns
  */
-const hasRegionId = (match: IMatch) => {
+export const hasRegionId = (match: IMatch) => {
   // eslint-disable-next-line no-prototype-builtins
   return match.params && match.params.hasOwnProperty('regionId');
 };
