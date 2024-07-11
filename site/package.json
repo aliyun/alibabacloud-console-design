@@ -6,7 +6,7 @@
   "author": "",
   "dependencies": {
     "@alicloud/gatsby-theme-console-doc": "^1.0.16",
-    "gatsby": "^2.17.2",
+    "gatsby": "^2.32.13",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
