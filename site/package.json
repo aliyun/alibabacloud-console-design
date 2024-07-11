@@ -28,7 +28,7 @@
     "typescript": "^3.7.3",
     "unified": "^8.4.2",
     "unist-util-remove-position": "^2.0.0",
-    "urllib": "^2.34.1"
+    "urllib": "^2.40.0"
   },
   "keywords": [
     "gatsby"
