@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "cd packages/xconsole-example && tnpm i && tnpm start",
+    "clean": "rm -rf node_modules && rm -rf **/*/node_modules",
     "create-cloud-console": "cd packages/xconsole && node bin/xconsole.js",
     "bootstrap": "lerna bootstrap --registry http://registry.npm.alibaba-inc.com",
     "pub:canary": "lerna publish --dist-tag=canary",
