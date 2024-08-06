@@ -18,7 +18,7 @@ function consoleRequestInterceptor(config: IOptions): IOptions {
     ...config.data,
     params: config?.data?.params?.params,
     content: JSON.stringify(config?.data?.params?.content),
-  }
+  };
   return config;
 }
 

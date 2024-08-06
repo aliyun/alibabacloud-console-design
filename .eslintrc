@@ -1,3 +1,6 @@
 {
-  "extends": "eslint-config-ali/typescript/react"
+  "extends": "eslint-config-ali/typescript/react",
+  "rules": {
+    "max-len": ["warn", { "code": 180 }]
+  }
 }

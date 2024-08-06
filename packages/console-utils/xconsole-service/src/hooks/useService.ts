@@ -6,7 +6,7 @@ import createService from '../service';
 import { IOptions } from '../types';
 import useAsync from './useAsync';
 import { ApiType } from '../const/index';
-import globalConfig from '../configuration/config'
+import globalConfig from '../configuration/config';
 import { getOssDownloadUrl, genOssUploadSignature } from '../oss';
 import { DownloadSignatureParam, DownloadSignatureResponse, OssSignatureParam, OssSignatureResponse } from '../oss/types';
 import createError from '../utils/createError';
@@ -33,7 +33,7 @@ export const useService = <R = any, P extends IParams = {}>(
   service: (p: P) => Promise<R>,
   params?: P,
   opt: IProps<R> = {},
-  deps: DependencyList = []
+  deps: DependencyList = [],
 ) => {
   return useAsync<P, R>(
     async (runParams: P) => {
@@ -49,7 +49,7 @@ export const useService = <R = any, P extends IParams = {}>(
         opt.onError && opt.onError(error);
       },
       onSuccess: opt.onSuccess,
-    }
+    },
   );
 };
 
@@ -61,6 +61,8 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
   apiType = ApiType.open,
   useFetcher = false,
 ) => {
+  let requestService;
+
   if (useFetcher) {
     const { region: userRegion, useNewRisk, useFetcherProxy, ignoreError, disableThrowResponseError } = opt || {};
     const fetcher = useFetcherProxy ? createFetcherProxy({}, {}, useNewRisk) : createFetcher({}, {}, useNewRisk);
@@ -80,10 +82,10 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
       return json.data;
     };
 
-    const requestInstance = (params: P) => {
-      const { RegionId } = params;
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    requestService = (params: P) => {
+      const { RegionId, content } = params;
       const region = userRegion || RegionId || getActiveRegionId();
-
 
       switch (apiType) {
         case ApiType.open:
@@ -91,21 +93,21 @@ const useXconsoleService = <R = any, P extends IParams = {}>(
         case ApiType.inner:
           return fetcher.callInnerApi<R, P>(code, action, params, { region, getData }).catch(handleError);
         case ApiType.roa:
-          return fetcher.callOpenApi<R, P>(code, action, params, { region, roa: params.content, getData }).catch(handleError);
+          // roa 的参数格式特殊
+          return fetcher.callOpenApi<R, P>(code, action, params.params || params, { region, roa: content, getData }).catch(handleError);
         case ApiType.app:
           return fetcher.callContainerApi<R, P>(code, action, params, { getData }).catch(handleError);
+        default:
+          return fetcher.callOpenApi<R, P>(code, action, params, { region, getData }).catch(handleError);
       }
-
-      return fetcher.callOpenApi<R, P>(code, action, params, { region, getData }).catch(handleError);
-    }
-
-    return useService<R, P>(requestInstance, params, opt, [code, action]);
+    };
+  } else {
+    requestService = createService<R, P>(code, action, {
+      ...opt,
+      apiType,
+    });
   }
 
-  const requestService = createService<R, P>(code, action, {
-    ...opt,
-    apiType,
-  });
   return useService<R, P>(requestService, params, opt, [code, action]);
 };
 
@@ -170,14 +172,14 @@ export const useHttpApi = <R = any, P extends IParams = {}>(
 
 export const useOssDownloadUrl = (
   params: DownloadSignatureParam,
-  opt: IProps<DownloadSignatureResponse> = {}
+  opt: IProps<DownloadSignatureResponse> = {},
 ) => {
   return useService<DownloadSignatureResponse, DownloadSignatureParam>(getOssDownloadUrl, params, opt);
 };
 
 export const useOssUploadSignature = (
   params: OssSignatureParam,
-  opt: IProps<OssSignatureResponse> = {}
+  opt: IProps<OssSignatureResponse> = {},
 ) => {
   return useService<OssSignatureResponse, OssSignatureParam>(genOssUploadSignature, params, opt);
 };
