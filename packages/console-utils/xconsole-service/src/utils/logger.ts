@@ -36,8 +36,9 @@ const apiLog = (info: any): void => {
   }
 
   // 手动上报 aplus
-  // eslint-disable-next-line @typescript-eslint/camelcase
   const q = (window.aplus_queue || (window.aplus_queue = []));
+  if (window.APLUS_CONFIG?.apiTrack === 'off') return;
+
   window.APLUS_CONFIG && q.push({
     'action':'aplus.logApi',
     'arguments':[{
