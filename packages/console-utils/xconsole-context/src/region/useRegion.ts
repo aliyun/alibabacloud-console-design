@@ -7,12 +7,30 @@ import { reroute } from './reroute';
 import { determineRegionId } from './determineRegionId';
 import { RegionContext } from '../context/RegionContext';
 import { getActiveId } from './cookies';
+import consoleConfig from '../console';
 import type { IConsoleContextRegionProp } from '../types/index';
 
 export type TConsoleRegion = typeof ConsoleRegion;
 
 export interface Region extends TConsoleRegion {
   loading?: boolean;
+}
+
+/**
+   * 如果要切换的地域是灰度地域，则重新加载页面
+  */
+export function shouldReload(currentRegionId, targetRegionId) {
+  const { enabled, type, grayRegions } = consoleConfig.getVersionGrayConfig();
+
+  // 如果未开启灰度逻辑不刷新
+  if (!enabled || type !== 'region') return false;
+
+  if (currentRegionId === targetRegionId) return false;
+
+  // 如果当前 region 和跳转 region 都在灰度范围内不刷新
+  if (grayRegions.indexOf(currentRegionId) > -1 && grayRegions.indexOf(targetRegionId) > -1) return false;
+
+  return true;
 }
 
 /**
@@ -39,7 +57,9 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
   );
   const regionContext = useContext(RegionContext);
   const consoleBase = useMemo(() => passInConsoleBase || ConsoleBaseFallback, [passInConsoleBase]);
+  // react-router match
   const matchRef = useRef(match);
+  // react-router location
   const locationRef = useRef(location);
 
   matchRef.current = match;
@@ -65,7 +85,7 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
   ]);
 
   /**
-   * 如果是 region 路由，且 regionId 变化时重定向
+   * 如果路由参数里有 regionId，替换 regionId 值并重定向路由
    */
   const rerouteIfNeed = useCallback((regionId: string) => {
     reroute({
@@ -73,6 +93,11 @@ export default (props: IConsoleContextRegionProp<{regionId?: string}>): Region =
       match: matchRef.current,
       location: locationRef.current,
     }, regionId, historyAction);
+
+    // @ts-ignore
+    if (shouldReload(window.__XCONSOLE_CURRENT_REGION_ID__, regionId)) {
+      window.location.reload();
+    }
   }, [
     history,
     historyAction,

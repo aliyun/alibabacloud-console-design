@@ -216,4 +216,18 @@ export interface IAliyunConsoleConfig {
    * portal 类型
    */
   portalType?: string;
+
+  /**
+   * region 灰度配置
+   */
+  VERSION_GRAY_CONFIG: {
+    grayRegions?: string[];
+    regionId?: string;
+    grayVersion?: string;
+    grayId?: string;
+    type?: string;
+    version?: string;
+    enabled?: boolean;
+    onlineVersion?: string;
+  };
 }

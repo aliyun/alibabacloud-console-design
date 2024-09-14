@@ -150,6 +150,14 @@ class ConsoleConfig {
     }
     return undefined;
   };
+
+  /**
+   * 获取应用版本灰度信息
+   * @returns
+   */
+  getVersionGrayConfig = () => {
+    return this.consoleConfig.VERSION_GRAY_CONFIG || {};
+  };
 }
 
 export default ConsoleConfig;
