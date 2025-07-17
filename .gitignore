@@ -18,6 +18,8 @@ packages/*/es/
 build/
 dist/
 coverage/
+es/
+lib/
 
 # misc
 
